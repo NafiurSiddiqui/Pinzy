@@ -1,0 +1,13 @@
+{
+  "name": "pintzy",
+  "packageManager": "yarn@3.4.1",
+  "version": "1.0.0",
+  "description": "Pinaware the people.",
+  "main": "index.js",
+  "author": "Nafi",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  }
+}
