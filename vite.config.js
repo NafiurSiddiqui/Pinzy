@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'login.php'),
+        main: resolve(__dirname, 'index.html'),
         nested: resolve(__dirname, 'src/html/app.html'),
       },
     },
