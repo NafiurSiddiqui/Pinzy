@@ -12,7 +12,7 @@
   }
 
   .text-color-light {
-    @apply text-slate-500;
+    @apply text-slate-400;
   }
 
   .borderTest {
