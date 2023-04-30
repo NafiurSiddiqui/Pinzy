@@ -1,4 +1,5 @@
 'use strict';
+import '/tailwind.css';
 
 class Workout {
   date = new Date();
