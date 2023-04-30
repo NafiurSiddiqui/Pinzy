@@ -1,5 +1,4 @@
 'use strict';
-import './main.css';
 
 class Workout {
   date = new Date();

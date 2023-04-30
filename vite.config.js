@@ -10,5 +10,9 @@ export default defineConfig({
         nested: resolve(__dirname, 'src/html/app.html'),
       },
     },
+    build: {
+      minify: true,
+      assetsInlineLimit: 0,
+    },
   },
 });
