@@ -11,6 +11,10 @@
     @apply text-sm;
   }
 
+  .text-color-light {
+    @apply text-slate-500;
+  }
+
   .borderTest {
     @apply border;
     @apply border-slate-500;
