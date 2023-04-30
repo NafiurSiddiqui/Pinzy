@@ -11,15 +11,16 @@
     @apply text-sm;
   }
 
-  .darkMode {
-    @apply bg-slate-900;
-    @apply text-slate-300;
-    @apply border-none;
-  }
-
   .borderTest {
     @apply border;
     @apply border-slate-500;
+  }
+
+  .bg-accentColor {
+    @apply bg-green-500;
+  }
+  .text-accentColorHigh {
+    @apply text-green-700;
   }
 
   .supportForSafari {
