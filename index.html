@@ -28,14 +28,27 @@
     <title>Pintzy - login</title>
   </head>
 
-  <body class="bg-indigo-500 h-full flex justify-center">
-    <section>
-      <img src="./icon.png" alt="Pintzy Icon" />
-      <form action="#">
-        <div>
+  <body class="flex justify-center items-center">
+    <section class="borderTest flex flex-col items-center w-3/5 h-screen">
+      <div class="flex justify-center">
+        <img src="./icon.png" alt="Pintzy Icon" class="" />
+      </div>
+      <form action="#" class="py-2 borderTest w-full">
+        <div class="flex flex-col my-4">
           <label>Username</label>
-          <input type="text" name="username" />
+          <input type="text" name="username" class="borderTest" />
         </div>
+        <div class="flex flex-col">
+          <label>Passoword</label>
+          <input type="password" name="password" class="borderTest" />
+        </div>
+        <button
+          class="w-full rounded border-[3px] font-semibold text-sm text-slate-600 hover:bg-slate-700 hover:text-white tablet-md:text-sm tablet-md:rounded android-md/2:w-[12rem]"
+          type="submit"
+          name="submit"
+        >
+          Login
+        </button>
       </form>
     </section>
   </body>

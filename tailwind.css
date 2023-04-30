@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .navHover {
+    @apply font-bold;
+  }
+
+  .navText {
+    @apply text-sm;
+  }
+
+  .darkMode {
+    @apply bg-slate-900;
+    @apply text-slate-300;
+    @apply border-none;
+  }
+
+  .borderTest {
+    @apply border;
+    @apply border-slate-500;
+  }
+
+  .supportForSafari {
+    @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+      img[loading='lazy'] {
+        clip-path: inset(0.6px);
+      }
+    }
+  }
+}
