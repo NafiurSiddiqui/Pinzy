@@ -6,13 +6,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
+        main: resolve(__dirname, 'src/html/index.html'),
         nested: resolve(__dirname, 'src/html/app.html'),
       },
     },
-    build: {
-      minify: true,
-      assetsInlineLimit: 0,
-    },
+    minify: true,
+    assetsInlineLimit: 0,
   },
 });
