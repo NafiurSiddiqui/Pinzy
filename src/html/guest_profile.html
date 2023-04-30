@@ -38,7 +38,7 @@
           <li
             class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center text-color-light text-base"
           >
-            Pins
+            <a href="./pins.html">Pins</a>
           </li>
           <li
             class="font-semibold w-4/5 text-center text-color-light text-base"
@@ -62,31 +62,30 @@
         >
           Anonymous
         </span>
-        <!-- pins -->
+        <!-- pin count -->
         <div
           class="user-profile-user__pin-count border border-slate-300 bg-white rounded-sm px-1 py-1 text-center"
         >
           <span
-            class="user-profile-user__pin-count_number font-semibold tablet:text-sm"
+            class="user-profile-user__pin-count_number font-semibold tablet:text-sm max-w-[2rem]"
           >
-            1288
+            15
           </span>
           📌
         </div>
       </div>
 
-      <!-- cards -->
-      <div class="user-profile-container px-4 py-2 mt-6 flex justify-center">
+      <!-- pins -->
+      <div
+        class="pin-container px-4 py-2 mt-6 flex justify-center item flex-col borderTest"
+      >
         <article
-          class="flex user-profile-card android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
+          class="flex user-profile-card android-md:w-[22rem] tablet:w-72 rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
         >
           <!-- flag -->
-          <span
-            class="user-profile_flag inline-block w-3 bg-yellow-200 h-full"
-          ></span>
-
+          <span class="pin-card_flag inline-block w-3 bg-yellow-200"></span>
           <div
-            class="user-profile-wrapper w-full pl-3 pr-2 py-2 flex flex-col justify-center"
+            class="user-profile-wrapper w-full tablet:w-[98%] pl-3 pr-2 py-2 flex flex-col justify-center"
           >
             <div class="flex justify-between">
               <!-- date -->
@@ -96,7 +95,7 @@
               </span>
               <!-- time -->
               <span
-                class="pin-time w-32 text-xs text-right text-gray-500 font-semibold"
+                class="pin-time w-32 text-xs text-right text-gray-500 font-semibold mr-2"
               >
                 <img src="../assets/time.svg" class="inline-block" />
                 19:15 hrs
