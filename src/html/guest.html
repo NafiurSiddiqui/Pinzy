@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+
+    <script defer type="module" src="../js/app.js"></script>
+    <title>Pintzy - Pin aware your people.</title>
+  </head>
+  <body class="flex bg-emerald-100">
+    <!-- sidebar -->
+    <aside
+      class="absolute w-full max-h-screen h-screen bg-zinc-50 tablet:w-80 border border-zinc-100 tablet:relative"
+    >
+      <!-- nav -->
+      <nav class="border-b border-gray-300 py-4 px-4 drop-shadow-sm">
+        <ul class="flex justify-around">
+          <li
+            class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center text-color-light text-base"
+          >
+            Pins
+          </li>
+          <li
+            class="font-semibold w-4/5 text-center text-color-light text-base"
+          >
+            <a href="./guest_profile.html"> Profile</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- cards -->
+      <div class="pin-card-container px-4 py-2 mt-6 flex justify-center">
+        <article
+          class="flex pin-card android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
+        >
+          <!-- flag -->
+          <span
+            class="pin-card_flag inline-block w-3 bg-yellow-200 h-full"
+          ></span>
+
+          <div
+            class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
+          >
+            <section class="pin-card_header flex items-start justify-between">
+              <div class="user-profile_container flex w-[90%]">
+                <span
+                  class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
+                >
+                  <img src="../assets/user-icon-large.svg" alt="user profile" />
+                </span>
+                <div
+                  class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
+                >
+                  John Doe
+                </div>
+              </div>
+              <!-- pins -->
+              <!-- <div
+              class="pin-card-user__pin-count border border-slate-300 bg-white flex-grow rounded-sm px-1 py-1 w-[30%] text-center"
+            >
+              <span
+                class="pin-card-user__pin-count_number font-semibold tablet:text-sm"
+              >
+                1288
+              </span>
+              📌
+            </div> -->
+              <!-- Type -->
+              <div
+                class="pin-card-user__pin-count border border-slate-200 bg-white flex-grow rounded-sm px-1 py-1 w-[20%] text-center"
+              >
+                ⚠️
+              </div>
+            </section>
+
+            <p
+              class="pin-card-text py-2 mt-4 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
+            >
+              Events coming up on July, 19th!
+            </p>
+          </div>
+        </article>
+      </div>
+      <!-- actions -->
+      <button class="btn-sidebar absolute right-4 bottom-6">
+        <img src="../assets/sidebar.svg" alt="sidebar" />
+      </button>
+    </aside>
+    <header class="w-full p-2">
+      <div><span class="font-semibold desktop:ml-6">Pintzy</span></div>
+    </header>
+    <!-- pop up for input-->
+    <section class="hidden flex-col items-center w-4/5 h-screen pt-4">
+      <form
+        action="#"
+        class="py-6 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
+      >
+        <div class="flex flex-col my-4 w-full">
+          <label class="text-gray-600">Username / email</label>
+          <input
+            type="text"
+            name="username"
+            class="border border-gray-400 p-1"
+          />
+        </div>
+        <div class="flex flex-col w-full">
+          <label class="text-gray-600">Passoword</label>
+          <input
+            type="password"
+            name="password"
+            class="border border-gray-400 p-1"
+          />
+        </div>
+        <button
+          class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 hover:text-white"
+          type="submit"
+          name="submit"
+        >
+          Login
+        </button>
+      </form>
+
+      <!-- create account -->
+      <div class="text-center mt-6 text-gray-500">
+        Need an account?
+        <a
+          href="/index.html"
+          class="ml-1 font-bold underline text-accentColorHigh"
+          >Sign up</a
+        >
+      </div>
+      <!-- or -->
+      <div class="text-center w-full my-1 text-gray-400">
+        <span class="inline-block border w-8 border-gray-300"></span>
+        or
+        <span class="inline-block border w-8 border-gray-300"></span>
+      </div>
+      <!-- actions -->
+      <div class="text-center text-gray-500">
+        Explore as a
+        <a
+          href="/src/html/app_guest.html"
+          class="ml-1 font-bold underline text-accentColorHigh"
+          >Guest</a
+        >
+      </div>
+    </section>
+    <!-- map -->
+    <div id="map"></div>
+  </body>
+</html>

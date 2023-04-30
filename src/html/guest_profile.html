@@ -30,7 +30,7 @@
   <body class="flex bg-emerald-100">
     <!-- sidebar -->
     <aside
-      class="absolute w-full max-h-screen h-screen bg-zinc-50 tablet:w-80 border border-zinc-100"
+      class="absolute w-full max-h-screen h-screen bg-zinc-50 tablet:w-80 border border-zinc-100 tablet:relative"
     >
       <!-- nav -->
       <nav class="border-b border-gray-300 py-4 px-4 drop-shadow-sm">
@@ -47,53 +47,70 @@
           </li>
         </ul>
       </nav>
+
+      <!-- user info -->
+      <div
+        class="user-profile_container flex w-full my-4 p-4 items-center justify-between"
+      >
+        <div
+          class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center"
+        >
+          <img src="../assets/user-icon-large.svg" alt="user profile" />
+        </div>
+        <span
+          class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-600 text-2xl"
+        >
+          Anonymous
+        </span>
+        <!-- pins -->
+        <div
+          class="user-profile-user__pin-count border border-slate-300 bg-white rounded-sm px-1 py-1 text-center"
+        >
+          <span
+            class="user-profile-user__pin-count_number font-semibold tablet:text-sm"
+          >
+            1288
+          </span>
+          📌
+        </div>
+      </div>
+
       <!-- cards -->
-      <div class="pin-card-container px-4 py-2 mt-6 flex justify-center">
+      <div class="user-profile-container px-4 py-2 mt-6 flex justify-center">
         <article
-          class="flex pin-card android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
+          class="flex user-profile-card android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
         >
           <!-- flag -->
           <span
-            class="pin-card_flag inline-block w-3 bg-yellow-200 h-full"
+            class="user-profile_flag inline-block w-3 bg-yellow-200 h-full"
           ></span>
 
           <div
-            class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
+            class="user-profile-wrapper w-full pl-3 pr-2 py-2 flex flex-col justify-center"
           >
-            <section class="pin-card_header flex items-start justify-between">
-              <div class="user-profile_container flex w-[90%]">
-                <span
-                  class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
-                >
-                  <img src="../assets/user.svg" alt="user profile" />
-                </span>
-                <div
-                  class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
-                >
-                  John Doe
-                </div>
-              </div>
-              <!-- pins -->
-              <!-- <div
-              class="pin-card-user__pin-count border border-slate-300 bg-white flex-grow rounded-sm px-1 py-1 w-[30%] text-center"
-            >
-              <span
-                class="pin-card-user__pin-count_number font-semibold tablet:text-sm"
-              >
-                1288
+            <div class="flex justify-between">
+              <!-- date -->
+              <span class="pin-date w-32 text-xs text-gray-500 font-semibold">
+                <img src="../assets/calendar.svg" class="inline-block" />
+                19th Jul, 2023
               </span>
-              📌
-            </div> -->
+              <!-- time -->
+              <span
+                class="pin-time w-32 text-xs text-right text-gray-500 font-semibold"
+              >
+                <img src="../assets/time.svg" class="inline-block" />
+                19:15 hrs
+              </span>
               <!-- Type -->
               <div
-                class="pin-card-user__pin-count border border-slate-200 bg-white flex-grow rounded-sm px-1 py-1 w-[20%] text-center"
+                class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
               >
                 ⚠️
               </div>
-            </section>
-
+            </div>
+            <!-- content -->
             <p
-              class="pin-card-text py-2 mt-4 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
+              class="user-profile-text py-2 mt-4 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
             >
               Events coming up on July, 19th!
             </p>
