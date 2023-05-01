@@ -36,7 +36,7 @@
   <body class="flex bg-emerald-100">
     <!-- sidebar -->
     <aside
-      class="absolute w-full max-h-screen h-screen bg-zinc-50 tablet:w-80 border border-zinc-100 tablet:relative"
+      class="sidebar absolute w-full max-h-screen h-screen bg-zinc-50 tablet:w-80 border border-zinc-100 tablet:relative"
     >
       <!-- nav -->
       <nav class="border-b border-gray-300 py-4 px-4 drop-shadow-sm">
@@ -83,7 +83,7 @@
 
       <!-- pins -->
       <ul
-        class="pin-container px-4 py-2 mt-6 flex justify-center item flex-col"
+        class="pin-container px-4 py-2 mt-6 flex justify-center items-center flex-col"
       >
         <li
           class="user-profile-card flex my-1 android-md:w-[22rem] tablet:w-72 rounded-md border border-zinc-200 w-full bg-zinc-100 overflow-hidden"
@@ -125,9 +125,10 @@
         </li>
       </ul>
       <!-- actions -->
-      <button class="btn-sidebar absolute right-4 bottom-6">
-        <img src="../assets/sidebar.svg" alt="sidebar" />
-      </button>
+
+      <i
+        class="sidebar-btn fa-solid fa-chevron-left btn-sidebar absolute right-4 bottom-6 ring-4 ring-zinc-300 text-zinc-400 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-all"
+      ></i>
     </aside>
     <!-- main content -->
     <header class="w-full p-2">
@@ -135,7 +136,7 @@
     </header>
     <!-- pop up for input-->
     <section
-      class="user-input-bg flex flex-col justify-center items-center h-screen bg-gradient-to-r from-zinc-700 to-slate-600 absolute w-full"
+      class="hidden user-input-bg flex flex-col justify-center items-center h-screen bg-gradient-to-r from-zinc-700 to-slate-600 absolute w-full"
     >
       <span
         class="user-input-close absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
