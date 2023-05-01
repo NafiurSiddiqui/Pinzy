@@ -27,6 +27,15 @@
     @apply text-green-700;
   }
 
+  /* sidebar animation */
+  .sidebar-close {
+    @apply origin-left -translate-x-[75%];
+  }
+
+  .sidebar-btn-close {
+    @apply origin-center -rotate-180;
+  }
+
   .supportForSafari {
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
       img[loading='lazy'] {
