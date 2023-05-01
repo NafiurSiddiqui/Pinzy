@@ -36,9 +36,9 @@
   <body class="flex bg-emerald-100">
     <!-- sidebar -->
     <aside
-      class="sidebar absolute w-full max-h-screen transition-transform h-screen bg-zinc-50 tablet:w-80 border border-zinc-100 tablet:relative duration-500"
+      class="sidebar w-full max-h-screen transition-all h-screen bg-zinc-50 border border-zinc-100 tablet:w-80 tablet:relative duration-500"
     >
-      <div class="sidebar-content-wrapper transition-opacity duration-[700ms]">
+      <div class="sidebar-content-wrapper transition-all duration-[400ms]">
         <!-- nav -->
         <nav class="border-b border-gray-300 py-4 px-4 drop-shadow-sm">
           <ul class="flex justify-around">
@@ -129,66 +129,73 @@
       <!-- actions -->
 
       <i
-        class="btn-sidebar fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-400 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-all duration-150"
+        class="btn-sidebar fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-400 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"
       ></i>
     </aside>
-    <!-- main content -->
-    <header class="w-full p-2">
-      <div><span class="font-semibold desktop:ml-6">Pintzy</span></div>
-    </header>
-    <!-- pop up for input-->
-    <section
-      class="hidden user-input-bg flex flex-col justify-center items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full"
-      aria-modal="true"
-    >
-      <span
-        class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
-        aria-label="Close"
-      >
-        <i
-          class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-400 hover:text-zinc-300"
-        ></i>
-      </span>
-      <form
-        action="#"
-        class="user-input-form p-4 rounded-sm pb-8 relative -top-16 border border-gray-300 bg-zinc-50 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
-      >
-        <div class="flex flex-col my-4 w-full">
-          <label class="text-gray-600 text-xs mb-1">Pin type</label>
-          <select
-            name="eventType"
-            id="eventType"
-            class="p-1 cursor-pointer border border-zinc-300"
-          >
-            <option value="review">Emergency 🚨</option>
-            <option value="alert">Alert &#9888;</option>
-            <option value="event">Event &#9733;</option>
-            <option value="review">Review 🤔</option>
-            <option value="review">Tourist Attraction 🌐</option>
-            <option value="review">Recreational 😎</option>
-          </select>
-        </div>
-        <div class="flex flex-col w-full">
-          <label class="text-gray-600 text-xs mb-1">Message</label>
+    <section class="map-content w-full">
+      <!-- main content -->
 
-          <textarea
-            class="border border-zinc-300 p-2 resize-none"
-            name="message"
-            id="message"
-            cols="30"
-            rows="4"
-          ></textarea>
-        </div>
-        <button
-          class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent android-md:text-zinc-500 android-md:border-4 android-md:border-zinc-300 hover:text-white hover:bg-accentColor hover:border-green-500 transition-colors"
-          type="submit"
-          name="submit"
+      <div class="ml-4 bg-slate-500">
+        <span
+          class="font-semibold desktop:ml-6 fixed top-2 right-4 z-20 bg-zinc-400/30 backdrop-blur-sm p-3 rounded-sm"
+          >Pintzy</span
         >
-          Pin
-        </button>
-      </form>
+      </div>
+
+      <!-- pop up for input-->
+      <section
+        class="hidden user-input-bg flex flex-col justify-center items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full"
+        aria-modal="true"
+      >
+        <span
+          class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
+          aria-label="Close"
+        >
+          <i
+            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-400 hover:text-zinc-300"
+          ></i>
+        </span>
+        <form
+          action="#"
+          class="user-input-form p-4 rounded-sm pb-8 relative -top-16 border border-gray-300 bg-zinc-50 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+        >
+          <div class="flex flex-col my-4 w-full">
+            <label class="text-gray-600 text-xs mb-1">Pin type</label>
+            <select
+              name="eventType"
+              id="eventType"
+              class="p-1 cursor-pointer border border-zinc-300"
+            >
+              <option value="review">Emergency 🚨</option>
+              <option value="alert">Alert &#9888;</option>
+              <option value="event">Event &#9733;</option>
+              <option value="review">Review 🤔</option>
+              <option value="review">Tourist Attraction 🌐</option>
+              <option value="review">Recreational 😎</option>
+            </select>
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="text-gray-600 text-xs mb-1">Message</label>
+
+            <textarea
+              class="border border-zinc-300 p-2 resize-none"
+              name="message"
+              id="message"
+              cols="30"
+              rows="4"
+            ></textarea>
+          </div>
+          <button
+            class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent android-md:text-zinc-500 android-md:border-4 android-md:border-zinc-300 hover:text-white hover:bg-accentColor hover:border-green-500 transition-colors"
+            type="submit"
+            name="submit"
+          >
+            Pin
+          </button>
+        </form>
+      </section>
+      <!-- map -->
+      <div id="map" class="h-screen z-10"></div>
     </section>
-    <!-- map -->
-    <div id="map"></div>
   </body>
 </html>

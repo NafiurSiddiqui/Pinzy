@@ -29,7 +29,8 @@
 
   /* sidebar animation */
   .sidebar-close {
-    @apply origin-left -translate-x-[75%];
+    /* @apply !w-16; */
+    /* @apply origin-center -translate-x-0; */
   }
 
   .sidebar-content-hide {

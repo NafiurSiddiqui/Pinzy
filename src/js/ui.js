@@ -16,8 +16,9 @@ const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 
 btnSidebar.addEventListener('click', () => {
-  // Toggle sidebar class
-  sidebar.classList.toggle('sidebar-close');
+  // Toggle sidebar class with tailwind
+  sidebar.classList.toggle('tablet:w-80');
+  sidebar.classList.toggle('w-14');
   // roate btn
   btnSidebar.classList.toggle('btn-sidebar-close');
   //show content
