@@ -134,14 +134,16 @@
     </header>
     <!-- pop up for input-->
     <section
-      class="user-input flex flex-col justify-center items-center h-screen bg-gradient-to-r from-green-100 to-green-200 absolute w-full"
+      class="user-input flex flex-col justify-center items-center h-screen bg-gradient-to-r from-zinc-300 to-slate-400 absolute w-full"
     >
-      <span class="user-input-close absolute bottom-16">
+      <span
+        class="user-input-close absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
+      >
         <i class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-500"></i>
       </span>
       <form
         action="#"
-        class="p-2 relative -top-16 border border-gray-300 bg-zinc-50 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
+        class="p-2 pb-8 relative -top-16 border border-gray-300 bg-zinc-50 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
       >
         <div class="flex flex-col my-4 w-full">
           <label class="text-gray-600 text-xs mb-1">Pin type</label>
@@ -170,7 +172,7 @@
           ></textarea>
         </div>
         <button
-          class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 hover:text-white"
+          class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent android-md:text-zinc-500 android-md:border-4 android-md:border-zinc-300 hover:text-white hover:bg-accentColor hover:border-green-500 transition-colors"
           type="submit"
           name="submit"
         >
