@@ -12,11 +12,14 @@ userInputBg.addEventListener('click', event => {
 
 //SIDEBAR
 const btnSidebar = document.querySelector('.btn-sidebar');
-const sidebar = document.querySelector('aside.sidebar');
+const sidebar = document.querySelector('.sidebar');
+const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 
 btnSidebar.addEventListener('click', () => {
-  // Toggle the 'hidden' class on the sidebar element
-  //   sidebar.classList.toggle('hidden');
-  // Toggle the 'bottom-0' class on the body element
-  document.body.classList.toggle('bottom-0');
+  // Toggle sidebar class
+  sidebar.classList.toggle('sidebar-close');
+  // roate btn
+  btnSidebar.classList.toggle('btn-sidebar-close');
+  //show content
+  sidebarContent.classList.toggle('sidebar-content-hide');
 });

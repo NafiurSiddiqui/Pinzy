@@ -32,7 +32,11 @@
     @apply origin-left -translate-x-[75%];
   }
 
-  .sidebar-btn-close {
+  .sidebar-content-hide {
+    @apply opacity-0;
+  }
+
+  .btn-sidebar-close {
     @apply origin-center -rotate-180;
   }
 

@@ -38,7 +38,9 @@
     <aside
       class="sidebar absolute w-full max-h-screen transition-transform h-screen bg-zinc-50 tablet:w-80 border border-zinc-100 tablet:relative sidebar-close duration-500"
     >
-      <div class="sidebar-content-wrapper hidden">
+      <div
+        class="sidebar-content-wrapper sidebar-content-hide transition-opacity duration-[700ms]"
+      >
         <!-- nav -->
         <nav class="border-b border-gray-300 py-4 px-4 drop-shadow-sm">
           <ul class="flex justify-around">
@@ -129,7 +131,7 @@
       <!-- actions -->
 
       <i
-        class="sidebar-btn sidebar-btn-close fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-400 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-all duration-150"
+        class="btn-sidebar btn-sidebar-close fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-400 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-all duration-150"
       ></i>
     </aside>
     <!-- main content -->
@@ -142,7 +144,7 @@
       aria-modal="true"
     >
       <span
-        class="user-input-close absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
+        class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
         aria-label="Close"
       >
         <i
