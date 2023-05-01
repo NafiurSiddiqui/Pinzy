@@ -91,7 +91,7 @@ class App {
     this._getLocalStorage();
 
     // Attach event handlers
-    form.addEventListener('submit', this._newWorkout.bind(this));
+    // form.addEventListener('submit', this._newWorkout.bind(this));`11``
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
   }
@@ -278,7 +278,7 @@ class App {
       </li>
       `;
 
-    form.insertAdjacentHTML('afterend', html);
+    // form.insertAdjacentHTML('afterend', html);
   }
 
   _moveToPopup(e) {

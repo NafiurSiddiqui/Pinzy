@@ -36,10 +36,10 @@
   .sidebar-content-hide {
     @apply opacity-0;
   }
-
+  /* 
   .btn-sidebar-close {
-    @apply origin-center -rotate-180;
-  }
+    @apply transform -rotate-y-180;
+  } */
 
   .supportForSafari {
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
