@@ -128,19 +128,22 @@
     </header>
     <!-- pop up for input-->
     <section
-      class="user-input flex justify-center items-center h-screen bg-gray-300 absolute w-full"
+      class="user-input flex justify-center items-center h-screen bg-gray-100 absolute w-full"
     >
       <form
         action="#"
-        class="py-6 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
+        class="py-6 px-2 border border-gray-300 bg-gray-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
       >
         <div class="flex flex-col my-4 w-full">
-          <label class="text-gray-600">Type</label>
-          <input
-            type="text"
-            name="username"
-            class="border border-gray-400 p-1"
-          />
+          <label class="text-gray-600 text-xs mb-1">Pin type</label>
+          <select name="eventType" id="eventType" class="p-1 cursor-pointer">
+            <option value="review">Emergency 🚨</option>
+            <option value="alert">Alert &#9888;</option>
+            <option value="event">Event &#9733;</option>
+            <option value="review">Review 🤔</option>
+            <option value="review">Tourist Attraction 🌐</option>
+            <option value="review">Recreational 😎</option>
+          </select>
         </div>
         <div class="flex flex-col w-full">
           <label class="text-gray-600">Passoword</label>
