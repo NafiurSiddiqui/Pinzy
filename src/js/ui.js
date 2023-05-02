@@ -18,6 +18,7 @@ const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 btnSidebar.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
   sidebar.classList.toggle('w-full');
+  sidebar.classList.toggle('tablet:w-80');
   sidebar.classList.toggle('w-14');
   // roate btn
   btnSidebar.classList.toggle('fa-flip-horizontal');
