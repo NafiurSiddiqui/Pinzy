@@ -104,8 +104,8 @@ class App {
     // Handling clicks on map
     this.#map.on('click', this._showInputPopUP.bind(this));
 
-    this.#workouts.forEach(work => {
-      this._renderWorkoutMarker(work);
+    this.#pins.forEach(pin => {
+      this._renderWorkoutMarker(pin);
     });
   }
 
@@ -128,10 +128,6 @@ class App {
   }
 
   _newPin(e) {
-    // const validInputs = (...inputs) =>
-    //   inputs.every(inp => Number.isFinite(inp));
-    // const allPositive = (...inputs) => inputs.every(inp => inp > 0);
-
     e.preventDefault();
 
     // Get data from form
@@ -199,15 +195,13 @@ class App {
     // BUGFIX: When we click on a workout before the map has loaded, we get an error. But there is an easy fix:
     if (!this.#map) return;
 
-    const workoutEl = e.target.closest('.workout');
+    const pinEl = e.target.closest('.user-pin');
 
-    if (!workoutEl) return;
+    if (!pinEl) return;
 
-    const workout = this.#workouts.find(
-      work => work.id === workoutEl.dataset.id
-    );
+    const pin = this.#pins.find(work => work.id === pinEl.dataset.id);
 
-    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+    this.#map.setView(pin.coords, this.#mapZoomLevel, {
       animate: true,
       pan: {
         duration: 1,
@@ -219,23 +213,23 @@ class App {
   }
 
   _setLocalStorage() {
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+    localStorage.setItem('pins', JSON.stringify(this.#pins));
   }
 
   _getLocalStorage() {
-    const data = JSON.parse(localStorage.getItem('workouts'));
+    const data = JSON.parse(localStorage.getItem('pins'));
 
     if (!data) return;
 
-    this.#workouts = data;
+    this.#pins = data;
 
-    this.#workouts.forEach(work => {
+    this.#pins.forEach(work => {
       this._renderWorkout(work);
     });
   }
 
   reset() {
-    localStorage.removeItem('workouts');
+    localStorage.removeItem('pins');
     location.reload();
   }
 }

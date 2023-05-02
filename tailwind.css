@@ -4,7 +4,6 @@
 
 @layer utilities {
   .navHover {
-    @apply font-bold;
   }
 
   .navText {
@@ -13,6 +12,11 @@
 
   .text-color-light {
     @apply text-slate-400;
+  }
+
+  .nav-active {
+    @apply text-slate-600;
+    @apply font-bold;
   }
 
   .borderTest {
@@ -28,18 +32,10 @@
   }
 
   /* sidebar animation */
-  .sidebar-close {
-    /* @apply !w-16; */
-    /* @apply origin-center -translate-x-0; */
-  }
 
   .sidebar-content-hide {
     @apply opacity-0;
   }
-  /* 
-  .btn-sidebar-close {
-    @apply transform -rotate-y-180;
-  } */
 
   .supportForSafari {
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
