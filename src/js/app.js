@@ -7,12 +7,10 @@ class Pin {
   id = (Date.now() + '').slice(-10);
   clicks = 0;
 
-  constructor(coords, distance, duration) {
+  constructor(coords) {
     // this.date = ...
     // this.id = ...
     this.coords = coords; // [lat, lng]
-    this.distance = distance; // in km
-    this.duration = duration; // in min
   }
 
   _setDescription() {
@@ -30,34 +28,11 @@ class Pin {
   }
 }
 
-class Event extends Pin {
-  type = 'event';
-
-  constructor(coords) {
-    super(coords);
-    this._setDescription();
-  }
-}
-
-class Alert extends Pin {
-  type = 'alert';
-
-  constructor(coords) {
-    super(coords);
-    this._setDescription();
-  }
-}
-
 ///////////////////////////////////////
 // APPLICATION ARCHITECTURE
-const inputPopUp = document.querySelector('.user-input');
-const pinContainer = document.querySelector('.workouts');
+const inputPopUp = document.querySelector('.user-input-bg');
+const pinContainer = document.querySelector('.user-pin-container');
 const optionField = document.getElementById('eventType');
-const inputType = document.querySelector('.form__input--type');
-const inputDistance = document.querySelector('.form__input--distance');
-const inputDuration = document.querySelector('.form__input--duration');
-const inputCadence = document.querySelector('.form__input--cadence');
-const inputElevation = document.querySelector('.form__input--elevation');
 
 class App {
   #map;
@@ -69,11 +44,12 @@ class App {
     // Get user's position
     this._getPosition();
 
+    //query for data
+
     // Get data from local storage
     this._getLocalStorage();
 
     // Attach event handlers
-
     pinContainer.addEventListener('click', this._moveToPopup.bind(this));
   }
 
@@ -91,7 +67,6 @@ class App {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     // console.log(`https://www.google.pt/maps/@${latitude},${longitude}`);
-
     const coords = [latitude, longitude];
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
@@ -209,7 +184,7 @@ class App {
     });
 
     // using the public interface
-    // workout.click();
+    // pin.click();
   }
 
   _setLocalStorage() {
