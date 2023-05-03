@@ -32,7 +32,9 @@ class Pin {
 // APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
 const pinContainer = document.querySelector('.user-pin-container');
-const optionField = document.getElementById('eventType');
+const eventType = document.getElementById('eventType');
+const message = document.getElementById('message');
+const btnSubmit = document.querySelector('.btn-user-input');
 
 class App {
   #map;
@@ -51,7 +53,9 @@ class App {
 
     // Attach event handlers
     //move view to the related pin
-    pinContainer.addEventListener('click', this._moveToPopup.bind(this));
+    // pinContainer.addEventListener('click', this._moveToPopup.bind(this));
+    //submit to db
+    btnSubmit.addEventListener('click', this._submitToDb);
   }
 
   _getPosition() {
@@ -87,55 +91,53 @@ class App {
 
   _showInputPopUP(mapE) {
     this.#mapEvent = mapE;
-    console.log(inputPopUp);
+
     inputPopUp.classList.remove('hidden');
-    optionField.focus();
+    eventType.focus();
   }
 
-  _hideForm() {
-    // Empty inputs
-    // inputDistance.value =
-    //   inputDuration.value =
-    //   inputCadence.value =
-    //   inputElevation.value =
-    //     '';
-
-    inputPopUp.classList.add('hidden');
-    // setTimeout(() => (inputPopUp.style.display = 'grid'), 1000);
+  _submitToDb(e) {
+    e.preventDefault();
+    const event = eventType.value;
+    const text = message?.value;
   }
 
   _newPin(e) {
     e.preventDefault();
 
     // Get data from form
-    const type = inputType.value;
+    // const type = inputType.value;
+
     const { lat, lng } = this.#mapEvent.latlng;
+
+    console.log(lat, lng);
+
     let pin;
 
-    // If pin running, create running object
-    if (type === 'alert') {
-      pin = new Alert([lat, lng]);
-    }
+    // // If pin running, create running object
+    // if (type === 'alert') {
+    //   pin = new Alert([lat, lng]);
+    // }
 
     // If pin cycling, create cycling object
-    if (type === 'event') {
-      pin = new Event([lat, lng], distance, duration, elevation);
-    }
+    // if (type === 'event') {
+    //   pin = new Event([lat, lng], distance, duration, elevation);
+    // }
 
     // Add new object to pin array
-    this.#pins.push(pin);
+    // this.#pins.push(pin);
 
-    // Render pin on map as marker
-    this._renderPinMarker(pin);
+    // // Render pin on map as marker
+    // this._renderPinMarker(pin);
 
-    // Render pin on the list
-    this._renderPin(pin);
+    // // Render pin on the list
+    // this._renderPin(pin);
 
-    // Hide form + clear input fields
-    this._hideForm();
+    // // Hide form + clear input fields
+    // this._hideForm();
 
-    // Set local storage to all pins
-    this._setLocalStorage();
+    // // Set local storage to all pins
+    // this._setLocalStorage();
   }
 
   _renderPinMarker(pin) {
