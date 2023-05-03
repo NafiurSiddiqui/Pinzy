@@ -36,19 +36,23 @@
   <body class="flex bg-emerald-100">
     <!-- sidebar -->
     <aside
-      class="relative sidebar w-full max-h-screen transition-all h-screen bg-zinc-50 border border-zinc-100 tablet:w-80 tablet:relative duration-500"
+      class="absolute sidebar max-h-screen transition-all h-screen bg-zinc-500/80 backdrop-blur-sm border-2 border-zinc-500 tablet:relative duration-500 z-30 w-14"
     >
-      <div class="sidebar-content-wrapper transition-all duration-[400ms]">
+      <div
+        class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide"
+      >
         <!-- nav -->
-        <nav class="border-b border-gray-300 py-4 px-4 drop-shadow-sm">
+        <nav
+          class="border-b border-zinc-500 py-4 px-4 drop-shadow-sm bg-zinc-500"
+        >
           <ul class="flex justify-around">
             <li
-              class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center text-color-light text-base"
+              class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center nav-active text-base"
             >
-              <a href="./pins.html" class="nav-active">Pins</a>
+              <a href="./pins.html">Pins</a>
             </li>
             <li
-              class="font-semibold w-4/5 text-center text-color-light text-base"
+              class="font-semibold w-4/5 text-center text-base text-color-light"
             >
               <a href="./guest_profile.html">Profile</a>
             </li>
@@ -121,7 +125,7 @@
       <!-- actions -->
 
       <i
-        class="btn-sidebar fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-400 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"
+        class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-100 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"
       ></i>
     </aside>
     <section class="map-content w-full">
@@ -136,7 +140,7 @@
 
       <!-- pop up for input-->
       <section
-        class="hidden user-input-bg flex flex-col justify-center items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full"
+        class="user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
         aria-modal="true"
       >
         <span
@@ -144,12 +148,12 @@
           aria-label="Close"
         >
           <i
-            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-400 hover:text-zinc-300"
+            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-slate-100 laptop:text-zinc-400 hover:text-zinc-300"
           ></i>
         </span>
         <form
           action="#"
-          class="user-input-form p-4 rounded-sm pb-8 relative -top-16 border border-gray-300 bg-zinc-50 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+          class="user-input-form p-4 rounded-sm pb-8 relative border border-gray-300 bg-zinc-300 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
         >
           <div class="flex flex-col my-4 w-full">
             <label class="text-gray-600 text-xs mb-1">Pin type</label>
@@ -178,7 +182,7 @@
             ></textarea>
           </div>
           <button
-            class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent android-md:text-zinc-500 android-md:border-4 android-md:border-zinc-300 hover:text-white hover:bg-accentColor hover:border-green-500 transition-colors"
+            class="w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 hover:bg-accentColor laptop:hover:border-green-500 transition-colors active:text-zinc-100"
             type="submit"
             name="submit"
           >
