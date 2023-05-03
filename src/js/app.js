@@ -47,9 +47,10 @@ class App {
     //query for data
 
     // Get data from local storage
-    this._getLocalStorage();
+    // this._getLocalStorage();
 
     // Attach event handlers
+    //move view to the related pin
     pinContainer.addEventListener('click', this._moveToPopup.bind(this));
   }
 
@@ -86,6 +87,7 @@ class App {
 
   _showInputPopUP(mapE) {
     this.#mapEvent = mapE;
+    console.log(inputPopUp);
     inputPopUp.classList.remove('hidden');
     optionField.focus();
   }
