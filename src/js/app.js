@@ -9,18 +9,20 @@ class User {
   _icon;
   _message;
   _id;
-
-  constructor(type, time, date, icon, message, id) {
+  _userName;
+  constructor(type, time, date, icon, message, id, userName) {
     this._type = type;
     this._time = time;
     this._date = date;
     this._icon = icon;
     this._message = message;
     this._id = id;
-    this.renderPinToProfile();
+    this._userName = userName;
+    this._renderPinToProfile();
+    this._renderPinToPins();
   }
 
-  renderPinToProfile() {
+  _renderPinToProfile() {
     const userPinContainer = document?.querySelector('.user-pin-container');
     const guestPinContainer = document?.querySelector('.guest-pin-container');
 
@@ -70,7 +72,73 @@ class User {
       : userPinContainer?.insertAdjacentHTML('afterbegin', html);
   }
 
-  renderPinToPins() {}
+  _renderPinToPins() {
+    const globalPinContainer = document.querySelector('.global-pin-container');
+
+    const html = `
+     <li
+            class="global-pin flex my-1 android-md:w-[22rem] tablet:w-72 rounded-md border border-zinc-200 w-full bg-zinc-100 overflow-hidden"
+          >
+            <!-- flag -->
+            <span
+              class="pin-card_flag inline-block w-3 bg-yellow-200 h-full"
+            ></span>
+
+            <div
+              class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
+            >
+              <section class="pin-card_header flex items-start justify-between">
+                <div class="user-profile_container flex">
+                  <span
+                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
+                  >
+                    <img
+                      src="../assets/user-icon-mini.svg"
+                      alt="user profile"
+                    />
+                  </span>
+                  <div
+                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
+                  >
+                    ${this._type === 'guest' ? 'Anonymous' : this._userName}
+                  </div>
+                </div>
+
+                <!-- Type -->
+                <div
+                  class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
+                >
+                  ${this._icon}
+                </div>
+              </section>
+              <div class="flex mt-4 mb-1">
+                <!-- date -->
+                <span
+                  class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
+                >
+                  <img src="../assets/calendar.svg" class="inline-block" />
+                  ${this._date}
+                </span>
+                <!-- time -->
+                <span
+                  class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
+                >
+                  <img src="../assets/time.svg" class="inline-block" />
+                  ${this._time}
+                </span>
+              </div>
+
+              <p
+                class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
+              >
+                ${this._message}
+              </p>
+            </div>
+          </li>
+    `;
+
+    globalPinContainer.insertAdjacentHTML('afterbegin', html);
+  }
 }
 
 class SignedUser extends User {
@@ -113,7 +181,7 @@ class SignedUser extends User {
     
     `;
 
-    userProfileContainer.insertAdjacentHTML('afterbegin', html);
+    userProfileContainer?.insertAdjacentHTML('afterbegin', html);
   }
 }
 
@@ -390,3 +458,68 @@ class App {
 }
 
 const app = new App();
+
+// 👇 you can delete this.
+
+const globalPinBluePrint = `
+
+ <li
+            class="flex global-pin android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
+          >
+            <!-- flag -->
+            <span
+              class="pin-card_flag inline-block w-3 bg-yellow-200 h-full"
+            ></span>
+
+            <div
+              class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
+            >
+              <section class="pin-card_header flex items-start justify-between">
+                <div class="user-profile_container flex">
+                  <span
+                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
+                  >
+                    <img
+                      src="../assets/user-icon-mini.svg"
+                      alt="user profile"
+                    />
+                  </span>
+                  <div
+                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
+                  >
+                    John Doe
+                  </div>
+                </div>
+
+                <!-- Type -->
+                <div
+                  class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
+                >
+                  ⚠️
+                </div>
+              </section>
+              <div class="flex mt-4 mb-1">
+                <!-- date -->
+                <span
+                  class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
+                >
+                  <img src="../assets/calendar.svg" class="inline-block" />
+                  19th Jul, 2023
+                </span>
+                <!-- time -->
+                <span
+                  class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
+                >
+                  <img src="../assets/time.svg" class="inline-block" />
+                  19:15 hrs
+                </span>
+              </div>
+
+              <p
+                class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
+              >
+                Events coming up on July, 19th!
+              </p>
+            </div>
+          </li>
+`;
