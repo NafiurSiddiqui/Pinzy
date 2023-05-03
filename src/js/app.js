@@ -85,7 +85,7 @@ class SignedUser extends User {
 
   _renderUserInfo() {
     const userProfileContainer = document.querySelector(
-      '.user-profile_container'
+      '.signed-user-profile_container'
     );
 
     let html = `
