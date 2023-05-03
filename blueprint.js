@@ -130,6 +130,7 @@ class App {
 
   _showForm(mapE) {
     this.#mapEvent = mapE;
+    console.log(this.#mapEvent);
     form.classList.remove('hidden');
     inputDistance.focus();
   }
@@ -326,4 +327,4 @@ class App {
   }
 }
 
-const app = new App();
+// const app = new App();

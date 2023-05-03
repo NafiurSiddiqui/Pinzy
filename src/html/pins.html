@@ -45,7 +45,7 @@
         <nav
           class="border-b border-zinc-500 py-4 px-4 drop-shadow-sm bg-zinc-500"
         >
-          <ul class="flex justify-around">
+          <ul class="global-pin-container flex justify-around">
             <li
               class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center nav-active text-base"
             >
@@ -60,9 +60,9 @@
         </nav>
 
         <!-- pins -->
-        <ul class="user-pin-container px-4 py-2 mt-6 flex justify-center">
+        <ul class="global-pin-container px-4 py-2 mt-6 flex justify-center">
           <li
-            class="flex user-pin android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
+            class="flex global-pin android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
           >
             <!-- flag -->
             <span
@@ -140,7 +140,7 @@
 
       <!-- pop up for input-->
       <section
-        class="user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
+        class="hidden user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
         aria-modal="true"
       >
         <span
@@ -182,7 +182,7 @@
             ></textarea>
           </div>
           <button
-            class="w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 hover:bg-accentColor laptop:hover:border-green-500 transition-colors active:text-zinc-100"
+            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 hover:bg-accentColor laptop:hover:border-green-500 transition-colors active:text-zinc-100"
             type="submit"
             name="submit"
           >
