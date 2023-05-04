@@ -157,9 +157,11 @@
             class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-slate-100 laptop:text-zinc-400 hover:text-zinc-300"
           ></i>
         </span>
+
         <form
           action="#"
           class="user-input-form p-4 rounded-sm pb-8 relative border border-gray-300 bg-zinc-300 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+          id="form-user-input"
         >
           <div class="flex flex-col my-4 w-full">
             <label class="text-gray-600 text-xs mb-1">Pin type</label>
@@ -168,6 +170,7 @@
               id="eventType"
               class="p-1 cursor-pointer border border-zinc-300"
             >
+              <option value="none">---</option>
               <option value="emergency">Emergency 🚨</option>
               <option value="alert">Alert &#9888;</option>
               <option value="event">Event &#9733;</option>
@@ -180,7 +183,7 @@
             <label class="text-gray-600 text-xs mb-1">Message</label>
 
             <textarea
-              class="border border-zinc-300 p-2 resize-none"
+              class="rounded-sm border border-zinc-300 p-2 resize-none"
               name="message"
               id="message"
               cols="30"
@@ -188,13 +191,15 @@
             ></textarea>
           </div>
           <button
-            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 hover:bg-accentColor laptop:hover:border-green-500 transition-colors active:text-zinc-100"
+            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 disabled:border-zinc-400 disabled:text-zinc-400 disabled:hover:bg-transparent disabled:hover:text-zinc-400"
             type="submit"
             name="user-submit"
+            disabled
           >
             Pin
           </button>
         </form>
+        ;
       </section>
       <!-- map -->
       <div id="map" class="h-screen z-10"></div>
