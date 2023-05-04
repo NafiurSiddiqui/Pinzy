@@ -137,16 +137,15 @@ class User {
           </li>
     `;
 
-    globalPinContainer.insertAdjacentHTML('afterbegin', html);
+    globalPinContainer?.insertAdjacentHTML('afterbegin', html);
   }
 }
 
 class SignedUser extends User {
-  _userName;
   _userPinCount;
   constructor(type, time, date, icon, message, id, userName, usrePinCount) {
-    super(type, time, date, icon, message, id);
-    this._userName = userName;
+    super(type, time, date, icon, message, id, userName);
+
     this._userPinCount = usrePinCount;
     this._renderUserInfo();
   }
@@ -226,6 +225,8 @@ class App {
   #mapZoomLevel = 13;
   #mapEvent;
   #pins = [];
+  eventError = false;
+  textError = false;
 
   constructor() {
     // Get user's position
@@ -243,7 +244,7 @@ class App {
     btnSubmit.addEventListener('click', this._submitToDb.bind(this));
 
     //render new Pin
-    this._renderPin();
+    // this._renderPin();
   }
 
   _getPosition() {
@@ -272,8 +273,9 @@ class App {
     // Handling clicks on map
     this.#map.on('click', this._showInputPopUP.bind(this));
 
+    //render marker
     this.#pins.forEach(pin => {
-      this._renderWorkoutMarker(pin);
+      this._renderPinMarker(pin);
     });
   }
 
@@ -281,17 +283,25 @@ class App {
     this.#mapEvent = mapE;
 
     inputPopUp.classList.remove('hidden');
-    eventType.focus();
+    // eventType.focus();
   }
 
   _submitToDb(e) {
     e.preventDefault();
+    //get the values
+    const event = eventType.value;
+    const text = message.value;
+    const { lat, lng } = this.#mapEvent.latlng;
+    //validate
+    this._validateInput();
 
-    // const event = eventType.value;
-    // const text = message?.value;
-
+    //sanitize input
+    const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
+    const sanitizedEvent = event.trim().replace(/<[^>]*>/g, '');
+    //check the usertype
     this._checkUser(e);
-
+    //submit to db based on user type
+    //hideInput
     this._hideInput();
   }
 
@@ -300,15 +310,52 @@ class App {
     userInputBg.classList.add('hidden');
   }
 
+  _validateInput() {
+    const event = eventType.value;
+    const text = message.value;
+
+    //validate
+    if (event === 'none' && text === '') {
+      eventType.classList.add('validation-error');
+      message.classList.add('validation-error');
+      btnSubmit.classList.add('btn-disabled');
+      btnSubmit.disabled = true;
+      return;
+    }
+
+    if (event === 'none') {
+      console.log('event empty');
+      eventType.classList.add('validation-error');
+      btnSubmit.disabled = true;
+    } else {
+      eventType.classList.remove('validation-error');
+      // if (document.activeElement === eventType) {
+      //   eventType.classList.remove('validation-error');
+      // }
+      btnSubmit.disabled = false;
+    }
+
+    if (text === '') {
+      message.classList.add('validation-error');
+      btnSubmit.disabled = true;
+      return;
+    } else {
+      eventType.classList.remove('validation-error');
+      // if (document.activeElement === eventType) {
+      //   eventType.classList.remove('validation-error');
+      // }
+      btnSubmit.disabled = false;
+    }
+  }
+
   _newPin(e) {
     e.preventDefault();
 
     // Get data from form
-
     const event = eventType.value;
     const text = message?.value;
-
     const { lat, lng } = this.#mapEvent.latlng;
+    console.log('does it run?');
 
     // Add new object to pin array
     // this.#pins.push(pin);
