@@ -18,7 +18,7 @@
     @apply ring-1 ring-red-400 my-2;
   }
 
-  .btn-disable {
+  .btn-disabled {
     @apply disabled:active:text-zinc-400 disabled:border-zinc-400/80 disabled:text-zinc-400;
   }
 

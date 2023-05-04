@@ -310,41 +310,70 @@ class App {
     userInputBg.classList.add('hidden');
   }
 
+  // _validateInput() {
+  //   const event = eventType.value;
+  //   const text = message.value;
+
+  //   //validate
+  //   if (event === 'none' && text === '') {
+  //     eventType.classList.add('validation-error');
+  //     message.classList.add('validation-error');
+  //     btnSubmit.classList.add('btn-disabled');
+  //     btnSubmit.disabled = true;
+  //     return;
+  //   }
+
+  //   if (event === 'none') {
+  //     console.log('event empty');
+  //     eventType.classList.add('validation-error');
+  //     btnSubmit.disabled = true;
+  //   } else {
+  //     eventType.classList.remove('validation-error');
+  //     // if (document.activeElement === eventType) {
+  //     //   eventType.classList.remove('validation-error');
+  //     // }
+  //     btnSubmit.disabled = false;
+  //   }
+
+  //   if (text === '') {
+  //     message.classList.add('validation-error');
+  //     btnSubmit.disabled = true;
+  //     return;
+  //   } else {
+  //     eventType.classList.remove('validation-error');
+  //     // if (document.activeElement === eventType) {
+  //     //   eventType.classList.remove('validation-error');
+  //     // }
+  //     btnSubmit.disabled = false;
+  //   }
+  // }
+
   _validateInput() {
+    //IT SHOULD BE ONCHANGE event
     const event = eventType.value;
     const text = message.value;
 
-    //validate
     if (event === 'none' && text === '') {
       eventType.classList.add('validation-error');
       message.classList.add('validation-error');
       btnSubmit.classList.add('btn-disabled');
-      btnSubmit.disabled = true;
-      return;
-    }
-
-    if (event === 'none') {
-      console.log('event empty');
-      eventType.classList.add('validation-error');
-      btnSubmit.disabled = true;
     } else {
-      eventType.classList.remove('validation-error');
-      // if (document.activeElement === eventType) {
-      //   eventType.classList.remove('validation-error');
-      // }
-      btnSubmit.disabled = false;
-    }
+      if (event === 'none') {
+        eventType.classList.add('validation-error');
+      } else {
+        eventType.classList.remove('validation-error');
+      }
 
-    if (text === '') {
-      message.classList.add('validation-error');
-      btnSubmit.disabled = true;
-      return;
-    } else {
-      eventType.classList.remove('validation-error');
-      // if (document.activeElement === eventType) {
-      //   eventType.classList.remove('validation-error');
-      // }
-      btnSubmit.disabled = false;
+      if (text === '') {
+        message.classList.add('validation-error');
+      } else {
+        message.classList.remove('validation-error');
+      }
+
+      if (event !== 'none' || text !== '') {
+        btnSubmit.classList.remove('btn-disabled');
+        btnSubmit.disabled = false;
+      }
     }
   }
 
