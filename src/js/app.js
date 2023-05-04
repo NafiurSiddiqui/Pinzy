@@ -233,13 +233,21 @@ class App {
     this._getPosition();
 
     //query for data
-
+    console.log('runs');
     // Get data from local storage
     // this._getLocalStorage();
 
     // Attach event handlers
     //move view to the related pin
     // pinContainer.addEventListener('click', this._moveToPopup.bind(this));
+    //event on select event type
+    // eventType.addEventListener('input', this._validateEventType.bind(this));
+    // //run event on message
+    // message.addEventListener('input', this._validateMessage.bind(this));
+    eventType.addEventListener('input', this._validateInput.bind(this));
+    // //run event on message
+    message.addEventListener('input', this._validateInput.bind(this));
+
     //submit to db
     btnSubmit.addEventListener('click', this._submitToDb.bind(this));
 
@@ -283,6 +291,10 @@ class App {
     this.#mapEvent = mapE;
 
     inputPopUp.classList.remove('hidden');
+    if (!btnSubmit.hasAttribute('disabled')) {
+      btnSubmit.setAttribute('disabled', '');
+    }
+
     // eventType.focus();
   }
 
@@ -291,9 +303,7 @@ class App {
     //get the values
     const event = eventType.value;
     const text = message.value;
-    const { lat, lng } = this.#mapEvent.latlng;
-    //validate
-    this._validateInput();
+    // const { lat, lng } = this.#mapEvent.latlng;
 
     //sanitize input
     const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
@@ -301,6 +311,12 @@ class App {
     //check the usertype
     this._checkUser(e);
     //submit to db based on user type
+
+    //clear inputs
+    eventType.value = message.value = '';
+
+    //disable button
+
     //hideInput
     this._hideInput();
   }
@@ -310,70 +326,78 @@ class App {
     userInputBg.classList.add('hidden');
   }
 
-  // _validateInput() {
+  _validateEventType() {
+    const event = eventType.value;
+
+    if (event === 'none') {
+      console.log('choose an event type');
+      eventType.classList.add('validation-error');
+    } else {
+      console.log('You have selected an event type');
+      eventType.classList.remove('validation-error');
+      btnSubmit.removeAttribute('disabled');
+    }
+  }
+
+  _validateMessage() {
+    const text = message.value;
+    console.log('runs');
+    if (text === '') {
+      console.log('text can not be empty!');
+      message.classList.add('validation-error');
+    } else {
+      message.classList.remove('validation-error');
+      btnSubmit.removeAttribute('disabled');
+    }
+  }
+
+  // _validateBothFields() {
   //   const event = eventType.value;
   //   const text = message.value;
+  //   // const btnDisableClass = 'disabled:border-zinc-400 disabled:text-zinc-400';
 
-  //   //validate
   //   if (event === 'none' && text === '') {
+  //     console.log('fields can not be empty!');
   //     eventType.classList.add('validation-error');
-  //     message.classList.add('validation-error');
-  //     btnSubmit.classList.add('btn-disabled');
-  //     btnSubmit.disabled = true;
-  //     return;
-  //   }
-
-  //   if (event === 'none') {
-  //     console.log('event empty');
-  //     eventType.classList.add('validation-error');
-  //     btnSubmit.disabled = true;
-  //   } else {
-  //     eventType.classList.remove('validation-error');
-  //     // if (document.activeElement === eventType) {
-  //     //   eventType.classList.remove('validation-error');
-  //     // }
-  //     btnSubmit.disabled = false;
-  //   }
-
-  //   if (text === '') {
-  //     message.classList.add('validation-error');
-  //     btnSubmit.disabled = true;
-  //     return;
-  //   } else {
-  //     eventType.classList.remove('validation-error');
-  //     // if (document.activeElement === eventType) {
-  //     //   eventType.classList.remove('validation-error');
-  //     // }
-  //     btnSubmit.disabled = false;
+  //     // message.classList.add('validation-error');
+  //     btnSubmit.classList.add('disabled:border-zinc-400');
   //   }
   // }
 
   _validateInput() {
-    //IT SHOULD BE ONCHANGE event
     const event = eventType.value;
     const text = message.value;
+    const eventFieldActive = document.activeElement === eventType;
+    const messageFieldActive = document.activeElement === message;
 
     if (event === 'none' && text === '') {
-      eventType.classList.add('validation-error');
-      message.classList.add('validation-error');
-      btnSubmit.classList.add('btn-disabled');
-    } else {
-      if (event === 'none') {
-        eventType.classList.add('validation-error');
-      } else {
-        eventType.classList.remove('validation-error');
-      }
+      console.log('fields can not be empty!');
+      // eventType.classList.add('validation-error');
+      // message.classList.add('validation-error');
+      // btnSubmit.classList.add('disabled:border-zinc-400');
+    }
+    // if (event === 'none') {
+    //   if (!messageFieldActive) {
+    //     console.log('choose an event type');
+    //     // eventType.classList.add('validation-error');
+    //   }
+    // } else {
+    //   console.log('You have selected an event type');
+    //   // eventType.classList.remove('validation-error');
+    // }
 
-      if (text === '') {
-        message.classList.add('validation-error');
-      } else {
-        message.classList.remove('validation-error');
-      }
+    // if (text === '') {
+    //   if (!eventFieldActive) {
+    //     console.log('text can not be empty!');
+    //     message.classList.add('validation-error');
+    //   }
+    // } else {
+    //   message.classList.remove('validation-error');
+    // }
 
-      if (event !== 'none' || text !== '') {
-        btnSubmit.classList.remove('btn-disabled');
-        btnSubmit.disabled = false;
-      }
+    if (event !== 'none' && text !== '') {
+      // btnSubmit.classList.remove('btn-disabled');
+      btnSubmit.removeAttribute('disabled');
     }
   }
 
@@ -405,7 +429,7 @@ class App {
   _checkUser(e) {
     const user = e.target.name;
     const guest = e.target.name;
-    console.log(e.target.name);
+    // console.log(e.target.name);
     // user ? console.log(user) : console.log(guest);
   }
 
