@@ -29,11 +29,11 @@
             <div class="flex justify-center">
                 <img src="../assets/icon.png" alt="Pintzy Icon" class="" />
             </div>
-            <form action="./signup.php" method="post"
+            <form action="inc/signup.inc.php" method="post"
                 class="py-2 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6">
                 <div class="flex flex-col my-2 w-full">
                     <label class="text-gray-600">Uesr name</label>
-                    <input type="text" name="username" class="border border-gray-400 p-1" />
+                    <input type="text" name="userName" class="border border-gray-400 p-1" />
                 </div>
                 <div class="flex flex-col my-2 w-full">
                     <label class="text-gray-600">Email</label>

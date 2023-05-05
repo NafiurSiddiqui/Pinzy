@@ -47,7 +47,7 @@ class SignupController extends Signup
             exit();
         }
         //userName or password exists
-        if ($this->userIsTaken() == false) {
+        if ($this->userExists() == false) {
 
             header("location:../index.php?error=userAlreadyExists");
             exit();
@@ -78,7 +78,7 @@ class SignupController extends Signup
     private function userNameValidation()
     {
         //some regExp
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->userName)) {
+        if (!preg_match("/^[a-zA-Z0-9_]*$/", $this->userName)) {
 
             $userNameIsValid = false;
         } else {
@@ -98,7 +98,7 @@ class SignupController extends Signup
             $emailIsValid = false;
 
         } else {
-            // $this->email = filter_input($_POST["email"], FILTER_SANITIZE_EMAIL);
+           
             $emailIsValid = true;
         }
 
@@ -119,9 +119,9 @@ class SignupController extends Signup
 
     }
 
-    private function userIsTaken()
+    private function userExists()
     {
-
+       
         if (!$this->checkUser($this->userName, $this->email)) {
             $userExists = false;
         } else {

@@ -1,26 +1,28 @@
 <?php
 
+
 if (isset($_POST["submit"])) {
 
     //get the data
 
-    $name = $_POST["name"];
+    $userName = $_POST["userName"];
     $email = $_POST["email"];
-    $pass = $_POST["pass"];
-    $repass = $_POST["repass"];
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirm-password"];
 
-    //instantiat signup controller
+    //instantiate signup controller
 
     include '../classes/dbh.classes.php';
     include '../classes/signup.classes.php';
     include '../classes/signup_controller.classes.php';
 
-    $signup = new SignupController($name, $email, $pass, $repass);
+    $signup = new SignupController($userName, $email, $password, $confirmPassword);
 
     //Error handler
     $signup->signupUser();
-
+    
     //send to home
+    // header('location:../index.php?message=signupSucceed');
+    header('location:/projects/pintzy/src/html/user.html?message=signupSucceed');
 
-    header('location:../index.php?message=signupSucceed');
 }
