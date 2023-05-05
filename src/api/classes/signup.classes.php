@@ -12,31 +12,46 @@ class Signup extends Dbh
     
     protected function setUser($userName, $email, $password)
     {
+
+        //set the session for manual URL prevention
+        session_start();
+
         // Check if the user already exists
         $stmt_check = $this->connect()->prepare($this->sql_check_user);
+
         if (!$stmt_check->execute([$userName, $email])) {
             $this->error = 'Failed to check user.';
             $stmt_check = null;
+            $_SESSION['signupSuccessful'] = false;
+
             return false;
         }
         if ($stmt_check->rowCount() > 0) {
             $this->error = 'User already exists.';
             $stmt_check = null;
+            $_SESSION['signupSuccessful'] = false;
+
             return false;
         }
 
         // Insert the new user into the database
         $stmt_insert = $this->connect()->prepare($this->sql_insert_user);
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        
         if (!$stmt_insert->execute([$userName, $email, $hashedPassword])) {
             $this->error = 'Failed to insert user.';
             $stmt_insert = null;
+            $_SESSION['signupSuccessful'] = false;
             return false;
         }
 
-        // Close the statements and return success
+        
+        //close the connection
         $stmt_check = null;
-        $stmt_insert = null;
+        
+        //on success
+        $_SESSION['signupSuccessful'] = true;
+
         return true;
     }
 
@@ -63,6 +78,12 @@ class Signup extends Dbh
          $stmt = null;
 
          return $result;
+     }
+
+     //expose error with typecasting
+     public function getError()
+     {
+         return $this->error;
      }
 
 }

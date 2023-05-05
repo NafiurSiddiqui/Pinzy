@@ -17,42 +17,50 @@ class SignupController extends Signup
         $this->confirmPassword = $confirmPassword;
     }
 
-    //throw error
 
     public function signupUser()
     {
 
-        //empty input
-        if ($this->emptyInput() == false) {
+        //NOTE: we do not need to start the session here again since we are inheritng the session start from the parent sigup class here. MAYBE? TEST
 
-            header("location:../index.php?error=emptyinput");
+        //empty input
+        if ($this->emptyInput() == true) {
+
+            $_SESSION['error'] = "please fill out all the fields";
+            // header("location:../index.php?error=emptyinput");
+            header("location:../index.php");
             exit();
         }
         //user validity
         if ($this->userNameValidation() == false) {
 
-            header("location:../index.php?error=invaliduserName");
+            $_SESSION['error'] = "invalid user name";
+            header("location:../index.php");
             exit();
         }
         //email
         if ($this->emailValidation() == false) {
-
-            header("location:../index.php?error=invalidemail");
+            $_SESSION['error'] = "invalid email";
+            // header("location:../index.php?error=invalidemail");
+            header("location:../index.php");
             exit();
         }
         //confirmPassword match
         if ($this->confirmPasswordValidation() == false) {
 
-            header("location:../index.php?error=passworddoesnotmatch");
+            $_SESSION['error'] = "password does not match";
+            header("location:../index.php");
             exit();
         }
         //userName or password exists
         if ($this->userExists() == false) {
 
-            header("location:../index.php?error=userAlreadyExists");
+            $_SESSION['error'] = "user already exists";
+            header("location:../index.php");
             exit();
         }
 
+        //set user
         $this->setUser($this->userName, $this->email, $this->password);
 
     }
@@ -67,12 +75,12 @@ class SignupController extends Signup
             empty($this->password) ||
             empty($this->confirmPassword)
         ) {
-            $validation = false;
+            $inputsAreEmpty = true;
         } else {
-            $validation = true;
+            $inputsAreEmpty = false;
         }
 
-        return $validation;
+        return $inputsAreEmpty;
     }
 
     private function userNameValidation()
@@ -87,7 +95,7 @@ class SignupController extends Signup
         }
 
         return $userNameIsValid;
-
+        
     }
 
     private function emailValidation()

@@ -1,5 +1,7 @@
 <?php
 
+//start session
+session_start();
 
 if (isset($_POST["submit"])) {
 
@@ -23,6 +25,16 @@ if (isset($_POST["submit"])) {
     
     //send to home
     // header('location:../index.php?message=signupSucceed');
-    header('location:/projects/pintzy/src/html/user.html?message=signupSucceed');
+
+ 
+
+    if($_SESSION['signupSuccessful'] === true) {
+        //redirect to user page
+        header('location:/projects/pintzy/src/api/user.php');
+
+    } else {
+        //redirect to signup page
+        header('location:/projects/pintzy/src/api/signup-form.php');
+    }
 
 }
