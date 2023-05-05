@@ -24,7 +24,9 @@
       crossorigin=""
     ></script>
 
-    <script type="module" src="src/js/login.js"></script>
+    <link rel="stylesheet" href="./dist/output.css" />
+    <!-- <script type="module" src="/src/js/app.js"></script> -->
+    <!-- <script type="module" src="/src/js/login.js"></script> -->
     <title>Pintzy - login</title>
   </head>
 
@@ -57,7 +59,7 @@
           />
         </div>
         <button
-          class="w-full mt-10 mb-3 h-10 rounded-sm font-semibold text-m bg-accentColor text-gray-100 hover:text-white"
+          class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50 android-md/2:w-52 android-md:rounded-2xl border-4 border-green-500 bg-green-500 laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100"
           type="submit"
           name="submit"
         >
@@ -69,7 +71,7 @@
       <div class="text-center mt-6 text-gray-500">
         Need an account?
         <a
-          href="./src/html/signup.html"
+          href="./src/api/signup-form.php"
           class="ml-1 font-bold underline text-accentColorHigh"
           >Sign up</a
         >
