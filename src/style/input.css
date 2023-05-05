@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .navHover {
+  }
+
+  .navText {
+    @apply text-sm;
+  }
+
+  .text-color-light {
+    @apply text-slate-400;
+  }
+
+  .validation-error {
+    @apply ring-1 ring-red-400 my-2;
+  }
+
+  .btn-disabled {
+    @apply disabled:active:text-zinc-400 disabled:border-zinc-400/80 disabled:text-zinc-400;
+  }
+
+  .nav-active {
+    @apply text-slate-200;
+    @apply font-bold;
+  }
+
+  .borderTest {
+    @apply border;
+    @apply border-slate-500;
+  }
+
+  .bg-accentColor {
+    @apply bg-green-500;
+  }
+  .text-accentColorHigh {
+    @apply text-green-700;
+  }
+
+  /* sidebar animation */
+
+  .sidebar-content-hide {
+    @apply opacity-0;
+  }
+
+  .supportForSafari {
+    @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+      img[loading='lazy'] {
+        clip-path: inset(0.6px);
+      }
+    }
+  }
+}
