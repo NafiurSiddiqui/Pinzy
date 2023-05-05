@@ -6,6 +6,8 @@ session_start();
 // Check if the form has been submitted
 if (isset($_POST['submit'])) {
     
+    
+
     echo "IT IS A SUBMIT";
     // // Validate form data
     // $email = trim($_POST['email']);

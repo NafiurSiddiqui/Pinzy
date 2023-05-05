@@ -37,7 +37,7 @@
                 </div>
                 <div class="flex flex-col my-2 w-full">
                     <label class="text-gray-600">Email</label>
-                    <input type="email" name="username" class="border border-gray-400 p-1" />
+                    <input type="email" name="email" class="border border-gray-400 p-1" />
                 </div>
                 <div class="flex flex-col my-2 w-full">
                     <label class="text-gray-600">Passoword</label>
