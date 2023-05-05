@@ -57,7 +57,7 @@
             <!-- create account -->
             <div class="text-center mt-6 text-gray-500">
                 Have account?
-                <a href="/index.html" class="ml-1 font-bold underline text-accentColorHigh">Login</a>
+                <a href="/projects/pintzy/index.php" class="ml-1 font-bold underline text-accentColorHigh">Login</a>
             </div>
             <!-- or -->
             <div class="text-center w-full my-1 text-gray-400">
