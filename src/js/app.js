@@ -1,5 +1,4 @@
 'use strict';
-import '/tailwind.css';
 
 class User {
   // prettier-ignore
