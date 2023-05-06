@@ -35,11 +35,12 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
     <title>Pintzy - Pin aware your people.</title>
   </head>
 
-  <body class="flex bg-emerald-100">
+  <body class="flex">
     <!-- sidebar -->
     <aside
-      class="absolute sidebar max-h-screen transition-all h-screen bg-zinc-500/80 backdrop-blur-sm border-2 border-zinc-500 tablet:relative duration-500 z-30 w-14">
-      <div class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide">
+      class="absolute sidebar  transition-all  backdrop-blur-sm border-2 border-zinc-500 bg-zinc-500 tablet:relative duration-500 z-30 w-14  ">
+      <div class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide bg-zinc-600 h-screen  ">
+
         <!-- nav -->
         <nav class="border-b border-zinc-500 py-4 px-4 drop-shadow-sm bg-zinc-500">
           <ul class="flex justify-around">
@@ -55,27 +56,7 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
 
         <!-- user info -->
         <div class="signed-user-profile_container flex w-full my-4 py-4 px-5 items-center justify-between">
-          <!-- <div
-            class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center"
-          >
-            <img src="../assets/user-icon-large.svg" alt="user profile" />
-          </div>
-          <span
-            class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl"
-          >
-            Anonymous
-          </span> -->
-          <!-- pin count -->
-          <!-- <div
-            class="user-profile-user__pin-count border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center"
-          >
-            <span
-              class="user-profile-user__pin-count_number font-semibold tablet:text-sm max-w-[2rem]"
-            >
-              15
-            </span>
-            📌
-          </div> -->
+          <!-- placeholder -->
         </div>
 
         <!-- pins -->
@@ -109,11 +90,22 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
             </div>
           </li>
         </ul>
+
+
       </div>
       <!-- actions -->
+      <div class="user-profile-footer   w-full flex justify-between absolute bottom-16 left-0 px-4 ">
+        <button class="btn-user-input w-60 h-10 rounded font-semibold text-m relative android-md:rounded-2xl bg-green-500 text-zinc-50 android-md:bg-transparent border-4
+           border-green-500 android-md:border-4 
+           laptop:text-gray-700 laptop:bg-transparent
+           laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 " type="submit"
+          name="user-logout">
+          Logout
+        </button>
 
-      <i
-        class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar absolute right-4 rounded-sm bottom-6 ring-4 ring-zinc-300 text-zinc-100 p-2 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"></i>
+        <i
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-300 text-zinc-100 p-2 ml-4 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"></i>
+      </div>
     </aside>
     <section class="map-content w-full">
       <!-- main content -->
