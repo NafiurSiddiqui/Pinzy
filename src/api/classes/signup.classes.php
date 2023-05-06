@@ -80,7 +80,7 @@ class Signup extends Dbh
          return $result;
      }
 
-     //expose error with typecasting
+     //expose error
      public function getError()
      {
          return $this->error;

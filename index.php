@@ -30,8 +30,9 @@
       <div class="flex justify-center">
         <img src="./icon.png" alt="Pintzy Icon" class="" />
       </div>
-      <form action="#"
-        class="py-6 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6">
+      <form action="/projects/pintzy/src/api/inc/login.inc.php"
+        class="py-6 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
+        method="POST">
         <div class="flex flex-col my-4 w-full">
           <label class="text-gray-600">Username / email</label>
           <input type="text" name="username" class="border border-gray-400 p-1" />
@@ -61,7 +62,8 @@
       <!-- actions -->
       <div class="text-center text-gray-500">
         Explore as a
-        <a href="/src/html/guest_profile.html" class="ml-1 font-bold underline text-accentColorHigh">Guest</a>
+        <a href="/projects/pintzy/src/html/guest_profile.html"
+          class="ml-1 font-bold underline text-accentColorHigh">Guest</a>
       </div>
     </section>
   </body>

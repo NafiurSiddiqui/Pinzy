@@ -3,8 +3,8 @@
 if (isset($_POST["submit"])) {
 
     //get the data
-    $name = $_POST["name"];
-    $pass = $_POST["pass"];
+    $userName = $_POST["username"];
+    $password = $_POST["password"];
 
 
     //instantiat signup controller
@@ -13,13 +13,14 @@ if (isset($_POST["submit"])) {
     include '../classes/login.classes.php';
     include '../classes/login_controller.classes.php';
 
-    $login = new loginController($name, $pass);
+    $login = new loginController($userName, $password);
 
-    $nameErr = $login->emptyName;
+    $userNameErr = $login->emptyName;
 
     //Error handler
     $login->loginUser();
 
     //send to userPage
-    header('location:../user.php?message=loginSuccessful');
+    // header('location:../user.php?message=loginSuccessful');
+    header('location:/projects/pintzy/src/api/user.php');
 }

@@ -2,16 +2,16 @@
 
 class LoginController extends login
 {
-    private $name;
-    private $pass;
+    private $userName;
+    private $password;
     public $emptyName;
     public $emptyPass;
 
     //construct
-    public function __construct($name, $pass)
+    public function __construct($userName, $password)
     {
-        $this->name = $name;
-        $this->pass = $pass;
+        $this->userName = $userName;
+        $this->password = $password;
 
     }
 
@@ -46,7 +46,7 @@ class LoginController extends login
 
         
 
-        $this->getUser($this->name, $this->pass);
+        $this->getUser($this->userName, $this->password);
 
     }
 
@@ -55,7 +55,7 @@ class LoginController extends login
     protected function nameIsEmpty()
     {
 
-        return  empty($this->name)  ;
+        return  empty($this->userName)  ;
 
    
     }
@@ -63,7 +63,7 @@ class LoginController extends login
     protected function loginPassIsEmpty()
     {
      
-        return empty($this->pass) ;
+        return empty($this->password) ;
    
     }
 
