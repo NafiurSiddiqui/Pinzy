@@ -15,12 +15,12 @@ if (isset($_POST["submit"])) {
 
     $login = new loginController($userName, $password);
 
-    $userNameErr = $login->emptyName;
+    $userNameErr = $login->nameValidationMessage;
 
     //Error handler
     $login->loginUser();
 
     //send to userPage
-    // header('location:../user.php?message=loginSuccessful');
-    header('location:/projects/pintzy/src/api/user.php');
+    header('location:../user.php?message=loginSuccessful');
+    // header('location:/projects/pintzy/src/api/user.php');
 }

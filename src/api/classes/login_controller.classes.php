@@ -4,12 +4,15 @@ class LoginController extends login
 {
     private $userName;
     private $password;
-    public $emptyName;
-    public $emptyPass;
+    public $nameValidationMessage;
+    public $passwordValidationMessage;
 
     //construct
     public function __construct($userName, $password)
     {
+        //sanitize input
+        // $this->userName = htmlspecialchars($userName);
+        // $this->password = htmlspecialchars($password);
         $this->userName = $userName;
         $this->password = $password;
 
@@ -22,30 +25,29 @@ class LoginController extends login
         
  
         if($this->nameIsEmpty() && $this->loginPassIsEmpty()) {
-            $this->emptyName = "⚠️ Name is required. ";
-            $this->emptyPass = "⚠️ Password is required ";
+            $this->nameValidationMessage = "⚠️ Name is required. ";
+            $this->passwordValidationMessage = "⚠️ Password is required ";
         } else {
             //  check for empty name
             if ($this->nameIsEmpty()) {
-                $this->emptyName = "⚠️ Name is required. ";
+                $this->nameValidationMessage = "⚠️ Name is required. ";
             }
             // check for empty pass
             if ($this->loginPassIsEmpty()) {
-                $this->emptyPass = "⚠️ Password is required ";
+                $this->passwordValidationMessage = "⚠️ Password is required ";
             }
         }
 
    
 
 
-        if(!empty($this->emptyName) || !empty($this->emptyPass) ||(!empty($this->emptyName) && !empty($this->emptyPass))) {
-            header("location:../index.php?error=&emptyName=". urlencode($this->emptyName). "&emptyPass=". urlencode($this->emptyPass));
+        if(!empty($this->nameValidationMessage) || !empty($this->passwordValidationMessage) ||(!empty($this->nameValidationMessage) && !empty($this->passwordValidationMessage))) {
+            header("location:../index.php?error=&nameValidationMessage=". urlencode($this->nameValidationMessage). "&passwordValidationMessage=". urlencode($this->passwordValidationMessage));
             exit();
         }
 
 
-        
-
+        //get user data and run user authnetication
         $this->getUser($this->userName, $this->password);
 
     }
