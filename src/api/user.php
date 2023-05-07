@@ -37,9 +37,9 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
 
   <body class="flex">
     <!-- sidebar -->
-    <!-- w-14  -->
+
     <aside
-      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-400/80 tablet:relative duration-500 z-30  ">
+      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-400/80 tablet:relative duration-500 z-30  w-14 ">
       <div class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide  h-screen  ">
 
         <!-- nav -->
@@ -99,7 +99,7 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
         <button class="btn-user-input w-60 h-10 rounded font-semibold text-m relative android-md:rounded-2xl bg-green-500 text-zinc-50 android-md:bg-transparent border-4
            border-green-500 android-md:border-4 
            laptop:text-gray-700 laptop:bg-transparent
-           laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 " type="submit"
+           laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100  " type="submit"
           name="user-logout">
           Logout
         </button>
