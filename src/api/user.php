@@ -37,12 +37,13 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
 
   <body class="flex">
     <!-- sidebar -->
+    <!-- w-14  -->
     <aside
-      class="absolute sidebar  transition-all  backdrop-blur-sm border-2 border-zinc-500 bg-zinc-500 tablet:relative duration-500 z-30 w-14  ">
-      <div class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide bg-zinc-600 h-screen  ">
+      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-400/80 tablet:relative duration-500 z-30  ">
+      <div class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide  h-screen  ">
 
         <!-- nav -->
-        <nav class="border-b border-zinc-500 py-4 px-4 drop-shadow-sm bg-zinc-500">
+        <nav class="border-b border-zinc-500 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
           <ul class="flex justify-around">
             <li
               class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center text-color-light text-base">
@@ -104,7 +105,7 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
         </button>
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-300 text-zinc-100 p-2 ml-4 hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"></i>
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-300 text-zinc-100 p-3  hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"></i>
       </div>
     </aside>
     <section class="map-content w-full">

@@ -30,7 +30,7 @@
       <div class="flex justify-center">
         <img src="./icon.png" alt="Pintzy Icon" class="" />
       </div>
-      <form action="/projects/pintzy/src/api/inc/login.inc.php"
+      <form action="src/api/inc/login.inc.php"
         class="py-6 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
         method="POST">
         <div class="flex flex-col my-4 w-full">
