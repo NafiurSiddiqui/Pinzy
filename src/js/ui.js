@@ -27,5 +27,5 @@ btnSidebar.addEventListener('click', () => {
   // roate btn
   btnSidebar.classList.toggle('fa-flip-horizontal');
   //show content
-  sidebarContent.classList.toggle('sidebar-content-hide');
+  sidebarContent.classList.toggle('opacity-0');
 });

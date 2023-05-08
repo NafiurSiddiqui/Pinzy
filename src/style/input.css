@@ -39,12 +39,6 @@
     @apply text-green-700;
   }
 
-  /* sidebar animation */
-
-  .sidebar-content-hide {
-    @apply opacity-0;
-  }
-
   .supportForSafari {
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
       img[loading='lazy'] {

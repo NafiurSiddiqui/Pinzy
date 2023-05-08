@@ -39,14 +39,15 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
     <!-- sidebar -->
 
     <aside
-      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-400/80 tablet:relative duration-500 z-30  w-14 ">
-      <div class="sidebar-content-wrapper transition-all duration-[400ms] sidebar-content-hide  h-screen  ">
+      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-400/80 tablet:relative duration-500 z-30 w-14  ">
+
+      <div class="sidebar-content-wrapper transition-all duration-[400ms] opacity-0  h-screen  ">
 
         <!-- nav -->
-        <nav class="border-b border-zinc-500 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
+        <nav class="border-b border-zinc-400 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
           <ul class="flex justify-around">
             <li
-              class="font-semibold border-r border-r-1 border-r-gray-300 w-4/5 text-center text-color-light text-base">
+              class=" border-r border-r-1 border-r-gray-300 w-4/5 text-center text-zinc-100 opacity-40 text-base hover:font-semibold hover:opacity-100 ">
               <a href="./pins.html">Pins</a>
             </li>
             <li class="font-semibold w-4/5 text-center nav-active text-base">
