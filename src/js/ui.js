@@ -14,12 +14,16 @@ userInputBg.addEventListener('click', event => {
 const btnSidebar = document.querySelector('.btn-sidebar');
 const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
+const btnLogout = document.querySelector('.btn-user-input');
 
 btnSidebar.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
   sidebar.classList.toggle('w-full');
   sidebar.classList.toggle('tablet:w-80');
   sidebar.classList.toggle('w-14');
+  //hide logout btn
+  btnLogout.classList.toggle('hidden');
+
   // roate btn
   btnSidebar.classList.toggle('fa-flip-horizontal');
   //show content

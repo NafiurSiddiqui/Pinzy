@@ -96,7 +96,7 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
       </div>
       <!-- actions -->
       <div class="user-profile-footer   w-full flex justify-between absolute bottom-16 left-0 px-4 ">
-        <button class="btn-user-input w-60 h-10 rounded font-semibold text-m relative android-md:rounded-2xl bg-green-500 text-zinc-50 android-md:bg-transparent border-4
+        <button class="btn-user-input hidden w-60 h-10 rounded font-semibold text-m relative android-md:rounded-2xl bg-green-500 text-zinc-50 android-md:bg-transparent border-4
            border-green-500 android-md:border-4 
            laptop:text-gray-700 laptop:bg-transparent
            laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100  " type="submit"
