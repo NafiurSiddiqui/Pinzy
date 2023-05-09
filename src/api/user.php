@@ -35,13 +35,13 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
     <title>Pintzy - Pin aware your people.</title>
   </head>
 
-  <body class="flex">
+  <body class="flex relative">
     <!-- sidebar -->
 
     <aside
-      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-400/80 tablet:relative duration-500 z-30 w-14  ">
+      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-600/80  duration-500 z-30 w-14  ">
 
-      <div class="sidebar-content-wrapper transition-all duration-[400ms] opacity-0  h-screen  ">
+      <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0  ">
 
         <!-- nav -->
         <nav class="border-b border-zinc-400 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
@@ -63,50 +63,20 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
 
         <!-- pins -->
         <ul class="user-pin-container px-4 py-2 mt-6 flex justify-center items-center flex-col">
-          <li
-            class="user-pin flex my-1 android-md:w-[22rem] tablet:w-72 rounded-md border border-zinc-200 w-full bg-zinc-100 overflow-hidden">
-            <!-- flag -->
-            <span class="pin-card_flag inline-block w-3 bg-yellow-200"></span>
-            <div class="user-profile-wrapper w-full tablet:w-[98%] pl-3 pr-2 py-2 flex flex-col justify-center">
-              <div class="flex justify-between">
-                <!-- date -->
-                <span class="pin-date w-32 text-[0.6rem] text-gray-400 font-semibold">
-                  <img src="../assets/calendar.svg" class="inline-block" />
-                  19th Jul, 2023
-                </span>
-                <!-- time -->
-                <span class="pin-time w-32 text-[0.6rem] text-right text-gray-400 font-semibold mr-2">
-                  <img src="../assets/time.svg" class="inline-block" />
-                  19:15 hrs
-                </span>
-                <!-- Type -->
-                <div
-                  class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0">
-                  ⚠️
-                </div>
-              </div>
-              <!-- content -->
-              <p class="user-profile-text py-2 mt-4 px-2 border border-slate-300 bg-white text-zinc-600 text-sm">
-                Events coming up on July, 19th!
-              </p>
-            </div>
-          </li>
+
         </ul>
 
 
       </div>
       <!-- actions -->
       <div class="user-profile-footer   w-full flex justify-between absolute bottom-16 left-0 px-4 ">
-        <button class="btn-user-input hidden w-60 h-10 rounded font-semibold text-m relative android-md:rounded-2xl bg-green-500 text-zinc-50 android-md:bg-transparent border-4
-           border-green-500 android-md:border-4 
-           laptop:text-gray-700 laptop:bg-transparent
-           laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100  " type="submit"
+        <button class="btn-user-input  w-60 h-10 rounded-full font-semibold text-m  border-4 hidden" type="submit"
           name="user-logout">
           Logout
         </button>
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-300 text-zinc-100 p-3  hover:ring-zinc-500 hover:text-zinc-700 cursor-pointer transition-transform"></i>
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-400 text-zinc-400 p-3   hover:ring-zinc-200 hover:text-zinc-100 cursor-pointer transition-transform"></i>
       </div>
     </aside>
     <section class="map-content w-full">

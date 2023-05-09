@@ -75,9 +75,7 @@ class User {
     const globalPinContainer = document.querySelector('.global-pin-container');
 
     const html = `
-     <li
-            class="global-pin flex my-1 android-md:w-[22rem] tablet:w-72 rounded-md border border-zinc-200 w-full bg-zinc-100 overflow-hidden"
-          >
+       <li class="user-pin flex my-1 android-md:w-[22rem] tablet:w-72 rounded-md w-full  overflow-hidden">
             <!-- flag -->
             <span
               class="pin-card_flag inline-block w-3 bg-yellow-200 h-full"
@@ -201,16 +199,16 @@ const user1 = new User(
   testData.id
 );
 
-const signUser1 = new SignedUser(
-  'user',
-  testData.time,
-  testData.date,
-  testData.icon,
-  (testData.message = 'I am privileged.'),
-  (testData.id = '2'),
-  'Cool Joe',
-  '123456'
-);
+// const signUser1 = new SignedUser(
+//   'user',
+//   testData.time,
+//   testData.date,
+//   testData.icon,
+//   (testData.message = 'I am privileged.'),
+//   (testData.id = '2'),
+//   'Cool Joe',
+//   '123456'
+// );
 ///////////////////////////////////////
 // APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
@@ -349,19 +347,6 @@ class App {
       btnSubmit.removeAttribute('disabled');
     }
   }
-
-  // _validateBothFields() {
-  //   const event = eventType.value;
-  //   const text = message.value;
-  //   // const btnDisableClass = 'disabled:border-zinc-400 disabled:text-zinc-400';
-
-  //   if (event === 'none' && text === '') {
-  //     console.log('fields can not be empty!');
-  //     eventType.classList.add('validation-error');
-  //     // message.classList.add('validation-error');
-  //     btnSubmit.classList.add('disabled:border-zinc-400');
-  //   }
-  // }
 
   _validateInput() {
     const event = eventType.value;

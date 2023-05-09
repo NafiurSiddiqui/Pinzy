@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  .navHover {
-  }
-
-  .navText {
-    @apply text-sm;
-  }
-
   .text-color-light {
     @apply text-slate-400;
   }
@@ -18,18 +11,35 @@
     @apply ring-1 ring-red-400 my-2;
   }
 
-  .btn-disabled {
-    @apply disabled:active:text-zinc-400 disabled:border-zinc-400/80 disabled:text-zinc-400;
-  }
-
   .nav-active {
     @apply text-slate-200;
     @apply font-bold;
   }
 
+  .user-pin {
+    @apply border;
+    @apply border-zinc-400;
+    @apply cursor-pointer;
+  }
+
   .borderTest {
     @apply border;
     @apply border-slate-500;
+  }
+  .btn-disabled {
+    @apply disabled:active:text-zinc-400 disabled:border-zinc-400/80 disabled:text-zinc-400;
+  }
+  .btn-user-input {
+    @apply border-zinc-400;
+    @apply text-zinc-400;
+    @apply laptop:text-gray-400;
+    @apply laptop:bg-transparent;
+    @apply laptop:hover:text-zinc-100;
+    @apply transition-colors;
+    @apply active:text-zinc-100;
+    @apply laptop:hover:bg-green-500;
+    @apply hover:border-zinc-200;
+    @apply hover:text-zinc-200;
   }
 
   .bg-accentColor {
