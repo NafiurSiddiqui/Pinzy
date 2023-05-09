@@ -300,6 +300,7 @@ class App {
 
   _submitToDb(e) {
     e.preventDefault();
+    console.log('submits to db');
     //get the values
     const event = eventType.value;
     const text = message.value;
@@ -316,9 +317,17 @@ class App {
     //check the usertype
     // this.#userType === 'user'? //send to connectToDb(user):connectToDb(guest);
 
-    //set to local storage
-    localStorage.setItem(this.#userType, JSON.stringify(values));
+    // Add new object to pin array
+    this.#pins.push(values);
 
+    //set to local storage
+    localStorage.setItem(this.#userType, JSON.stringify(this.#pins));
+
+    // Render pin on map as marker
+    this._renderPinMarker(values);
+
+    // Render pin on the list
+    this._renderPin(values);
     //clear inputs
     eventType.value = message.value = '';
 
@@ -395,20 +404,20 @@ class App {
 
   _newPin(e, values) {
     e.preventDefault();
+    console.log(values, e);
+    // // Get data from form
+    // const event = eventType.value;
+    // const text = message?.value;
+    // const { lat, lng } = this.#mapEvent.latlng;
+    // console.log('does it run?');
 
-    // Get data from form
-    const event = eventType.value;
-    const text = message?.value;
-    const { lat, lng } = this.#mapEvent.latlng;
-    console.log('does it run?');
-
-    // Add new object to pin array
-    this.#pins.push(values);
+    // // Add new object to pin array
+    // this.#pins.push(values);
 
     // Render pin on map as marker
-    this._renderPinMarker(values.coords);
+    // this._renderPinMarker(values);
 
-    // // Render pin on the list
+    // Render pin on the list
     // this._renderPin(pin);
 
     // // Hide form + clear input fields
@@ -425,8 +434,8 @@ class App {
     // user ? console.log(user) : console.log(guest);
   }
 
-  _renderPinMarker(pin) {
-    L.marker(pin.coords)
+  _renderPinMarker(values) {
+    L.marker(values.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -434,76 +443,83 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${pin.type}-popup`,
+          className: `${values.event}-popup`,
         })
       )
-      .setPopupContent(` ${pin.description}`)
+      .setPopupContent(` ${values.sanitizedTextAreaValue}`)
       .openPopup();
   }
 
-  _renderPin() {
+  _renderPin(values) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
-    // let html = `
-    //  <li
-    //         class="flex user-pin android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full"
-    //       >
-    //         <!-- flag -->
-    //         <span
-    //           class="pin-card_flag inline-block w-3 bg-yellow-200"
-    //         ></span>
-    //         <div
-    //           class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
-    //         >
-    //           <section class="pin-card_header flex items-start justify-between">
-    //             <div class="user-profile_container flex">
-    //               <span
-    //                 class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
-    //               >
-    //                 <img
-    //                   src="../assets/user-icon-mini.svg"
-    //                   alt="user profile"
-    //                 />
-    //               </span>
-    //               <div
-    //                 class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
-    //               >
-    //                 John Doe
-    //               </div>
-    //             </div>
-    //             <!-- Type -->
-    //             <div
-    //               class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
-    //             >
-    //               ⚠️
-    //             </div>
-    //           </section>
-    //           <div class="flex mt-4 mb-1">
-    //             <!-- date -->
-    //             <span
-    //               class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
-    //             >
-    //               <img src="../assets/calendar.svg" class="inline-block" />
-    //               19th Jul, 2023
-    //             </span>
-    //             <!-- time -->
-    //             <span
-    //               class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
-    //             >
-    //               <img src="../assets/time.svg" class="inline-block" />
-    //               19:15 hrs
-    //             </span>
-    //           </div>
-    //           <p
-    //             class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
-    //           >
-    //             Events coming up on July, 19th!
-    //           </p>
-    //         </div>
-    //       </li>
-    // `;
-    // guestPinContainer?.insertAdjacentHTML('beforeend', html);
-    // userPinContainer?.insertAdjacentHTML('beforeend', html);
+    const guestPinContainer = document.querySelector('.guest-pin-container');
+    const userPinContainer = document.querySelector('.user-pin-container');
+
+    const userName = this.#userType === 'user' ? 'userName' : 'Anonymous';
+
+    let html = `
+     <li
+            class="flex user-pin android-md:w-[22rem] rounded-md border my-4 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full"
+          >
+            <!-- flag -->
+            <span
+              class="pin-card_flag inline-block w-3 bg-yellow-200"
+            ></span>
+            <div
+              class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
+            >
+              <section class="pin-card_header flex items-start justify-between">
+                <div class="user-profile_container flex">
+                  <span
+                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
+                  >
+                    <img
+                      src="../assets/user-icon-mini.svg"
+                      alt="user profile"
+                    />
+                  </span>
+                  <div
+                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
+                  >
+                    ${userName}
+                  </div>
+                </div>
+              
+                <div
+                  class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
+                >
+                  ⚠️
+                </div>
+              </section>
+              <div class="flex mt-4 mb-1">
+                <!-- date -->
+                <span
+                  class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
+                >
+                  <img src="../assets/calendar.svg" class="inline-block" />
+                  19th Jul, 2023
+                </span>
+                <!-- time -->
+                <span
+                  class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
+                >
+                  <img src="../assets/time.svg" class="inline-block" />
+                  19:15 hrs
+                </span>
+              </div>
+              <p
+                class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
+              >
+                ${values.sanitizedTextAreaValue}
+              </p>
+            </div>
+          </li>
+    `;
+
+    this.#userType === 'user'
+      ? userPinContainer?.insertAdjacentHTML('beforeend', html)
+      : guestPinContainer?.insertAdjacentHTML('beforeend', html);
   }
 
   _moveToPopup(e) {
@@ -514,7 +530,7 @@ class App {
 
     if (!pinEl) return;
 
-    const pin = this.#pins.find(work => work.id === pinEl.dataset.id);
+    const pin = this.#pins.find(pin => pin.id === pinEl.dataset.id);
 
     this.#map.setView(pin.coords, this.#mapZoomLevel, {
       animate: true,
@@ -538,8 +554,8 @@ class App {
 
     this.#pins = data;
 
-    this.#pins.forEach(work => {
-      this._renderWorkout(work);
+    this.#pins.forEach(pin => {
+      this._renderPin(pin);
     });
   }
 
