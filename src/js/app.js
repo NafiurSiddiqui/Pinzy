@@ -435,7 +435,7 @@ class App {
           >
             <!-- flag -->
             <span
-              class="pin-card_flag inline-block w-3 ${values.color} "
+              class="pin-card_flag inline-block w-3 flag-${values.event} "
             ></span>
             <div
               class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
@@ -511,9 +511,6 @@ class App {
     });
   }
 
-  // _setLocalStorage() {
-  //   localStorage.setItem('pins', JSON.stringify(this.#pins));
-  // }
   _setLocalStorage() {
     localStorage.setItem(this.#userType, JSON.stringify(this.#pins));
   }
