@@ -181,23 +181,23 @@ class SignedUser extends User {
   }
 }
 
-let testData = {
-  type: 'guest',
-  time: '10:00',
-  date: '13th July, 2023',
-  icon: '😎',
-  message: 'Event coming up',
-  id: '1',
-};
+// let testData = {
+//   type: 'guest',
+//   time: '10:00',
+//   date: '13th July, 2023',
+//   icon: '😎',
+//   message: 'Event coming up',
+//   id: '1',
+// };
 
-const user1 = new User(
-  testData.type,
-  testData.time,
-  testData.date,
-  testData.icon,
-  testData.message,
-  testData.id
-);
+// const user1 = new User(
+//   testData.type,
+//   testData.time,
+//   testData.date,
+//   testData.icon,
+//   testData.message,
+//   testData.id
+// );
 
 // const signUser1 = new SignedUser(
 //   'user',
@@ -233,9 +233,10 @@ class App {
     //usertype
     window.location.pathname.includes('user.php')
       ? (this.#userType = 'user')
-      : 'guest';
+      : (this.#userType = 'guest');
+
     //query for data
-    console.log('runs');
+    // console.log('runs');
     // Get data from local storage
     // this._getLocalStorage();
 
@@ -302,20 +303,24 @@ class App {
     //get the values
     const event = eventType.value;
     const text = message.value;
-    // const { lat, lng } = this.#mapEvent.latlng;
-
+    const { lat, lng } = this.#mapEvent.latlng;
     //sanitize input
     const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
-    const sanitizedEvent = event.trim().replace(/<[^>]*>/g, '');
-    //check the usertype
-    // this._checkUser(e);
 
-    //submit to db based on user type
+    const values = {
+      event,
+      sanitizedTextAreaValue,
+      coords: [lat, lng],
+    };
+
+    //check the usertype
+    // this.#userType === 'user'? //send to connectToDb(user):connectToDb(guest);
+
+    //set to local storage
+    localStorage.setItem(this.#userType, JSON.stringify(values));
 
     //clear inputs
     eventType.value = message.value = '';
-
-    //disable button
 
     //hideInput
     this._hideInput();
@@ -388,7 +393,7 @@ class App {
     }
   }
 
-  _newPin(e) {
+  _newPin(e, values) {
     e.preventDefault();
 
     // Get data from form
@@ -398,10 +403,10 @@ class App {
     console.log('does it run?');
 
     // Add new object to pin array
-    // this.#pins.push(pin);
+    this.#pins.push(values);
 
-    // // Render pin on map as marker
-    // this._renderPinMarker(pin);
+    // Render pin on map as marker
+    this._renderPinMarker(values.coords);
 
     // // Render pin on the list
     // this._renderPin(pin);
@@ -545,68 +550,3 @@ class App {
 }
 
 const app = new App();
-
-// 👇 you can delete this.
-
-const globalPinBluePrint = `
-
- <li
-            class="flex global-pin android-md:w-[22rem] rounded-md border border-zinc-300 w-full bg-zinc-100 overflow-hidden"
-          >
-            <!-- flag -->
-            <span
-              class="pin-card_flag inline-block w-3 bg-yellow-200 h-full"
-            ></span>
-
-            <div
-              class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
-            >
-              <section class="pin-card_header flex items-start justify-between">
-                <div class="user-profile_container flex">
-                  <span
-                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
-                  >
-                    <img
-                      src="../assets/user-icon-mini.svg"
-                      alt="user profile"
-                    />
-                  </span>
-                  <div
-                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
-                  >
-                    John Doe
-                  </div>
-                </div>
-
-                <!-- Type -->
-                <div
-                  class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
-                >
-                  ⚠️
-                </div>
-              </section>
-              <div class="flex mt-4 mb-1">
-                <!-- date -->
-                <span
-                  class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
-                >
-                  <img src="../assets/calendar.svg" class="inline-block" />
-                  19th Jul, 2023
-                </span>
-                <!-- time -->
-                <span
-                  class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
-                >
-                  <img src="../assets/time.svg" class="inline-block" />
-                  19:15 hrs
-                </span>
-              </div>
-
-              <p
-                class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
-              >
-                Events coming up on July, 19th!
-              </p>
-            </div>
-          </li>
-`;
