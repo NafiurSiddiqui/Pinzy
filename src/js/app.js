@@ -216,6 +216,8 @@ const inputPopUp = document.querySelector('.user-input-bg');
 const eventType = document.getElementById('eventType');
 const message = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
+const guestPinContainer = document.querySelector('.guest-pin-container');
+const userPinContainer = document.querySelector('.user-pin-container');
 
 class App {
   #map;
@@ -237,12 +239,12 @@ class App {
 
     // Get data from local storage
     this._getLocalStorage();
-    // Attach event handlers
+
     //move view to the related pin
-    // pinContainer.addEventListener('click', this._moveToPopup.bind(this));
+    guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
     //event on select event type
     eventType.addEventListener('input', this._validateInput.bind(this));
-    // //run event on message
+    //run event on message
     message.addEventListener('input', this._validateInput.bind(this));
 
     //submit to db
@@ -291,22 +293,25 @@ class App {
     if (!btnSubmit.hasAttribute('disabled')) {
       btnSubmit.setAttribute('disabled', '');
     }
-
-    // eventType.focus();
   }
 
   _submitToDb(e) {
     e.preventDefault();
-    console.log('submits to db');
+
     //get the values
     const event = eventType.value;
     const text = message.value;
+    const eventTypeIcon =
+      eventType.options[eventType.selectedIndex].dataset.icon;
+    console.log(eventTypeIcon);
     const { lat, lng } = this.#mapEvent.latlng;
     //sanitize input
     const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
 
     const values = {
       event,
+      id: Math.floor(Math.random() * 100) + 1,
+      icon: eventTypeIcon,
       sanitizedTextAreaValue,
       coords: [lat, lng],
     };
@@ -318,7 +323,7 @@ class App {
     this.#pins.push(values);
 
     //set to local storage
-    localStorage.setItem(this.#userType, JSON.stringify(this.#pins));
+    this._setLocalStorage();
 
     // Render pin on map as marker
     this._renderPinMarker(values);
@@ -341,10 +346,8 @@ class App {
     const event = eventType.value;
 
     if (event === 'none') {
-      console.log('choose an event type');
       eventType.classList.add('validation-error');
     } else {
-      console.log('You have selected an event type');
       eventType.classList.remove('validation-error');
       btnSubmit.removeAttribute('disabled');
     }
@@ -399,38 +402,6 @@ class App {
     }
   }
 
-  _newPin(e, values) {
-    e.preventDefault();
-    console.log(values, e);
-    // // Get data from form
-    // const event = eventType.value;
-    // const text = message?.value;
-    // const { lat, lng } = this.#mapEvent.latlng;
-    // console.log('does it run?');
-
-    // // Add new object to pin array
-    // this.#pins.push(values);
-
-    // Render pin on map as marker
-    // this._renderPinMarker(values);
-
-    // Render pin on the list
-    // this._renderPin(pin);
-
-    // // Hide form + clear input fields
-    // this._hideForm();
-
-    // // Set local storage to all pins
-    // this._setLocalStorage();
-  }
-
-  _checkUser(e) {
-    const user = e.target.name;
-    const guest = e.target.name;
-    // console.log(e.target.name);
-    // user ? console.log(user) : console.log(guest);
-  }
-
   _renderPinMarker(values) {
     L.marker(values.coords)
       .addTo(this.#map)
@@ -450,15 +421,14 @@ class App {
   _renderPin(values) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
-    const guestPinContainer = document.querySelector('.guest-pin-container');
-    const userPinContainer = document.querySelector('.user-pin-container');
 
     const userName = this.#userType === 'user' ? 'userName' : 'Anonymous';
 
     let html = `
 
      <li
-            class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full"
+            class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full grow-0 shrink-0" 
+            data-id="${values.id}"
           >
             <!-- flag -->
             <span
@@ -487,7 +457,7 @@ class App {
                 <div
                   class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
                 >
-                  ⚠️
+                  ${values.icon}
                 </div>
               </section>
               <div class="flex mt-4 mb-1">
@@ -521,14 +491,14 @@ class App {
   }
 
   _moveToPopup(e) {
-    // BUGFIX: When we click on a workout before the map has loaded, we get an error. But there is an easy fix:
     if (!this.#map) return;
 
     const pinEl = e.target.closest('.user-pin');
 
     if (!pinEl) return;
 
-    const pin = this.#pins.find(pin => pin.id === pinEl.dataset.id);
+    //we convert to number since data-id is string
+    const pin = this.#pins.find(pin => pin.id === +pinEl.dataset.id);
 
     this.#map.setView(pin.coords, this.#mapZoomLevel, {
       animate: true,
@@ -536,13 +506,13 @@ class App {
         duration: 1,
       },
     });
-
-    // using the public interface
-    // pin.click();
   }
 
+  // _setLocalStorage() {
+  //   localStorage.setItem('pins', JSON.stringify(this.#pins));
+  // }
   _setLocalStorage() {
-    localStorage.setItem('pins', JSON.stringify(this.#pins));
+    localStorage.setItem(this.#userType, JSON.stringify(this.#pins));
   }
 
   _getLocalStorage() {
