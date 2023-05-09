@@ -1,9 +1,6 @@
 <?php
-
- 
-
+// include '../classes/dbh.classes.php';
 //This makes sure, we can not manually get to these pages. (e.g - typing in the URL)
-
 
 class Login extends Dbh
 {
@@ -13,28 +10,30 @@ class Login extends Dbh
     //store error messages
     private $error = '';
     
+    public function __construct()
+    {
+        // session_start();
+    }
+
     protected function getUser($userName, $password)
     {
-        //set the session for manual URL prevention
-        session_start();
+        
 
         $stmt = $this->connect()->prepare('SELECT user_password FROM pintzy_user_info WHERE user_name=? OR user_email= ?');
         
         //to check by email or username
-
         if (!$stmt->execute(array($userName, $userName))) {
             //if this fails, close the conn
 
             $stmt = null;
-            // $_SESSION['loginSuccessful'] = false;
+     
             $this->error = "user does not exist.";
             header("location:../index.php?error=statmentfailed");
-            // header("location:/projects/pintzy/index.php");
+           
 
-            exit(); //exit the entire script
+            exit();
         }
 
-        // $this->loginData = $stmt->fetchAll(PDO::FETCH_ASSOC); //Param,  we say how we want the data to be returned.
 
         $passwordHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($passwordHashed[0]);
@@ -43,20 +42,19 @@ class Login extends Dbh
 
         if (count($passwordHashed) == 0) {
             $stmt = null;
-            $_SESSION['loginSuccessful'] = false;
-            $this->error = 'user not found';
             header("location:login.inc.php?error=usernotfound");
-            // header("location:/projects/pintzy/src/api/inc/login.inc.php");
+            $this->error = 'user not found';
+      
             exit();
         }
 
 
         if ($checkPass == false) {
             $stmt = null;
-            $_SESSION['loginSuccessful'] = false;
+      
             $this->error = 'wrong password';
             header('location:../index.php?error=wrongPassword');
-            // header("location:/projects/pintzy/src/api/inc/index.inc.php");
+     
             exit();
         } elseif ($checkPass == true) {
           
@@ -66,9 +64,9 @@ class Login extends Dbh
             if (!$stmt->execute(array($userName, $userName, $passwordHashed[0]['user_password']))) {
                 //if this fails, close the conn
                 $stmt = null;
-                $_SESSION['loginSuccessful'] = false;
+    
                 $this->error = "invalid login.";
-                // header("location:/projects/pintzy/src/api/inc/index.inc.php");
+               
                 header('location:../index.php?error=invalidLogin');
 
                 exit(); //exit the entire script
@@ -79,19 +77,18 @@ class Login extends Dbh
             if (count($passwordHashed) == 0) {
 
                 $stmt = null;
-                $_SESSION['loginSuccessful'] = false;
                 $this->error = 'user not found';
                 header('location:../index.php?error=noUsers');
-                // header('location:/projects/pintzy/src/api/inc/index.inc.php');
+          
                 exit();
             }
 
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            //store userInfo in the session
             session_start();
-            $_SESSION["id"] = $user[0]["user_id"];
-            $_SESSION["name"] = $user[0]["user_name"];
+
+            $_SESSION["id"] = $user[0]['id'];
+            $_SESSION["userName"] = $user[0]["user_name"];
 
             $stmt = null;
         }

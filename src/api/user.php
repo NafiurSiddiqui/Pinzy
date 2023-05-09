@@ -1,12 +1,20 @@
 <?php
-session_start();
-// var_dump(isset($_SESSION['signupSuccesful']));
 
-if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === false) {
-    header('location:/projects/pintzy/src/api/signup-form.php');
-    exit;
+session_start();
+
+
+//check if user is logged in
+if(!isset($_SESSION["id"])) {
+    $userLoggedIn = false;
+    header('location:../../index.php');
+    exit();
 }
 
+//login flag
+$userLoggedIn = true;
+
+//get the username from session
+$userName = $_SESSION['userName'];
 
 ?>
 
@@ -37,18 +45,18 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
 
   <body class="flex relative">
     <!-- sidebar -->
-
+    <!-- w-14 -->
     <aside
-      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-600/80  duration-500 z-30 w-14  ">
-
-      <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0  ">
+      class="absolute sidebar transition-all  backdrop-blur-sm border-2 border-zinc-400 bg-zinc-600/80  duration-500 z-30 tablet:w-80   ">
+      <!-- opacity-0  -->
+      <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen  ">
 
         <!-- nav -->
         <nav class="border-b border-zinc-400 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
           <ul class="flex justify-around">
             <li
               class=" border-r border-r-1 border-r-gray-300 w-4/5 text-center text-zinc-100 opacity-40 text-base hover:font-semibold hover:opacity-100 ">
-              <a href="./pins.html">Pins</a>
+              <a href="../html/pins.html">Pins</a>
             </li>
             <li class="font-semibold w-4/5 text-center nav-active text-base">
               Profile
@@ -59,21 +67,41 @@ if(isset($_SESSION['signupSuccessful']) && $_SESSION['signupSuccessful'] === fal
         <!-- user info -->
         <div class="signed-user-profile_container flex w-full my-4 py-4 px-5 items-center justify-between">
           <!-- placeholder -->
+          <div
+            class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center">
+            <img src="../assets/user-icon-large.svg" alt="user profile" />
+          </div>
+          <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl">
+            <?php
+            echo $userLoggedIn? $userName: 'Someting_wong';
+?>
+          </span>
+
+          <div
+            class="user-profile-user__pin-count border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center">
+            <span class="user-profile-user__pin-count_number font-semibold tablet:text-sm max-w-[2rem]">
+              15
+            </span>
+            📌
+          </div>
         </div>
 
         <!-- pins -->
         <ul class="user-pin-container px-4 py-2 mt-6 flex justify-center items-center flex-col">
-
+          <!-- placeholder -->
         </ul>
 
 
       </div>
       <!-- actions -->
       <div class="user-profile-footer   w-full flex justify-between absolute bottom-16 left-0 px-4 ">
-        <button class="btn-user-input  w-60 h-10 rounded-full font-semibold text-m  border-4 hidden" type="submit"
-          name="user-logout">
-          Logout
-        </button>
+        <form action="./inc/logout.inc.php" method="post">
+
+          <button class="btn-user-input  w-60 h-10 rounded-full font-semibold text-m  border-4 " type="submit"
+            name="user-logout">
+            Logout
+          </button>
+        </form>
 
         <i
           class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-400 text-zinc-400 p-3   hover:ring-zinc-200 hover:text-zinc-100 cursor-pointer transition-transform"></i>

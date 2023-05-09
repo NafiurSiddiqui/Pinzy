@@ -1,6 +1,6 @@
 <?php
 
-class Dbh
+class DbhGPT
 {
     private $host;
     private $user;

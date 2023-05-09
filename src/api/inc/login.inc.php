@@ -7,8 +7,9 @@ if (isset($_POST["submit"])) {
     $password = $_POST["password"];
 
 
-    //instantiat signup controller
-
+    //instantiate signup controller
+   
+    // include '../classes/dbh.classes.php';
     include '../classes/dbh.classes.php';
     include '../classes/login.classes.php';
     include '../classes/login_controller.classes.php';
@@ -19,6 +20,10 @@ if (isset($_POST["submit"])) {
 
     //Error handler
     $login->loginUser();
+
+    // session_start();
+
+    // $_SESSION['userName'] = $userName;
 
     //send to userPage
     header('location:../user.php?message=loginSuccessful');

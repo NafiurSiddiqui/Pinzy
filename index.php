@@ -42,7 +42,7 @@
           <input type="password" name="password" class="border border-gray-400 p-1" />
         </div>
         <button
-          class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-500 bg-green-500  laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 "
+          class="btn-user-input-login w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-500 bg-green-500  laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 "
           type="submit" name="submit">
           Login
         </button>
