@@ -235,11 +235,8 @@ class App {
       ? (this.#userType = 'user')
       : (this.#userType = 'guest');
 
-    //query for data
-    // console.log('runs');
     // Get data from local storage
-    // this._getLocalStorage();
-
+    this._getLocalStorage();
     // Attach event handlers
     //move view to the related pin
     // pinContainer.addEventListener('click', this._moveToPopup.bind(this));
@@ -459,8 +456,9 @@ class App {
     const userName = this.#userType === 'user' ? 'userName' : 'Anonymous';
 
     let html = `
+
      <li
-            class="flex user-pin android-md:w-[22rem] rounded-md border my-4 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full"
+            class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full"
           >
             <!-- flag -->
             <span
@@ -548,7 +546,7 @@ class App {
   }
 
   _getLocalStorage() {
-    const data = JSON.parse(localStorage.getItem('pins'));
+    const data = JSON.parse(localStorage.getItem(this.#userType));
 
     if (!data) return;
 
