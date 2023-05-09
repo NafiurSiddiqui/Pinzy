@@ -303,7 +303,8 @@ class App {
     const text = message.value;
     const eventTypeIcon =
       eventType.options[eventType.selectedIndex].dataset.icon;
-
+    const eventTypeColor =
+      eventType.options[eventType.selectedIndex].dataset.color;
     const { lat, lng } = this.#mapEvent.latlng;
     //sanitize input
     const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
@@ -312,6 +313,7 @@ class App {
       event,
       id: Math.floor(Math.random() * 100) + 1,
       icon: eventTypeIcon,
+      color: eventTypeColor,
       sanitizedTextAreaValue,
       coords: [lat, lng],
     };
@@ -421,6 +423,7 @@ class App {
   _renderPin(values) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
+    console.log(values.event);
 
     const userName = this.#userType === 'user' ? 'userName' : 'Anonymous';
 
@@ -432,7 +435,7 @@ class App {
           >
             <!-- flag -->
             <span
-              class="pin-card_flag inline-block w-3 bg-yellow-200"
+              class="pin-card_flag inline-block w-3 ${values.color} "
             ></span>
             <div
               class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
