@@ -50,6 +50,31 @@
     @apply text-green-700;
   }
 
+  /* marker classes on the map */
+
+  .emergency-popup {
+    @apply bg-red-500;
+  }
+
+  .alert-popup {
+    @apply bg-yellow-500;
+  }
+
+  .event-popup {
+    @apply bg-orange-500;
+  }
+
+  .review-popup {
+    @apply bg-violet-500;
+  }
+
+  .touristAttraction {
+    @apply bg-teal-500;
+  }
+  .recreational {
+    @apply bg-yellow-900;
+  }
+
   .supportForSafari {
     @supports (font: -apple-system-body) and (-webkit-appearance: none) {
       img[loading='lazy'] {

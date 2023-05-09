@@ -303,7 +303,7 @@ class App {
     const text = message.value;
     const eventTypeIcon =
       eventType.options[eventType.selectedIndex].dataset.icon;
-    console.log(eventTypeIcon);
+
     const { lat, lng } = this.#mapEvent.latlng;
     //sanitize input
     const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
