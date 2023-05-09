@@ -68,7 +68,7 @@
             <!-- actions -->
             <div class="text-center text-gray-500">
                 Explore as a
-                <a href="./guest.html" class="ml-1 font-bold underline text-accentColorHigh">Guest</a>
+                <a href="../html/guest.html" class="ml-1 font-bold underline text-accentColorHigh">Guest</a>
             </div>
         </section>
     </body>

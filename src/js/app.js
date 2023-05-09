@@ -224,11 +224,16 @@ class App {
   #pins = [];
   eventError = false;
   textError = false;
+  #userType = '';
 
   constructor() {
     // Get user's position
     this._getPosition();
 
+    //usertype
+    window.location.pathname.includes('user.php')
+      ? (this.#userType = 'user')
+      : 'guest';
     //query for data
     console.log('runs');
     // Get data from local storage
@@ -238,9 +243,6 @@ class App {
     //move view to the related pin
     // pinContainer.addEventListener('click', this._moveToPopup.bind(this));
     //event on select event type
-    // eventType.addEventListener('input', this._validateEventType.bind(this));
-    // //run event on message
-    // message.addEventListener('input', this._validateMessage.bind(this));
     eventType.addEventListener('input', this._validateInput.bind(this));
     // //run event on message
     message.addEventListener('input', this._validateInput.bind(this));
@@ -257,7 +259,7 @@ class App {
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
         function () {
-          alert('Could not get your position');
+          alert('Please allow to locate your position.');
         }
       );
   }
@@ -306,7 +308,8 @@ class App {
     const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
     const sanitizedEvent = event.trim().replace(/<[^>]*>/g, '');
     //check the usertype
-    this._checkUser(e);
+    // this._checkUser(e);
+
     //submit to db based on user type
 
     //clear inputs
