@@ -94,9 +94,6 @@ class App {
   }
 
   submitToDb(e) {
-    if (guestEdit.editOn) {
-      return;
-    }
     e.preventDefault();
 
     //get the values
@@ -147,58 +144,37 @@ class App {
   }
 
   _validateEventType() {
-    const event = eventType.value;
+    const event = eventTypeEl.value;
 
     if (event === 'none') {
-      eventType.classList.add('validation-error');
+      eventTypeEl.classList.add('validation-error');
     } else {
-      eventType.classList.remove('validation-error');
+      eventTypeEl.classList.remove('validation-error');
       btnSubmit.removeAttribute('disabled');
     }
   }
 
   _validateMessage() {
-    const text = message.value;
+    const text = messageEl.value;
     console.log('runs');
     if (text === '') {
       console.log('text can not be empty!');
-      message.classList.add('validation-error');
+      messageEl.classList.add('validation-error');
     } else {
-      message.classList.remove('validation-error');
+      messageEl.classList.remove('validation-error');
       btnSubmit.removeAttribute('disabled');
     }
   }
 
   _validateInput() {
-    const event = eventType.value;
-    const text = message.value;
-    const eventFieldActive = document.activeElement === eventType;
-    const messageFieldActive = document.activeElement === message;
+    const event = eventTypeEl.value;
+    const text = messageEl.value;
+    const eventFieldActive = document.activeElement === eventTypeEl;
+    const messageFieldActive = document.activeElement === messageEl;
 
     if (event === 'none' && text === '') {
       console.log('fields can not be empty!');
-      // eventType.classList.add('validation-error');
-      // message.classList.add('validation-error');
-      // btnSubmit.classList.add('disabled:border-zinc-400');
     }
-    // if (event === 'none') {
-    //   if (!messageFieldActive) {
-    //     console.log('choose an event type');
-    //     // eventType.classList.add('validation-error');
-    //   }
-    // } else {
-    //   console.log('You have selected an event type');
-    //   // eventType.classList.remove('validation-error');
-    // }
-
-    // if (text === '') {
-    //   if (!eventFieldActive) {
-    //     console.log('text can not be empty!');
-    //     message.classList.add('validation-error');
-    //   }
-    // } else {
-    //   message.classList.remove('validation-error');
-    // }
 
     if (event !== 'none' && text !== '') {
       // btnSubmit.classList.remove('btn-disabled');
