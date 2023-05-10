@@ -246,8 +246,7 @@ class App {
     // Get data from local storage
     this._getLocalStorage();
     console.log('runs');
-    //render pin count
-    this._renderPinCount();
+
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
     //event on select event type
@@ -342,7 +341,8 @@ class App {
     this._renderPin(values);
     //clear inputs
     eventType.value = message.value = '';
-
+    //render pin count
+    this._renderPinCount();
     //hideInput
     this._hideInput();
   }
@@ -440,7 +440,7 @@ class App {
       let html = `
 
      <li
-            class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full grow-0 shrink-0" 
+            class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-200 overflow-hidden tablet:w-full grow-0 shrink-0" 
             data-id="${values.id}"
           >
             <!-- flag -->
@@ -481,6 +481,22 @@ class App {
                   <img src="../assets/calendar.svg" class="inline-block" />
                   19th Jul, 2023
                 </span>
+                <!-- edit -->
+                <div class="relative z-40">
+                <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 "></i>
+                <ul class=" pin-edit-box hidden absolute bg-zinc-300 z-40 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
+                  <li class="hover:bg-zinc-200 p-2 text-center">
+                  edit
+                  </li>
+                  <li class="hover:bg-zinc-200 p-2 text-center">
+                  delete
+                  </li>
+                  <li class="hover:bg-zinc-200 p-2 text-center">
+                  delete all
+                  </li>
+                </ul>
+
+                </div>
                 <!-- time -->
                 <span
                   class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
@@ -515,7 +531,6 @@ class App {
 
   _moveToPopup(e) {
     if (!this.#map) return;
-
     const pinEl = e.target.closest('.user-pin');
 
     if (!pinEl) return;

@@ -29,3 +29,19 @@ btnSidebar.addEventListener('click', () => {
   //show content
   sidebarContent.classList.toggle('opacity-0');
 });
+
+// USER PIN
+
+const btnEditPin = document.querySelector('.fa-ellipsis');
+const editBox = document.querySelector('.pin-edit-box');
+
+btnEditPin.addEventListener('click', e => {
+  editBox.classList.toggle('hidden');
+  //prevents from bubbling to the parent
+  e.stopPropagation();
+});
+
+editBox.addEventListener('click', e => {
+  //prevents from bubbling to the grandparent
+  e.stopPropagation();
+});
