@@ -57,12 +57,10 @@ const editBox = document.querySelector('.pin-edit-box');
 const userPin = document.querySelector('.user-pin');
 
 export const toggleEditBox = (closeBox = false) => {
-  const editBox = document.querySelector('.pin-edit-box');
+  const editBoxAll = document.querySelectorAll('.pin-edit-box');
   //to prevent from toggling and simple hide if closeBox
   closeBox
-    ? !editBox?.classList.contains('hidden')
-      ? editBox?.classList.add('hidden')
-      : null
+    ? editBoxAll.forEach(box => box.classList.add('hidden'))
     : editBox?.classList.toggle('hidden');
 };
 

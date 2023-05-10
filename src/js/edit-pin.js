@@ -10,19 +10,42 @@ const isGuest = app?.userType === 'guest';
 //guest op and signed user should have diff operations.
 
 //which btn is clicked?
-editBox.addEventListener('click', e => {
-  if (e.target.tagName === 'LI') {
-    const li = e.target;
-    const id = li.closest('.user-pin').dataset.id;
+// editBox.addEventListener('click', e => {
+//   if (e.target.tagName === 'LI') {
+//     const li = e.target;
+//     const id = li.closest('.user-pin').dataset.id;
+//     console.log(li);
+//     //without trim, spaces prevents from match
+//     if (li.textContent.trim() === 'edit') {
+//       if (isGuest) {
+//         guestEdit.editMessage(id);
+//       }
+//     }
+//   }
+// });
 
-    //without trim, spaces prevents from match
-    if (li.textContent.trim() === 'edit') {
-      if (isGuest) {
-        guestEdit.editMessage(id);
+const editBoxes = document.querySelectorAll('.pin-edit-box');
+
+editBoxes?.forEach(editBox => {
+  const card = editBox?.closest('.user-pin');
+  const id = card.dataset.id;
+  editBox.dataset.id = id;
+
+  editBox.addEventListener('click', e => {
+    if (e.target.tagName === 'LI') {
+      const li = e.target;
+      const cardId = editBox.dataset.id;
+
+      //without trim, spaces prevents from a match
+      if (li.textContent.trim() === 'edit') {
+        if (isGuest) {
+          guestEdit.editMessage(cardId);
+        }
       }
     }
-  }
+  });
 });
+
 //perform the corresponding operation
 const editForm = document.querySelector('.user-input-bg__edit');
 
