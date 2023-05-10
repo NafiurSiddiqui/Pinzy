@@ -111,7 +111,7 @@ class App {
       id: Math.floor(Math.random() * 100) + 1,
       icon: eventTypeIcon,
       color: eventTypeColor,
-      sanitizedTextAreaValue,
+      message: sanitizedTextAreaValue,
       coords: [lat, lng],
     };
 
@@ -214,7 +214,7 @@ class App {
           className: `${values.event}-popup`,
         })
       )
-      .setPopupContent(` ${values.sanitizedTextAreaValue}`)
+      .setPopupContent(` ${values.message}`)
       .openPopup();
   }
 
@@ -298,7 +298,7 @@ class App {
               <p
                 class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
               >
-                ${values.sanitizedTextAreaValue}
+                ${values.message}
               </p>
             </div>
           </li>

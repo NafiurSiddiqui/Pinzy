@@ -9,12 +9,17 @@ const isGuest = app.userType === 'guest';
 //guest op and signed user should have diff operations.
 
 //which btn is clicked?
-editBox.addEventListener('click', e => {
+editBox?.addEventListener('click', e => {
   if (e.target.tagName === 'LI') {
     const li = e.target;
     const id = li.closest('.user-pin').dataset.id;
 
-    console.log(li, `id: ${id}`);
+    //withotu trim, spaces prevents from match
+    if (li.textContent.trim() === 'edit') {
+      if (isGuest) {
+        guestEdit.editMessage(id);
+      }
+    }
   }
 });
 //perform the corresponding operation
@@ -22,9 +27,16 @@ editBox.addEventListener('click', e => {
 class GuestEdit {
   editMessage(id) {
     //get the id of the target
+    //get the items from localStorage
+    const data = JSON.parse(localStorage.getItem(`guest`));
+
+    const item = data.find(item => item.id === id);
+
     //popup inputform
     //autoselect eventType and fill up the text area
     //get the newInput
     //render pin
   }
 }
+
+const guestEdit = new GuestEdit();
