@@ -36,7 +36,7 @@ class App {
 
     // Get data from local storage
     this._getLocalStorage();
-    console.log('runs from App');
+    // console.log('runs from App');
 
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
@@ -47,6 +47,9 @@ class App {
 
     //submit to db
     btnSubmit.addEventListener('click', this.submitToDb.bind(this));
+
+    //render pin count
+    this._renderPinCount();
 
     //render new Pin
     // this._renderPin();
