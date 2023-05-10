@@ -36,8 +36,14 @@ const btnEditPin = document.querySelector('.fa-ellipsis');
 const editBox = document.querySelector('.pin-edit-box');
 const userPin = document.querySelector('.user-pin');
 
-export const toggleEditBox = e => {
-  editBox.classList.toggle('hidden');
+export const toggleEditBox = (closeBox = false) => {
+  const editBox = document.querySelector('.pin-edit-box');
+
+  closeBox
+    ? !editBox.classList.contains('hidden')
+      ? editBox.classList.add('hidden')
+      : null
+    : editBox.classList.toggle('hidden');
 };
 
 btnEditPin.addEventListener('click', e => {
@@ -56,5 +62,7 @@ editBox.addEventListener('click', e => {
 
 //close the edit on global click
 document.body.addEventListener('click', e => {
-  !e.target.classList.contains('.pin-edit-box_item') ? toggleEditBox() : null;
+  !e.target.classList.contains('.pin-edit-box_item')
+    ? toggleEditBox(close)
+    : null;
 });
