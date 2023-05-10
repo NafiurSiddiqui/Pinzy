@@ -45,7 +45,7 @@ class App {
     message.addEventListener('input', this._validateInput.bind(this));
 
     //submit to db
-    btnSubmit.addEventListener('click', this._submitToDb.bind(this));
+    btnSubmit.addEventListener('click', this.submitToDb.bind(this));
 
     //render new Pin
     // this._renderPin();
@@ -92,7 +92,7 @@ class App {
     }
   }
 
-  _submitToDb(e) {
+  submitToDb(e) {
     e.preventDefault();
 
     //get the values

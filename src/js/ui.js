@@ -10,6 +10,13 @@ userInputBg.addEventListener('click', event => {
   }
 });
 
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    // Close the user-input
+    userInputBg.classList.add('hidden');
+  }
+});
+
 //SIDEBAR
 const btnSidebar = document.querySelector('.btn-sidebar');
 const sidebar = document.querySelector('.sidebar');

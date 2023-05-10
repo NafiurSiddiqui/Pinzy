@@ -32,7 +32,11 @@ class GuestEdit {
 
     const item = data.find(item => item.id === id);
 
+    let newMsg = '';
+    let newEventType = '';
+
     //popup inputform
+    app.showInputPopUP();
     //autoselect eventType and fill up the text area
     //get the newInput
     //render pin
