@@ -1,7 +1,9 @@
 const userInputBg = document.querySelector('.user-input-bg');
-const userInputForm = document.querySelector('.user-input-bg form');
+const userInputForm = document.querySelector('.user-input-form');
+const userInputBgEdit = document.querySelector('.user-input-bg__edit');
+const userInputFormEdit = document.querySelector('.user-input-form__edit');
 
-//USER INPUT POP UP
+//USER INPUT POPUP
 userInputBg.addEventListener('click', event => {
   // Check if the clicked element is the user-input form or not
   if (!userInputForm.contains(event.target)) {
@@ -10,10 +12,20 @@ userInputBg.addEventListener('click', event => {
   }
 });
 
+//USER INPUT EDIT POPUP
+userInputBgEdit.addEventListener('click', event => {
+  // Check if the clicked element is the user-input form or not
+  if (!userInputFormEdit.contains(event.target)) {
+    // Close the user-input
+    userInputBgEdit.classList.add('hidden');
+  }
+});
+
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     // Close the user-input
-    userInputBg.classList.add('hidden');
+    userInputBg?.classList.add('hidden');
+    userInputBgEdit?.classList.add('hidden');
   }
 });
 
@@ -39,7 +51,8 @@ btnSidebar.addEventListener('click', () => {
 
 // USER PIN
 
-const btnEditPin = document.querySelector('.fa-ellipsis');
+// const btnEditPin = document.querySelector('.fa-ellipsis');
+const btnEditPin = document.querySelectorAll('.fa-ellipsis');
 const editBox = document.querySelector('.pin-edit-box');
 const userPin = document.querySelector('.user-pin');
 
@@ -53,11 +66,20 @@ export const toggleEditBox = (closeBox = false) => {
     : editBox?.classList.toggle('hidden');
 };
 
-btnEditPin?.addEventListener('click', e => {
-  // editBox.classList.toggle('hidden');
-  toggleEditBox();
-  //prevents from bubbling to the parent
-  e.stopPropagation();
+btnEditPin?.forEach(btn => {
+  btn.addEventListener('click', e => {
+    //find the parent
+    const userPin = e.target.closest('.user-pin');
+    //find the edit box in the parent
+    const editBox = userPin.querySelector('.pin-edit-box');
+    // toggle edit box
+    if (editBox) {
+      editBox.classList.toggle('hidden');
+    }
+
+    //prevents from bubbling to the parent
+    e.stopPropagation();
+  });
 });
 
 editBox?.addEventListener('click', e => {

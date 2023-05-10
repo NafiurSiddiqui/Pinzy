@@ -1,10 +1,11 @@
 'use strict';
+import guestEdit from './edit-pin.js';
 
 // APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
 
-const eventType = document.getElementById('eventType');
-const message = document.getElementById('message');
+const eventTypeEl = document.getElementById('eventType');
+const messageEl = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
 const guestPinCount = document.querySelector(
@@ -40,9 +41,9 @@ class App {
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
     //event on select event type
-    eventType.addEventListener('input', this._validateInput.bind(this));
+    eventTypeEl.addEventListener('input', this._validateInput.bind(this));
     //run event on message
-    message.addEventListener('input', this._validateInput.bind(this));
+    messageEl.addEventListener('input', this._validateInput.bind(this));
 
     //submit to db
     btnSubmit.addEventListener('click', this.submitToDb.bind(this));
@@ -93,18 +94,21 @@ class App {
   }
 
   submitToDb(e) {
+    if (guestEdit.editOn) {
+      return;
+    }
     e.preventDefault();
 
     //get the values
-    const event = eventType.value;
-    const text = message.value;
+    const event = eventTypeEl.value;
+    const message = messageEl.value;
     const eventTypeIcon =
-      eventType.options[eventType.selectedIndex].dataset.icon;
+      eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
     const eventTypeColor =
-      eventType.options[eventType.selectedIndex].dataset.color;
+      eventTypeEl.options[eventTypeEl.selectedIndex].dataset.color;
     const { lat, lng } = this.#mapEvent.latlng;
     //sanitize input
-    const sanitizedTextAreaValue = text.trim().replace(/<[^>]*>/g, '');
+    const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
 
     const values = {
       event,
@@ -130,7 +134,7 @@ class App {
     // Render pin on the list
     this._renderPin(values);
     //clear inputs
-    eventType.value = message.value = '';
+    eventTypeEl.value = messageEl.value = '';
     //render pin count
     this._renderPinCount();
     //hideInput
@@ -272,9 +276,9 @@ class App {
                   19th Jul, 2023
                 </span>
                 <!-- edit -->
-                <div class="relative z-40">
+                <div class="pin-edit-box__container relative z-40">
                 <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 "></i>
-                <ul class=" pin-edit-box hidden absolute bg-zinc-300 z-40 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
+                <ul class=" pin-edit-box hidden absolute bg-zinc-300 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
                   <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
                   edit
                   </li>
