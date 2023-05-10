@@ -217,6 +217,12 @@ const eventType = document.getElementById('eventType');
 const message = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
+const guestPinCount = document.querySelector(
+  '.guest-profile-guest__pin-count_number'
+);
+const userPinCount = document.querySelector(
+  '.user-profile-user__pin-count_number'
+);
 const userPinContainer = document.querySelector('.user-pin-container');
 
 class App {
@@ -239,7 +245,9 @@ class App {
 
     // Get data from local storage
     this._getLocalStorage();
-
+    console.log('runs');
+    //render pin count
+    this._renderPinCount();
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
     //event on select event type
@@ -423,11 +431,13 @@ class App {
   _renderPin(values) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
-    console.log(values.event);
+    const isGuest = this.#userType === 'guest';
+    const userName = isGuest ? 'Anonymous' : 'userName';
+    const pinContainer = isGuest ? guestPinContainer : userPinContainer;
+    const pinLimit = isGuest ? 10 : 100;
 
-    const userName = this.#userType === 'user' ? 'userName' : 'Anonymous';
-
-    let html = `
+    if (this.#pins.length < pinLimit) {
+      let html = `
 
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-100 overflow-hidden tablet:w-full grow-0 shrink-0" 
@@ -487,10 +497,20 @@ class App {
             </div>
           </li>
     `;
+      pinContainer.insertAdjacentHTML('beforeend', html);
+    } else {
+      alert(
+        isGuest
+          ? 'You have reached the guest pin limit. Please signup for unlimited pins.'
+          : 'You have reached the pin limit. Please upgrade your account.'
+      );
+    }
+  }
 
-    this.#userType === 'user'
-      ? userPinContainer?.insertAdjacentHTML('beforeend', html)
-      : guestPinContainer?.insertAdjacentHTML('beforeend', html);
+  _renderPinCount() {
+    this.#userType === 'guest'
+      ? (guestPinCount.textContent = this.#pins.length)
+      : (userPinCount.textContent = this.#pins.length);
   }
 
   _moveToPopup(e) {
