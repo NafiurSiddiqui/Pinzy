@@ -34,9 +34,15 @@ btnSidebar.addEventListener('click', () => {
 
 const btnEditPin = document.querySelector('.fa-ellipsis');
 const editBox = document.querySelector('.pin-edit-box');
+const userPin = document.querySelector('.user-pin');
+
+export const toggleEditBox = e => {
+  editBox.classList.toggle('hidden');
+};
 
 btnEditPin.addEventListener('click', e => {
-  editBox.classList.toggle('hidden');
+  // editBox.classList.toggle('hidden');
+  toggleEditBox();
   //prevents from bubbling to the parent
   e.stopPropagation();
 });
@@ -44,4 +50,11 @@ btnEditPin.addEventListener('click', e => {
 editBox.addEventListener('click', e => {
   //prevents from bubbling to the grandparent
   e.stopPropagation();
+  //close the box
+  e.target.tagName === 'LI' ? toggleEditBox() : null;
+});
+
+//close the edit on global click
+document.body.addEventListener('click', e => {
+  !e.target.classList.contains('.pin-edit-box_item') ? toggleEditBox() : null;
 });
