@@ -50,9 +50,6 @@ class App {
 
     //render pin count
     this._renderPinCount();
-
-    //render new Pin
-    // this._renderPin();
   }
 
   _getPosition() {

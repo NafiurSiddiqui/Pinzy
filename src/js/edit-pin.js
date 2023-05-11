@@ -1,7 +1,8 @@
 import app from './app.js';
+import createModal from './modal.js';
 
-const btnEditPin = document.querySelector('.fa-ellipsis');
-const editBox = document.querySelector('.pin-edit-box');
+// const btnEditPin = document.querySelector('.fa-ellipsis');
+// const editBox = document.querySelector('.pin-edit-box');
 // console.log(editBox);
 
 //dertermine the user
@@ -28,6 +29,37 @@ editBoxes?.forEach(editBox => {
         if (isGuest) {
           guestEdit.editMessage(cardId);
         }
+      }
+
+      if (li.textContent.trim() === 'delete') {
+        console.log('delete');
+        if (isGuest) {
+          guestEdit.deletePin(cardId);
+        }
+      }
+
+      if (li.textContent.trim() === 'delete all') {
+        console.log('delete All');
+        createModal({
+          title: 'Delete All Pins',
+          message: 'Are you sure you want to delete all your pins?',
+          confirmText: 'Delete',
+          cancelText: 'Cancel',
+        }).then(res => {
+          if (res) {
+            if (isGuest) {
+              guestEdit.deleteAllPin();
+            }
+          } else {
+            return;
+          }
+        });
+
+        // if (confirm) {
+        //   if (isGuest) {
+        //     guestEdit.deleteAllPin();
+        //   }
+        // }
       }
     }
   });
@@ -96,7 +128,7 @@ class FormValidator {
 class GuestEdit extends FormValidator {
   constructor() {
     super();
-    console.log(this.eventTypeEl);
+
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
@@ -104,8 +136,7 @@ class GuestEdit extends FormValidator {
     this.messageEl.addEventListener('input', this.validateInput.bind(this));
   }
 
-  editMessage(id) {
-    //get the id of the target
+  _editMessage(id) {
     //get the items from localStorage
     const data = JSON.parse(localStorage.getItem(`guest`));
 
@@ -160,6 +191,29 @@ class GuestEdit extends FormValidator {
 
   _hideEditForm() {
     editForm.classList.add('hidden');
+  }
+  deletePin(id) {
+    //get the item from localStorage
+    const data = JSON.parse(localStorage.getItem('guest'));
+    //filter the item
+    const filteredData = data.filter(item => item.id !== +id);
+    console.log(data.filter(item => item.id !== +id));
+    // update localStorage
+    localStorage.setItem('guest', JSON.stringify(filteredData));
+    //refresh window to update the pins
+    location.reload();
+  }
+
+  deleteAllPin() {
+    //alert user
+    // alert('Are you sure you want to delete all pins?');
+
+    //get the item from localStorage
+    const data = JSON.parse(localStorage.getItem('guest'));
+    //delete all from local storage
+    localStorage.removeItem('guest');
+    //refresh window to update the pins
+    location.reload();
   }
 }
 
