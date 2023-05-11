@@ -87,7 +87,7 @@ $userName = $_SESSION['userName'];
         </div>
 
         <!-- pins -->
-        <ul class="user-pin-container px-4 py-2 mt-6 flex justify-center items-center flex-col">
+        <ul class="user-pin-container pin-container px-4 py-2 mt-6 flex justify-center items-center flex-col">
           <!-- placeholder -->
         </ul>
 

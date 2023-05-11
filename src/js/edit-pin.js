@@ -23,7 +23,7 @@ editBoxes?.forEach(editBox => {
       //without trim, spaces prevents from a match
       if (li.textContent.trim() === 'edit') {
         if (isGuest) {
-          guestEdit.editMessage(cardId);
+          guestEdit._editMessage(cardId);
         }
       }
 
@@ -50,12 +50,6 @@ editBoxes?.forEach(editBox => {
             return;
           }
         });
-
-        // if (confirm) {
-        //   if (isGuest) {
-        //     guestEdit.deleteAllPin();
-        //   }
-        // }
       }
     }
   });

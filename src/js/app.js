@@ -14,6 +14,7 @@ const userPinContainer = document.querySelector('.user-pin-container');
 const userPinCount = document.querySelector(
   '.user-profile-user__pin-count_number'
 );
+const pinContainer = document.querySelector('.pin-container');
 
 class App {
   #map;
@@ -25,6 +26,9 @@ class App {
   userType = '';
 
   constructor() {
+    //guard the refresher
+    this.refreshingWindow = false;
+
     // Get user's position
     this._getPosition();
 
@@ -37,7 +41,7 @@ class App {
     this._getLocalStorage();
 
     //default profile message
-    // this._defaultProfileMsg();
+    this._defaultProfileMsgHandler();
 
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
@@ -51,6 +55,9 @@ class App {
 
     //render pin count
     this._renderPinCount();
+
+    this.refreshContent.bind(this);
+    console.log(this.refreshingWindow);
   }
 
   _getPosition() {
@@ -94,8 +101,8 @@ class App {
     }
   }
 
-  submitToDb(e) {
-    e.preventDefault();
+  submitToDb() {
+    //DID not prevent default refresh, since without refresh the content editor does not work.
 
     //get the values
     const event = eventTypeEl.value;
@@ -135,6 +142,7 @@ class App {
     eventTypeEl.value = messageEl.value = '';
     //render pin count
     this._renderPinCount();
+
     //hideInput
     this._hideInput();
   }
@@ -291,6 +299,10 @@ class App {
           : 'You have reached the pin limit. Please upgrade your account.'
       );
     }
+
+    if (this.#pins.length === 1) {
+      this._defaultProfileMsgHandler();
+    }
   }
 
   _renderPinCount() {
@@ -332,21 +344,33 @@ class App {
     });
   }
 
-  // reset() {
-  //   localStorage.removeItem('pins');
-  //   location.reload();
-  // }
-  _defaultProfileMsg() {
-    const msg = "<p class='text-slate-300 text-lg'> No pins yet. </p>";
-    const guest = this.userType === 'guest';
-    const container = guest ? guestPinContainer : userPinContainer;
+  _defaultProfileMsgHandler() {
+    const profileMsgEl = document.querySelector('.default-msg');
 
     if (this.#pins.length) {
-      msg.classList.add('hidden');
+      profileMsgEl.classList.add('hidden');
+      pinContainer.classList.remove('hidden');
     } else {
-      container.insertAdjacentElement('afterbegin', msg);
-      msg.classList.remove('hidden');
+      profileMsgEl.classList.remove('hidden');
+      pinContainer.classList.add('hidden');
     }
+  }
+
+  _refreshGuard() {
+    if (this.refreshingWindow) return;
+  }
+
+  _setRefreshState(value) {
+    this.refreshingWindow = value;
+  }
+
+  refreshContent() {
+    this._refreshGuard();
+    console.log('did not run');
+    this._setRefreshState(true);
+    console.log('Refresh run');
+    window.location.reload();
+    this._setRefreshState(false);
   }
 }
 
