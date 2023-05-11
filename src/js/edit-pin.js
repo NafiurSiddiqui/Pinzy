@@ -28,14 +28,23 @@ editBoxes?.forEach(editBox => {
       }
 
       if (li.textContent.trim() === 'delete') {
-        console.log('delete');
-        if (isGuest) {
-          guestEdit.deletePin(cardId);
-        }
+        createModal({
+          title: 'Delete Pin',
+          message: 'Are you sure you want to delete this pin?',
+          confirmText: 'Delete',
+          cancelText: 'Cancel',
+        }).then(res => {
+          if (res) {
+            if (isGuest) {
+              guestEdit.deletePin(cardId);
+            }
+          } else {
+            return;
+          }
+        });
       }
 
       if (li.textContent.trim() === 'delete all') {
-        console.log('delete All');
         createModal({
           title: 'Delete All Pins',
           message: 'Are you sure you want to delete all your pins?',

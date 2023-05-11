@@ -25,7 +25,7 @@ const createModal = options => {
       </div>
       <p>${options.message}</p>
       <div class="mt-4 flex justify-end">
-        <button id="modal-confirm" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        <button id="modal-confirm" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
           ${options.confirmText}
         </button>
         <button id="modal-cancel" class="ml-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full">
