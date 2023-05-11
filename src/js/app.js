@@ -1,5 +1,4 @@
 'use strict';
-import guestEdit from './edit-pin.js';
 
 // APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
@@ -11,10 +10,10 @@ const guestPinContainer = document.querySelector('.guest-pin-container');
 const guestPinCount = document.querySelector(
   '.guest-profile-guest__pin-count_number'
 );
+const userPinContainer = document.querySelector('.user-pin-container');
 const userPinCount = document.querySelector(
   '.user-profile-user__pin-count_number'
 );
-const userPinContainer = document.querySelector('.user-pin-container');
 
 class App {
   #map;
@@ -36,7 +35,9 @@ class App {
 
     // Get data from local storage
     this._getLocalStorage();
-    // console.log('runs from App');
+
+    //default profile message
+    // this._defaultProfileMsg();
 
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
@@ -208,7 +209,6 @@ class App {
 
     if (this.#pins.length < pinLimit) {
       let html = `
-
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-200 overflow-hidden tablet:w-full grow-0 shrink-0" 
             data-id="${values.id}"
@@ -332,9 +332,21 @@ class App {
     });
   }
 
-  reset() {
-    localStorage.removeItem('pins');
-    location.reload();
+  // reset() {
+  //   localStorage.removeItem('pins');
+  //   location.reload();
+  // }
+  _defaultProfileMsg() {
+    const msg = "<p class='text-slate-300 text-lg'> No pins yet. </p>";
+    const guest = this.userType === 'guest';
+    const container = guest ? guestPinContainer : userPinContainer;
+
+    if (this.#pins.length) {
+      msg.classList.add('hidden');
+    } else {
+      container.insertAdjacentElement('afterbegin', msg);
+      msg.classList.remove('hidden');
+    }
   }
 }
 

@@ -88,11 +88,18 @@
         </div>
 
         <!-- pins -->
-        <ul
-          class="guest-pin-container px-4 py-2 mt-6 flex items-center flex-col bg-zinc-700/20 h-[60vh] overflow-y-scroll"
-        >
-          <!-- placeholder -->
-        </ul>
+        <div class="pin-container-wrapper bg-zinc-700/20 h-[60vh] pt-4">
+          <p
+            class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic"
+          >
+            No pins created yet.
+          </p>
+          <ul
+            class="guest-pin-container hidden px-4 py-2 mt-6 flex items-center flex-col bg-zinc-700/20 h-[60vh] overflow-y-scroll"
+          >
+            <!-- placeholder -->
+          </ul>
+        </div>
       </div>
       <!-- actions -->
       <div
@@ -122,10 +129,11 @@
       <!-- pop up for input-->
       <section
         class="hidden user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
-        aria-modal="true"
+        role="dialog"
       >
         <span
           class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
+          role="button"
           aria-label="Close"
         >
           <i
@@ -139,7 +147,9 @@
           id="form-user-input"
         >
           <div class="flex flex-col my-4 w-full">
-            <label class="text-gray-600 text-xs mb-1">Pin type</label>
+            <label class="text-gray-600 text-xs mb-1" for="eventType"
+              >Pin type</label
+            >
             <select
               name="eventType"
               id="eventType"
@@ -183,8 +193,9 @@
             </select>
           </div>
           <div class="flex flex-col w-full">
-            <label class="text-gray-600 text-xs mb-1">Message</label>
-
+            <label class="text-gray-600 text-xs mb-1" for="message"
+              >Message</label
+            >
             <textarea
               class="rounded-sm border border-zinc-300 p-2 resize-none"
               name="message"
@@ -207,7 +218,7 @@
       <!-- pop up for edit -->
       <section
         class="hidden user-input-bg__edit flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
-        aria-modal="true"
+        role="dialog"
       >
         <span
           class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
@@ -224,7 +235,9 @@
           id="form-user-input__edit"
         >
           <div class="flex flex-col my-4 w-full">
-            <label class="text-gray-600 text-xs mb-1">Pin type</label>
+            <label class="text-gray-600 text-xs mb-1" for="eventType__edit"
+              >Pin type</label
+            >
             <select
               name="eventType"
               id="eventType__edit"
@@ -268,7 +281,9 @@
             </select>
           </div>
           <div class="flex flex-col w-full">
-            <label class="text-gray-600 text-xs mb-1">Message</label>
+            <label class="text-gray-600 text-xs mb-1" for="message__edit"
+              >Message</label
+            >
 
             <textarea
               class="rounded-sm border border-zinc-300 p-2 resize-none"

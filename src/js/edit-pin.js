@@ -1,10 +1,6 @@
 import app from './app.js';
 import createModal from './modal.js';
 
-// const btnEditPin = document.querySelector('.fa-ellipsis');
-// const editBox = document.querySelector('.pin-edit-box');
-// console.log(editBox);
-
 //dertermine the user
 const isGuest = app?.userType === 'guest';
 
