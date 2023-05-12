@@ -1,69 +1,64 @@
-import app from './app.js';
+// import app from './app.js';
 import createModal from './modal.js';
-
-//dertermine the user
-const isGuest = app?.userType === 'guest';
-export let editBoxIsOpen = false;
-
-//guest op and signed user should have diff operations.
+import app from './app.js';
 
 //which btn is clicked?
 
-// const editBoxes = document.querySelectorAll('.pin-edit-box');
+const editBoxes = document.querySelectorAll('.pin-edit-box');
 
-// editBoxes?.forEach(editBox => {
-//   const card = editBox?.closest('.user-pin');
-//   const id = card.dataset.id;
-//   editBox.dataset.id = id;
+editBoxes?.forEach(editBox => {
+  const card = editBox?.closest('.user-pin');
+  const id = card.dataset.id;
+  editBox.dataset.id = id;
 
-//   editBox.addEventListener('click', e => {
-//     if (e.target.tagName === 'LI') {
-//       const li = e.target;
-//       const cardId = editBox.dataset.id;
+  editBox.addEventListener('click', e => {
+    if (e.target.tagName === 'LI') {
+      const li = e.target;
+      const cardId = editBox.dataset.id;
 
-//       //without trim, spaces prevents from a match
-//       if (li.textContent.trim() === 'edit') {
-//         if (isGuest) {
-//           guestEdit._editMessage(cardId);
-//         }
-//       }
+      //without trim, spaces prevents from a match
+      if (li.textContent.trim() === 'edit') {
+        if (isGuest) {
+          guestEdit._editMessage(cardId);
+        }
+      }
 
-//       if (li.textContent.trim() === 'delete') {
-//         createModal({
-//           title: 'Delete Pin',
-//           message: 'Are you sure you want to delete this pin?',
-//           confirmText: 'Delete',
-//           cancelText: 'Cancel',
-//         }).then(res => {
-//           if (res) {
-//             if (isGuest) {
-//               guestEdit.deletePin(cardId);
-//             }
-//           } else {
-//             return;
-//           }
-//         });
-//       }
+      if (li.textContent.trim() === 'delete') {
+        createModal({
+          title: 'Delete Pin',
+          message: 'Are you sure you want to delete this pin?',
+          confirmText: 'Delete',
+          cancelText: 'Cancel',
+        }).then(res => {
+          if (res) {
+            if (isGuest) {
+              guestEdit.deletePin(cardId);
+            }
+          } else {
+            return;
+          }
+        });
+      }
 
-//       if (li.textContent.trim() === 'delete all') {
-//         createModal({
-//           title: 'Delete All Pins',
-//           message: 'Are you sure you want to delete all your pins?',
-//           confirmText: 'Delete',
-//           cancelText: 'Cancel',
-//         }).then(res => {
-//           if (res) {
-//             if (isGuest) {
-//               guestEdit.deleteAllPin();
-//             }
-//           } else {
-//             return;
-//           }
-//         });
-//       }
-//     }
-//   });
-// });
+      if (li.textContent.trim() === 'delete all') {
+        createModal({
+          title: 'Delete All Pins',
+          message: 'Are you sure you want to delete all your pins?',
+          confirmText: 'Delete',
+          cancelText: 'Cancel',
+        }).then(res => {
+          if (res) {
+            if (isGuest) {
+              guestEdit.deleteAllPin();
+            }
+          } else {
+            return;
+          }
+        });
+      }
+    }
+  });
+});
 
 //perform the corresponding operation
 const editForm = document.querySelector('.user-input-bg__edit');
@@ -72,11 +67,6 @@ const eventTypeEl = document.getElementById('eventType__edit');
 const messageEl = document.getElementById('message__edit');
 let event = eventTypeEl.value;
 let message = messageEl.value;
-const eventTypeIcon =
-  eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
-const eventTypeColor =
-  eventTypeEl.options[eventTypeEl.selectedIndex].dataset.color;
-
 const btnSubmitEdit = document.querySelector('.btn-user-input__edit');
 
 class FormValidator {
@@ -215,13 +205,80 @@ class GuestEdit extends FormValidator {
     // app.refreshContent();
   }
 
-  editBoxHandler(editBoxes) {
-    console.log(editBoxes);
+  editBoxHandler() {
+    // console.log(editBoxes);
+    const editBoxes = document.querySelectorAll('.pin-edit-box');
+    editBoxes.forEach(editBox => {
+      //get the parent on click
+      const pin = editBox.closest('.user-pin');
+      //get the id
+      const pinId = pin.dataset.id;
+      //assign the parent id to this of pin
+      editBox.dataset.id = pinId;
+      //listen to the editBox
+      editBox.addEventListener('click', e => {
+        const li = e.target.tagName === 'LI';
+        const id = editBox.dataset.id;
+
+        const action = e.target.textContent.trim();
+        const isGuest = this.detectUserType() === 'guest';
+
+        if (li) {
+          // const li = e.target;
+          const cardId = editBox.dataset.id;
+
+          //without trim, spaces prevents from a match
+          if (action === 'edit') {
+            if (isGuest) {
+              guestEdit._editMessage(cardId);
+            }
+          }
+
+          if (action === 'delete') {
+            createModal({
+              title: 'Delete Pin',
+              message: 'Are you sure you want to delete this pin?',
+              confirmText: 'Delete',
+              cancelText: 'Cancel',
+            }).then(res => {
+              if (res) {
+                if (isGuest) {
+                  guestEdit.deletePin(id);
+                }
+              } else {
+                return;
+              }
+            });
+          }
+
+          if (action === 'delete all') {
+            createModal({
+              title: 'Delete All Pins',
+              message: 'Are you sure you want to delete all your pins?',
+              confirmText: 'Delete',
+              cancelText: 'Cancel',
+            }).then(res => {
+              if (res) {
+                if (isGuest) {
+                  guestEdit.deleteAllPin();
+                }
+              } else {
+                return;
+              }
+            });
+          }
+        }
+      });
+    });
+  }
+
+  detectUserType() {
+    return app.userType;
   }
 }
 
-// const guest = new GuestEdit();
+const guestEdit = new GuestEdit();
 
 // export default guest;
 
-export { GuestEdit };
+export { guestEdit };

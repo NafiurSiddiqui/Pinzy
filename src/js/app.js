@@ -1,7 +1,5 @@
 'use strict';
-import { GuestEdit } from './edit-pin.js';
-
-//wihout dom loaded, guest is not loaded due to deferring scripts
+import { guestEdit } from './edit-pin.js';
 
 // APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
@@ -27,6 +25,7 @@ class App {
   eventError = false;
   textError = false;
   userType = '';
+  mapInitiated = null;
 
   constructor() {
     // Get user's position
@@ -60,6 +59,8 @@ class App {
 
     //render pin count
     this._renderPinCount();
+
+    guestEdit.editBoxHandler();
   }
 
   _getPosition() {
@@ -73,6 +74,9 @@ class App {
   }
 
   _loadMap(position) {
+    if (this.mapInitiated) {
+      return;
+    }
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     // console.log(`https://www.google.pt/maps/@${latitude},${longitude}`);
@@ -92,6 +96,8 @@ class App {
     this.#pins.forEach(pin => {
       this._renderPinMarker(pin);
     });
+
+    this.mapInitiated = true;
   }
 
   showInputPopUP(mapE) {
@@ -374,11 +380,7 @@ class App {
   }
 
   refreshContent() {
-    // this._setRefreshState(true);
-
     window.location.reload();
-
-    // this._setRefreshState(false);
   }
 
   #watchPinsLength() {
@@ -390,8 +392,9 @@ class App {
 
           //timeout in 2 seconds
           setTimeout(() => {
-            location.reload();
-          }, 500);
+            // location.reload();
+            this.refreshContent();
+          }, 100);
         }
         return true;
       },
@@ -400,12 +403,20 @@ class App {
   }
 }
 
+// const init = () => {
+//   return new Promise(resolve => {
+//     document.addEventListener('DOMContentLoaded', () => {
+//       const app = new App();
+//       resolve(app);
+//     });
+//   });
+// };
+
+// init();
+
+// export default init;
+// console.log('hello from app');
+
 const app = new App();
 
 export default app;
-
-document.addEventListener('DOMContentLoaded', () => {
-  // const guest = new GuestEdit();
-  const editBoxes = document.querySelectorAll('.pin-edit-box');
-  console.log(editBoxes);
-});
