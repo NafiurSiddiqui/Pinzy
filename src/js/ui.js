@@ -52,7 +52,7 @@ btnSidebar.addEventListener('click', () => {
 // USER PIN
 
 // const btnEditPin = document.querySelector('.fa-ellipsis');
-const btnEditPin = document.querySelectorAll('.fa-ellipsis');
+
 const editBox = document.querySelector('.pin-edit-box');
 const userPin = document.querySelector('.user-pin');
 
@@ -64,21 +64,30 @@ export const toggleEditBox = (closeBox = false) => {
     : editBox?.classList.toggle('hidden');
 };
 
-btnEditPin?.forEach(btn => {
-  btn.addEventListener('click', e => {
-    //find the parent
-    const userPin = e.target.closest('.user-pin');
-    //find the edit box in the parent
-    const editBox = userPin.querySelector('.pin-edit-box');
-    // toggle edit box
-    if (editBox) {
-      editBox.classList.toggle('hidden');
-    }
+const attachEditBtnListener = () => {
+  const btnEditPin = document.querySelectorAll('.fa-ellipsis');
 
-    //prevents from bubbling to the parent
-    e.stopPropagation();
+  btnEditPin?.forEach(btn => {
+    btn.addEventListener('click', e => {
+      //find the parent
+      const userPin = e.target.closest('.user-pin');
+      //find the edit box in the parent
+      const editBox = userPin.querySelector('.pin-edit-box');
+
+      // toggle edit box
+      if (editBox) {
+        console.log(editBox.classList + 'fist');
+        editBox.classList.toggle('hidden');
+        console.log(editBox.classList + 'second');
+      }
+
+      //prevents from bubbling to the parent
+      e.stopPropagation();
+    });
   });
-});
+};
+
+export default attachEditBtnListener;
 
 editBox?.addEventListener('click', e => {
   //prevents from bubbling to the grandparent

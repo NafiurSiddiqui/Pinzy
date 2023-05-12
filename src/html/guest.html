@@ -30,6 +30,7 @@
     ></script>
     <link rel="stylesheet" href="../../dist/output.css" />
     <link rel="stylesheet" href="../style/leaflet.css" />
+
     <script defer type="module" src="../js/edit-pin.js"></script>
     <script defer type="module" src="../js/ui.js"></script>
     <script defer type="module" src="../js/app.js"></script>
@@ -239,7 +240,7 @@
               >Pin type</label
             >
             <select
-              name="eventType"
+              name="eventType__edit"
               id="eventType__edit"
               class="p-1 cursor-pointer border border-zinc-300"
             >
@@ -287,7 +288,7 @@
 
             <textarea
               class="rounded-sm border border-zinc-300 p-2 resize-none"
-              name="message"
+              name="message__edit"
               id="message__edit"
               cols="30"
               rows="4"
@@ -296,7 +297,7 @@
           <button
             class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 disabled:border-zinc-400 disabled:text-zinc-400 disabled:hover:bg-transparent disabled:hover:text-zinc-400"
             type="submit"
-            name="guest-submit"
+            name="guest-submit-edit"
             disabled
           >
             Pin

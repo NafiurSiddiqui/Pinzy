@@ -1,4 +1,7 @@
 'use strict';
+import { GuestEdit } from './edit-pin.js';
+
+//wihout dom loaded, guest is not loaded due to deferring scripts
 
 // APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
@@ -26,9 +29,6 @@ class App {
   userType = '';
 
   constructor() {
-    //guard the refresher
-    this.refreshingWindow = false;
-
     // Get user's position
     this._getPosition();
 
@@ -39,6 +39,9 @@ class App {
 
     // Get data from local storage
     this._getLocalStorage();
+
+    //watch out for pins changes
+    this.#watchPinsLength();
 
     //default profile message
     this._defaultProfileMsgHandler();
@@ -53,11 +56,10 @@ class App {
     //submit to db
     btnSubmit.addEventListener('click', this.submitToDb.bind(this));
 
+    // attachEditBtnListener();
+
     //render pin count
     this._renderPinCount();
-
-    this.refreshContent.bind(this);
-    console.log(this.refreshingWindow);
   }
 
   _getPosition() {
@@ -143,6 +145,8 @@ class App {
     //render pin count
     this._renderPinCount();
 
+    //refresh
+    // window.location.reload();
     //hideInput
     this._hideInput();
   }
@@ -292,6 +296,11 @@ class App {
           </li>
     `;
       pinContainer.insertAdjacentHTML('beforeend', html);
+      // attachEditBtnListener();
+      const editBtn = pinContainer.querySelector(
+        `[data-id="${values.id}"] .pin-edit-box__container i`
+      );
+      this.attachEditBtnListener(editBtn);
     } else {
       alert(
         isGuest
@@ -309,6 +318,14 @@ class App {
     this.userType === 'guest'
       ? (guestPinCount.textContent = this.#pins.length)
       : (userPinCount.textContent = this.#pins.length);
+  }
+
+  attachEditBtnListener(editBtn) {
+    editBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const editBox = e.currentTarget.nextElementSibling;
+      editBox.classList.toggle('hidden');
+    });
   }
 
   _moveToPopup(e) {
@@ -356,24 +373,39 @@ class App {
     }
   }
 
-  _refreshGuard() {
-    if (this.refreshingWindow) return;
-  }
-
-  _setRefreshState(value) {
-    this.refreshingWindow = value;
-  }
-
   refreshContent() {
-    this._refreshGuard();
-    console.log('did not run');
-    this._setRefreshState(true);
-    console.log('Refresh run');
+    // this._setRefreshState(true);
+
     window.location.reload();
-    this._setRefreshState(false);
+
+    // this._setRefreshState(false);
+  }
+
+  #watchPinsLength() {
+    const handler = {
+      set: (obj, prop, value) => {
+        obj[prop] = value;
+        if (prop === 'length') {
+          console.log('Pins length changed:', value);
+
+          //timeout in 2 seconds
+          setTimeout(() => {
+            location.reload();
+          }, 500);
+        }
+        return true;
+      },
+    };
+    this.#pins = new Proxy(this.#pins, handler);
   }
 }
 
 const app = new App();
 
 export default app;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // const guest = new GuestEdit();
+  const editBoxes = document.querySelectorAll('.pin-edit-box');
+  console.log(editBoxes);
+});

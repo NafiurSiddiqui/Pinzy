@@ -3,66 +3,67 @@ import createModal from './modal.js';
 
 //dertermine the user
 const isGuest = app?.userType === 'guest';
+export let editBoxIsOpen = false;
 
 //guest op and signed user should have diff operations.
 
 //which btn is clicked?
 
-const editBoxes = document.querySelectorAll('.pin-edit-box');
+// const editBoxes = document.querySelectorAll('.pin-edit-box');
 
-editBoxes?.forEach(editBox => {
-  const card = editBox?.closest('.user-pin');
-  const id = card.dataset.id;
-  editBox.dataset.id = id;
+// editBoxes?.forEach(editBox => {
+//   const card = editBox?.closest('.user-pin');
+//   const id = card.dataset.id;
+//   editBox.dataset.id = id;
 
-  editBox.addEventListener('click', e => {
-    if (e.target.tagName === 'LI') {
-      const li = e.target;
-      const cardId = editBox.dataset.id;
+//   editBox.addEventListener('click', e => {
+//     if (e.target.tagName === 'LI') {
+//       const li = e.target;
+//       const cardId = editBox.dataset.id;
 
-      //without trim, spaces prevents from a match
-      if (li.textContent.trim() === 'edit') {
-        if (isGuest) {
-          guestEdit._editMessage(cardId);
-        }
-      }
+//       //without trim, spaces prevents from a match
+//       if (li.textContent.trim() === 'edit') {
+//         if (isGuest) {
+//           guestEdit._editMessage(cardId);
+//         }
+//       }
 
-      if (li.textContent.trim() === 'delete') {
-        createModal({
-          title: 'Delete Pin',
-          message: 'Are you sure you want to delete this pin?',
-          confirmText: 'Delete',
-          cancelText: 'Cancel',
-        }).then(res => {
-          if (res) {
-            if (isGuest) {
-              guestEdit.deletePin(cardId);
-            }
-          } else {
-            return;
-          }
-        });
-      }
+//       if (li.textContent.trim() === 'delete') {
+//         createModal({
+//           title: 'Delete Pin',
+//           message: 'Are you sure you want to delete this pin?',
+//           confirmText: 'Delete',
+//           cancelText: 'Cancel',
+//         }).then(res => {
+//           if (res) {
+//             if (isGuest) {
+//               guestEdit.deletePin(cardId);
+//             }
+//           } else {
+//             return;
+//           }
+//         });
+//       }
 
-      if (li.textContent.trim() === 'delete all') {
-        createModal({
-          title: 'Delete All Pins',
-          message: 'Are you sure you want to delete all your pins?',
-          confirmText: 'Delete',
-          cancelText: 'Cancel',
-        }).then(res => {
-          if (res) {
-            if (isGuest) {
-              guestEdit.deleteAllPin();
-            }
-          } else {
-            return;
-          }
-        });
-      }
-    }
-  });
-});
+//       if (li.textContent.trim() === 'delete all') {
+//         createModal({
+//           title: 'Delete All Pins',
+//           message: 'Are you sure you want to delete all your pins?',
+//           confirmText: 'Delete',
+//           cancelText: 'Cancel',
+//         }).then(res => {
+//           if (res) {
+//             if (isGuest) {
+//               guestEdit.deleteAllPin();
+//             }
+//           } else {
+//             return;
+//           }
+//         });
+//       }
+//     }
+//   });
+// });
 
 //perform the corresponding operation
 const editForm = document.querySelector('.user-input-bg__edit');
@@ -127,7 +128,7 @@ class FormValidator {
 class GuestEdit extends FormValidator {
   constructor() {
     super();
-
+    // this.editBoxes = ;
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
@@ -140,8 +141,8 @@ class GuestEdit extends FormValidator {
     const data = JSON.parse(localStorage.getItem(`guest`));
 
     const item = data.find(item => item.id === +id);
-    console.log(item.event);
-    console.log(item.message);
+    // console.log(item.event);
+    // console.log(item.message);
 
     let newMsg = '';
     let newEventType = '';
@@ -155,7 +156,7 @@ class GuestEdit extends FormValidator {
     messageEl.value = item.message;
     //get the newInput
     btnSubmitEdit.addEventListener('click', e => {
-      e.preventDefault();
+      // e.preventDefault();
 
       //get the newInput
       event = eventTypeEl.value;
@@ -196,26 +197,31 @@ class GuestEdit extends FormValidator {
     const data = JSON.parse(localStorage.getItem('guest'));
     //filter the item
     const filteredData = data.filter(item => item.id !== +id);
-    console.log(data.filter(item => item.id !== +id));
+
     // update localStorage
     localStorage.setItem('guest', JSON.stringify(filteredData));
     //refresh window to update the pins
     location.reload();
+    // app.refreshContent();
   }
 
   deleteAllPin() {
-    //alert user
-    // alert('Are you sure you want to delete all pins?');
-
     //get the item from localStorage
     const data = JSON.parse(localStorage.getItem('guest'));
     //delete all from local storage
     localStorage.removeItem('guest');
     //refresh window to update the pins
     location.reload();
+    // app.refreshContent();
+  }
+
+  editBoxHandler(editBoxes) {
+    console.log(editBoxes);
   }
 }
 
-const guestEdit = new GuestEdit();
+// const guest = new GuestEdit();
 
-export default guestEdit;
+// export default guest;
+
+export { GuestEdit };
