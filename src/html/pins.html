@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="../../icon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
       rel="stylesheet"
@@ -33,14 +33,11 @@
     <script type="module" src="../js/init.js"></script>
     <title>Pinzy - Guest user.</title>
   </head>
-  <body class="flex bg-emerald-100">
+  <body class="flex bg-primary">
     <!-- sidebar -->
-    <aside
-      class="absolute sidebar transition-all backdrop-blur-sm border-2 border-zinc-400 bg-zinc-600/80 duration-500 z-30 tablet:w-80"
-    >
-      <!-- opacity-0  -->
+    <aside class="absolute sidebar transition-all duration-500 z-30 w-14">
       <div
-        class="sidebar-content-wrapper transition-all duration-[400ms] h-screen"
+        class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0"
       >
         <!-- nav -->
         <nav
@@ -60,14 +57,8 @@
           </ul>
         </nav>
 
-        <!-- user info
-        <div
-          class="signed-user-profile_container flex w-full pt-4 pb-2 px-5 items-center justify-between"
-        >
-          <!-- placeholder -->
-
         <!-- pins -->
-        <div class="pin-container-wrapper__global bg-zinc-700/20 h-[76%] pt-4">
+        <div class="pin-container-wrapper__global bg-zinc-700/20 h-76vh pt-4">
           <p
             class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic"
           >
@@ -85,13 +76,13 @@
         class="user-profile-footer w-full flex justify-between absolute bottom-4 left-0 px-4 py-2"
       >
         <a
-          class="font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-400 text-zinc-400 items-center hover:text-zinc-50 hover:font-bold hover:ring-zinc-200"
+          class="font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-400 text-zinc-400 items-center hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hidden"
           href="../../index.php"
           >Logout</a
         >
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar rounded-sm ring-4 ring-zinc-400 text-zinc-400 p-3 hover:ring-zinc-200 hover:text-zinc-100 cursor-pointer transition-transform"
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar rounded-sm ring-4 ring-zinc-400 text-zinc-500 p-3 hover:ring-zinc-200 hover:text-zinc-100 cursor-pointer transition-transform"
         ></i>
       </div>
     </aside>
@@ -284,7 +275,18 @@
         ;
       </section>
       <!-- map -->
-      <div id="map" class="h-screen z-10"></div>
+      <div class="map-container h-screen z-10 flex justify-center items-center">
+        <div
+          class="loader-wrapper flex justify-between items-center w-60 absolute top-80 hidden"
+        >
+          <i
+            class="fa-solid fa-earth-europe fa-fade text-6xl text-zinc-700 z-20"
+          >
+          </i>
+          <span class="text-4xl text-zinc-600"> Loading...</span>
+        </div>
+        <div id="map" class="h-screen z-10 w-full"></div>
+      </div>
     </section>
   </body>
 </html>

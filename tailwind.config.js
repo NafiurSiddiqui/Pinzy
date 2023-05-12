@@ -11,7 +11,14 @@ module.exports = {
       desktop: '1280px',
       'desktop-md': '1536px',
     },
-    extend: {},
+    extend: {
+      height: {
+        '76vh': '76vh',
+      },
+      backgroundColor: {
+        primary: '#f7fee7',
+      },
+    },
   },
   plugins: [],
 };

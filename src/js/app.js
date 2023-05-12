@@ -16,6 +16,9 @@ const userPinCount = document.querySelector(
   '.user-profile-user__pin-count_number'
 );
 const pinContainer = document.querySelector('.pin-container');
+const loader = document.querySelector('.loader-wrapper');
+
+console.log(loader);
 
 class App {
   #map;
@@ -25,7 +28,7 @@ class App {
   eventError = false;
   textError = false;
   userType = '';
-  mapInitiated = null;
+  // mapInitiated = null;
   pagePin = null;
 
   constructor() {
@@ -78,9 +81,10 @@ class App {
   }
 
   _loadMap(position) {
-    if (this.mapInitiated) {
-      return;
-    }
+    // if (!this.#map) {
+    //   loader.classList.remove('hidden');
+    // }
+    loader.classList.add('hidden');
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
@@ -100,7 +104,7 @@ class App {
       this._renderPinMarker(pin);
     });
 
-    this.mapInitiated = true;
+    // this.mapInitiated = true;
   }
 
   showInputPopUP(mapE) {
@@ -324,9 +328,10 @@ class App {
   }
 
   _renderPinCount() {
-    if (this.pagePin) {
+    if (this.pagePin || !this.#map) {
       return;
     }
+
     this.userType === 'guest'
       ? (guestPinCount.textContent = this.#pins.length)
       : (userPinCount.textContent = this.#pins.length);

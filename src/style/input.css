@@ -50,6 +50,13 @@
     @apply text-green-700;
   }
 
+  .bg-aside {
+    @apply border-2;
+    @apply border-zinc-400;
+    @apply bg-zinc-600/80;
+    @apply backdrop-blur-sm;
+  }
+
   /* marker classes on the map */
 
   .supportForSafari {

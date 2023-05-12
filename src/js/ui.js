@@ -40,6 +40,7 @@ btnSidebar.addEventListener('click', () => {
   sidebar.classList.toggle('w-full');
   sidebar.classList.toggle('tablet:w-80');
   sidebar.classList.toggle('w-14');
+  sidebar.classList.toggle('bg-aside');
   //hide logout btn
   btnLogout.classList.toggle('hidden');
 
