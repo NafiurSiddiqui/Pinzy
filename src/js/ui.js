@@ -41,15 +41,14 @@ btnSidebar.addEventListener('click', () => {
   sidebar.classList.toggle('tablet:w-80');
   sidebar.classList.toggle('w-14');
   sidebar.classList.toggle('bg-aside');
+  //show content
+  sidebarContent.classList.toggle('opacity-0');
   //hide logout btn
   btnLogout.classList.toggle('hidden');
 
   // roate btn
   btnSidebar.classList.toggle('fa-flip-horizontal');
   btnSidebar.classList.toggle('btn-aside');
-
-  //show content
-  sidebarContent.classList.toggle('opacity-0');
 });
 
 // USER PIN
