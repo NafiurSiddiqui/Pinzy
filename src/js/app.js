@@ -83,7 +83,6 @@ class App {
     }
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    // console.log(`https://www.google.pt/maps/@${latitude},${longitude}`);
     const coords = [latitude, longitude];
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
