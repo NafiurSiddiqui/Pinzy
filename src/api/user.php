@@ -80,9 +80,9 @@ $userName = $_SESSION['userName'];
           <div
             class="user-profile-user__pin-count border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center">
             <span class="user-profile-user__pin-count_number font-semibold tablet:text-sm max-w-[2rem]">
-              
+
             </span>
-              <i class="fa-solid fa-location-dot text-slate-500"></i>
+            <i class="fa-solid fa-location-dot text-slate-500"></i>
           </div>
         </div>
 
@@ -94,17 +94,19 @@ $userName = $_SESSION['userName'];
 
       </div>
       <!-- actions -->
+
       <div class="user-profile-footer   w-full flex justify-between absolute bottom-16 left-0 px-4 ">
         <form action="./inc/logout.inc.php" method="post">
 
-          <button class="btn-user-input  w-60 h-10 rounded-full font-semibold text-m  border-4 " type="submit"
-            name="user-logout">
+          <button
+            class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hidden"
+            type="submit" name="user-logout">
             Logout
           </button>
         </form>
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar  rounded-sm  ring-4 ring-zinc-400 text-zinc-400 p-3   hover:ring-zinc-200 hover:text-zinc-100 cursor-pointer transition-transform"></i>
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-400 text-zinc-500 p-3 bg-white hover:text-zinc-700 hover:font-bold hover:ring-zinc-600 hover:bg-zinc-500/20 hover:backdrop-blur-sm cursor-pointer transition-transform shadow-lg shadow-zinc-800"></i>
       </div>
     </aside>
     <section class="map-content w-full">

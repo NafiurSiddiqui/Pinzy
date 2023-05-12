@@ -35,12 +35,9 @@
   </head>
   <body class="flex bg-emerald-100">
     <!-- sidebar -->
-    <aside
-      class="absolute sidebar transition-all backdrop-blur-sm border-2 border-zinc-400 bg-zinc-600/80 duration-500 z-30 tablet:w-80"
-    >
-      <!-- opacity-0  -->
+    <aside class="absolute sidebar transition-all duration-500 z-30 w-14">
       <div
-        class="sidebar-content-wrapper transition-all duration-[400ms] h-screen"
+        class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0"
       >
         <!-- nav -->
         <nav
@@ -58,15 +55,41 @@
           </ul>
         </nav>
 
+        <!-- user info -->
+        <div
+          class="signed-user-profile_container flex w-full pt-4 pb-2 px-5 items-center justify-between"
+        >
+          <!-- placeholder -->
+          <div
+            class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center"
+          >
+            <img src="../assets/user-icon-large.svg" alt="user profile" />
+          </div>
+          <span
+            class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl"
+          >
+            Anonymous
+          </span>
+          <div
+            class="guest-profile-guest__pin-count border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center"
+          >
+            <span
+              class="guest-profile-guest__pin-count_number font-semibold tablet:text-sm max-w-[2rem] text-slate-500"
+            >
+            </span>
+            <i class="fa-solid fa-location-dot text-slate-500"></i>
+          </div>
+        </div>
+
         <!-- pins -->
-        <div class="pin-container-wrapper bg-zinc-700/20 min-h-[76vh] pt-4">
+        <div class="pin-container-wrapper__global bg-zinc-700/20 h-76vh">
           <p
             class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic"
           >
             No pins created yet.
           </p>
           <ul
-            class="guest-pin-container pin-container hidden px-4 py-2 mt-6 flex items-center flex-col bg-zinc-700/20 h-[60vh] overflow-y-scroll"
+            class="guest-pin-container pin-container hidden px-4 pt-10 pb-4 flex items-center flex-col bg-zinc-700/20 h-76vh overflow-y-scroll"
           >
             <!-- placeholder -->
           </ul>
@@ -74,16 +97,16 @@
       </div>
       <!-- actions -->
       <div
-        class="user-profile-footer w-full flex justify-between absolute bottom-4 left-0 px-4 py-2"
+        class="user-profile-footer w-full flex justify-between absolute bottom-6 left-0 px-4 py-2"
       >
         <a
-          class="font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-400 text-zinc-400 items-center hover:text-zinc-50 hover:font-bold hover:ring-zinc-200"
+          class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hidden"
           href="../../index.php"
           >Logout</a
         >
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left btn-sidebar rounded-sm ring-4 ring-zinc-400 text-zinc-400 p-3 hover:ring-zinc-200 hover:text-zinc-100 cursor-pointer transition-transform"
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-400 text-zinc-500 p-3 bg-white hover:text-zinc-700 hover:font-bold hover:ring-zinc-600 hover:bg-zinc-500/20 hover:backdrop-blur-sm cursor-pointer transition-transform shadow-lg shadow-zinc-800"
         ></i>
       </div>
     </aside>
@@ -103,12 +126,12 @@
         role="dialog"
       >
         <span
-          class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
+          class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer"
           role="button"
           aria-label="Close"
         >
           <i
-            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-slate-100 laptop:text-zinc-400 hover:text-zinc-300"
+            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-400 laptop:text-zinc-500 hover:text-zinc-300"
           ></i>
         </span>
 
@@ -192,11 +215,12 @@
         role="dialog"
       >
         <span
-          class="btn-close__user-input absolute bottom-16 tablet-md:top-6 tablet-md:right-8 cursor-pointer"
+          class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer"
+          role="button"
           aria-label="Close"
         >
           <i
-            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-slate-100 laptop:text-zinc-400 hover:text-zinc-300"
+            class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-400 laptop:text-zinc-500 hover:text-zinc-300"
           ></i>
         </span>
 
