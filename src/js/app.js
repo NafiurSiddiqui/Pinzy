@@ -18,7 +18,7 @@ const userPinCount = document.querySelector(
 const pinContainer = document.querySelector('.pin-container');
 const loader = document.querySelector('.loader-wrapper');
 
-console.log(loader);
+// console.log(loader);
 
 class App {
   #map;
@@ -71,6 +71,7 @@ class App {
   }
 
   _getPosition() {
+    console.log(this.#map);
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
@@ -84,7 +85,8 @@ class App {
     // if (!this.#map) {
     //   loader.classList.remove('hidden');
     // }
-    loader.classList.add('hidden');
+
+    // loader.classList.add('hidden');
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];

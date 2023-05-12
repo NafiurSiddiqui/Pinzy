@@ -33,7 +33,7 @@ document.addEventListener('keydown', event => {
 const btnSidebar = document.querySelector('.btn-sidebar');
 const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
-const btnLogout = document.querySelector('.btn-user-input');
+const btnLogout = document.querySelector('.btn-user-logout');
 
 btnSidebar.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
@@ -46,6 +46,8 @@ btnSidebar.addEventListener('click', () => {
 
   // roate btn
   btnSidebar.classList.toggle('fa-flip-horizontal');
+  btnSidebar.classList.toggle('btn-aside');
+
   //show content
   sidebarContent.classList.toggle('opacity-0');
 });
