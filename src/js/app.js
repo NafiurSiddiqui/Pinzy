@@ -26,13 +26,19 @@ class App {
   textError = false;
   userType = '';
   mapInitiated = null;
+  pagePin = null;
 
   constructor() {
     // Get user's position
     this._getPosition();
 
+    //detect page type
+    this.getURLpath('pins.html')
+      ? (this.pagePin = true)
+      : (this.pagePin = false);
+
     //usertype
-    window.location.pathname.includes('user.php')
+    this.getURLpath('user.php')
       ? (this.userType = 'user')
       : (this.userType = 'guest');
 
@@ -55,11 +61,9 @@ class App {
     //submit to db
     btnSubmit.addEventListener('click', this.submitToDb.bind(this));
 
-    // attachEditBtnListener();
-
     //render pin count
     this._renderPinCount();
-
+    //handle editing
     guestEdit.editBoxHandler();
   }
 
@@ -321,6 +325,9 @@ class App {
   }
 
   _renderPinCount() {
+    if (this.pagePin) {
+      return;
+    }
     this.userType === 'guest'
       ? (guestPinCount.textContent = this.#pins.length)
       : (userPinCount.textContent = this.#pins.length);
@@ -392,7 +399,6 @@ class App {
 
           //timeout in 2 seconds
           setTimeout(() => {
-            // location.reload();
             this.refreshContent();
           }, 100);
         }
@@ -401,21 +407,11 @@ class App {
     };
     this.#pins = new Proxy(this.#pins, handler);
   }
+
+  getURLpath(pathName) {
+    return window.location.pathname.includes(pathName);
+  }
 }
-
-// const init = () => {
-//   return new Promise(resolve => {
-//     document.addEventListener('DOMContentLoaded', () => {
-//       const app = new App();
-//       resolve(app);
-//     });
-//   });
-// };
-
-// init();
-
-// export default init;
-// console.log('hello from app');
 
 const app = new App();
 

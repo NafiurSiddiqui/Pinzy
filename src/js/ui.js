@@ -51,10 +51,7 @@ btnSidebar.addEventListener('click', () => {
 
 // USER PIN
 
-// const btnEditPin = document.querySelector('.fa-ellipsis');
-
 const editBox = document.querySelector('.pin-edit-box');
-const userPin = document.querySelector('.user-pin');
 
 export const toggleEditBox = (closeBox = false) => {
   const editBoxAll = document.querySelectorAll('.pin-edit-box');

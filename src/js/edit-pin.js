@@ -1,8 +1,5 @@
-// import app from './app.js';
 import createModal from './modal.js';
 import app from './app.js';
-
-//which btn is clicked?
 
 const editBoxes = document.querySelectorAll('.pin-edit-box');
 
@@ -62,12 +59,13 @@ editBoxes?.forEach(editBox => {
 
 //perform the corresponding operation
 const editForm = document.querySelector('.user-input-bg__edit');
-
 const eventTypeEl = document.getElementById('eventType__edit');
 const messageEl = document.getElementById('message__edit');
 let event = eventTypeEl.value;
 let message = messageEl.value;
 const btnSubmitEdit = document.querySelector('.btn-user-input__edit');
+
+// ---------- CLASSES
 
 class FormValidator {
   constructor(eventTypeEl, messageEl, btnSubmitEdit) {
@@ -131,13 +129,7 @@ class GuestEdit extends FormValidator {
     const data = JSON.parse(localStorage.getItem(`guest`));
 
     const item = data.find(item => item.id === +id);
-    // console.log(item.event);
-    // console.log(item.message);
 
-    let newMsg = '';
-    let newEventType = '';
-    let prevEventType = item.event;
-    let prevMsg = item.message;
     //popup edit-input-form
     this._showEditForm();
 
@@ -146,8 +138,6 @@ class GuestEdit extends FormValidator {
     messageEl.value = item.message;
     //get the newInput
     btnSubmitEdit.addEventListener('click', e => {
-      // e.preventDefault();
-
       //get the newInput
       event = eventTypeEl.value;
       message = messageEl.value;
@@ -278,7 +268,5 @@ class GuestEdit extends FormValidator {
 }
 
 const guestEdit = new GuestEdit();
-
-// export default guest;
 
 export { guestEdit };
