@@ -110,7 +110,7 @@ $userName = $_SESSION['userName'];
           </button>
         </form> -->
 
-        <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hidden"
+        <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden"
           href="../api/inc/logout.inc.php">Logout</a>
 
 
