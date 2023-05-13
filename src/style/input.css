@@ -29,19 +29,6 @@
   .btn-disabled {
     @apply disabled:active:text-zinc-400 disabled:border-zinc-400/80 disabled:text-zinc-400;
   }
-  .btn-user-input {
-    @apply border-zinc-400;
-    @apply text-zinc-400;
-    @apply laptop:text-gray-400;
-    @apply laptop:bg-transparent;
-    @apply laptop:hover:text-zinc-100;
-    @apply transition-colors;
-    @apply active:text-zinc-100;
-    @apply laptop:hover:bg-green-500;
-    @apply laptop:hover:border-green-500;
-    @apply hover:border-zinc-200;
-    @apply hover:text-zinc-200;
-  }
 
   .bg-accentColor {
     @apply bg-green-500;

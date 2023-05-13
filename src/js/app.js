@@ -32,6 +32,7 @@ class App {
   pagePin = null;
 
   constructor() {
+    this.debounceValidation = this.debounceValidation.bind(this);
     // Get user's position
     this._getPosition();
 
@@ -57,9 +58,9 @@ class App {
     //move view to the related pin
     guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
     //event on select event type
-    eventTypeEl.addEventListener('input', this._validateInput.bind(this));
+    eventTypeEl.addEventListener('input', this.debounceValidation());
     //run event on message
-    messageEl.addEventListener('input', this._validateInput.bind(this));
+    messageEl.addEventListener('input', this.debounceValidation());
 
     //submit to db
     btnSubmit.addEventListener('click', this.submitToDb.bind(this));
@@ -171,41 +172,25 @@ class App {
     userInputBg.classList.add('hidden');
   }
 
-  _validateEventType() {
-    const event = eventTypeEl.value;
-
-    if (event === 'none') {
-      eventTypeEl.classList.add('validation-error');
-    } else {
-      eventTypeEl.classList.remove('validation-error');
-      btnSubmit.removeAttribute('disabled');
-    }
+  debounceValidation() {
+    let timer;
+    const validateInput = this._validateInput.bind(this);
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(validateInput, 1000);
+    };
   }
-
-  _validateMessage() {
-    const text = messageEl.value;
-    console.log('runs');
-    if (text === '') {
-      console.log('text can not be empty!');
-      messageEl.classList.add('validation-error');
-    } else {
-      messageEl.classList.remove('validation-error');
-      btnSubmit.removeAttribute('disabled');
-    }
-  }
-
   _validateInput() {
     const event = eventTypeEl.value;
     const text = messageEl.value;
-    const eventFieldActive = document.activeElement === eventTypeEl;
-    const messageFieldActive = document.activeElement === messageEl;
 
-    if (event === 'none' && text === '') {
+    console.log('runs');
+    if ((event === 'none' && text === '') || event === 'none' || text === '') {
       console.log('fields can not be empty!');
+      btnSubmit.setAttribute('disabled', '');
     }
 
     if (event !== 'none' && text !== '') {
-      // btnSubmit.classList.remove('btn-disabled');
       btnSubmit.removeAttribute('disabled');
     }
   }

@@ -13,7 +13,9 @@ module.exports = {
     },
     extend: {
       height: {
+        '65vh': '65vh',
         '76vh': '76vh',
+        '80vh': '80vh',
       },
       backgroundColor: {
         primary: '#f7fee7',
