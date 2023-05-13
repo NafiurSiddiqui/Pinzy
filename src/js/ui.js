@@ -4,7 +4,7 @@ const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 const userInputFormEdit = document.querySelector('.user-input-form__edit');
 
 //USER INPUT POPUP
-userInputBg.addEventListener('click', event => {
+userInputBg?.addEventListener('click', event => {
   // Check if the clicked element is the user-input form or not
   if (!userInputForm.contains(event.target)) {
     // Close the user-input
@@ -13,7 +13,7 @@ userInputBg.addEventListener('click', event => {
 });
 
 //USER INPUT EDIT POPUP
-userInputBgEdit.addEventListener('click', event => {
+userInputBgEdit?.addEventListener('click', event => {
   // Check if the clicked element is the user-input form or not
   if (!userInputFormEdit.contains(event.target)) {
     // Close the user-input
@@ -21,7 +21,7 @@ userInputBgEdit.addEventListener('click', event => {
   }
 });
 
-document.addEventListener('keydown', event => {
+document?.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     // Close the user-input
     userInputBg?.classList.add('hidden');
@@ -36,7 +36,7 @@ const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
 
-btnSidebar.addEventListener('click', () => {
+btnSidebar?.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
   sidebar.classList.toggle('w-full');
   sidebar.classList.toggle('tablet:w-[30rem]');
@@ -105,3 +105,20 @@ document.body.addEventListener('click', e => {
     ? toggleEditBox(close)
     : null;
 });
+
+//FORM ANIMATION
+const inputs = document.querySelectorAll('.input-field');
+
+console.log(inputs);
+
+// inputs.forEach(function (input) {
+//   const div = input.previousElementSibling;
+
+//   input.addEventListener('focus', function () {
+//     div.classList.add('focused');
+//   });
+
+//   input.addEventListener('blur', function () {
+//     div.classList.remove('focused');
+//   });
+// });

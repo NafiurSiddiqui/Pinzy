@@ -33,15 +33,16 @@
         class="pt-4 pb-14 px-2 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
         method="POST">
         <div class="flex flex-col my-4 w-full">
-          <label class="text-gray-600">Username / email</label>
-          <input type="text" name="username" class="border border-gray-400 p-1" />
+          <label class="text-zinc-500">Username / Email</label>
+          <input type="text" name="username" spellcheck="false" tabindex="0" aria-label="User name"
+            class="border border-gray-400 p-1" />
         </div>
         <div class="flex flex-col w-full">
-          <label class="text-gray-600">Passoword</label>
+          <label class="text-zinc-500">Password</label>
           <input type="password" name="password" class="border border-gray-400 p-1" />
         </div>
         <button
-          class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-green-200  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
+          class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
           type="submit" name="submit">
           Login
         </button>

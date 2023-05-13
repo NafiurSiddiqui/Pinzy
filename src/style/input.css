@@ -48,6 +48,13 @@
     @apply backdrop-blur-sm;
   }
 
+  .input-focused {
+    @apply -bottom-[-0.6rem];
+    @apply left-[0.4rem];
+    @apply text-xs;
+    @apply bg-white;
+  }
+
   /* marker classes on the map */
 
   .supportForSafari {
