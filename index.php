@@ -17,8 +17,7 @@
       crossorigin=""></script>
 
     <link rel="stylesheet" href="./dist/output.css" />
-    <!-- <script type="module" src="/src/js/app.js"></script> -->
-    <!-- <script type="module" src="/src/js/login.js"></script> -->
+
     <title>Pintzy - login</title>
   </head>
 

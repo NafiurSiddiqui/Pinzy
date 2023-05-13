@@ -9,7 +9,7 @@ const messageEl = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
 const guestPinCount = document.querySelector(
-  '.guest-profile-guest__pin-count_number'
+  '.guest-profile__guest-pin-count__digit'
 );
 const userPinContainer = document.querySelector('.user-pin-container');
 const userPinCount = document.querySelector(

@@ -61,8 +61,8 @@ editBoxes?.forEach(editBox => {
 const editForm = document.querySelector('.user-input-bg__edit');
 const eventTypeEl = document.getElementById('eventType__edit');
 const messageEl = document.getElementById('message__edit');
-let event = eventTypeEl.value;
-let message = messageEl.value;
+let event = eventTypeEl?.value;
+let message = messageEl?.value;
 const btnSubmitEdit = document.querySelector('.btn-user-input__edit');
 
 // ---------- CLASSES
@@ -120,8 +120,8 @@ class GuestEdit extends FormValidator {
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
-    this.eventTypeEl.addEventListener('input', this.validateInput.bind(this));
-    this.messageEl.addEventListener('input', this.validateInput.bind(this));
+    this.eventTypeEl?.addEventListener('input', this.validateInput.bind(this));
+    this.messageEl?.addEventListener('input', this.validateInput.bind(this));
   }
 
   _editMessage(id) {
