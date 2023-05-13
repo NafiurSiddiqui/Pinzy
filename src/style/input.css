@@ -37,13 +37,9 @@
     @apply text-green-700;
   }
   .btn-aside {
-    @apply bg-zinc-300/20;
-    @apply !text-zinc-400;
-    @apply !ring-zinc-400;
+    @apply !ring-zinc-300;
     @apply hover:!ring-zinc-200;
     @apply hover:!text-zinc-100;
-    @apply hover:!bg-zinc-300/20;
-    @apply !shadow-none;
   }
   .bg-aside {
     @apply border-2;

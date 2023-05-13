@@ -33,18 +33,22 @@ document.addEventListener('keydown', event => {
 const btnSidebar = document.querySelector('.btn-sidebar');
 const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
+const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
 
 btnSidebar.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
   sidebar.classList.toggle('w-full');
-  sidebar.classList.toggle('tablet:w-80');
+  sidebar.classList.toggle('tablet:w-[30rem]');
   sidebar.classList.toggle('w-14');
   sidebar.classList.toggle('bg-aside');
   //show content
   sidebarContent.classList.toggle('opacity-0');
   //hide logout btn
   btnLogout.classList.toggle('hidden');
+  //sidebar footer
+  sidebarFooter.classList.toggle('justify-between');
+  sidebarFooter.classList.toggle('justify-center');
 
   // roate btn
   btnSidebar.classList.toggle('fa-flip-horizontal');

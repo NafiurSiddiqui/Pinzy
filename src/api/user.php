@@ -38,6 +38,7 @@ $userName = $_SESSION['userName'];
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""></script>
     <link rel="stylesheet" href="../../dist/output.css" />
+    <link rel="stylesheet" href="../style/leaflet.css">
     <script defer type="module" src="../js/app.js"></script>
     <script defer type="module" src="../js/ui.js"></script>
     <title>Pintzy - Pin aware your people.</title>
@@ -45,8 +46,8 @@ $userName = $_SESSION['userName'];
 
   <body class="flex relative">
     <!-- sidebar -->
-    <!-- w-14 -->
-    <aside class="absolute sidebar transition-all duration-500 z-30 w-14  ">
+
+    <aside class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative">
 
       <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0   ">
 
@@ -91,7 +92,7 @@ $userName = $_SESSION['userName'];
             No pins created yet.
           </p>
           <ul
-            class="user-pin-container pin-container hidden px-4 pt-10 pb-4 flex items-center flex-col bg-zinc-700/20 h-76vh overflow-y-scroll">
+            class="user-pin-container pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll">
             <!-- placeholder -->
           </ul>
 
@@ -99,7 +100,7 @@ $userName = $_SESSION['userName'];
       </div>
       <!-- actions -->
 
-      <div class="user-profile-footer   w-full flex justify-between absolute bottom-6 left-0 px-4 py-2 ">
+      <div class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 ">
         <!-- <form action="./inc/logout.inc.php" method="post">
 
           <button
@@ -114,7 +115,7 @@ $userName = $_SESSION['userName'];
 
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-400 text-zinc-500 p-3 bg-white hover:text-zinc-700 hover:font-bold hover:ring-zinc-600 hover:bg-zinc-500/20 hover:backdrop-blur-sm cursor-pointer transition-transform shadow-lg shadow-zinc-800"></i>
+          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
       </div>
     </aside>
     <section class="map-content w-full">
@@ -126,9 +127,9 @@ $userName = $_SESSION['userName'];
       </div>
 
       <!-- pop up for input-->
-      <!-- hidden  -->
+
       <section
-        class="user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
+        class="user-input-bg hidden flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
         role="dialog">
         <span class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer" role="button"
           aria-label="Close">
@@ -171,7 +172,7 @@ $userName = $_SESSION['userName'];
               rows="4"></textarea>
           </div>
           <button
-            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 disabled:border-zinc-400 disabled:text-zinc-400 disabled:hover:bg-transparent disabled:hover:text-zinc-400"
+            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
             type="submit" name="user-submit" disabled>
             Pin
           </button>
@@ -223,7 +224,7 @@ $userName = $_SESSION['userName'];
               cols="30" rows="4"></textarea>
           </div>
           <button
-            class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-gray-700 android-md/2:w-52 android-md:rounded-2xl android-md:bg-transparent border-4 border-green-500 android-md:border-4 laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 disabled:border-zinc-400 disabled:text-zinc-400 disabled:hover:bg-transparent disabled:hover:text-zinc-400"
+            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
             type="submit" name="guest-submit-edit" disabled>
             Pin
           </button>
