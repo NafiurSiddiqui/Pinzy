@@ -56,7 +56,10 @@ class App {
     this._defaultProfileMsgHandler();
 
     //move view to the related pin
-    guestPinContainer.addEventListener('click', this._moveToPopup.bind(this));
+    // guestPinContainer?.addEventListener('click', this._moveToPopup.bind(this));
+
+    pinContainer?.addEventListener('click', this._moveToPopup.bind(this));
+
     //event on select event type
     eventTypeEl.addEventListener('input', this.debounceValidation());
     //run event on message
@@ -72,7 +75,6 @@ class App {
   }
 
   _getPosition() {
-    console.log(this.#map);
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
@@ -93,6 +95,7 @@ class App {
     const coords = [latitude, longitude];
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+    console.log(this.#map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
