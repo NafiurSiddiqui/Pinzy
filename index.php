@@ -18,19 +18,19 @@
 
     <link rel="stylesheet" href="./dist/output.css" />
 
-    <title>Pintzy - login</title>
+    <title>Pinzy - login</title>
   </head>
 
   <body class="flex justify-center items-center flex-col">
     <header class="w-full p-2">
-      <div><span class="font-semibold desktop:ml-6">Pintzy</span></div>
+      <div><span class="font-semibold desktop:ml-6">Pinzy</span></div>
     </header>
     <section class="flex flex-col items-center w-4/5 h-screen pt-4">
-      <div class="flex justify-center">
-        <img src="./icon.png" alt="Pintzy Icon" class="" />
+      <div class="flex justify-center w-28">
+        <img src="./src/assets/logo.svg" alt="Pinzy Icon" class="!w-28" />
       </div>
       <form action="src/api/inc/login.inc.php"
-        class="py-6 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6"
+        class="pt-4 pb-14 px-2 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
         method="POST">
         <div class="flex flex-col my-4 w-full">
           <label class="text-gray-600">Username / email</label>
@@ -41,7 +41,7 @@
           <input type="password" name="password" class="border border-gray-400 p-1" />
         </div>
         <button
-          class="btn-user-input-login w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-500 bg-green-500  laptop:hover:bg-green-500 laptop:hover:text-zinc-100 transition-colors active:text-zinc-100 "
+          class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-green-200  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
           type="submit" name="submit">
           Login
         </button>
@@ -50,7 +50,8 @@
       <!-- create account -->
       <div class="text-center mt-6 text-gray-500">
         Need an account?
-        <a href="./src/api/signup-form.php" class="ml-1 font-bold underline text-accentColorHigh">Sign up</a>
+        <a href="./src/api/signup-form.php"
+          class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-700 transition-colors">Sign up</a>
       </div>
       <!-- or -->
       <div class="text-center w-full my-1 text-gray-400">
@@ -61,7 +62,8 @@
       <!-- actions -->
       <div class="text-center text-gray-500">
         Explore as a
-        <a href="/projects/pintzy/src/html/guest.html" class="ml-1 font-bold underline text-accentColorHigh">Guest</a>
+        <a href="./src/html/guest.html"
+          class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-700 transition-colors">Guest</a>
       </div>
     </section>
   </body>

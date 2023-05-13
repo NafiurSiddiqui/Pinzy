@@ -18,16 +18,16 @@
             crossorigin=""></script>
         <link rel="stylesheet" href="../../dist/output.css">
         <!-- <script defer type="module" src="../js/app.js"></script> -->
-        <title>Pintzy - Signup</title>
+        <title>Pinzy - Signup</title>
     </head>
 
     <body class="flex justify-center items-center flex-col">
         <header class="w-full p-2">
-            <div><span class="font-semibold desktop:ml-6">Pintzy</span></div>
+            <div><span class="font-semibold desktop:ml-6">Pinzy</span></div>
         </header>
         <section class="flex flex-col items-center w-4/5 h-screen pt-4">
             <div class="flex justify-center">
-                <img src="../assets/icon.png" alt="Pintzy Icon" class="" />
+                <img src="../assets/logo.svg" alt="Pinzy Icon" class="w-28" />
             </div>
             <form action="inc/signup.inc.php" method="post"
                 class="py-2 px-2 border border-gray-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:px-6">
@@ -57,7 +57,7 @@
             <!-- create account -->
             <div class="text-center mt-6 text-gray-500">
                 Have account?
-                <a href="/projects/pintzy/index.php" class="ml-1 font-bold underline text-accentColorHigh">Login</a>
+                <a href="../../index.php" class="ml-1 font-bold underline text-accentColorHigh">Login</a>
             </div>
             <!-- or -->
             <div class="text-center w-full my-1 text-gray-400">
