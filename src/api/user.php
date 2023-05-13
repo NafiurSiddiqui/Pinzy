@@ -126,8 +126,9 @@ $userName = $_SESSION['userName'];
       </div>
 
       <!-- pop up for input-->
+      <!-- hidden  -->
       <section
-        class="hidden user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
+        class="user-input-bg flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
         role="dialog">
         <span class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer" role="button"
           aria-label="Close">
@@ -136,7 +137,7 @@ $userName = $_SESSION['userName'];
         </span>
 
         <form action="#"
-          class="user-input-form p-4 rounded-sm pb-8 relative border border-gray-300 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+          class="user-input-form p-4 rounded-sm pb-8 relative border border-zinc-600/50 bg-zinc-400/60 backdrop-blur-sm w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
           id="form-user-input">
           <div class="flex flex-col my-4 w-full">
             <label class="text-gray-600 text-xs mb-1" for="eventType">Pin type</label>
@@ -189,7 +190,7 @@ $userName = $_SESSION['userName'];
         </span>
 
         <form action="#"
-          class="user-input-form__edit p-4 rounded-sm pb-8 relative border border-gray-300 bg-zinc-300 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+          class="user-input-form p-4 rounded-sm pb-8 relative border border-zinc-600/50 bg-zinc-400/60 backdrop-blur-sm w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
           id="form-user-input__edit">
           <div class="flex flex-col my-4 w-full">
             <label class="text-gray-600 text-xs mb-1" for="eventType__edit">Pin type</label>
