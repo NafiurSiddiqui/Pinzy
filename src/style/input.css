@@ -49,10 +49,10 @@
   }
 
   .input-focused {
-    @apply -bottom-[-0.6rem];
-    @apply left-[0.4rem];
+    @apply -bottom-[0.5rem];
+    @apply px-1;
     @apply text-xs;
-    @apply bg-white;
+    @apply !bg-white;
   }
 
   /* marker classes on the map */

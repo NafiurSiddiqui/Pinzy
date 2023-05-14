@@ -109,16 +109,18 @@ document.body.addEventListener('click', e => {
 //FORM ANIMATION
 const inputs = document.querySelectorAll('.input-field');
 
-console.log(inputs);
+// console.log(inputs);
 
-// inputs.forEach(function (input) {
-//   const div = input.previousElementSibling;
+inputs.forEach(function (input) {
+  const lablel = input.previousElementSibling;
 
-//   input.addEventListener('focus', function () {
-//     div.classList.add('focused');
-//   });
+  input.addEventListener('focus', function () {
+    lablel.classList.add('input-focused');
+    // console.log('goes up');
+  });
 
-//   input.addEventListener('blur', function () {
-//     div.classList.remove('focused');
-//   });
-// });
+  input.addEventListener('blur', function () {
+    lablel.classList.remove('input-focused');
+    // console.log('goes down');
+  });
+});
