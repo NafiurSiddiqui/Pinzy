@@ -9,7 +9,6 @@ if (isset($_POST["submit"])) {
 
     //instantiate signup controller
    
-    // include '../classes/dbh.classes.php';
     include '../classes/dbh.classes.php';
     include '../classes/login.classes.php';
     include '../classes/login_controller.classes.php';
@@ -17,7 +16,7 @@ if (isset($_POST["submit"])) {
     $login = new loginController($userName, $password);
 
     $userNameErr = $login->nameValidationMessage;
-
+ 
     //Error handler
     $login->loginUser();
 

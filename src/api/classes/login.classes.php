@@ -28,7 +28,7 @@ class Login extends Dbh
             $stmt = null;
      
             $this->error = "user does not exist.";
-            header("location:../index.php?error=statmentfailed");
+            header("location:../../../index.php?error=statmentfailed");
            
 
             exit();
@@ -53,7 +53,7 @@ class Login extends Dbh
             $stmt = null;
       
             $this->error = 'wrong password';
-            header('location:../index.php?error=wrongPassword');
+            header('location:../../../index.php?error=wrongPassword');
      
             exit();
         } elseif ($checkPass == true) {
@@ -67,7 +67,7 @@ class Login extends Dbh
     
                 $this->error = "invalid login.";
                
-                header('location:../index.php?error=invalidLogin');
+                header('location:../../../index.php?error=invalidLogin');
 
                 exit(); //exit the entire script
             }
@@ -78,7 +78,7 @@ class Login extends Dbh
 
                 $stmt = null;
                 $this->error = 'user not found';
-                header('location:../index.php?error=noUsers');
+                header('location:../../../index.php?error=noUsers');
           
                 exit();
             }

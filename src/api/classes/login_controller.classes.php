@@ -42,7 +42,7 @@ class LoginController extends login
 
 
         if(!empty($this->nameValidationMessage) || !empty($this->passwordValidationMessage) ||(!empty($this->nameValidationMessage) && !empty($this->passwordValidationMessage))) {
-            header("location:../index.php?error=&nameValidationMessage=". urlencode($this->nameValidationMessage). "&passwordValidationMessage=". urlencode($this->passwordValidationMessage));
+            header("location:../../../index.php?error=&nameValidationMessage=". urlencode($this->nameValidationMessage). "&passwordValidationMessage=". urlencode($this->passwordValidationMessage));
             exit();
         }
 

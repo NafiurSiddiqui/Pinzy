@@ -61,8 +61,8 @@
         <!-- create account -->
         <div class="text-center  w-full  text-zinc-500">
           <span class="text-xs">Have account?</span>
-          <a href="../../index.php"
-            class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Login</a>
+          <a href="./src/api/signup-form.php"
+            class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Signup</a>
         </div>
         <!-- or -->
         <div class="text-center  w-full my-1 text-zinc-400 flex justify-center items-center">
