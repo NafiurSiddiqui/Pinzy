@@ -25,16 +25,16 @@ class LoginController extends login
         
  
         if($this->nameIsEmpty() && $this->loginPassIsEmpty()) {
-            $this->nameValidationMessage = "⚠️ Name is required. ";
-            $this->passwordValidationMessage = "⚠️ Password is required ";
+            $this->nameValidationMessage = "Name is required. ";
+            $this->passwordValidationMessage = "Password is required ";
         } else {
             //  check for empty name
             if ($this->nameIsEmpty()) {
-                $this->nameValidationMessage = "⚠️ Name is required. ";
+                $this->nameValidationMessage = "Name is required. ";
             }
             // check for empty pass
             if ($this->loginPassIsEmpty()) {
-                $this->passwordValidationMessage = "⚠️ Password is required ";
+                $this->passwordValidationMessage = "Password is required ";
             }
         }
 

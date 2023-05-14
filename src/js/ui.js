@@ -112,15 +112,24 @@ const inputs = document.querySelectorAll('.input-field');
 // console.log(inputs);
 
 inputs.forEach(function (input) {
-  const lablel = input.previousElementSibling;
-
+  const label = input.previousElementSibling;
+  console.log(input.value);
+  let inputHasValue = false;
   input.addEventListener('focus', function () {
-    lablel.classList.add('input-focused');
-    // console.log('goes up');
+    label.classList.add('input-focused');
   });
 
   input.addEventListener('blur', function () {
-    lablel.classList.remove('input-focused');
-    // console.log('goes down');
+    label.classList.remove('input-focused');
+  });
+
+  input.addEventListener('input', function () {
+    if (input.value.trim().length > 0) {
+      inputHasValue = true;
+      label.classList.add('focused');
+    } else {
+      inputHasValue = false;
+      label.classList.remove('focused');
+    }
   });
 });
