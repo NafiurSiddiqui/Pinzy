@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="shortcut icon" type="image/png" href="../assets/icon.png" />
+        <link rel="shortcut icon" type="image/png" href="../assets/logo.svg" />
 
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
             rel="stylesheet" />
@@ -21,19 +21,19 @@
         <title>Pinzy - Signup</title>
     </head>
 
-    <body class="flex justify-center items-center flex-col">
+    <body class="flex justify-center items-center flex-col pb-4">
         <header class="w-full p-2">
             <div><span class="font-semibold desktop:ml-6">Pinzy</span></div>
         </header>
         <section class="flex flex-col items-center w-4/5 h-screen pt-4">
             <div class="flex justify-center">
-                <img src="../assets/logo.svg" alt="Pinzy Icon" class="w-28" />
+                <img src="../assets/logo.svg" alt="Pinzy Icon" class=" w-20 " />
             </div>
             <form action="inc/signup.inc.php" method="post"
                 class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
                 <div class="flex flex-col my-2 w-full">
                     <div
-                        class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 duration-300  z-20 ">
+                        class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  z-20 ">
                         Username</div>
                     <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
                         focus:ring-green-400 relative " />
@@ -68,24 +68,26 @@
                     Signup
                 </button>
             </form>
-
-            <!-- create account -->
-            <div class="text-center mt-6 text-gray-500">
-                Have account?
-                <a href="../../index.php"
-                    class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-700 transition-colors">Login</a>
-            </div>
-            <!-- or -->
-            <div class="text-center w-full my-1 text-gray-400">
-                <span class="inline-block border w-8 border-gray-300"></span>
-                or
-                <span class="inline-block border w-8 border-gray-300"></span>
-            </div>
-            <!-- actions -->
-            <div class="text-center text-gray-500">
-                Explore as a
-                <a href="../html/guest.html"
-                    class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-700 transition-colors">Guest</a>
+            <!-- optional actions -->
+            <div class="flex android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-4 ">
+                <!-- create account -->
+                <div class="text-center  w-full  text-zinc-500">
+                    <span class="text-xs">Have account?</span>
+                    <a href="../../index.php"
+                        class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Login</a>
+                </div>
+                <!-- or -->
+                <div class="text-center  w-full my-1 text-zinc-400 flex justify-center items-center">
+                    <span class="inline-block border w-8 border-zinc-300"></span>
+                    or
+                    <span class="inline-block border w-8 border-zinc-300"></span>
+                </div>
+                <!-- actions -->
+                <div class="text-center  w-full  text-zinc-500">
+                    <span class="text-xs">Explore as a</span>
+                    <a href="../html/guest.html"
+                        class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Guest</a>
+                </div>
             </div>
         </section>
     </body>

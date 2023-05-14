@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="./src/assets/logo.svg" />
 
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
@@ -17,6 +17,7 @@
       crossorigin=""></script>
 
     <link rel="stylesheet" href="./dist/output.css" />
+    <script type="module" src="./src/js/ui.js"></script>
 
     <title>Pinzy - login</title>
   </head>
@@ -33,13 +34,21 @@
         class="pt-4 pb-14 px-2 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
         method="POST">
         <div class="flex flex-col my-4 w-full">
-          <label class="text-zinc-500">Username / Email</label>
-          <input type="text" name="username" spellcheck="false" tabindex="0" aria-label="User name"
-            class="border border-gray-400 p-1" />
+
+          <div
+            class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  z-20 ">
+            Username/Email</div>
+          <input type="text" spellcheck="false" name="userName" aria-label="User name" tabindex="0" class="input-field border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
+                        focus:ring-green-400 relative " />
         </div>
         <div class="flex flex-col w-full">
-          <label class="text-zinc-500">Password</label>
-          <input type="password" name="password" class="border border-gray-400 p-1" />
+
+          <div
+            class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem] ">
+            Password
+          </div>
+          <input type="password" name="password" aria-label="Password" class="input-field border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
+                        focus:ring-green-400" />
         </div>
         <button
           class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
@@ -47,24 +56,26 @@
           Login
         </button>
       </form>
-
-      <!-- create account -->
-      <div class="text-center mt-6 text-gray-500">
-        Need an account?
-        <a href="./src/api/signup-form.php"
-          class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-700 transition-colors">Sign up</a>
-      </div>
-      <!-- or -->
-      <div class="text-center w-full my-1 text-gray-400">
-        <span class="inline-block border w-8 border-gray-300"></span>
-        or
-        <span class="inline-block border w-8 border-gray-300"></span>
-      </div>
-      <!-- actions -->
-      <div class="text-center text-gray-500">
-        Explore as a
-        <a href="./src/html/guest.html"
-          class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-700 transition-colors">Guest</a>
+      <!-- optional actions -->
+      <div class="flex android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-4 ">
+        <!-- create account -->
+        <div class="text-center  w-full  text-zinc-500">
+          <span class="text-xs">Have account?</span>
+          <a href="../../index.php"
+            class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Login</a>
+        </div>
+        <!-- or -->
+        <div class="text-center  w-full my-1 text-zinc-400 flex justify-center items-center">
+          <span class="inline-block border w-8 border-zinc-300"></span>
+          or
+          <span class="inline-block border w-8 border-zinc-300"></span>
+        </div>
+        <!-- actions -->
+        <div class="text-center  w-full  text-zinc-500">
+          <span class="text-xs">Explore as a</span>
+          <a href="../html/guest.html"
+            class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Guest</a>
+        </div>
       </div>
     </section>
   </body>

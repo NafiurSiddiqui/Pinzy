@@ -41,7 +41,7 @@ $userName = $_SESSION['userName'];
     <link rel="stylesheet" href="../style/leaflet.css">
     <script defer type="module" src="../js/app.js"></script>
     <script defer type="module" src="../js/ui.js"></script>
-    <title>Pintzy - Pin aware your people.</title>
+    <title>Pinzy - Pin aware your people.</title>
   </head>
 
   <body class="flex relative">
