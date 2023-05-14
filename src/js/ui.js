@@ -109,8 +109,6 @@ document.body.addEventListener('click', e => {
 //FORM ANIMATION
 const inputs = document.querySelectorAll('.input-field');
 
-// console.log(inputs);
-
 inputs.forEach(function (input) {
   const label = input.previousElementSibling;
   console.log(input.value);
