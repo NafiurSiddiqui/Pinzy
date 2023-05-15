@@ -33,18 +33,16 @@
                 class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
                 <div class="flex flex-col my-2 w-full">
                     <div
-                        class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300   ">
+                        class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  ">
                         Username</div>
-                    <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field  border border-zinc-300 p-1 rounded !appearance-none bg-transparent  
-z-20 focus:!outline-none focus:ring-2 
-                        focus:ring-green-400 relative " />
+                    <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
+                        focus:ring-green-400  " />
                 </div>
                 <div class="flex flex-col my-2 w-full">
                     <div
                         class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
                         Email</div>
-                    <input type="email" name="email" aria-label="Email" spellcheck="false" class="input-field bg-transparent  
-z-20 border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
+                    <input type="email" name="email" aria-label="Email" spellcheck="false" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
                         focus:ring-green-400 " />
 
                 </div>
@@ -53,8 +51,7 @@ z-20 border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none fo
                         class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem] ">
                         Password
                     </div>
-                    <input type="password" name="password" aria-label="Password" class="input-field bg-transparent  
-z-20 border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
+                    <input type="password" name="password" aria-label="Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
                         focus:ring-green-400" />
                 </div>
                 <div class="flex flex-col my-2 w-full">
@@ -62,8 +59,7 @@ z-20 border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none fo
                         class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
                         Confirm
                         Password</div>
-                    <input type="password" name="confirm-password" aria-label="Confirm Password" class="input-field bg-transparent  
-z-20 border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
+                    <input type="password" name="confirm-password" aria-label="Confirm Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
                         focus:ring-green-400 " />
                 </div>
                 <button
