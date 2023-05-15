@@ -48,10 +48,10 @@ if(isset($_GET["error"])) {
         <div class="flex flex-col  w-full">
 
           <div
-            class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  z-20 ">
+            class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
             Username/Email</div>
-          <input type="text" spellcheck="false" name="userName" aria-label="User name" tabindex="0" class="input-field border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
-                        focus:ring-green-400 relative " />
+          <input type="text" spellcheck="false" name="userName" aria-label="User name"
+            class="input-field border border-zinc-300 p-1 rounded !appearance-none bg-transparent z-20  focus:!outline-none focus:ring-2 focus:ring-green-400 " />
 
           <span class="text-xs text-red-300 mt-1 ml-1">
             <?php
@@ -66,8 +66,8 @@ if(isset($_GET["error"])) {
             class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem] ">
             Password
           </div>
-          <input type="password" name="password" aria-label="Password" class="input-field border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 
-                        focus:ring-green-400" />
+          <input type="password" name="password" aria-label="Password" class="input-field border border-zinc-300 p-1 rounded !appearance-none bg-transparent  focus:!outline-none focus:ring-2 
+                        focus:ring-green-400 z-20 " />
           <span class="text-xs text-red-300 mt-1 ml-1">
             <?php
                             echo !empty($passwordIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$passwordIsEmpty</span>" : '';

@@ -113,20 +113,20 @@ inputs.forEach(function (input) {
   const label = input.previousElementSibling;
   console.log(input.value);
   let inputHasValue = false;
-  input.addEventListener('focus', function () {
-    label.classList.add('input-focused');
-  });
+  // input.addEventListener('focus', function () {
+  //   label.classList.add('input-focused');
+  // });
 
-  input.addEventListener('blur', function () {
-    label.classList.remove('input-focused');
-  });
+  // input.addEventListener('blur', function () {
+  //   label.classList.remove('input-focused');
+  // });
 
   input.addEventListener('input', function () {
     if (input.value.trim().length > 0) {
       inputHasValue = true;
       label.classList.add('focused');
     } else {
-      inputHasValue = false;
+      // inputHasValue = false;
       label.classList.remove('focused');
     }
   });
