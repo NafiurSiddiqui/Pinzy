@@ -43,7 +43,7 @@ if(isset($_GET["error"])) {
         <img src="./src/assets/logo.svg" alt="Pinzy Icon" class="!w-28" />
       </div>
       <form action="src/api/inc/login.inc.php"
-        class="pt-4 pb-14 px-2 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
+        class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
         method="POST">
         <div class="flex flex-col  w-full">
 
