@@ -111,16 +111,21 @@ const inputs = document.querySelectorAll('.input-field');
 
 inputs.forEach(function (input) {
   const label = input.previousElementSibling;
-  console.log(input.value);
+
   let inputHasValue = false;
   let hasFocus = false;
   input.addEventListener('focus', function () {
-    // label.classList.add('input-focused');
+    if (hasFocus && !inputHasValue) {
+    }
+    label.classList.add('input-focused');
     hasFocus = true;
   });
 
   input.addEventListener('blur', function () {
-    // label.classList.remove('input-focused');
+    if (inputHasValue) {
+      return;
+    }
+    label.classList.remove('input-focused');
     hasFocus = false;
   });
 
@@ -129,9 +134,13 @@ inputs.forEach(function (input) {
       inputHasValue = true;
 
       label.classList.add('input-focused');
-    } else if (!inputHasValue && !hasFocus) {
+    } else {
       inputHasValue = false;
-      label.classList.remove('ipuit-focused');
+
+      if (hasFocus) {
+        return;
+      }
+      label.classList.remove('input-focused');
     }
   });
 });
