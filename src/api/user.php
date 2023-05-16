@@ -1,5 +1,6 @@
 <?php
 
+// You need to start the session where you need to have a session access.
 session_start();
 
 $userName = "Someting_wong";

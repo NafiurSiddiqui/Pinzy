@@ -55,9 +55,7 @@ class App {
     //default profile message
     this._defaultProfileMsgHandler();
 
-    //move view to the related pin
-    // guestPinContainer?.addEventListener('click', this._moveToPopup.bind(this));
-
+    //move view to the pin
     pinContainer?.addEventListener('click', this._moveToPopup.bind(this));
 
     //event on select event type
@@ -95,7 +93,8 @@ class App {
     const coords = [latitude, longitude];
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
-    console.log(this.#map);
+    console.log(!this.#map);
+    console.log();
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
@@ -122,8 +121,9 @@ class App {
     }
   }
 
-  submitToDb() {
+  submitToDb(e) {
     //DID not prevent default refresh, since without refresh the content editor does not work.
+    e.preventdefault();
 
     //get the values
     const event = eventTypeEl.value;
