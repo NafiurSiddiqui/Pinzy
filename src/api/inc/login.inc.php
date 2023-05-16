@@ -20,15 +20,16 @@ if (isset($_POST["submit"])) {
     // var_dump($login->userName);
     // var_dump($login->password);
     // exit();
-    $userNameErr = $login->nameValidationMessage;
+    // $userNameErr = $login->nameValidationMessage;
  
     //Error handler
     $login->loginUser();
 
-  
+    // header('location:../../../index.php?messgae=logsin');
+
 
     //send to userPage
-    header('location:../user.php?message=loginSuccessful');
+    header('location:../../api/user.php?login=successful');
  
     // header('location:/projects/pintzy/src/api/user.php');
 }

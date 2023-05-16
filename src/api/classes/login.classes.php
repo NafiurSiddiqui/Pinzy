@@ -46,33 +46,38 @@ class Login extends Dbh
             exit();
         } elseif ($checkPass == true) {
           
-            // $stmt = $this->connect()->prepare('SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;');
+            $stmt = $this->connect()->prepare('SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;');
 
         
-            // if (!$stmt->execute(array($userName, $userName, $passwordHashed[0]['user_password']))) {
-            //     //if this fails, close the conn
-            //     $this->errorHandler($stmt, "Invalid Login");
-            // }
+            if (!$stmt->execute(array($userName, $userName, $passwordHashed[0]['user_password']))) {
+                //if this fails, close the conn
+                $this->errorHandler($stmt, "Invalid Login");
+            }
 
-            // //check for empty rows
+            //check for empty rows
 
-            // if (count($passwordHashed) == 0) {
+            if (count($passwordHashed) == 0) {
 
-            //     $stmt = null;
-            //     $this->errorMsg = 'user not found';
-            //     header("location:../../../index.php?error=$this->errorMsg");
+                $stmt = null;
+                $this->errorMsg = 'user not found';
+                header("location:../../../index.php?error=$this->errorMsg");
           
-            //     exit();
-            // }
+                exit();
+            }
 
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($user);
 
             session_start();
 
             $_SESSION["id"] = $user[0]['id'];
             $_SESSION["userName"] = $user[0]["user_name"];
 
+            // var_dump($user[0]['id']);
+            // var_dump($user[0]["user_name"]);
+            // header('locaton:./login.classes.php');
             $stmt = null;
+            // exit();
         }
 
         //Close the conn

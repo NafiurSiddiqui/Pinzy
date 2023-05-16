@@ -2,25 +2,19 @@
 
 session_start();
 
+$userName = "Someting_wong";
+$userLogged = false;
 
-//check if user is logged in
-if(!isset($_SESSION["id"])) {
-    $userLoggedIn = false;
-    header('location:../../index.php');
+if(isset($_SESSION["id"])) {
+
+    $userName = $_SESSION["userName"];
+    $userLogged = true;
+
+} else {
+    $userLogged= false;
+    header("location:../../index.php?message=access_denied");
     exit();
 }
-
-if(isset($_GET["error"])) {
-    // echo $_GET;
-    // exit();
-
-}
-
-//login flag
-$userLoggedIn = true;
-
-//get the username from session
-$userName = $_SESSION['userName'];
 
 ?>
 
@@ -79,7 +73,8 @@ $userName = $_SESSION['userName'];
           </div>
           <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl">
             <?php
-            echo $userLoggedIn? $userName: 'Someting_wong';
+           
+echo $userLogged? $userName: '';
 ?>
           </span>
 
