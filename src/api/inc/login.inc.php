@@ -29,5 +29,6 @@ if (isset($_POST["submit"])) {
 
     //send to userPage
     header('location:../user.php?message=loginSuccessful');
+ 
     // header('location:/projects/pintzy/src/api/user.php');
 }

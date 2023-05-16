@@ -8,12 +8,8 @@ class Login extends Dbh
 
     protected $loginData;
     //store error messages
-    private $error = '';
+    private $errorMsg = '';
     
-    public function __construct()
-    {
-        // session_start();
-    }
 
     protected function getUser($userName, $password)
     {
@@ -24,64 +20,50 @@ class Login extends Dbh
         //to check by email or username
         if (!$stmt->execute(array($userName, $userName))) {
             //if this fails, close the conn
-
-            $stmt = null;
-     
-            $this->error = "user does not exist.";
-            header("location:../../../index.php?error=statmentFailed");
-           
-
+            $this->errorHandler($stmt, "User Does Not Exist");
+        
             exit();
         }
 
-
         $passwordHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($passwordHashed[0]);
+       
         $checkPass = password_verify($password, $passwordHashed[0]['user_password']);
-        // var_dump($checkPass);
+       
 
         if (count($passwordHashed) == 0) {
-            $stmt = null;
-            header("location:../../../index.php?error=userNotFound");
-            $this->error = 'user not found';
-      
+     
+            $this->errorHandler($stmt, "User Not Found");
             exit();
         }
 
 
         if ($checkPass == false) {
-            $stmt = null;
-      
-            $this->error = 'wrong password';
-            header('location:../../../index.php?error=wrongPassword');
+            
+
+            $this->errorHandler($stmt, "Wrong Password.");
+
      
             exit();
         } elseif ($checkPass == true) {
           
-            $stmt = $this->connect()->prepare('SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;');
+            // $stmt = $this->connect()->prepare('SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;');
 
         
-            if (!$stmt->execute(array($userName, $userName, $passwordHashed[0]['user_password']))) {
-                //if this fails, close the conn
-                $stmt = null;
-    
-                $this->error = "invalid login.";
-               
-                header('location:../../../index.php?error=invalidLogin');
+            // if (!$stmt->execute(array($userName, $userName, $passwordHashed[0]['user_password']))) {
+            //     //if this fails, close the conn
+            //     $this->errorHandler($stmt, "Invalid Login");
+            // }
 
-                exit(); //exit the entire script
-            }
+            // //check for empty rows
 
-            //check for empty rows
+            // if (count($passwordHashed) == 0) {
 
-            if (count($passwordHashed) == 0) {
-
-                $stmt = null;
-                $this->error = 'user not found';
-                header('location:../../../index.php?error=noUsers');
+            //     $stmt = null;
+            //     $this->errorMsg = 'user not found';
+            //     header("location:../../../index.php?error=$this->errorMsg");
           
-                exit();
-            }
+            //     exit();
+            // }
 
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -98,10 +80,15 @@ class Login extends Dbh
 
     }
 
-      //expose error
-     public function getError()
-     {
-         return $this->error;
-     }
+    protected function errorHandler($stmt, $msg)
+    {
+        $stmt = null;
+        $this->errorMsg = "$msg";
+        header("location:../../../index.php?error=$this->errorMsg");
+        exit();
+        
+
+    }
+   
 
 }

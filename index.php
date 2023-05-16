@@ -6,9 +6,10 @@ if(isset($_GET["error"])) {
 
 }
 
-// if(isset($_GET["error"]) && isset($_GET["error"])== "userNotFound"){
-//   $no
-// }
+if(isset($_GET['error'])) {
+    $userErrorMsg = $_GET['error'];
+
+}
 
 
 
@@ -50,10 +51,16 @@ if(isset($_GET["error"])) {
       <div class="flex justify-center w-28">
         <img src="./src/assets/logo.svg" alt="Pinzy Icon" class="!w-28" />
       </div>
+      <?php
+       
+echo !empty($userErrorMsg) ? "<p class='text-zinc-500 font-bold'> ❌ $userErrorMsg</p>": '';
+?>
+
+
       <form action="./src/api/inc/login.inc.php"
         class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
         method="POST">
-        <div class="flex flex-col  w-full">
+        <div class="flex flex-col  w-full ">
 
           <div
             class="text-zinc-500 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem]">
@@ -63,7 +70,7 @@ if(isset($_GET["error"])) {
 
           <span class="input-error-msg text-xs text-red-300 mt-1 ml-1">
             <?php
-                            echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$nameIsEmpty</span>" : null;
+                      echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$nameIsEmpty</span>" : null;
 ?>
           </span>
 
