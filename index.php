@@ -1,9 +1,17 @@
 <?php
+
 if(isset($_GET["error"])) {
     $nameIsEmpty = isset($_GET["nameValidationMessage"]) ? $_GET["nameValidationMessage"]: '';
     $passwordIsEmpty = isset($_GET["passwordValidationMessage"]) ? $_GET["passwordValidationMessage"]:null;
 
 }
+
+// if(isset($_GET["error"]) && isset($_GET["error"])== "userNotFound"){
+//   $no
+// }
+
+
+
 
 ?>
 
@@ -42,7 +50,7 @@ if(isset($_GET["error"])) {
       <div class="flex justify-center w-28">
         <img src="./src/assets/logo.svg" alt="Pinzy Icon" class="!w-28" />
       </div>
-      <form action="src/api/inc/login.inc.php"
+      <form action="./src/api/inc/login.inc.php"
         class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
         method="POST">
         <div class="flex flex-col  w-full">
@@ -53,7 +61,7 @@ if(isset($_GET["error"])) {
           <input type="text" spellcheck="false" name="userName" aria-label="User name"
             class="input-field border border-zinc-300 p-1 rounded !appearance-none bg-transparent z-10  focus:!outline-none focus:ring-2 focus:ring-green-400 " />
 
-          <span class="text-xs text-red-300 mt-1 ml-1">
+          <span class="input-error-msg text-xs text-red-300 mt-1 ml-1">
             <?php
                             echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$nameIsEmpty</span>" : null;
 ?>
@@ -68,7 +76,7 @@ if(isset($_GET["error"])) {
           </div>
           <input type="password" name="password" aria-label="Password" class="input-field border border-zinc-300 p-1 rounded !appearance-none bg-transparent  focus:!outline-none focus:ring-2 
                         focus:ring-green-400 z-10 " />
-          <span class="text-xs text-red-300 mt-1 ml-1">
+          <span class="input-error-msg text-xs text-red-300 mt-1 ml-1">
             <?php
                             echo !empty($passwordIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$passwordIsEmpty</span>" : '';
 ?>

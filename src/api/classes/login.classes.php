@@ -28,7 +28,7 @@ class Login extends Dbh
             $stmt = null;
      
             $this->error = "user does not exist.";
-            header("location:../../../index.php?error=statmentfailed");
+            header("location:../../../index.php?error=statmentFailed");
            
 
             exit();
@@ -38,11 +38,11 @@ class Login extends Dbh
         $passwordHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($passwordHashed[0]);
         $checkPass = password_verify($password, $passwordHashed[0]['user_password']);
-        var_dump($checkPass);
+        // var_dump($checkPass);
 
         if (count($passwordHashed) == 0) {
             $stmt = null;
-            header("location:login.inc.php?error=usernotfound");
+            header("location:../../../index.php?error=userNotFound");
             $this->error = 'user not found';
       
             exit();

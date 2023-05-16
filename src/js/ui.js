@@ -106,6 +106,23 @@ document.body.addEventListener('click', e => {
     : null;
 });
 
+//FORM ERROR HANDLER
+
+// Get the URL query string
+const queryString = window.location.search;
+
+// Check if the query string contains the word "error"
+const urlHasError = queryString.includes('error');
+let isError = false;
+
+if (urlHasError) {
+  console.log('URL contains the word "error"');
+  isError = true;
+} else {
+  console.log('URL does not contain the word "error"');
+  isError = false;
+}
+
 //FORM ANIMATION
 const inputs = document.querySelectorAll('.input-field');
 
