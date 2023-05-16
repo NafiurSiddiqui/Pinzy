@@ -33,7 +33,7 @@
     <script type="module" src="../js/init.js"></script>
     <title>Pinzy - Guest user.</title>
   </head>
-  <body class="flex bg-emerald-100">
+  <body class="flex bg-zinc-100">
     <!-- sidebar -->
     <aside
       class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative"
@@ -305,12 +305,13 @@
       <!-- map -->
       <div class="map-container h-screen z-10 flex justify-center items-center">
         <div
-          class="loader-wrapper flex justify-between items-center w-60 absolute top-80 hidden"
+          class="loader-wrapper flex justify-between items-center w-60 absolute top-80"
         >
-          <i
+          <!-- <i
             class="fa-solid fa-earth-europe fa-fade text-6xl text-zinc-700 z-20"
           >
-          </i>
+          </i> -->
+          <span class="spinner spin"></span>
           <span class="text-4xl text-zinc-600"> Loading...</span>
         </div>
         <div id="map" class="h-screen z-10 w-full"></div>

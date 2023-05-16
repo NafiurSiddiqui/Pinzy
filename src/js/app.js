@@ -16,7 +16,8 @@ const userPinCount = document.querySelector(
   '.user-profile-user__pin-count_number'
 );
 const pinContainer = document.querySelector('.pin-container');
-const loader = document.querySelector('.loader-wrapper');
+// const loader = document.querySelector('.loader-wrapper');
+const spinner = document.querySelector('.spinner');
 
 // console.log(loader);
 
@@ -28,7 +29,7 @@ class App {
   eventError = false;
   textError = false;
   userType = '';
-  // mapInitiated = null;
+  mapInitiated = false;
   pagePin = null;
 
   constructor() {
@@ -54,6 +55,14 @@ class App {
 
     //default profile message
     this._defaultProfileMsgHandler();
+
+    // if (!this.mapInitiated) {
+    //   // loader.classList.remove('hidden');
+    //   console.log('Loading...');
+    // } else {
+    //   console.log('loaded');
+    // }
+    console.log(this.mapInitiated);
 
     //move view to the pin
     pinContainer?.addEventListener('click', this._moveToPopup.bind(this));
@@ -83,18 +92,23 @@ class App {
   }
 
   _loadMap(position) {
-    // if (!this.#map) {
-    //   loader.classList.remove('hidden');
-    // }
+    this.mapInitiated = false;
 
-    // loader.classList.add('hidden');
+    // loader.classList.remove('hidden');
+    // loader.classList.add('fa-fade');
+
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
-    console.log(!this.#map);
-    console.log();
+
+    if (this.#map) {
+      this.mapInitiated = true;
+      // loader.classList.add('hidden');
+      // loader.classList.remove('fa-fade');
+      spinner.classList.remove('spin');
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
