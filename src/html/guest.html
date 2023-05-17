@@ -84,7 +84,9 @@
         </div>
 
         <!-- pins -->
-        <div class="pin-container-wrapper__global bg-zinc-700/20 h-76vh">
+        <div
+          class="pin-container-wrapper__global bg-zinc-700 h-76vh laptop:h-76vh/20"
+        >
           <p
             class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic"
           >
@@ -307,11 +309,10 @@
         <div
           class="loader-wrapper flex justify-between items-center w-60 absolute top-80"
         >
-          <!-- <i
-            class="fa-solid fa-earth-europe fa-fade text-6xl text-zinc-700 z-20"
-          >
-          </i> -->
-          <span class="spinner spin"></span>
+          <div class="spinner spin z-20">
+            <img src="../assets/spinner.svg" alt="globe" class="w-16" />
+          </div>
+
           <span class="text-4xl text-zinc-600"> Loading...</span>
         </div>
         <div id="map" class="h-screen z-10 w-full"></div>

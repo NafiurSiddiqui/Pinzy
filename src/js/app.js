@@ -105,9 +105,9 @@ class App {
 
     if (this.#map) {
       this.mapInitiated = true;
-      // loader.classList.add('hidden');
-      // loader.classList.remove('fa-fade');
+      spinner.classList.add('hidden');
       spinner.classList.remove('spin');
+      spinner.classList.remove('z-20');
     }
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -122,8 +122,6 @@ class App {
     this.#pins.forEach(pin => {
       this._renderPinMarker(pin);
     });
-
-    // this.mapInitiated = true;
   }
 
   showInputPopUP(mapE) {
@@ -137,7 +135,7 @@ class App {
 
   submitToDb(e) {
     //DID not prevent default refresh, since without refresh the content editor does not work.
-    e.preventdefault();
+    // e.preventdefault();
 
     //get the values
     const event = eventTypeEl.value;

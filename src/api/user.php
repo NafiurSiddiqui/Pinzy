@@ -45,7 +45,7 @@ if(isset($_SESSION["id"])) {
     <title>Pinzy - Pin aware your people.</title>
   </head>
 
-  <body class="flex relative">
+  <body class="flex relative ">
     <!-- sidebar -->
 
     <aside class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative">
@@ -89,12 +89,12 @@ echo $userLogged? $userName: '';
         </div>
 
         <!-- pins -->
-        <div class="pin-container-wrapper__global bg-zinc-700/20 h-76vh">
+        <div class="pin-container-wrapper__global bg-zinc-700 h-76vh laptop:h-76vh/20">
           <p class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic">
             No pins created yet.
           </p>
           <ul
-            class="user-pin-container pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll">
+            class="guest-pin-container pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll">
             <!-- placeholder -->
           </ul>
 
@@ -103,14 +103,6 @@ echo $userLogged? $userName: '';
       <!-- actions -->
 
       <div class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 ">
-        <!-- <form action="./inc/logout.inc.php" method="post">
-
-          <button
-            class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hidden"
-            type="submit" name="user-logout">
-            Logout
-          </button>
-        </form> -->
 
         <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden"
           href="../api/inc/logout.inc.php">Logout</a>
@@ -236,9 +228,11 @@ echo $userLogged? $userName: '';
 
       <!-- map -->
       <div class="map-container h-screen z-10 flex justify-center items-center">
-        <div class="loader-wrapper flex justify-between items-center w-60 absolute top-80 hidden">
-          <i class="fa-solid fa-earth-europe fa-fade text-6xl text-zinc-700 z-20">
-          </i>
+        <div class="loader-wrapper flex justify-between items-center w-60 absolute top-80">
+          <div class="spinner spin z-20">
+            <img src="../assets/spinner.svg" alt="globe" class="w-16" />
+          </div>
+
           <span class="text-4xl text-zinc-600"> Loading...</span>
         </div>
         <div id="map" class="h-screen z-10 w-full"></div>
