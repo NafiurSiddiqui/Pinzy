@@ -1,62 +1,6 @@
 import createModal from './modal.js';
 import app from './app.js';
 
-const editBoxes = document.querySelectorAll('.pin-edit-box');
-
-editBoxes?.forEach(editBox => {
-  const card = editBox?.closest('.user-pin');
-  const id = card.dataset.id;
-  editBox.dataset.id = id;
-
-  editBox.addEventListener('click', e => {
-    if (e.target.tagName === 'LI') {
-      const li = e.target;
-      const cardId = editBox.dataset.id;
-
-      //without trim, spaces prevents from a match
-      if (li.textContent.trim() === 'edit') {
-        if (isGuest) {
-          guestEdit._editMessage(cardId);
-        }
-      }
-
-      if (li.textContent.trim() === 'delete') {
-        createModal({
-          title: 'Delete Pin',
-          message: 'Are you sure you want to delete this pin?',
-          confirmText: 'Delete',
-          cancelText: 'Cancel',
-        }).then(res => {
-          if (res) {
-            if (isGuest) {
-              guestEdit.deletePin(cardId);
-            }
-          } else {
-            return;
-          }
-        });
-      }
-
-      if (li.textContent.trim() === 'delete all') {
-        createModal({
-          title: 'Delete All Pins',
-          message: 'Are you sure you want to delete all your pins?',
-          confirmText: 'Delete',
-          cancelText: 'Cancel',
-        }).then(res => {
-          if (res) {
-            if (isGuest) {
-              guestEdit.deleteAllPin();
-            }
-          } else {
-            return;
-          }
-        });
-      }
-    }
-  });
-});
-
 //perform the corresponding operation
 const editForm = document.querySelector('.user-input-bg__edit');
 const eventTypeEl = document.getElementById('eventType__edit');
@@ -64,18 +8,46 @@ const messageEl = document.getElementById('message__edit');
 let event = eventTypeEl?.value;
 let message = messageEl?.value;
 const btnSubmitEdit = document.querySelector('.btn-user-input__edit');
+const userInputBgEdit = document.querySelector('.user-input-bg__edit');
+const userInputFormEdit = document.querySelector('.user-input-form__edit');
 
 // ---------- CLASSES
 
 class FormValidator {
-  constructor(eventTypeEl, messageEl, btnSubmitEdit) {
+  formEditIsopen = false;
+  constructor(eventTypeEl, messageEl) {
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
+    this.debounceValidation = this.debounceValidation.bind(this);
+  }
 
-    // Add event listeners for input events on the form fields
-    this.eventTypeEl?.addEventListener('input', this.validateInput?.bind(this));
-    this.messageEl?.addEventListener('input', this.validateInput.bind(this));
+  _showEditForm() {
+    this.setFormEditIsOpen(true);
+    editForm.classList.remove('hidden');
+    this.btnSubmitEdit?.removeAttribute('disabled');
+  }
+
+  _hideEditForm() {
+    this.setFormEditIsOpen(false);
+    editForm.classList.add('hidden');
+  }
+
+  //USER INPUT EDIT POPUP
+  formEditUiHandler() {
+    userInputBgEdit?.addEventListener('click', event => {
+      // Check if the clicked element is the user-input form or not
+
+      if (!userInputFormEdit?.contains(event.target)) {
+        this.setFormEditIsOpen(false);
+        // Close the user-input
+        userInputBgEdit?.classList.add('hidden');
+      }
+    });
+  }
+
+  setFormEditIsOpen(value) {
+    this.formEditIsopen = value;
   }
 
   validateEventType() {
@@ -90,38 +62,79 @@ class FormValidator {
 
   validateMessage() {
     const text = this.messageEl.value;
-
+    console.log('validation message');
     if (text === '') {
       this.messageEl.classList.add('validation-error');
+      // this.btnSubmitEdit?.setAttribute('disabled', true);
     } else {
       this.messageEl.classList.remove('validation-error');
+      // this.btnSubmitEdit?.removeAttribute('disabled');
     }
   }
 
   validateInput() {
     this.validateEventType();
     this.validateMessage();
+    console.log('validating input.');
+    const event = this.eventTypeEl?.value;
+    const text = this.messageEl?.value;
+    console.log(btnSubmitEdit);
 
-    const event = this.eventTypeEl.value;
-    const text = this.messageEl.value;
-
-    if (event !== 'none' && text !== '') {
-      this.btnSubmitEdit.removeAttribute('disabled');
+    if (event === 'none' && text === '') {
+      console.log('no value');
+      this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
     } else {
-      this.btnSubmitEdit.setAttribute('disabled', true);
+      console.log('has value');
+      this.btnSubmitEdit?.removeAttribute('disabled');
     }
+  }
+
+  debounceValidation() {
+    let timer;
+    // const validateInput = this._validateInput.bind(this);
+    console.log('debounce');
+    const validateInput = this.validateInput.bind(this);
+
+    return function () {
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        validateInput();
+      }, 1000);
+    };
+  }
+
+  // _validateInput() {
+  //   this.validateEventType();
+  //   this.validateMessage();
+  //   const event = eventTypeEl.value;
+  //   const text = messageEl.value;
+  //   console.log('validating');
+  //   if ((event === 'none' && text === '') || event === 'none' || text === '') {
+  //     console.log('fields can not be empty!');
+  //     this.btnSubmitEdit?.setAttribute('disabled', true);
+  //   }
+
+  //   if (event !== 'none' && text !== '') {
+  //     this.btnSubmitEdit?.removeAttribute('disabled');
+  //   }
+  // }
+
+  detectUserType() {
+    return app.userType;
   }
 }
 
 class GuestEdit extends FormValidator {
   constructor() {
-    super();
-    // this.editBoxes = ;
+    super(event, messageEl);
+
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
-    this.eventTypeEl?.addEventListener('input', this.validateInput.bind(this));
-    this.messageEl?.addEventListener('input', this.validateInput.bind(this));
+    this.eventTypeEl?.addEventListener('input', this.debounceValidation());
+    this.messageEl?.addEventListener('input', this.debounceValidation());
+    this.formEditUiHandler();
   }
 
   _editMessage(id) {
@@ -137,11 +150,11 @@ class GuestEdit extends FormValidator {
     eventTypeEl.value = item.event;
     messageEl.value = item.message;
     //get the newInput
-    btnSubmitEdit.addEventListener('click', e => {
+    btnSubmitEdit?.addEventListener('click', e => {
       //get the newInput
       event = eventTypeEl.value;
       message = messageEl.value;
-      console.log(event, message);
+
       //create a new object
       const newItem = {
         ...item,
@@ -165,13 +178,6 @@ class GuestEdit extends FormValidator {
     });
   }
 
-  _showEditForm() {
-    editForm.classList.remove('hidden');
-  }
-
-  _hideEditForm() {
-    editForm.classList.add('hidden');
-  }
   deletePin(id) {
     //get the item from localStorage
     const data = JSON.parse(localStorage.getItem('guest'));
@@ -196,7 +202,6 @@ class GuestEdit extends FormValidator {
   }
 
   editBoxHandler() {
-    // console.log(editBoxes);
     const editBoxes = document.querySelectorAll('.pin-edit-box');
     editBoxes.forEach(editBox => {
       //get the parent on click
@@ -220,7 +225,7 @@ class GuestEdit extends FormValidator {
           //without trim, spaces prevents from a match
           if (action === 'edit') {
             if (isGuest) {
-              guestEdit._editMessage(cardId);
+              this._editMessage(cardId);
             }
           }
 
@@ -233,7 +238,7 @@ class GuestEdit extends FormValidator {
             }).then(res => {
               if (res) {
                 if (isGuest) {
-                  guestEdit.deletePin(id);
+                  this.deletePin(id);
                 }
               } else {
                 return;
@@ -250,7 +255,7 @@ class GuestEdit extends FormValidator {
             }).then(res => {
               if (res) {
                 if (isGuest) {
-                  guestEdit.deleteAllPin();
+                  this.deleteAllPin();
                 }
               } else {
                 return;
@@ -261,12 +266,8 @@ class GuestEdit extends FormValidator {
       });
     });
   }
-
-  detectUserType() {
-    return app.userType;
-  }
 }
 
-const guestEdit = new GuestEdit();
+const guestEdit = new GuestEdit(eventTypeEl, messageEl, btnSubmitEdit);
 
 export { guestEdit };

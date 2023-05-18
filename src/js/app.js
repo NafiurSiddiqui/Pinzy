@@ -1,9 +1,7 @@
 'use strict';
 import { guestEdit } from './edit-pin.js';
 
-// APPLICATION ARCHITECTURE
 const inputPopUp = document.querySelector('.user-input-bg');
-
 const eventTypeEl = document.getElementById('eventType');
 const messageEl = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
@@ -16,10 +14,10 @@ const userPinCount = document.querySelector(
   '.user-profile-user__pin-count_number'
 );
 const pinContainer = document.querySelector('.pin-container');
-// const loader = document.querySelector('.loader-wrapper');
 const spinner = document.querySelector('.spinner');
-
-// console.log(loader);
+const userInputBg = document.querySelector('.user-input-bg');
+const userInputBgEdit = document.querySelector('.user-input-bg__edit');
+const userInputForm = document.querySelector('.user-input-form');
 
 class App {
   #map;
@@ -56,14 +54,6 @@ class App {
     //default profile message
     this._defaultProfileMsgHandler();
 
-    // if (!this.mapInitiated) {
-    //   // loader.classList.remove('hidden');
-    //   console.log('Loading...');
-    // } else {
-    //   console.log('loaded');
-    // }
-    console.log(this.mapInitiated);
-
     //move view to the pin
     pinContainer?.addEventListener('click', this._moveToPopup.bind(this));
 
@@ -71,7 +61,6 @@ class App {
     eventTypeEl.addEventListener('input', this.debounceValidation());
     //run event on message
     messageEl.addEventListener('input', this.debounceValidation());
-
     //submit to db
     btnSubmit.addEventListener('click', this.submitToDb.bind(this));
 
@@ -79,6 +68,10 @@ class App {
     this._renderPinCount();
     //handle editing
     guestEdit.editBoxHandler();
+    //closes on 'esc'
+    this.formUi_KeyHandler();
+
+    this._hideInput();
   }
 
   _getPosition() {
@@ -133,13 +126,13 @@ class App {
     }
   }
 
-  submitToDb(e) {
+  submitToDb() {
     //DID not prevent default refresh, since without refresh the content editor does not work.
-    // e.preventdefault();
 
     //get the values
     const event = eventTypeEl.value;
     const message = messageEl.value;
+
     const eventTypeIcon =
       eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
     const eventTypeColor =
@@ -176,15 +169,20 @@ class App {
     //render pin count
     this._renderPinCount();
 
-    //refresh
-    // window.location.reload();
     //hideInput
     this._hideInput();
   }
 
   _hideInput() {
-    const userInputBg = document.querySelector('.user-input-bg');
-    userInputBg.classList.add('hidden');
+    userInputBg?.addEventListener('click', event => {
+      // Check if the clicked element is the user-input form or not
+
+      if (!userInputForm?.contains(event.target)) {
+        // Close the user-input
+        userInputBg.classList.add('hidden');
+      }
+      console.log('clicks');
+    });
   }
 
   debounceValidation() {
@@ -195,11 +193,11 @@ class App {
       timer = setTimeout(validateInput, 1000);
     };
   }
+
   _validateInput() {
     const event = eventTypeEl.value;
     const text = messageEl.value;
 
-    console.log('runs');
     if ((event === 'none' && text === '') || event === 'none' || text === '') {
       console.log('fields can not be empty!');
       btnSubmit.setAttribute('disabled', '');
@@ -347,6 +345,17 @@ class App {
     });
   }
 
+  formUi_KeyHandler() {
+    document?.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        // Close the user-input
+        // guestEdit.setFormEditIsOpen(false);
+        userInputBg?.classList.add('hidden');
+        userInputBgEdit?.classList.add('hidden');
+      }
+    });
+  }
+
   _moveToPopup(e) {
     if (!this.#map) return;
     const pinEl = e.target.closest('.user-pin');
@@ -411,7 +420,13 @@ class App {
         return true;
       },
     };
-    this.#pins = new Proxy(this.#pins, handler);
+
+    //Was having an uncaught error.
+    try {
+      this.#pins = new Proxy(this.#pins, handler);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   getURLpath(pathName) {
