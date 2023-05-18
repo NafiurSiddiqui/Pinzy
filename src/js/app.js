@@ -13,6 +13,8 @@ const userPinContainer = document.querySelector('.user-pin-container');
 const userPinCount = document.querySelector(
   '.user-profile-user__pin-count_number'
 );
+
+const pinCountEl = document.querySelector('.user-profile__pin-count__digit');
 const pinContainer = document.querySelector('.pin-container');
 const spinner = document.querySelector('.spinner');
 const userInputBg = document.querySelector('.user-input-bg');
@@ -34,7 +36,7 @@ class App {
     this.debounceValidation = this.debounceValidation.bind(this);
     // Get user's position
     this._getPosition();
-
+    this.pinCountEl = pinCountEl;
     //detect page type
     this.getURLpath('pins.html')
       ? (this.pagePin = true)
@@ -66,6 +68,7 @@ class App {
 
     //render pin count
     this._renderPinCount();
+
     //handle editing
     guestEdit.editBoxHandler();
     //closes on 'esc'
@@ -86,10 +89,6 @@ class App {
 
   _loadMap(position) {
     this.mapInitiated = false;
-
-    // loader.classList.remove('hidden');
-    // loader.classList.add('fa-fade');
-
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
@@ -328,13 +327,15 @@ class App {
   }
 
   _renderPinCount() {
-    if (this.pagePin || !this.#map) {
+    if (this.pagePin) {
       return;
     }
 
-    this.userType === 'guest'
-      ? (guestPinCount.textContent = this.#pins.length)
-      : (userPinCount.textContent = this.#pins.length);
+    pinCountEl.textContent = this.#pins.length;
+
+    // this.userType === 'guest'
+    //   ? (guestPinCount.textContent = this.#pins.length)
+    //   : (userPinCount.textContent = this.#pins.length);
   }
 
   attachEditBtnListener(editBtn) {

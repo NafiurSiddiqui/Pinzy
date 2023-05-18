@@ -81,7 +81,7 @@ echo $userLogged? $userName: '';
 
           <div
             class="user-profile__user-pin-count border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center">
-            <span class="user-profile__user-pin-count__digit font-semibold tablet:text-sm max-w-[2rem]">
+            <span class="user-profile__pin-count__digit font-semibold tablet:text-sm max-w-[2rem]">
 
             </span>
             <i class="fa-solid fa-location-dot text-slate-500"></i>

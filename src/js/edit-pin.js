@@ -80,7 +80,7 @@ class FormValidator {
     const text = this.messageEl?.value;
     console.log(btnSubmitEdit);
 
-    if (event === 'none' && text === '') {
+    if ((event === 'none' && text === '') || event === 'none' || text === '') {
       console.log('no value');
       this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
     } else {

@@ -5,23 +5,58 @@ const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
 
+//detect the device width
+const notMobile = window.innerWidth >= 600;
+
+//default sidebar style > mobile
+
+// if (notMobile) {
+
+// }
+
 btnSidebar?.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
-  sidebar.classList.toggle('w-full');
-  sidebar.classList.toggle('tablet:w-[30rem]');
-  sidebar.classList.toggle('w-14');
-  sidebar.classList.toggle('bg-aside');
-  //show content
-  sidebarContent.classList.toggle('opacity-0');
-  //hide logout btn
-  btnLogout.classList.toggle('hidden');
-  //sidebar footer
-  sidebarFooter.classList.toggle('justify-between');
-  sidebarFooter.classList.toggle('justify-center');
 
-  // rotate btn
-  btnSidebar.classList.toggle('fa-flip-horizontal');
-  btnSidebar.classList.toggle('btn-aside');
+  if (notMobile) {
+    // sidebar.classList.toggle('w-full');
+    sidebar.classList.toggle('tablet:w-[24rem]');
+    sidebar.classList.toggle('laptop:w-[30rem]');
+    // sidebar.classList.toggle('w-14');
+    sidebar.classList.toggle('bg-aside');
+    sidebar.classList.toggle('tablet:bg-aside');
+    //show content
+
+    // sidebarContent.classList.toggle('opacity-0');
+    sidebarContent.classList.toggle('tablet:opacity-100');
+    //hide logout btn
+    // btnLogout.classList.toggle('hidden');
+    btnLogout.classList.toggle('tablet:flex');
+    //sidebar footer
+    sidebarFooter.classList.toggle('tablet:justify-between');
+    // sidebarFooter.classList.toggle('justify-center');
+
+    // rotate btn
+    btnSidebar.classList.toggle('fa-flip-horizontal');
+    btnSidebar.classList.toggle('btn-aside');
+  } else {
+    //settings for mobile
+    // rotate btn
+    btnSidebar.classList.toggle('fa-flip-horizontal');
+    btnSidebar.classList.toggle('btn-aside');
+    //logut btn
+    btnLogout.classList.toggle('hidden');
+    //sidebar footer
+    sidebarFooter.classList.toggle('justify-between');
+    sidebarFooter.classList.toggle('justify-center');
+    //sidebar width
+    sidebar.classList.toggle('w-full');
+    // sidebar.classList.toggle('tablet:w-[24rem]');
+    // sidebar.classList.toggle('laptop:w-[30rem]');
+    sidebar.classList.toggle('w-14');
+    sidebar.classList.toggle('bg-aside');
+    // sidebar.classList.toggle('tablet:bg-aside');
+    sidebarContent.classList.toggle('opacity-0');
+  }
 });
 
 // USER PIN
