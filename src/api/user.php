@@ -220,8 +220,8 @@ echo $userLogged? $userName: '';
               cols="30" rows="4"></textarea>
           </div>
           <button
-            class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
-            type="submit" name="guest-submit-edit" disabled>
+            class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
+            type="submit" name="guest-submit-edit">
             Pin
           </button>
         </form>

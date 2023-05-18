@@ -75,13 +75,16 @@ class FormValidator {
   validateInput() {
     this.validateEventType();
     this.validateMessage();
-
+    console.log('validating input');
     const event = this.eventTypeEl?.value;
     const text = this.messageEl?.value;
 
     if ((event === 'none' && text === '') || event === 'none' || text === '') {
+      console.log('no value');
+      console.log(this.btnSubmitEdit);
       this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
     } else {
+      console.log('has value');
       this.btnSubmitEdit?.removeAttribute('disabled');
     }
   }
@@ -249,6 +252,7 @@ class GuestEdit extends FormValidator {
   }
 }
 
+//USER CLASS
 class UserEdit extends FormValidator {
   constructor() {
     super(eventTypeEl, messageEl);
@@ -269,10 +273,11 @@ class UserEdit extends FormValidator {
 
     //popup edit-input-form
     this._showEditForm();
-
+    // console.log(messageEl);
     //autoselect eventType and fill up the text area
     eventTypeEl.value = item.event;
     messageEl.value = item.message;
+
     //get the newInput
     btnSubmitEdit?.addEventListener('click', e => {
       //get the newInput
@@ -327,7 +332,7 @@ class UserEdit extends FormValidator {
 
   editBoxHandler() {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    console.log('user box handler');
+
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
@@ -341,20 +346,11 @@ class UserEdit extends FormValidator {
         const id = editBox.dataset.id;
 
         const action = e.target.textContent.trim();
-        const isGuest = this.detectUserType() === 'guest';
 
         if (li) {
-          // const li = e.target;
           const cardId = editBox.dataset.id;
-
           //without trim, spaces prevents from a match
           if (action === 'edit') {
-            console.log('clicked');
-            // if (isGuest) {
-            //   this._editMessage(cardId);
-            // }else{
-            //   this._editMessage(cardId);
-            // }
             this._editMessage(cardId);
           }
 
@@ -366,9 +362,7 @@ class UserEdit extends FormValidator {
               cancelText: 'Cancel',
             }).then(res => {
               if (res) {
-                if (isGuest) {
-                  this.deletePin(id);
-                }
+                this.deletePin(id);
               } else {
                 return;
               }
@@ -383,9 +377,7 @@ class UserEdit extends FormValidator {
               cancelText: 'Cancel',
             }).then(res => {
               if (res) {
-                if (isGuest) {
-                  this.deleteAllPin();
-                }
+                this.deleteAllPin();
               } else {
                 return;
               }
