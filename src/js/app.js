@@ -1,5 +1,5 @@
 'use strict';
-import { guestEdit } from './edit-pin.js';
+import { guestEdit, userEdit } from './edit-pin.js';
 
 const inputPopUp = document.querySelector('.user-input-bg');
 const eventTypeEl = document.getElementById('eventType');
@@ -71,6 +71,7 @@ class App {
 
     //handle editing
     guestEdit.editBoxHandler();
+    userEdit.editBoxHandler();
     //closes on 'esc'
     this.formUi_KeyHandler();
 

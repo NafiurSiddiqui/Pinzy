@@ -75,24 +75,20 @@ class FormValidator {
   validateInput() {
     this.validateEventType();
     this.validateMessage();
-    console.log('validating input.');
+
     const event = this.eventTypeEl?.value;
     const text = this.messageEl?.value;
-    console.log(btnSubmitEdit);
 
     if ((event === 'none' && text === '') || event === 'none' || text === '') {
-      console.log('no value');
       this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
     } else {
-      console.log('has value');
       this.btnSubmitEdit?.removeAttribute('disabled');
     }
   }
 
   debounceValidation() {
     let timer;
-    // const validateInput = this._validateInput.bind(this);
-    console.log('debounce');
+
     const validateInput = this.validateInput.bind(this);
 
     return function () {
@@ -103,22 +99,6 @@ class FormValidator {
       }, 1000);
     };
   }
-
-  // _validateInput() {
-  //   this.validateEventType();
-  //   this.validateMessage();
-  //   const event = eventTypeEl.value;
-  //   const text = messageEl.value;
-  //   console.log('validating');
-  //   if ((event === 'none' && text === '') || event === 'none' || text === '') {
-  //     console.log('fields can not be empty!');
-  //     this.btnSubmitEdit?.setAttribute('disabled', true);
-  //   }
-
-  //   if (event !== 'none' && text !== '') {
-  //     this.btnSubmitEdit?.removeAttribute('disabled');
-  //   }
-  // }
 
   detectUserType() {
     return app.userType;
@@ -203,6 +183,7 @@ class GuestEdit extends FormValidator {
 
   editBoxHandler() {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
+    console.log('guest Handler runs');
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
@@ -268,6 +249,154 @@ class GuestEdit extends FormValidator {
   }
 }
 
-const guestEdit = new GuestEdit(eventTypeEl, messageEl, btnSubmitEdit);
+class UserEdit extends FormValidator {
+  constructor() {
+    super(eventTypeEl, messageEl);
+    this.eventTypeEl = eventTypeEl;
+    this.messageEl = messageEl;
+    this.btnSubmitEdit = btnSubmitEdit;
 
-export { guestEdit };
+    this.eventTypeEl?.addEventListener('input', this.debounceValidation());
+    this.messageEl?.addEventListener('input', this.debounceValidation());
+    this.formEditUiHandler();
+  }
+
+  _editMessage(id) {
+    //get the items from localStorage
+    const data = JSON.parse(localStorage.getItem(`user`));
+
+    const item = data.find(item => item.id === +id);
+
+    //popup edit-input-form
+    this._showEditForm();
+
+    //autoselect eventType and fill up the text area
+    eventTypeEl.value = item.event;
+    messageEl.value = item.message;
+    //get the newInput
+    btnSubmitEdit?.addEventListener('click', e => {
+      //get the newInput
+      event = eventTypeEl.value;
+      message = messageEl.value;
+
+      //create a new object
+      const newItem = {
+        ...item,
+        event: event,
+        message: message,
+      };
+      //update localStorage
+      localStorage.setItem(
+        `user`,
+        JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
+      );
+      //clear inputs
+      eventTypeEl.value = messageEl.value = '';
+
+      //hideInput
+      this._hideEditForm();
+
+      //refresh window to update the pins
+      location.reload();
+      //how do I keep the view to the same point after window refresh?
+    });
+  }
+
+  deletePin(id) {
+    //get the item from localStorage
+    const data = JSON.parse(localStorage.getItem('user'));
+    //filter the item
+    const filteredData = data.filter(item => item.id !== +id);
+
+    // update localStorage
+    localStorage.setItem('user', JSON.stringify(filteredData));
+    //refresh window to update the pins
+    location.reload();
+    // app.refreshContent();
+  }
+
+  deleteAllPin() {
+    //get the item from localStorage
+    const data = JSON.parse(localStorage.getItem('user'));
+    //delete all from local storage
+    localStorage.removeItem('user');
+    //refresh window to update the pins
+    location.reload();
+    // app.refreshContent();
+  }
+
+  editBoxHandler() {
+    const editBoxes = document.querySelectorAll('.pin-edit-box');
+    console.log('user box handler');
+    editBoxes.forEach(editBox => {
+      //get the parent on click
+      const pin = editBox.closest('.user-pin');
+      //get the id
+      const pinId = pin.dataset.id;
+      //assign the parent id to this of pin
+      editBox.dataset.id = pinId;
+      //listen to the editBox
+      editBox.addEventListener('click', e => {
+        const li = e.target.tagName === 'LI';
+        const id = editBox.dataset.id;
+
+        const action = e.target.textContent.trim();
+        const isGuest = this.detectUserType() === 'guest';
+
+        if (li) {
+          // const li = e.target;
+          const cardId = editBox.dataset.id;
+
+          //without trim, spaces prevents from a match
+          if (action === 'edit') {
+            console.log('clicked');
+            // if (isGuest) {
+            //   this._editMessage(cardId);
+            // }else{
+            //   this._editMessage(cardId);
+            // }
+            this._editMessage(cardId);
+          }
+
+          if (action === 'delete') {
+            createModal({
+              title: 'Delete Pin',
+              message: 'Are you sure you want to delete this pin?',
+              confirmText: 'Delete',
+              cancelText: 'Cancel',
+            }).then(res => {
+              if (res) {
+                if (isGuest) {
+                  this.deletePin(id);
+                }
+              } else {
+                return;
+              }
+            });
+          }
+
+          if (action === 'delete all') {
+            createModal({
+              title: 'Delete All Pins',
+              message: 'Are you sure you want to delete all your pins?',
+              confirmText: 'Delete',
+              cancelText: 'Cancel',
+            }).then(res => {
+              if (res) {
+                if (isGuest) {
+                  this.deleteAllPin();
+                }
+              } else {
+                return;
+              }
+            });
+          }
+        }
+      });
+    });
+  }
+}
+const guestEdit = new GuestEdit(eventTypeEl, messageEl, btnSubmitEdit);
+const userEdit = new UserEdit(eventTypeEl, messageEl, btnSubmitEdit);
+
+export { userEdit, guestEdit };

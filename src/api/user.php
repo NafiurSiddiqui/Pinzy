@@ -48,9 +48,10 @@ if(isset($_SESSION["id"])) {
   <body class="flex relative ">
     <!-- sidebar -->
 
-    <aside class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative">
+    <aside
+      class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative tablet:bg-aside tablet:w-[24rem] laptop:w-[30rem]">
 
-      <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0   ">
+      <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0 tablet:opacity-100">
 
         <!-- nav -->
         <nav class="border-b border-zinc-400 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
@@ -100,16 +101,17 @@ echo $userLogged? $userName: '';
 
         </div>
       </div>
-      <!-- actions -->
+      <!-- side footer actions -->
 
-      <div class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 ">
+      <div
+        class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 tablet:justify-between">
 
-        <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden"
+        <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
           href="../api/inc/logout.inc.php">Logout</a>
 
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+          class="btn-sidebar fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
       </div>
     </aside>
     <section class="map-content w-full">
@@ -123,7 +125,7 @@ echo $userLogged? $userName: '';
       <!-- pop up for input-->
 
       <section
-        class="user-input-bg hidden flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
+        class=".user-input-bg hidden flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
         role="dialog">
         <span class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer" role="button"
           aria-label="Close">
@@ -185,7 +187,7 @@ echo $userLogged? $userName: '';
         </span>
 
         <form action="#"
-          class="user-input-form p-4 rounded-sm pb-8 relative border border-zinc-600/50 bg-zinc-400/60 backdrop-blur-sm w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+          class="user-input-form__edit p-4 rounded-sm pb-8 relative border border-zinc-600/50 bg-zinc-400/60 backdrop-blur-sm w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
           id="form-user-input__edit">
           <div class="flex flex-col my-4 w-full">
             <label class="text-gray-600 text-xs mb-1" for="eventType__edit">Pin type</label>

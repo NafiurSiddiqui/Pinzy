@@ -36,10 +36,10 @@
   <body class="flex bg-primary">
     <!-- sidebar -->
     <aside
-      class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative"
+      class="absolute sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative tablet:bg-aside tablet:w-[24rem] laptop:w-[30rem]"
     >
       <div
-        class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0"
+        class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0 tablet:opacity-100"
       >
         <!-- nav -->
         <nav
@@ -60,14 +60,16 @@
         </nav>
 
         <!-- pins -->
-        <div class="pin-container-wrapper__global bg-zinc-700/20 h-80vh">
+        <div
+          class="pin-container-wrapper__global bg-zinc-700 h-76vh laptop:h-76vh/20"
+        >
           <p
             class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic"
           >
             No pins created yet.
           </p>
           <ul
-            class="guest-pin-container pin-container hidden px-4 pt-10 pb-4 flex items-center flex-col bg-zinc-700 h-80vh overflow-y-scroll"
+            class="guest-pin-container pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-76vh overflow-y-scroll"
           >
             <!-- placeholder -->
           </ul>
@@ -75,16 +77,16 @@
       </div>
       <!-- actions -->
       <div
-        class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2"
+        class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 tablet:justify-between"
       >
         <a
-          class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden"
+          class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
           href="../../index.php"
           >Logout</a
         >
 
         <i
-          class="btn-sidebar fa-flip-horizontal fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"
+          class="btn-sidebar fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"
         ></i>
       </div>
     </aside>
@@ -281,12 +283,12 @@
       <!-- map -->
       <div class="map-container h-screen z-10 flex justify-center items-center">
         <div
-          class="loader-wrapper flex justify-between items-center w-60 absolute top-80 hidden"
+          class="loader-wrapper flex justify-between items-center w-60 absolute top-80"
         >
-          <i
-            class="fa-solid fa-earth-europe fa-fade text-6xl text-zinc-700 z-20"
-          >
-          </i>
+          <div class="spinner spin z-20">
+            <img src="../assets/spinner.svg" alt="globe" class="w-16" />
+          </div>
+
           <span class="text-4xl text-zinc-600"> Loading...</span>
         </div>
         <div id="map" class="h-screen z-10 w-full"></div>

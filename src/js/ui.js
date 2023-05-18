@@ -8,32 +8,22 @@ const btnLogout = document.querySelector('.btn-user-logout');
 //detect the device width
 const notMobile = window.innerWidth >= 600;
 
-//default sidebar style > mobile
-
-// if (notMobile) {
-
-// }
-
 btnSidebar?.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
 
   if (notMobile) {
-    // sidebar.classList.toggle('w-full');
     sidebar.classList.toggle('tablet:w-[24rem]');
     sidebar.classList.toggle('laptop:w-[30rem]');
-    // sidebar.classList.toggle('w-14');
     sidebar.classList.toggle('bg-aside');
     sidebar.classList.toggle('tablet:bg-aside');
     //show content
 
-    // sidebarContent.classList.toggle('opacity-0');
     sidebarContent.classList.toggle('tablet:opacity-100');
     //hide logout btn
-    // btnLogout.classList.toggle('hidden');
+
     btnLogout.classList.toggle('tablet:flex');
     //sidebar footer
     sidebarFooter.classList.toggle('tablet:justify-between');
-    // sidebarFooter.classList.toggle('justify-center');
 
     // rotate btn
     btnSidebar.classList.toggle('fa-flip-horizontal');
@@ -64,10 +54,11 @@ btnSidebar?.addEventListener('click', () => {
 const editBox = document.querySelector('.pin-edit-box');
 
 export const toggleEditBox = (closeBox = false) => {
-  const editBoxAll = document.querySelectorAll('.pin-edit-box');
-  //to prevent from toggling and simple hide if closeBox
+  const editBoxes = document.querySelectorAll('.pin-edit-box');
+
+  //to prevent from toggling and simply hide if closeBox
   closeBox
-    ? editBoxAll.forEach(box => box.classList.add('hidden'))
+    ? editBoxes.forEach(box => box.classList.add('hidden'))
     : editBox?.classList.toggle('hidden');
 };
 
@@ -98,8 +89,9 @@ export default attachEditBtnListener;
 editBox?.addEventListener('click', e => {
   //prevents from bubbling to the grandparent
   e.stopPropagation();
+
   //close the box
-  e.target.tagName === 'LI' ? toggleEditBox() : null;
+  // e.target.tagName === 'LI' ? toggleEditBox() : null;
 });
 
 //close the edit on global click
