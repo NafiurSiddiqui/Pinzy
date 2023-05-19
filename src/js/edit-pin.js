@@ -117,11 +117,10 @@ class GuestEdit extends FormValidator {
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
     this.selectedEventIcon = this.getEventIcon();
-    console.log(this.selectedEventIcon);
     this.eventTypeEl?.addEventListener('input', this.debounceValidation());
     this.messageEl?.addEventListener('input', this.debounceValidation());
     this.eventTypeEl.addEventListener('change', this.getEventIcon.bind(this));
-    console.log(this.#pinEdited);
+
     this.formEditUiHandler();
   }
 
@@ -304,6 +303,8 @@ class GuestEdit extends FormValidator {
 
 //USER CLASS
 class UserEdit extends FormValidator {
+  #pinEdited = false;
+
   constructor() {
     super(eventTypeEl, messageEl);
     this.eventTypeEl = eventTypeEl;
@@ -343,6 +344,11 @@ class UserEdit extends FormValidator {
       event = eventTypeEl.value;
       message = messageEl.value;
 
+      //if event or message value changes
+      if (event !== item.event || message !== item.message) {
+        this.#pinEdited = true;
+      }
+
       //create a new object
       const newItem = {
         ...item,
@@ -351,8 +357,10 @@ class UserEdit extends FormValidator {
         message: message,
       };
       // Update the corresponding event icon element
-      const listItemSelector = `li[data-id="${id}"]`; // Selector for the specific <li> element
-      const listItem = document.querySelector(listItemSelector); // Get the specific <li> element
+      // Selector for the specific <li> element
+      const listItemSelector = `li[data-id="${id}"]`;
+      // Get the specific <li> element
+      const listItem = document.querySelector(listItemSelector);
       if (listItem) {
         const eventIconEl = listItem.querySelector(
           '.pin-card-header_event-icon'
@@ -375,9 +383,26 @@ class UserEdit extends FormValidator {
       this._hideEditForm();
 
       //refresh window to update the pins
-      location.reload();
-      //how do I keep the view to the same point after window refresh?
+      this.watchForPinChanges();
     });
+  }
+
+  watchForPinChanges() {
+    //see if pinEdited
+    if (this.#pinEdited) {
+      //roll out timer and refresh the content
+      setTimeout(() => {
+        app.refreshContent();
+      }, 100);
+
+      //set edited to false
+      this.#pinEdited = false;
+    } else {
+      //refresh anyway otherwise if submitted, page does not refresh
+      setTimeout(() => {
+        app.refreshContent();
+      }, 100);
+    }
   }
 
   deletePin(id) {
@@ -424,7 +449,7 @@ class UserEdit extends FormValidator {
           const cardId = editBox.dataset.id;
           //without trim, spaces prevents from a match
           if (action === 'edit') {
-            this._editMessage(cardId);
+            this.editMessage(cardId);
           }
 
           if (action === 'delete') {

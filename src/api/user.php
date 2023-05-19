@@ -156,7 +156,7 @@ echo $userLogged? $userName: '';
               <option value="touristAttraction" data-icon="🌐" data-color="-teal-500">
                 Tourist Attraction 🌐
               </option>
-              <option value="reacreational" data-icon="😎" data-color="-yellow-900">
+              <option value="recreational" data-icon="😎" data-color="-yellow-900">
                 Recreational 😎
               </option>
             </select>
@@ -209,7 +209,7 @@ echo $userLogged? $userName: '';
               <option value="touristAttraction" data-icon="🌐" data-color="-teal-500">
                 Tourist Attraction 🌐
               </option>
-              <option value="reacreational" data-icon="😎" data-color="-yellow-900">
+              <option value="recreational" data-icon="😎" data-color="-yellow-900">
                 Recreational 😎
               </option>
             </select>
