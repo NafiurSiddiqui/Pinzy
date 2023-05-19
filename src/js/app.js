@@ -6,13 +6,8 @@ const eventTypeEl = document.getElementById('eventType');
 const messageEl = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
-const guestPinCount = document.querySelector(
-  '.guest-profile__guest-pin-count__digit'
-);
+
 const userPinContainer = document.querySelector('.user-pin-container');
-const userPinCount = document.querySelector(
-  '.user-profile-user__pin-count_number'
-);
 
 const pinCountEl = document.querySelector('.user-profile__pin-count__digit');
 const pinContainer = document.querySelector('.pin-container');
@@ -31,14 +26,14 @@ class App {
   userType = '';
   mapInitiated = false;
   pagePin = null;
-
+  userName = 'userName';
   constructor() {
     this.debounceValidation = this.debounceValidation.bind(this);
     // Get user's position
     this._getPosition();
     this.pinCountEl = pinCountEl;
     //detect page type
-    this.getURLpath('pins.html')
+    this.getURLpath('pins.php')
       ? (this.pagePin = true)
       : (this.pagePin = false);
 
@@ -46,6 +41,9 @@ class App {
     this.getURLpath('user.php')
       ? (this.userType = 'user')
       : (this.userType = 'guest');
+
+    //set user name
+    this.getUserName();
 
     // Get data from local storage
     this._getLocalStorage();
@@ -225,11 +223,71 @@ class App {
       .openPopup();
   }
 
+  getUserName() {
+    //get username from URL
+    const queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+    let userName = urlParams.get('username');
+    let getUserNameFromStorage = localStorage.getItem('userName');
+
+    if (userName) {
+      //capitalize the first character
+      userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+      //set to the localStorage
+      localStorage.setItem('userName', userName);
+      this.userName = userName;
+    } else if (getUserNameFromStorage) {
+      //get from localStorage
+      this.userName = getUserNameFromStorage;
+    } else {
+      this.username = 'userName';
+    }
+  }
+
+  getDate() {
+    //get current date
+    function getOrdinalIndicator(day) {
+      var indicator = 'th';
+      if (day === 1 || day === 21 || day === 31) {
+        indicator = 'st';
+      } else if (day === 2 || day === 22) {
+        indicator = 'nd';
+      } else if (day === 3 || day === 23) {
+        indicator = 'rd';
+      }
+      return indicator;
+    }
+
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var ordinalIndicator = getOrdinalIndicator(day);
+    var formattedDate = `
+      ${day} 
+      ${ordinalIndicator} 
+      
+      ${currentDate.toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric',
+      })}`;
+    return formattedDate;
+  }
+
+  getTime() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var formattedTime = ` ${hours.toString().padStart(2, '0')}:${minutes
+      .toString()
+      .padStart(2, '0')} hrs`;
+
+    return formattedTime;
+  }
+
   _renderPin(values) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
     const isGuest = this.userType === 'guest';
-    const userName = isGuest ? 'Anonymous' : 'userName';
+    const userName = isGuest ? 'Anonymous' : this.userName;
     const pinContainer = isGuest ? guestPinContainer : userPinContainer;
     const pinLimit = isGuest ? 10 : 100;
 
@@ -275,10 +333,12 @@ class App {
                   class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
                 >
                   <img src="../assets/calendar.svg" class="inline-block" />
-                  19th Jul, 2023
+                  ${this.getDate()}
                 </span>
                 <!-- edit -->
-                <div class="pin-edit-box__container relative z-40" data-id="${values.id}">
+                <div class="pin-edit-box__container relative z-40" data-id="${
+                  values.id
+                }">
                 <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 "></i>
                 <ul class=" pin-edit-box hidden absolute bg-zinc-300 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
                   <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
@@ -298,7 +358,7 @@ class App {
                   class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
                 >
                   <img src="../assets/time.svg" class="inline-block" />
-                  19:15 hrs
+                  ${this.getTime()}
                 </span>
               </div>
               <p
@@ -333,7 +393,7 @@ class App {
       return;
     }
 
-    pinCountEl.textContent = this.#pins.length;
+    this.pinCountEl.textContent = this.#pins.length;
   }
 
   attachEditBtnListener(editBtn) {

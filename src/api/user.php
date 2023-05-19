@@ -10,6 +10,7 @@ if(isset($_SESSION["id"])) {
 
     $userName = $_SESSION["userName"];
     $userLogged = true;
+    
 
 } else {
     $userLogged= false;
