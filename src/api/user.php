@@ -40,8 +40,9 @@ if(isset($_SESSION["id"])) {
       crossorigin=""></script>
     <link rel="stylesheet" href="../../dist/output.css" />
     <link rel="stylesheet" href="../style/leaflet.css">
-    <script defer type="module" src="../js/app.js"></script>
-    <script defer type="module" src="../js/ui.js"></script>
+    <!-- <script defer type="module" src="../js/app.js"></script>
+    <script defer type="module" src="../js/ui.js"></script> -->
+    <script type="module" src="../js/init.js"></script>
     <title>Pinzy - Pin aware your people.</title>
   </head>
 
@@ -125,7 +126,7 @@ echo $userLogged? $userName: '';
       <!-- pop up for input-->
 
       <section
-        class=".user-input-bg hidden flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
+        class="user-input-bg hidden flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
         role="dialog">
         <span class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer" role="button"
           aria-label="Close">

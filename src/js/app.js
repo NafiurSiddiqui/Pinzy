@@ -71,7 +71,9 @@ class App {
 
     //handle editing
     guestEdit.editBoxHandler();
-    userEdit.editBoxHandler();
+    if (this.userType === 'user') {
+      userEdit.editBoxHandler();
+    }
     //closes on 'esc'
     this.formUi_KeyHandler();
 
@@ -120,7 +122,7 @@ class App {
   showInputPopUP(mapE) {
     this.#mapEvent = mapE;
 
-    inputPopUp.classList.remove('hidden');
+    inputPopUp?.classList.remove('hidden');
     if (!btnSubmit.hasAttribute('disabled')) {
       btnSubmit.setAttribute('disabled', '');
     }
@@ -181,7 +183,6 @@ class App {
         // Close the user-input
         userInputBg.classList.add('hidden');
       }
-      console.log('clicks');
     });
   }
 
@@ -263,7 +264,7 @@ class App {
                 </div>
               
                 <div
-                  class="user-profile-user__pin-count border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
+                  class="pin-card-header_event-icon border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
                 >
                   ${values.icon}
                 </div>
@@ -333,10 +334,6 @@ class App {
     }
 
     pinCountEl.textContent = this.#pins.length;
-
-    // this.userType === 'guest'
-    //   ? (guestPinCount.textContent = this.#pins.length)
-    //   : (userPinCount.textContent = this.#pins.length);
   }
 
   attachEditBtnListener(editBtn) {
@@ -350,8 +347,6 @@ class App {
   formUi_KeyHandler() {
     document?.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
-        // Close the user-input
-        // guestEdit.setFormEditIsOpen(false);
         userInputBg?.classList.add('hidden');
         userInputBgEdit?.classList.add('hidden');
       }

@@ -7,6 +7,7 @@ const eventTypeEl = document.getElementById('eventType__edit');
 const messageEl = document.getElementById('message__edit');
 let event = eventTypeEl?.value;
 let message = messageEl?.value;
+
 const btnSubmitEdit = document.querySelector('.btn-user-input__edit');
 const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 const userInputFormEdit = document.querySelector('.user-input-form__edit');
@@ -15,9 +16,11 @@ const userInputFormEdit = document.querySelector('.user-input-form__edit');
 
 class FormValidator {
   formEditIsopen = false;
+
   constructor(eventTypeEl, messageEl) {
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
+
     this.btnSubmitEdit = btnSubmitEdit;
     this.debounceValidation = this.debounceValidation.bind(this);
   }
@@ -62,7 +65,7 @@ class FormValidator {
 
   validateMessage() {
     const text = this.messageEl.value;
-    console.log('validation message');
+
     if (text === '') {
       this.messageEl.classList.add('validation-error');
       // this.btnSubmitEdit?.setAttribute('disabled', true);
@@ -75,16 +78,13 @@ class FormValidator {
   validateInput() {
     this.validateEventType();
     this.validateMessage();
-    console.log('validating input');
+
     const event = this.eventTypeEl?.value;
     const text = this.messageEl?.value;
 
     if ((event === 'none' && text === '') || event === 'none' || text === '') {
-      console.log('no value');
-      console.log(this.btnSubmitEdit);
       this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
     } else {
-      console.log('has value');
       this.btnSubmitEdit?.removeAttribute('disabled');
     }
   }
@@ -111,15 +111,24 @@ class FormValidator {
 class GuestEdit extends FormValidator {
   constructor() {
     super(event, messageEl);
-
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
     this.btnSubmitEdit = btnSubmitEdit;
+    this.selectedEventIcon = this.getEventIcon();
+    console.log(this.selectedEventIcon);
     this.eventTypeEl?.addEventListener('input', this.debounceValidation());
     this.messageEl?.addEventListener('input', this.debounceValidation());
+    this.eventTypeEl.addEventListener('change', this.getEventIcon.bind(this));
     this.formEditUiHandler();
   }
 
+  getEventIcon() {
+    let selectedEventIcon =
+      this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
+    this.selectedEventIcon = selectedEventIcon;
+
+    return selectedEventIcon;
+  }
   _editMessage(id) {
     //get the items from localStorage
     const data = JSON.parse(localStorage.getItem(`guest`));
@@ -132,8 +141,9 @@ class GuestEdit extends FormValidator {
     //autoselect eventType and fill up the text area
     eventTypeEl.value = item.event;
     messageEl.value = item.message;
+
     //get the newInput
-    btnSubmitEdit?.addEventListener('click', e => {
+    btnSubmitEdit?.addEventListener('click', () => {
       //get the newInput
       event = eventTypeEl.value;
       message = messageEl.value;
@@ -142,6 +152,7 @@ class GuestEdit extends FormValidator {
       const newItem = {
         ...item,
         event: event,
+        icon: this.selectedEventIcon || item.icon,
         message: message,
       };
       //update localStorage
@@ -149,6 +160,19 @@ class GuestEdit extends FormValidator {
         `guest`,
         JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
       );
+
+      // Update the corresponding event icon on the pin
+      const listItemSelector = `li[data-id="${id}"]`; // Selector for the specific <li> element
+      const listItem = document.querySelector(listItemSelector); // Get the specific <li> element
+      if (listItem) {
+        const eventIconEl = listItem.querySelector(
+          '.pin-card-header_event-icon'
+        );
+        // Find the event icon element within the <li> element
+        if (eventIconEl) {
+          eventIconEl.textContent = this.selectedEventIcon;
+        }
+      }
       //clear inputs
       eventTypeEl.value = messageEl.value = '';
 
@@ -186,7 +210,7 @@ class GuestEdit extends FormValidator {
 
   editBoxHandler() {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    console.log('guest Handler runs');
+
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
@@ -258,14 +282,22 @@ class UserEdit extends FormValidator {
     super(eventTypeEl, messageEl);
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
+    this.selectedEventIcon = this.getEventIcon();
     this.btnSubmitEdit = btnSubmitEdit;
-
     this.eventTypeEl?.addEventListener('input', this.debounceValidation());
     this.messageEl?.addEventListener('input', this.debounceValidation());
+    this.eventTypeEl.addEventListener('change', this.getEventIcon.bind(this));
     this.formEditUiHandler();
   }
 
-  _editMessage(id) {
+  getEventIcon() {
+    let selectedEventIcon =
+      this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
+    this.selectedEventIcon = selectedEventIcon;
+
+    return selectedEventIcon;
+  }
+  editMessage(id) {
     //get the items from localStorage
     const data = JSON.parse(localStorage.getItem(`user`));
 
@@ -273,13 +305,14 @@ class UserEdit extends FormValidator {
 
     //popup edit-input-form
     this._showEditForm();
-    // console.log(messageEl);
+
     //autoselect eventType and fill up the text area
     eventTypeEl.value = item.event;
     messageEl.value = item.message;
 
     //get the newInput
     btnSubmitEdit?.addEventListener('click', e => {
+      e.preventDefault();
       //get the newInput
       event = eventTypeEl.value;
       message = messageEl.value;
@@ -288,8 +321,22 @@ class UserEdit extends FormValidator {
       const newItem = {
         ...item,
         event: event,
+        icon: this.selectedEventIcon || item.icon,
         message: message,
       };
+      // Update the corresponding event icon element
+      const listItemSelector = `li[data-id="${id}"]`; // Selector for the specific <li> element
+      const listItem = document.querySelector(listItemSelector); // Get the specific <li> element
+      if (listItem) {
+        const eventIconEl = listItem.querySelector(
+          '.pin-card-header_event-icon'
+        );
+        // Find the event icon element within the <li> element
+        if (eventIconEl) {
+          eventIconEl.textContent = this.selectedEventIcon;
+        }
+      }
+
       //update localStorage
       localStorage.setItem(
         `user`,
@@ -388,7 +435,24 @@ class UserEdit extends FormValidator {
     });
   }
 }
-const guestEdit = new GuestEdit(eventTypeEl, messageEl, btnSubmitEdit);
-const userEdit = new UserEdit(eventTypeEl, messageEl, btnSubmitEdit);
 
-export { userEdit, guestEdit };
+const guestEdit = new GuestEdit(eventTypeEl, messageEl, btnSubmitEdit);
+export { guestEdit };
+
+let isGuest = window.location.pathname.includes('guest');
+
+//to prevent blocking of execution if guest.
+
+function generateUserInstance() {
+  if (isGuest) {
+    return;
+  } else {
+    const userEdit = new UserEdit(eventTypeEl, messageEl);
+
+    return userEdit;
+  }
+}
+
+const userEdit = generateUserInstance();
+
+export { userEdit };
