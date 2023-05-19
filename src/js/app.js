@@ -229,17 +229,22 @@ class App {
     let urlParams = new URLSearchParams(queryString);
     let userName = urlParams.get('username');
     let getUserNameFromStorage = localStorage.getItem('userName');
-
+    console.log(userName);
     if (userName) {
+      console.log('1st');
       //capitalize the first character
       userName = userName.charAt(0).toUpperCase() + userName.slice(1);
       //set to the localStorage
       localStorage.setItem('userName', userName);
       this.userName = userName;
-    } else if (getUserNameFromStorage) {
+    } else if (getUserNameFromStorage && userName) {
+      console.log('2nd');
       //get from localStorage
       this.userName = getUserNameFromStorage;
     } else {
+      console.log('3rd');
+      //remove name from local Storage
+      localStorage.removeItem('userName');
       this.username = 'userName';
     }
   }
