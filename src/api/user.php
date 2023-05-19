@@ -59,7 +59,7 @@ if(isset($_SESSION["id"])) {
           <ul class="flex justify-around">
             <li
               class=" border-r border-r-1 border-r-gray-300 w-4/5 text-center text-zinc-100 opacity-40 text-base hover:font-semibold hover:opacity-100 ">
-              <a href="../html/pins.html">Pins</a>
+              <a href="./pins.php">Pins</a>
             </li>
             <li class="font-semibold w-4/5 text-center nav-active text-base">
               Profile
