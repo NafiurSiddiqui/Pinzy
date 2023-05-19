@@ -1,10 +1,12 @@
 //SIDEBAR
 const btnSidebar = document.querySelector('.btn-sidebar');
+const btnSidebarMobile = document.querySelector('.btn-sidebar-mobile');
 const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
 
+console.log(btnSidebar);
 //detect the device width
 const notMobile = window.innerWidth >= 600;
 
@@ -33,6 +35,7 @@ btnSidebar?.addEventListener('click', () => {
     // rotate btn
     btnSidebar.classList.toggle('fa-flip-horizontal');
     btnSidebar.classList.toggle('btn-aside');
+
     //logut btn
     btnLogout.classList.toggle('hidden');
     //sidebar footer
@@ -40,13 +43,21 @@ btnSidebar?.addEventListener('click', () => {
     sidebarFooter.classList.toggle('justify-center');
     //sidebar width
     sidebar.classList.toggle('w-full');
-    // sidebar.classList.toggle('tablet:w-[24rem]');
-    // sidebar.classList.toggle('laptop:w-[30rem]');
+    sidebar.classList.toggle('tablet:w-[24rem]');
+    sidebar.classList.toggle('laptop:w-[30rem]');
     sidebar.classList.toggle('w-14');
     sidebar.classList.toggle('bg-aside');
-    // sidebar.classList.toggle('tablet:bg-aside');
+    sidebar.classList.toggle('tablet:bg-aside');
     sidebarContent.classList.toggle('opacity-0');
   }
+});
+
+btnSidebarMobile.addEventListener('click', () => {
+  btnSidebarMobile.classList.toggle('fa-rotate-90');
+  btnSidebarMobile.classList.toggle('fa-rotate-270');
+  sidebar.classList.toggle('bg-aside');
+  sidebar.classList.toggle('-bottom-full');
+  sidebar.classList.toggle('top-0');
 });
 
 // USER PIN
