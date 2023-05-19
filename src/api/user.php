@@ -6,11 +6,15 @@ session_start();
 $userName = "Someting_wong";
 $userLogged = false;
 
-if(isset($_SESSION["id"])) {
+if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== true)) {
 
-    $userName = $_SESSION["userName"];
-    $userLogged = true;
-    
+   
+    if (isset($_SESSION["userName"])) {
+        $userName = $_SESSION["userName"];
+        $userLogged = true;
+    }
+
+
 
 } else {
     $userLogged= false;
@@ -42,7 +46,7 @@ if(isset($_SESSION["id"])) {
     <link rel="stylesheet" href="../../dist/output.css" />
     <link rel="stylesheet" href="../style/leaflet.css">
     <!-- <script defer type="module" src="../js/app.js"></script>
-    <script defer type="module" src="../js/ui.js"></script> -->
+    <script \defer type="module" src="../js/ui.js"></script> -->
     <script type="module" src="../js/init.js"></script>
     <title>Pinzy - Pin aware your people.</title>
   </head>
@@ -97,7 +101,7 @@ echo $userLogged? $userName: '';
             No pins created yet.
           </p>
           <ul
-            class="user-pin-container pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll">
+            class="user-pin-container  hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll">
             <!-- placeholder -->
           </ul>
 

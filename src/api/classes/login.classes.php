@@ -22,7 +22,7 @@ class Login extends Dbh
             //if this fails, close the conn
             $this->errorHandler($stmt, "User Does Not Exist");
         
-            exit();
+            // exit();
         }
 
         $passwordHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ class Login extends Dbh
         if (count($passwordHashed) == 0) {
      
             $this->errorHandler($stmt, "User Not Found");
-            exit();
+            // exit();
         }
 
 
@@ -43,7 +43,7 @@ class Login extends Dbh
             $this->errorHandler($stmt, "Wrong Password.");
 
      
-            exit();
+        // exit();
         } elseif ($checkPass == true) {
           
             $stmt = $this->connect()->prepare('SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;');
@@ -59,10 +59,11 @@ class Login extends Dbh
             if (count($passwordHashed) == 0) {
 
                 $stmt = null;
-                $this->errorMsg = 'user not found';
-                header("location:../../../index.php?error=$this->errorMsg");
+                $this->errorHandler($stmt, "User Not Found");
+                // $this->errorMsg = 'user not found';
+                // header("location:../../../index.php?error=$this->errorMsg");
           
-                exit();
+                // exit();
             }
 
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -73,11 +74,9 @@ class Login extends Dbh
             $_SESSION["id"] = $user[0]['id'];
             $_SESSION["userName"] = $user[0]["user_name"];
 
-            // var_dump($user[0]['id']);
-            // var_dump($user[0]["user_name"]);
-            // header('locaton:./login.classes.php');
+      
             $stmt = null;
-            // exit();
+            
         }
 
         //Close the conn

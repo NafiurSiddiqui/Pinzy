@@ -8,7 +8,7 @@ const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
 
 const userPinContainer = document.querySelector('.user-pin-container');
-
+const globalPinContainer = document.querySelector('.global-pin-container');
 const pinCountEl = document.querySelector('.user-profile__pin-count__digit');
 const pinContainer = document.querySelector('.pin-container');
 const spinner = document.querySelector('.spinner');
@@ -237,7 +237,7 @@ class App {
       //set to the localStorage
       localStorage.setItem('userName', userName);
       this.userName = userName;
-    } else if (getUserNameFromStorage && userName) {
+    } else if (getUserNameFromStorage) {
       console.log('2nd');
       //get from localStorage
       this.userName = getUserNameFromStorage;
@@ -456,10 +456,14 @@ class App {
 
     if (this.#pins.length) {
       profileMsgEl.classList.add('hidden');
-      pinContainer.classList.remove('hidden');
+      userPinContainer?.classList.remove('hidden');
+      globalPinContainer?.classList.remove('hidden');
+      guestPinContainer?.classList.remove('hidden');
     } else {
       profileMsgEl.classList.remove('hidden');
-      pinContainer.classList.add('hidden');
+      pinContainer?.classList.add('hidden');
+      globalPinContainer?.classList.add('hidden');
+      guestPinContainer?.classList.add('hidden');
     }
   }
 

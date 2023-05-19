@@ -7,6 +7,7 @@ class SignupController extends Signup
     private $email;
     private $password;
     private $confirmPassword;
+    private $errorMsg;
 
     //construct
     public function __construct($userName, $email, $password, $confirmPassword)
@@ -21,43 +22,47 @@ class SignupController extends Signup
     public function signupUser()
     {
 
-        //NOTE: we do not need to start the session here again since we are inheritng the session start from the parent sigup class here. MAYBE? TEST
-
         //empty input
         if ($this->emptyInput() == true) {
 
-            $_SESSION['error'] = "please fill out all the fields";
-            // header("location:../index.php?error=emptyinput");
-            header("location:../index.php");
-            exit();
+            // $_SESSION['error'] = "please fill out all the fields";
+            // // header("location:../../../src/api/signup-form.php?error=emptyinput");
+            // header("location:../../src/api/signup-form.php");
+            // exit();
+            $this->errorHandlerController("Please fill out all of the fields.");
+           
         }
         //user validity
         if ($this->userNameValidation() == false) {
 
-            $_SESSION['error'] = "invalid user name";
-            header("location:../index.php");
-            exit();
+            // $_SESSION['error'] = "invalid user name";
+            // header("location:../../../src/api/signup-form.php");
+            // exit();
+            $this->errorHandlerController('Invalid Username');
         }
         //email
         if ($this->emailValidation() == false) {
-            $_SESSION['error'] = "invalid email";
-            // header("location:../index.php?error=invalidemail");
-            header("location:../index.php");
-            exit();
+            // $_SESSION['error'] = "invalid email";
+            // // header("location:../../../src/api/signup-form.php?error=invalidemail");
+            // header("location:../../../src/api/signup-form.php");
+            // exit();
+            $this->errorHandlerController('Invalid Email');
         }
         //confirmPassword match
         if ($this->confirmPasswordValidation() == false) {
 
-            $_SESSION['error'] = "password does not match";
-            header("location:../index.php");
-            exit();
+            // $_SESSION['error'] = "password does not match";
+            // header("location:../../../src/api/signup-form.php");
+            // exit();
+            $this->errorHandlerController('Passwords do not match');
         }
         //userName or password exists
         if ($this->userExists() == false) {
 
-            $_SESSION['error'] = "user already exists";
-            header("location:../index.php");
-            exit();
+            // $_SESSION['error'] = "user already exists";
+            // header("location:../../../src/api/signup-form.php");
+            // exit();
+            $this->errorHandlerController('User Already Exists');
         }
 
         //set user
@@ -139,5 +144,14 @@ class SignupController extends Signup
         return $userExists;
 
     }
+
+     protected function errorHandlerController($msg)
+     {
+             
+         $this->errorMsg = "$msg";
+         header("location:../../api/signup-form.php?error=$this->errorMsg");
+         exit();
+
+     }
 
 }

@@ -8,30 +8,33 @@ class Signup extends Dbh
     private $sql_insert_user = 'INSERT INTO pintzy_user_info (user_name, user_email, user_password) VALUES (?, ?, ?);';
 
     //store error messages
-    private $error = '';
+    private $errorMsg = '';
     
     protected function setUser($userName, $email, $password)
     {
 
-        //set the session for manual URL prevention
-        session_start();
+       
 
         // Check if the user already exists
         $stmt_check = $this->connect()->prepare($this->sql_check_user);
 
         if (!$stmt_check->execute([$userName, $email])) {
-            $this->error = 'Failed to check user.';
-            $stmt_check = null;
-            $_SESSION['signupSuccessful'] = false;
 
-            return false;
+            $this->errorHandler($stmt_check, "Failed to check User");
+            // $this->error = 'Failed to check user.';
+            // $stmt_check = null;
+            // $_SESSION['signupSuccessful'] = false;
+
+            // return false;
         }
         if ($stmt_check->rowCount() > 0) {
-            $this->error = 'User already exists.';
-            $stmt_check = null;
-            $_SESSION['signupSuccessful'] = false;
+            $this->errorHandler($stmt_check, "User Already Exists");
 
-            return false;
+            // $this->error = 'User already exists.';
+            // $stmt_check = null;
+            // $_SESSION['signupSuccessful'] = false;
+
+            // return false;
         }
 
         // Insert the new user into the database
@@ -39,20 +42,25 @@ class Signup extends Dbh
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
         if (!$stmt_insert->execute([$userName, $email, $hashedPassword])) {
-            $this->error = 'Failed to insert user.';
-            $stmt_insert = null;
-            $_SESSION['signupSuccessful'] = false;
-            return false;
+            $this->errorHandler($stmt_check, "Failed to Insert User");
+
+            // $this->error = 'Failed to insert user.';
+            // $stmt_insert = null;
+            // $_SESSION['signupSuccessful'] = false;
+            // return false;
         }
 
         
         //close the connection
         $stmt_check = null;
         
+       
+        session_start();
+
         //on success
         $_SESSION['signupSuccessful'] = true;
-
-        return true;
+        $_SESSION['userName'] = $userName;
+        // return true;
     }
 
 
@@ -63,9 +71,11 @@ class Signup extends Dbh
          //checks for connection
          if (!$stmt->execute(array($userName, $email))) {
              // if this fails, set error message
-             $this->error = 'Failed to check user.';
-             $stmt = null;
-             return false;
+             //  $this->error = 'Failed to check user.';
+             //  $stmt = null;
+             //  return false;
+             $this->errorHandler($stmt, "Failed to check User");
+
          }
 
          // fetch the number of rows returned by the SELECT statement
@@ -81,9 +91,19 @@ class Signup extends Dbh
      }
 
      //expose error
-     public function getError()
-     {
-         return $this->error;
-     }
+    //  public function getError()
+    //  {
+    //      return $this->errorMsg;
+    //  }
+
+         protected function errorHandler($stmt, $msg)
+         {
+             $stmt = null;
+             $this->errorMsg = "$msg";
+             header("location:../../../index.php?error=$this->errorMsg");
+             exit();
+        
+
+         }
 
 }

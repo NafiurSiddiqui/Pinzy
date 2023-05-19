@@ -116,6 +116,15 @@ if (urlHasError) {
   isError = false;
 }
 
+//TOAST HANDLER
+
+const btnClose = document.querySelector('.fa-x');
+const notification = document.querySelector('.toast-notification');
+
+btnClose.addEventListener('click', () => {
+  notification.classList.add('hidden');
+});
+
 //FORM ANIMATION
 const inputs = document.querySelectorAll('.input-field');
 

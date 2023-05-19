@@ -1,3 +1,12 @@
+<?php
+
+if(isset($_GET['error'])) {
+    $errorMsg = $_GET['error'];
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,12 +25,16 @@
         <script defer src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
+        <script src="https://kit.fontawesome.com/cf32b5773d.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../../dist/output.css">
+        <link rel="stylesheet" href="../style/leaflet.css">
         <script defer type="module" src="../js/ui.js"></script>
         <title>Pinzy - Signup</title>
     </head>
 
     <body class="flex justify-center items-center flex-col pb-4">
+
+
         <header class="w-full p-2">
             <div><span class="font-semibold desktop:ml-6">Pinzy</span></div>
         </header>
@@ -29,6 +42,27 @@
             <div class="flex justify-center">
                 <img src="../assets/logo.svg" alt="Pinzy Icon" class=" w-20 " />
             </div>
+
+            <?php
+
+                echo !empty($errorMsg) ? "
+            <div  class='toast-notification rounded-md bg-red-300 py-2 px-4 w-full android-md/2:w-80 android-md:justify-start tablet-md:w-[21rem]  flex justify-between items-center'>
+           <div class='notification-wrapper  flex justify-center items-center'>
+            <span class='flex items-center grow-0  justify-center'>
+            <i class='fa-regular fa-circle-xmark text-zinc-600'></i>
+            </span>
+            <div class='ml-2'>
+            <span class='text-sm text-zinc-700'>Error</span>
+            <p class='text-zinc-700 text-xs '>  $errorMsg</p>
+            </div>
+            <span>
+            </span>
+           </div>
+            <i class='fa-regular fa-x text-zinc-600'></i>
+            </div>
+        ": '';
+?>
+
             <form action="inc/signup.inc.php" method="post"
                 class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
                 <div class="flex flex-col my-2 w-full">

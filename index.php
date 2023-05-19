@@ -12,8 +12,6 @@ if(isset($_GET['error'])) {
 }
 
 
-
-
 ?>
 
 

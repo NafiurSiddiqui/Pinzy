@@ -72,7 +72,7 @@ if(isset($_SESSION["id"])) {
             No pins created yet.
           </p>
           <ul
-            class="guest-pin-container pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-76vh overflow-y-scroll">
+            class="guest-pin-container global-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-76vh overflow-y-scroll">
             <!-- placeholder -->
           </ul>
         </div>

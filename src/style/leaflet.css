@@ -8,6 +8,9 @@
   --color-touristAttraction: #14b8a6;
   --color-recreational: #fde047;
 
+  //error
+  --color-error: #fca5a5;
+
   --color-dark--1: #2d3439;
   --color-dark--2: #42484d;
   --color-light--1: #aaa;
@@ -84,4 +87,12 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+//TOAST
+
+.toastError {
+  background-color: var(--color-error);
+  padding: 0.8rem 0;
+  border-radius: 0.6rem;
 }

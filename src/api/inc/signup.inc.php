@@ -28,13 +28,16 @@ if (isset($_POST["submit"])) {
 
  
 
-    if($_SESSION['signupSuccessful'] === true) {
-        //redirect to user page
-        header('location:/projects/pintzy/src/api/user.php');
+    // if($_SESSION['signupSuccessful'] === true) {
+    //     //redirect to user page
+    //     header('location:../../src/api/user.php');
 
-    } else {
-        //redirect to signup page
-        header('location:/projects/pintzy/src/api/signup-form.php');
-    }
+    // } else {
+    //     //redirect to signup page
+    //     header('location:../../src/api/signup-form.php');
+    // }
+
+    header("location:../../api/user.php?signup=successful&username=$userName");
+
 
 }
