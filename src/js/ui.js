@@ -121,8 +121,8 @@ if (urlHasError) {
 const btnClose = document.querySelector('.fa-x');
 const notification = document.querySelector('.toast-notification');
 
-btnClose.addEventListener('click', () => {
-  notification.classList.add('hidden');
+btnClose?.addEventListener('click', () => {
+  notification?.classList.add('hidden');
 });
 
 //FORM ANIMATION

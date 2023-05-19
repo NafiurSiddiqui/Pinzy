@@ -6,7 +6,6 @@ if(isset($_GET['error'])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +45,7 @@ if(isset($_GET['error'])) {
             <?php
 
                 echo !empty($errorMsg) ? "
-            <div  class='toast-notification rounded-md bg-red-300 py-2 px-4 w-full android-md/2:w-80 android-md:justify-start tablet-md:w-[21rem]  flex justify-between items-center'>
+            <div  class='toast-notification rounded-md bg-red-300 py-2 px-4 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
            <div class='notification-wrapper  flex justify-center items-center'>
             <span class='flex items-center grow-0  justify-center'>
             <i class='fa-regular fa-circle-xmark text-zinc-600'></i>

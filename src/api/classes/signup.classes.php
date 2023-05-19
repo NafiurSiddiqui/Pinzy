@@ -1,6 +1,5 @@
 <?php
 
-//This makes sure, we can not manually get to these pages. (e.g - typing in the URL)
 
 class Signup extends Dbh
 {
@@ -21,20 +20,10 @@ class Signup extends Dbh
         if (!$stmt_check->execute([$userName, $email])) {
 
             $this->errorHandler($stmt_check, "Failed to check User");
-            // $this->error = 'Failed to check user.';
-            // $stmt_check = null;
-            // $_SESSION['signupSuccessful'] = false;
-
-            // return false;
+           
         }
         if ($stmt_check->rowCount() > 0) {
             $this->errorHandler($stmt_check, "User Already Exists");
-
-            // $this->error = 'User already exists.';
-            // $stmt_check = null;
-            // $_SESSION['signupSuccessful'] = false;
-
-            // return false;
         }
 
         // Insert the new user into the database
@@ -44,10 +33,7 @@ class Signup extends Dbh
         if (!$stmt_insert->execute([$userName, $email, $hashedPassword])) {
             $this->errorHandler($stmt_check, "Failed to Insert User");
 
-            // $this->error = 'Failed to insert user.';
-            // $stmt_insert = null;
-            // $_SESSION['signupSuccessful'] = false;
-            // return false;
+
         }
 
         
@@ -60,7 +46,7 @@ class Signup extends Dbh
         //on success
         $_SESSION['signupSuccessful'] = true;
         $_SESSION['userName'] = $userName;
-        // return true;
+       
     }
 
 
@@ -70,10 +56,7 @@ class Signup extends Dbh
 
          //checks for connection
          if (!$stmt->execute(array($userName, $email))) {
-             // if this fails, set error message
-             //  $this->error = 'Failed to check user.';
-             //  $stmt = null;
-             //  return false;
+            
              $this->errorHandler($stmt, "Failed to check User");
 
          }
@@ -82,19 +65,14 @@ class Signup extends Dbh
          $rowCount = $stmt->fetchColumn();
 
          // if the row count is greater than 0, a user with the same user name or email exists
-         $result = ($rowCount > 0) ? false : true;
+    
+         $result = ($rowCount > 0) ? true : false;
 
          // close the connection
          $stmt = null;
 
          return $result;
      }
-
-     //expose error
-    //  public function getError()
-    //  {
-    //      return $this->errorMsg;
-    //  }
 
          protected function errorHandler($stmt, $msg)
          {

@@ -23,20 +23,8 @@ if (isset($_POST["submit"])) {
     //Error handler
     $signup->signupUser();
     
-    //send to home
-    // header('location:../index.php?message=signupSucceed');
 
- 
-
-    // if($_SESSION['signupSuccessful'] === true) {
-    //     //redirect to user page
-    //     header('location:../../src/api/user.php');
-
-    // } else {
-    //     //redirect to signup page
-    //     header('location:../../src/api/signup-form.php');
-    // }
-
+    //redirect to user page
     header("location:../../api/user.php?signup=successful&username=$userName");
 
 

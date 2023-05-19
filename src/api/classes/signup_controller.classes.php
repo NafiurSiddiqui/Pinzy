@@ -24,44 +24,29 @@ class SignupController extends Signup
 
         //empty input
         if ($this->emptyInput() == true) {
-
-            // $_SESSION['error'] = "please fill out all the fields";
-            // // header("location:../../../src/api/signup-form.php?error=emptyinput");
-            // header("location:../../src/api/signup-form.php");
-            // exit();
             $this->errorHandlerController("Please fill out all of the fields.");
            
         }
         //user validity
         if ($this->userNameValidation() == false) {
 
-            // $_SESSION['error'] = "invalid user name";
-            // header("location:../../../src/api/signup-form.php");
-            // exit();
             $this->errorHandlerController('Invalid Username');
         }
         //email
         if ($this->emailValidation() == false) {
-            // $_SESSION['error'] = "invalid email";
-            // // header("location:../../../src/api/signup-form.php?error=invalidemail");
-            // header("location:../../../src/api/signup-form.php");
-            // exit();
+            
             $this->errorHandlerController('Invalid Email');
         }
         //confirmPassword match
         if ($this->confirmPasswordValidation() == false) {
 
-            // $_SESSION['error'] = "password does not match";
-            // header("location:../../../src/api/signup-form.php");
-            // exit();
+           
             $this->errorHandlerController('Passwords do not match');
         }
         //userName or password exists
         if ($this->userExists() == false) {
 
-            // $_SESSION['error'] = "user already exists";
-            // header("location:../../../src/api/signup-form.php");
-            // exit();
+           
             $this->errorHandlerController('User Already Exists');
         }
 
@@ -136,9 +121,9 @@ class SignupController extends Signup
     {
        
         if (!$this->checkUser($this->userName, $this->email)) {
-            $userExists = false;
-        } else {
             $userExists = true;
+        } else {
+            $userExists = false;
         }
 
         return $userExists;
