@@ -109,6 +109,8 @@ class FormValidator {
 }
 
 class GuestEdit extends FormValidator {
+  #pinEdited = false;
+
   constructor() {
     super(event, messageEl);
     this.eventTypeEl = eventTypeEl;
@@ -119,6 +121,7 @@ class GuestEdit extends FormValidator {
     this.eventTypeEl?.addEventListener('input', this.debounceValidation());
     this.messageEl?.addEventListener('input', this.debounceValidation());
     this.eventTypeEl.addEventListener('change', this.getEventIcon.bind(this));
+    console.log(this.#pinEdited);
     this.formEditUiHandler();
   }
 
@@ -143,10 +146,15 @@ class GuestEdit extends FormValidator {
     messageEl.value = item.message;
 
     //get the newInput
-    btnSubmitEdit?.addEventListener('click', () => {
+    btnSubmitEdit?.addEventListener('click', e => {
+      e.preventDefault();
       //get the newInput
       event = eventTypeEl.value;
       message = messageEl.value;
+      //if event or message value changes
+      if (event !== item.event || message !== item.message) {
+        this.#pinEdited = true;
+      }
 
       //create a new object
       const newItem = {
@@ -179,10 +187,28 @@ class GuestEdit extends FormValidator {
       //hideInput
       this._hideEditForm();
 
-      //refresh window to update the pins
-      location.reload();
-      //how do I keep the scroll point to the same point after window refresh?
+      //refresh in a sec to make sure the UI updates
+      this.watchForPinChanges();
     });
+  }
+
+  watchForPinChanges() {
+    //see if pinEdited
+    if (this.#pinEdited) {
+      console.log('pin changed');
+      //roll out timer and refresh the content
+      setTimeout(() => {
+        app.refreshContent();
+      }, 100);
+
+      //set edited to false
+      this.#pinEdited = false;
+    } else {
+      //refresh anyway otherwise if submitted, page does not refresh
+      setTimeout(() => {
+        app.refreshContent();
+      }, 100);
+    }
   }
 
   deletePin(id) {
