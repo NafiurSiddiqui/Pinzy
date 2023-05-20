@@ -6,7 +6,6 @@ const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
 
-console.log(btnSidebar);
 //detect the device width
 const notMobile = window.innerWidth >= 600;
 
@@ -52,12 +51,27 @@ btnSidebar?.addEventListener('click', () => {
   }
 });
 
-btnSidebarMobile.addEventListener('click', () => {
+let sidebarIsOpen = false;
+btnSidebarMobile?.addEventListener('click', () => {
   btnSidebarMobile.classList.toggle('fa-rotate-90');
   btnSidebarMobile.classList.toggle('fa-rotate-270');
   sidebar.classList.toggle('bg-aside');
-  sidebar.classList.toggle('-bottom-full');
-  sidebar.classList.toggle('top-0');
+  // sidebar.classList.remove('-bottom-full');
+
+  if (!sidebarIsOpen) {
+    console.log('sidebar is NOT up');
+    sidebar.classList.remove('-bottom-full');
+
+    sidebar.classList.add('animate-fade-up');
+    sidebarIsOpen = true;
+  } else {
+    console.log('sidebar is UP');
+    sidebar.classList.remove('animate-fade-up');
+    sidebar.classList.add('animate-fade-down');
+    sidebar.classList.add('-bottom-full');
+
+    sidebarIsOpen = false;
+  }
 });
 
 // USER PIN
