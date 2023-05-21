@@ -22,6 +22,28 @@ module.exports = {
         primary: '#f7fee7',
       },
     },
+    animation: {
+      'fade-up': 'fade-up 1s ease-in-out',
+      'fade-down': 'fade-down 1s ease-in-out',
+    },
+    keyframes: {
+      'fade-up': {
+        '0%': {
+          bottom: '-100%',
+        },
+        '100%': {
+          bottom: '0',
+        },
+      },
+      'fade-down': {
+        '0%': {
+          bottom: '0',
+        },
+        '100%': {
+          bottom: '-100%',
+        },
+      },
+    },
   },
   plugins: [],
 };

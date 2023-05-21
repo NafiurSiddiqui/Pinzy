@@ -238,11 +238,9 @@ class App {
       localStorage.setItem('userName', userName);
       this.userName = userName;
     } else if (getUserNameFromStorage) {
-      console.log('2nd');
       //get from localStorage
       this.userName = getUserNameFromStorage;
     } else {
-      console.log('3rd');
       //remove name from local Storage
       localStorage.removeItem('userName');
       this.username = 'userName';

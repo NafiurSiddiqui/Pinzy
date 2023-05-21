@@ -41,10 +41,10 @@
     >
       <!-- sidebar -->
       <aside
-        class="absolute left-0 sidebar transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative tablet:bg-aside tablet:w-[24rem] laptop:w-[30rem] desktop-md:rounded-l-lg"
+        class="absolute left-0 sidebar -bottom-full transition-all bg-zinc-500 duration-1000 z-30 w-full tablet:top-0 tablet:relative tablet:bg-aside laptop:w-[30rem] desktop-md:rounded-l-lg"
       >
         <div
-          class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0 tablet:opacity-100"
+          class="sidebar-content-wrapper transition-all duration-[400ms] h-screen tablet:opacity-100"
         >
           <!-- nav -->
           <nav
@@ -106,7 +106,7 @@
         </div>
         <!-- side footer actions -->
         <div
-          class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 tablet:justify-between"
+          class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-10 left-0 px-4 py-2 tablet:justify-between"
         >
           <a
             class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
@@ -115,10 +115,23 @@
           >
 
           <i
-            class="btn-sidebar fa-solid fa-chevron-left fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"
+            class="btn-sidebar fa-solid fa-chevron-left tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"
           ></i>
         </div>
       </aside>
+      <div
+        class="user-profile-footer-mobile w-full flex justify-between fixed bottom-0 bg-slate-600 left-0 px-4 py-4 tablet:justify-between tablet:hidden z-30"
+      >
+        <a
+          class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 tablet:flex"
+          href="../../index.php"
+          >Logout</a
+        >
+
+        <i
+          class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"
+        ></i>
+      </div>
       <section class="map-content w-full">
         <!-- main content -->
 

@@ -1,56 +1,55 @@
 //SIDEBAR
 const btnSidebar = document.querySelector('.btn-sidebar');
+const btnSidebarMobile = document.querySelector('.btn-sidebar-mobile');
 const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
 
-//detect the device width
-const notMobile = window.innerWidth >= 600;
-
 btnSidebar?.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
 
-  if (notMobile) {
-    sidebar.classList.toggle('tablet:w-[24rem]');
-    sidebar.classList.toggle('laptop:w-[30rem]');
-    sidebar.classList.toggle('bg-aside');
-    sidebar.classList.toggle('tablet:bg-aside');
-    //show content
+  //adjust width, bg
+  // sidebar.classList.toggle('tablet:w-[24rem]');
+  sidebar.classList.toggle('laptop:w-[30rem]');
+  sidebar.classList.toggle('w-full');
+  sidebar.classList.toggle('w-14');
+  sidebar.classList.toggle('bg-aside');
+  sidebar.classList.toggle('tablet:bg-aside');
+  //hide content
+  sidebarContent.classList.toggle('tablet:opacity-100');
+  sidebarContent.classList.toggle('invisible');
+  //hide logout btn
+  btnLogout.classList.toggle('tablet:flex');
+  //sidebar footer
+  sidebarFooter.classList.toggle('tablet:justify-between');
+  // rotate btn
+  btnSidebar.classList.toggle('fa-flip-horizontal');
+});
 
-    sidebarContent.classList.toggle('tablet:opacity-100');
-    //hide logout btn
+let sidebarIsOpen = false;
+btnSidebarMobile?.addEventListener('click', () => {
+  btnSidebarMobile.classList.toggle('fa-rotate-90');
+  btnSidebarMobile.classList.toggle('fa-rotate-270');
+  sidebar.classList.toggle('bg-aside');
+  // sidebar.classList.remove('-bottom-full');
 
-    btnLogout.classList.toggle('tablet:flex');
-    //sidebar footer
-    sidebarFooter.classList.toggle('tablet:justify-between');
+  if (!sidebarIsOpen) {
+    console.log('sidebar is NOT up');
+    sidebar.classList.remove('-bottom-full');
 
-    // rotate btn
-    btnSidebar.classList.toggle('fa-flip-horizontal');
-    btnSidebar.classList.toggle('btn-aside');
+    sidebar.classList.add('animate-fade-up');
+    sidebarIsOpen = true;
   } else {
-    //settings for mobile
-    // rotate btn
-    btnSidebar.classList.toggle('fa-flip-horizontal');
-    btnSidebar.classList.toggle('btn-aside');
-    //logut btn
-    btnLogout.classList.toggle('hidden');
-    //sidebar footer
-    sidebarFooter.classList.toggle('justify-between');
-    sidebarFooter.classList.toggle('justify-center');
-    //sidebar width
-    sidebar.classList.toggle('w-full');
-    // sidebar.classList.toggle('tablet:w-[24rem]');
-    // sidebar.classList.toggle('laptop:w-[30rem]');
-    sidebar.classList.toggle('w-14');
-    sidebar.classList.toggle('bg-aside');
-    // sidebar.classList.toggle('tablet:bg-aside');
-    sidebarContent.classList.toggle('opacity-0');
+    sidebar.classList.remove('animate-fade-up');
+    sidebar.classList.add('animate-fade-down');
+    sidebar.classList.add('-bottom-full');
+
+    sidebarIsOpen = false;
   }
 });
 
 // USER PIN
-
 const editBox = document.querySelector('.pin-edit-box');
 
 export const toggleEditBox = (closeBox = false) => {
