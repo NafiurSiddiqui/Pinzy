@@ -23,9 +23,12 @@ if(isset($_GET['error'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <link rel="shortcut icon" type="image/png" href="./src/assets/logo.svg" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -45,7 +48,7 @@ if(isset($_GET['error'])) {
     <div
       class="content-wrapper flex flex-col justify-center items-center  relative w-full desktop-md:w-4/5 desktop-md:py-8 desktop:px-8">
       <header class="w-full p-2">
-        <div><span class="font-semibold desktop:ml-6">Pinzy</span></div>
+        <div><span class="font-semibold font-caveat text-zinc-500 text-2xl desktop:ml-6 ml-4">Pinzy</span></div>
       </header>
       <section class="flex flex-col  items-center w-4/5 h-screen pt-4 laptop:pt-10  desktop-md:mt-16">
         <div class="flex justify-center w-28">

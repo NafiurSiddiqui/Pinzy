@@ -22,6 +22,9 @@ module.exports = {
       backgroundColor: {
         primary: '#f7fee7',
       },
+      fontFamily: {
+        caveat: ['Caveat', 'cursive'],
+      },
     },
     animation: {
       'fade-up': 'fade-up 1s ease-in-out',

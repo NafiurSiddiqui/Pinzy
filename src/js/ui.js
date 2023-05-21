@@ -44,9 +44,7 @@ btnSidebarMobile?.addEventListener('click', () => {
 
     sidebarIsOpen = false;
   }
-  console.log(sidebarIsOpen);
 });
-console.log(sidebarIsOpen);
 
 // USER PIN
 const editBox = document.querySelector('.pin-edit-box');

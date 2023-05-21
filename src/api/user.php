@@ -33,7 +33,9 @@ if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SE
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" type="image/png" href="../../icon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -81,7 +83,7 @@ if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SE
               class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center">
               <img src="../assets/user-icon-large.svg" alt="user profile" />
             </div>
-            <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl">
+            <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-100 text-2xl">
               <?php
            
 echo $userLogged? $userName: '';
@@ -143,7 +145,7 @@ echo $userLogged? $userName: '';
 
         <div class="ml-4 bg-slate-500">
           <span
-            class="font-semibold desktop:ml-6 fixed top-2 right-4 z-20 bg-zinc-400/30 backdrop-blur-sm p-3 rounded-sm">Pinzy</span>
+            class="font-semibold font-caveat text-zinc-500 text-2xl desktop:ml-6 fixed top-2 right-4 z-20 bg-zinc-400/30 backdrop-blur-sm p-3 rounded-sm">Pinzy</span>
         </div>
 
         <!-- pop up for input-->
