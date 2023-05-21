@@ -48,10 +48,10 @@ if(isset($_SESSION["id"])) {
       class="content-wrapper flex justify-center items-center relative w-full desktop-md:w-4/5 desktop-md:py-4 desktop-md:px-8 desktop:rounded-md">
       <!-- sidebar -->
       <aside
-        class="sidebar absolute left-0  transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative tablet:bg-aside tablet:w-[24rem] laptop:w-[30rem]">
-        <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0 tablet:opacity-100">
+        class="absolute left-0 sidebar -bottom-full transition-all w-full bg-zinc-500 duration-1000 z-30 inw-full tablet:top-0 tablet:relative tablet:bg-aside laptop:w-[30rem] desktop-md:rounded-l-lg">
+        <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen tablet:opacity-100">
           <!-- nav -->
-          <nav class="border-b border-zinc-400 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
+          <nav class="py-4 px-4 drop-shadow-md shadow-zinc-100 bg-zinc-600">
             <ul class="flex justify-around">
               <li class="border-r border-r-1 border-r-gray-300 w-4/5 text-center text-base nav-active">
                 Pins
@@ -69,7 +69,7 @@ if(isset($_SESSION["id"])) {
           </nav>
 
           <!-- pins -->
-          <div class="pin-container-wrapper__global bg-zinc-700 h-76vh laptop:h-76vh/20">
+          <div class="pin-container-wrapper__global bg-zinc-700 h-90vh">
             <p class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic">
               No pins created yet.
             </p>
@@ -80,15 +80,31 @@ if(isset($_SESSION["id"])) {
           </div>
         </div>
         <!-- actions -->
-        <div
+        <!-- <div
           class="user-profile-footer w-full flex justify-center absolute bottom-6 left-0 px-4 py-2 tablet:justify-between">
           <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
             href="../../index.php">Logout</a>
 
           <i
             class="btn-sidebar fa-solid fa-chevron-left rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+        </div> -->
+        <div
+          class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-0 left-0 px-4 py-5 bg-zinc-600 tablet:justify-between">
+          <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
+            href="../../index.php">Logout</a>
+
+          <i
+            class="btn-sidebar fa-solid fa-chevron-left tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
         </div>
       </aside>
+      <div
+        class="user-profile-footer-mobile w-full flex justify-between fixed bottom-0 bg-zinc-600 left-0 px-4 py-4 tablet:justify-between  tablet:hidden z-30">
+        <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 tablet:flex"
+          href="../../index.php">Logout</a>
+
+        <i
+          class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+      </div>
       <section class="map-content w-full">
         <!-- main content -->
 

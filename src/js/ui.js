@@ -32,12 +32,9 @@ btnSidebarMobile?.addEventListener('click', () => {
   btnSidebarMobile.classList.toggle('fa-rotate-90');
   btnSidebarMobile.classList.toggle('fa-rotate-270');
   sidebar.classList.toggle('bg-aside');
-  // sidebar.classList.remove('-bottom-full');
 
   if (!sidebarIsOpen) {
-    console.log('sidebar is NOT up');
     sidebar.classList.remove('-bottom-full');
-
     sidebar.classList.add('animate-fade-up');
     sidebarIsOpen = true;
   } else {
@@ -47,7 +44,9 @@ btnSidebarMobile?.addEventListener('click', () => {
 
     sidebarIsOpen = false;
   }
+  console.log(sidebarIsOpen);
 });
+console.log(sidebarIsOpen);
 
 // USER PIN
 const editBox = document.querySelector('.pin-edit-box');

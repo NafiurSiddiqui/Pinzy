@@ -17,6 +17,7 @@ module.exports = {
         '65vh': '65vh',
         '76vh': '76vh',
         '80vh': '80vh',
+        '90vh': '90vh',
       },
       backgroundColor: {
         primary: '#f7fee7',

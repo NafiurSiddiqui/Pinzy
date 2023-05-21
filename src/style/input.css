@@ -12,8 +12,7 @@
   }
 
   .nav-active {
-    @apply text-slate-200;
-    @apply font-bold;
+    @apply text-zinc-200;
   }
 
   .user-pin {
@@ -44,7 +43,7 @@
   .bg-aside {
     @apply border-2;
     @apply border-zinc-400;
-    @apply bg-zinc-600/80;
+    @apply bg-zinc-600;
     @apply backdrop-blur-sm;
   }
 

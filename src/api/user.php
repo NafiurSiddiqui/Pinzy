@@ -32,7 +32,7 @@ if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SE
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="../../icon.png" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -57,12 +57,12 @@ if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SE
       class="content-wrapper flex justify-center items-center relative w-full desktop-md:w-4/5 desktop-md:py-4 desktop-md:px-8 desktop:rounded-md">
       <!-- sidebar -->
       <aside
-        class="absolute sidebar left-0  transition-all bg-zinc-500 duration-500 z-30 w-14 tablet-md:relative tablet:bg-aside tablet:w-[24rem] laptop:w-[30rem]">
+        class="absolute left-0 sidebar -bottom-full transition-all w-full  duration-1000 z-30 inw-full tablet:top-0 tablet:relative tablet:bg-aside laptop:w-[30rem] desktop-md:rounded-l-lg">
 
-        <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen opacity-0 tablet:opacity-100">
+        <div class="sidebar-content-wrapper transition-all duration-[400ms] h-screen tablet:opacity-100 bg-zinc-600">
 
           <!-- nav -->
-          <nav class="border-b border-zinc-400 py-4 px-4 drop-shadow-sm bg-zinc-400/60">
+          <nav class=" py-4 px-4 drop-shadow-md shadow-zinc-100 bg-zinc-600">
             <ul class="flex justify-around">
               <li
                 class=" border-r border-r-1 border-r-gray-300 w-4/5 text-center text-zinc-100 opacity-40 text-base hover:font-semibold hover:opacity-100 ">
@@ -75,7 +75,7 @@ if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SE
           </nav>
 
           <!-- user info -->
-          <div class="signed-user-profile_container flex w-full my-4 py-4 px-5 items-center justify-between">
+          <div class="signed-user-profile_container flex w-full my-4  px-5 items-center justify-between ">
             <!-- placeholder -->
             <div
               class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center">
@@ -111,7 +111,7 @@ echo $userLogged? $userName: '';
         </div>
         <!-- side footer actions -->
 
-        <div
+        <!-- <div
           class="user-profile-footer w-full flex justify-center absolute bottom-10 left-0 px-4 py-2 tablet:justify-between">
 
           <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
@@ -120,8 +120,24 @@ echo $userLogged? $userName: '';
 
           <i
             class="btn-sidebar fa-solid fa-chevron-left fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+        </div> -->
+        <div
+          class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-0 left-0 px-4 py-5 bg-zinc-600 tablet:justify-between">
+          <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
+            href="../api/inc/logout.inc.php">Logout</a>
+
+          <i
+            class="btn-sidebar fa-solid fa-chevron-left tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
         </div>
       </aside>
+      <div
+        class="user-profile-footer-mobile w-full flex justify-between fixed bottom-0 bg-zinc-600 left-0 px-4 py-4 tablet:justify-between tablet:hidden z-30">
+        <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 tablet:flex"
+          href="../api/inc/logout.inc.php">Logout</a>
+
+        <i
+          class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+      </div>
       <section class="map-content w-full">
         <!-- main content -->
 
