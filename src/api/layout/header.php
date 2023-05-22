@@ -6,10 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <link rel="shortcut icon" type="image/png" href="./src/assets/logo.svg" />
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
         <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -21,15 +20,21 @@
         <script src="https://kit.fontawesome.com/cf32b5773d.js" crossorigin="anonymous"></script>
 
         <!-- dynamic -->
+        <link rel="shortcut icon" type="image/png" href="
+        <?php
+            echo !empty($pathToIcon)? $pathToIcon : 'setPath';
+        ?>
+        
+        " />
         <script type="module" src="
         <?php
-        echo !empty($pathToJs)? $pathToJs: 'debug';
+        echo !empty($pathToJs)? $pathToJs: 'setPath';
 
         ?>
         "></script>
         <link rel="stylesheet" href="
         <?php
-            echo !empty($pathToCss) ? $pathToCss: 'debug';
+            echo !empty($pathToCss) ? $pathToCss: 'setPath';
         ?>
         
         " />
@@ -50,7 +55,12 @@
             </header>
             <section class="flex flex-col  items-center w-4/5 h-screen pt-4 laptop:pt-10  desktop-md:mt-16">
                 <div class="flex justify-center w-28">
-                    <img src="./src/assets/logo.svg" alt="Pinzy Icon" class="!w-28" />
+                    <img src="
+                     <?php
+                        echo !empty($pathToIcon)? $pathToIcon : 'setPath';
+        ?>
+                    
+                    " alt="Pinzy Icon" class="!w-28" />
                 </div>
                 <?php
        

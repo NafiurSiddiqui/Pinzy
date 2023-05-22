@@ -11,6 +11,7 @@ if(isset($_GET['error'])) {
 
 }
 
+$pathToIcon = './src/assets/logo.svg';
 $pathToCss = './dist/output.css';
 $pathToJs = './src/js/ui.js';
 $pageTitle = 'login';
