@@ -16,7 +16,7 @@ $pathToCss = './dist/output.css';
 $pathToJs = './src/js/ui.js';
 $pageTitle = 'login';
 
-include './src/api/layout/header.php';
+include './src/api/layout/header-form.php';
 
 ?>
 
