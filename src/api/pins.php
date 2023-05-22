@@ -45,7 +45,7 @@ include './layout/header-pin.php';
     No pins created yet.
   </p>
   <ul
-    class="guest-pin-container global-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-76vh overflow-y-scroll">
+    class="global-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-76vh overflow-y-scroll">
     <!-- placeholder -->
   </ul>
 </div>
@@ -138,7 +138,7 @@ include './layout/header-pin.php';
     </span>
 
     <form action="#"
-      class="user-input-form__edit p-4 rounded-sm pb-8 relative border border-gray-300 bg-zinc-300 w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+      class="user-input-form__edit p-4 rounded-sm pb-8 relative border border-zinc-600/50 bg-zinc-400/60 backdrop-blur-sm w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
       id="form-user-input__edit">
       <div class="flex flex-col my-4 w-full">
         <label class="text-gray-600 text-xs mb-1" for="eventType__edit">Pin type</label>
@@ -159,7 +159,7 @@ include './layout/header-pin.php';
           <option value="touristAttraction" data-icon="🌐" data-color="-teal-500">
             Tourist Attraction 🌐
           </option>
-          <option value="reacreational" data-icon="😎" data-color="-yellow-900">
+          <option value="recreational" data-icon="😎" data-color="-yellow-900">
             Recreational 😎
           </option>
         </select>
@@ -171,8 +171,8 @@ include './layout/header-pin.php';
           cols="30" rows="4"></textarea>
       </div>
       <button
-        class="btn-user-input w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
-        type="submit" name="guest-submit-edit" disabled>
+        class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
+        type="submit" name="guest-submit-edit">
         Pin
       </button>
     </form>

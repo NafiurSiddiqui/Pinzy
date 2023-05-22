@@ -372,12 +372,21 @@ class App {
             </div>
           </li>
     `;
-      pinContainer.insertAdjacentHTML('beforeend', html);
+      //inject inside the respective profil
+      pinContainer?.insertAdjacentHTML('beforeend', html);
+      //inject insid the global
+      globalPinContainer?.insertAdjacentHTML('beforeend', html);
       // attachEditBtnListener();
-      const editBtn = pinContainer.querySelector(
+      const editBtn = pinContainer?.querySelector(
         `[data-id="${values.id}"] .pin-edit-box__container i`
       );
-      this.attachEditBtnListener(editBtn);
+      const editBtnGlobal = globalPinContainer?.querySelector(
+        `[data-id="${values.id}"] .pin-edit-box__container i`
+      );
+
+      editBtnGlobal
+        ? this.attachEditBtnListener(editBtnGlobal)
+        : this.attachEditBtnListener(editBtn);
     } else {
       alert(
         isGuest
@@ -400,7 +409,7 @@ class App {
   }
 
   attachEditBtnListener(editBtn) {
-    editBtn.addEventListener('click', e => {
+    editBtn?.addEventListener('click', e => {
       e.stopPropagation();
       const editBox = e.currentTarget.nextElementSibling;
       editBox.classList.toggle('hidden');
@@ -439,7 +448,7 @@ class App {
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem(this.userType));
-
+    console.log(this.userType);
     if (!data) return;
 
     this.#pins = data;
