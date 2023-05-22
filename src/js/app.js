@@ -6,7 +6,6 @@ const eventTypeEl = document.getElementById('eventType');
 const messageEl = document.getElementById('message');
 const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
-
 const userPinContainer = document.querySelector('.user-pin-container');
 const globalPinContainer = document.querySelector('.global-pin-container');
 const pinCountEl = document.querySelector('.user-profile__pin-count__digit');
@@ -15,6 +14,7 @@ const spinner = document.querySelector('.spinner');
 const userInputBg = document.querySelector('.user-input-bg');
 const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 const userInputForm = document.querySelector('.user-input-form');
+console.log(globalPinContainer);
 
 class App {
   #map;
@@ -27,8 +27,10 @@ class App {
   mapInitiated = false;
   pagePin = null;
   userName = 'userName';
+
   constructor() {
     this.debounceValidation = this.debounceValidation.bind(this);
+
     // Get user's position
     this._getPosition();
     this.pinCountEl = pinCountEl;
@@ -229,7 +231,7 @@ class App {
     let urlParams = new URLSearchParams(queryString);
     let userName = urlParams.get('username');
     let getUserNameFromStorage = localStorage.getItem('userName');
-    console.log(userName);
+
     if (userName) {
       console.log('1st');
       //capitalize the first character
@@ -372,11 +374,11 @@ class App {
             </div>
           </li>
     `;
-      //inject inside the respective profil
+      //inject inside the respective profile
       pinContainer?.insertAdjacentHTML('beforeend', html);
-      //inject insid the global
+      //inject inside the global
       globalPinContainer?.insertAdjacentHTML('beforeend', html);
-      // attachEditBtnListener();
+      // attachEditBtnListener;
       const editBtn = pinContainer?.querySelector(
         `[data-id="${values.id}"] .pin-edit-box__container i`
       );
@@ -431,7 +433,7 @@ class App {
 
     if (!pinEl) return;
 
-    //we convert to number since data-id is string
+    //convert ID to number since data-id is string
     const pin = this.#pins.find(pin => pin.id === +pinEl.dataset.id);
 
     this.#map.setView(pin.coords, this.#mapZoomLevel, {
@@ -447,11 +449,27 @@ class App {
   }
 
   _getLocalStorage() {
-    const data = JSON.parse(localStorage.getItem(this.userType));
-    console.log(this.userType);
-    if (!data) return;
+    const guestPins = JSON.parse(localStorage.getItem('guest'));
+    const userPins = JSON.parse(localStorage.getItem('user'));
 
-    this.#pins = data;
+    if (guestPins) {
+      this.#pins = guestPins.map(pin => ({
+        ...pin,
+        userName: 'Anonymous',
+      }));
+    }
+
+    if (userPins) {
+      this.#pins = [
+        ...this.#pins,
+        ...userPins.map(pin => ({
+          ...pin,
+          userName: this.userName,
+        })),
+      ];
+    }
+
+    console.log(this.#pins);
 
     this.#pins.forEach(pin => {
       this._renderPin(pin);
