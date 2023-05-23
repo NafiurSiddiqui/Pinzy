@@ -8,13 +8,18 @@ const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
 const userPinContainer = document.querySelector('.user-pin-container');
 const globalPinContainer = document.querySelector('.global-pin-container');
-const pinCountEl = document.querySelector('.user-profile__pin-count__digit');
+const userPinCountEl = document.querySelector(
+  '.user-profile__pin-count__digit'
+);
+const guestPinCountEl = document.querySelector(
+  '.guest-profile__pin-count__digit'
+);
 const pinContainer = document.querySelector('.pin-container');
 const spinner = document.querySelector('.spinner');
 const userInputBg = document.querySelector('.user-input-bg');
 const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 const userInputForm = document.querySelector('.user-input-form');
-console.log(globalPinContainer);
+let userLogged = globalPinContainer?.dataset.userlogged.trim();
 
 class App {
   #map;
@@ -27,23 +32,25 @@ class App {
   mapInitiated = false;
   pagePin = null;
   userName = 'userName';
+  hasGuestPins = false;
 
   constructor() {
     this.debounceValidation = this.debounceValidation.bind(this);
 
     // Get user's position
     this._getPosition();
-    this.pinCountEl = pinCountEl;
+    // this.pinCountEl = pinCountEl;
     //detect page type
     this.getURLpath('pins.php')
       ? (this.pagePin = true)
       : (this.pagePin = false);
 
     //usertype
-    this.getURLpath('user.php')
-      ? (this.userType = 'user')
-      : (this.userType = 'guest');
-
+    // this.getURLpath('user.php')
+    //   ? (this.userType = 'user')
+    //   : (this.userType = 'guest');
+    this.userType = userLogged === true ? 'user' : 'guest';
+    console.log(userLogged);
     //set user name
     this.getUserName();
 
@@ -233,7 +240,6 @@ class App {
     let getUserNameFromStorage = localStorage.getItem('userName');
 
     if (userName) {
-      console.log('1st');
       //capitalize the first character
       userName = userName.charAt(0).toUpperCase() + userName.slice(1);
       //set to the localStorage
@@ -291,8 +297,8 @@ class App {
   _renderPin(values) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
-    const isGuest = this.userType === 'guest';
-    const userName = isGuest ? 'Anonymous' : this.userName;
+    const isGuest = values.userType === 'guest';
+    const userName = isGuest ? 'Anonymous' : values.userName;
     const pinContainer = isGuest ? guestPinContainer : userPinContainer;
     const pinLimit = isGuest ? 10 : 100;
 
@@ -377,7 +383,9 @@ class App {
       //inject inside the respective profile
       pinContainer?.insertAdjacentHTML('beforeend', html);
       //inject inside the global
+      if (globalPinContainer) globalPinContainer.textContent = '';
       globalPinContainer?.insertAdjacentHTML('beforeend', html);
+
       // attachEditBtnListener;
       const editBtn = pinContainer?.querySelector(
         `[data-id="${values.id}"] .pin-edit-box__container i`
@@ -407,7 +415,11 @@ class App {
       return;
     }
 
-    this.pinCountEl.textContent = this.#pins.length;
+    if (this.hasGuestPins) {
+      guestPinCountEl.textContent = this.#pins.length;
+    } else {
+      userPinCountEl ? (userPinCountEl.textContent = this.#pins.length) : null;
+    }
   }
 
   attachEditBtnListener(editBtn) {
@@ -453,20 +465,23 @@ class App {
     const userPins = JSON.parse(localStorage.getItem('user'));
 
     if (guestPins) {
+      this.hasGuestPins = true;
+
       this.#pins = guestPins.map(pin => ({
         ...pin,
+        userType: 'guest',
         userName: 'Anonymous',
       }));
+    } else {
+      this.hasGuestPins = false;
     }
 
     if (userPins) {
-      this.#pins = [
-        ...this.#pins,
-        ...userPins.map(pin => ({
-          ...pin,
-          userName: this.userName,
-        })),
-      ];
+      this.#pins = userPins.map(pin => ({
+        ...pin,
+        userType: 'user',
+        userName: this.userName,
+      }));
     }
 
     console.log(this.#pins);
