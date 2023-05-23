@@ -50,7 +50,7 @@ class App {
     //   ? (this.userType = 'user')
     //   : (this.userType = 'guest');
     this.userType = userLogged === true ? 'user' : 'guest';
-    console.log(userLogged);
+
     //set user name
     this.getUserName();
 
@@ -128,7 +128,7 @@ class App {
 
   showInputPopUP(mapE) {
     this.#mapEvent = mapE;
-
+    console.log(this.#mapEvent);
     inputPopUp?.classList.remove('hidden');
     if (!btnSubmit.hasAttribute('disabled')) {
       btnSubmit.setAttribute('disabled', '');
@@ -483,8 +483,6 @@ class App {
         userName: this.userName,
       }));
     }
-
-    console.log(this.#pins);
 
     this.#pins.forEach(pin => {
       this._renderPin(pin);
