@@ -15,21 +15,21 @@ const guestPinCountEl = document.querySelector(
   '.guest-profile__pin-count__digit'
 );
 const pinContainer = document.querySelector('.pin-container');
-const spinner = document.querySelector('.spinner');
+// const spinner = document.querySelector('.spinner');
 const userInputBg = document.querySelector('.user-input-bg');
 const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 const userInputForm = document.querySelector('.user-input-form');
 let userLogged = globalPinContainer?.dataset.userlogged.trim();
 
 class App {
-  #map;
-  #mapZoomLevel = 13;
-  #mapEvent;
+  // #map;
+  // #mapZoomLevel = 13;
+  // #mapEvent;
   #pins = [];
   eventError = false;
   textError = false;
   userType = '';
-  mapInitiated = false;
+  // mapInitiated = false;
   pagePin = null;
   userName = 'userName';
   hasGuestPins = false;
@@ -50,7 +50,7 @@ class App {
     //   ? (this.userType = 'user')
     //   : (this.userType = 'guest');
     this.userType = userLogged === true ? 'user' : 'guest';
-    console.log(userLogged);
+
     //set user name
     this.getUserName();
 
@@ -87,44 +87,44 @@ class App {
     this._hideInput();
   }
 
-  _getPosition() {
-    if (navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(
-        this._loadMap.bind(this),
-        function () {
-          alert('Please allow to locate your position.');
-        }
-      );
-  }
+  // _getPosition() {
+  //   if (navigator.geolocation)
+  //     navigator.geolocation.getCurrentPosition(
+  //       this._loadMap.bind(this),
+  //       function () {
+  //         alert('Please allow to locate your position.');
+  //       }
+  //     );
+  // }
 
-  _loadMap(position) {
-    this.mapInitiated = false;
-    const { latitude } = position.coords;
-    const { longitude } = position.coords;
-    const coords = [latitude, longitude];
+  // _loadMap(position) {
+  //   this.mapInitiated = false;
+  //   const { latitude } = position.coords;
+  //   const { longitude } = position.coords;
+  //   const coords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+  //   this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
-    if (this.#map) {
-      this.mapInitiated = true;
-      spinner.classList.add('hidden');
-      spinner.classList.remove('spin');
-      spinner.classList.remove('z-20');
-    }
+  //   if (this.#map) {
+  //     this.mapInitiated = true;
+  //     spinner.classList.add('hidden');
+  //     spinner.classList.remove('spin');
+  //     spinner.classList.remove('z-20');
+  //   }
 
-    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(this.#map);
+  //   L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+  //     attribution:
+  //       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  //   }).addTo(this.#map);
 
-    // Handling clicks on map
-    this.#map.on('click', this.showInputPopUP.bind(this));
+  //   // Handling clicks on map
+  //   this.#map.on('click', this.showInputPopUP.bind(this));
 
-    //render marker
-    this.#pins.forEach(pin => {
-      this._renderPinMarker(pin);
-    });
-  }
+  //   //render marker
+  //   this.#pins.forEach(pin => {
+  //     this._renderPinMarker(pin);
+  //   });
+  // }
 
   showInputPopUP(mapE) {
     this.#mapEvent = mapE;
@@ -216,21 +216,21 @@ class App {
     }
   }
 
-  _renderPinMarker(values) {
-    L.marker(values.coords)
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: `${values.event}-popup`,
-        })
-      )
-      .setPopupContent(` ${values.message}`)
-      .openPopup();
-  }
+  // _renderPinMarker(values) {
+  //   L.marker(values.coords)
+  //     .addTo(this.#map)
+  //     .bindPopup(
+  //       L.popup({
+  //         maxWidth: 250,
+  //         minWidth: 100,
+  //         autoClose: false,
+  //         closeOnClick: false,
+  //         className: `${values.event}-popup`,
+  //       })
+  //     )
+  //     .setPopupContent(` ${values.message}`)
+  //     .openPopup();
+  // }
 
   getUserName() {
     //get username from URL
@@ -439,22 +439,22 @@ class App {
     });
   }
 
-  _moveToPopup(e) {
-    if (!this.#map) return;
-    const pinEl = e.target.closest('.user-pin');
+  // _moveToPopup(e) {
+  //   if (!this.#map) return;
+  //   const pinEl = e.target.closest('.user-pin');
 
-    if (!pinEl) return;
+  //   if (!pinEl) return;
 
-    //convert ID to number since data-id is string
-    const pin = this.#pins.find(pin => pin.id === +pinEl.dataset.id);
+  //   //convert ID to number since data-id is string
+  //   const pin = this.#pins.find(pin => pin.id === +pinEl.dataset.id);
 
-    this.#map.setView(pin.coords, this.#mapZoomLevel, {
-      animate: true,
-      pan: {
-        duration: 1,
-      },
-    });
-  }
+  //   this.#map.setView(pin.coords, this.#mapZoomLevel, {
+  //     animate: true,
+  //     pan: {
+  //       duration: 1,
+  //     },
+  //   });
+  // }
 
   _setLocalStorage() {
     localStorage.setItem(this.userType, JSON.stringify(this.#pins));
