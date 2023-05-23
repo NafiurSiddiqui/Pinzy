@@ -1,10 +1,10 @@
 'use strict';
 import { guestEdit, userEdit } from './edit-pin.js';
 
-const inputPopUp = document.querySelector('.user-input-bg');
-const eventTypeEl = document.getElementById('eventType');
-const messageEl = document.getElementById('message');
-const btnSubmit = document.querySelector('.btn-user-input');
+// const inputPopUp = document.querySelector('.user-input-bg');
+// const eventTypeEl = document.getElementById('eventType');
+// const messageEl = document.getElementById('message');
+// const btnSubmit = document.querySelector('.btn-user-input');
 const guestPinContainer = document.querySelector('.guest-pin-container');
 const userPinContainer = document.querySelector('.user-pin-container');
 const globalPinContainer = document.querySelector('.global-pin-container');
@@ -18,13 +18,13 @@ const pinContainer = document.querySelector('.pin-container');
 // const spinner = document.querySelector('.spinner');
 const userInputBg = document.querySelector('.user-input-bg');
 const userInputBgEdit = document.querySelector('.user-input-bg__edit');
-const userInputForm = document.querySelector('.user-input-form');
+// const userInputForm = document.querySelector('.user-input-form');
 let userLogged = globalPinContainer?.dataset.userlogged.trim();
 
 class App {
   // #map;
   // #mapZoomLevel = 13;
-  // #mapEvent;
+  #mapEvent;
   #pins = [];
   eventError = false;
   textError = false;
@@ -126,61 +126,61 @@ class App {
   //   });
   // }
 
-  showInputPopUP(mapE) {
-    this.#mapEvent = mapE;
+  // showInputPopUP(mapE) {
+  //   this.#mapEvent = mapE;
 
-    inputPopUp?.classList.remove('hidden');
-    if (!btnSubmit.hasAttribute('disabled')) {
-      btnSubmit.setAttribute('disabled', '');
-    }
-  }
+  //   inputPopUp?.classList.remove('hidden');
+  //   if (!btnSubmit.hasAttribute('disabled')) {
+  //     btnSubmit.setAttribute('disabled', '');
+  //   }
+  // }
 
-  submitToDb() {
-    //DID not prevent default refresh, since without refresh the content editor does not work.
+  // submitToDb() {
+  //   //DID not prevent default refresh, since without refresh the content editor does not work.
 
-    //get the values
-    const event = eventTypeEl.value;
-    const message = messageEl.value;
+  //   //get the values
+  //   const event = eventTypeEl.value;
+  //   const message = messageEl.value;
 
-    const eventTypeIcon =
-      eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
-    const eventTypeColor =
-      eventTypeEl.options[eventTypeEl.selectedIndex].dataset.color;
-    const { lat, lng } = this.#mapEvent.latlng;
-    //sanitize input
-    const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
+  //   const eventTypeIcon =
+  //     eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
+  //   const eventTypeColor =
+  //     eventTypeEl.options[eventTypeEl.selectedIndex].dataset.color;
+  //   const { lat, lng } = this.#mapEvent.latlng;
+  //   //sanitize input
+  //   const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
 
-    const values = {
-      event,
-      id: Math.floor(Math.random() * 100) + 1,
-      icon: eventTypeIcon,
-      color: eventTypeColor,
-      message: sanitizedTextAreaValue,
-      coords: [lat, lng],
-    };
+  //   const values = {
+  //     event,
+  //     id: Math.floor(Math.random() * 100) + 1,
+  //     icon: eventTypeIcon,
+  //     color: eventTypeColor,
+  //     message: sanitizedTextAreaValue,
+  //     coords: [lat, lng],
+  //   };
 
-    //check the usertype
-    // this.userType === 'user'? //send to connectToDb(user):connectToDb(guest);
+  //   //check the usertype
+  //   // this.userType === 'user'? //send to connectToDb(user):connectToDb(guest);
 
-    // Add new object to pin array
-    this.#pins.push(values);
+  //   // Add new object to pin array
+  //   this.#pins.push(values);
 
-    //set to local storage
-    this._setLocalStorage();
+  //   //set to local storage
+  //   this._setLocalStorage();
 
-    // Render pin on map as marker
-    this._renderPinMarker(values);
+  //   // Render pin on map as marker
+  //   this._renderPinMarker(values);
 
-    // Render pin on the list
-    this._renderPin(values);
-    //clear inputs
-    eventTypeEl.value = messageEl.value = '';
-    //render pin count
-    this._renderPinCount();
+  //   // Render pin on the list
+  //   this._renderPin(values);
+  //   //clear inputs
+  //   eventTypeEl.value = messageEl.value = '';
+  //   //render pin count
+  //   this._renderPinCount();
 
-    //hideInput
-    this._hideInput();
-  }
+  //   //hideInput
+  //   this._hideInput();
+  // }
 
   _hideInput() {
     userInputBg?.addEventListener('click', event => {
