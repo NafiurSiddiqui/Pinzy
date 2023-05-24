@@ -1,5 +1,5 @@
 class Model {
-  #pins = [];
+  pins = [];
 
   constructor(mapEvent) {
     this.eventTypeEl = document.getElementById('eventType');
