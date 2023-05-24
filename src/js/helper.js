@@ -1,3 +1,8 @@
+/**
+ * @formElemnts - all of the DOM elements of forms
+ * @pinElements - all of the DOM elements of pins
+ */
+
 const formElements = {
   form: document.querySelector('.user-input-form'),
   formBg: document.querySelector('.user-input-bg'),
@@ -23,4 +28,4 @@ const pinElements = {
   guestPinCountEl: document.querySelector('.guest-profile__pin-count'),
 };
 
-export { formElements };
+export { formElements, pinElements };

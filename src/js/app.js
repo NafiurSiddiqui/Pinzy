@@ -5,19 +5,19 @@ import { guestEdit, userEdit } from './edit-pin.js';
 // const eventTypeEl = document.getElementById('eventType');
 // const messageEl = document.getElementById('message');
 // const btnSubmit = document.querySelector('.btn-user-input');
-const guestPinContainer = document.querySelector('.guest-pin-container');
-const userPinContainer = document.querySelector('.user-pin-container');
-const globalPinContainer = document.querySelector('.global-pin-container');
-const userPinCountEl = document.querySelector(
-  '.user-profile__pin-count__digit'
-);
-const guestPinCountEl = document.querySelector(
-  '.guest-profile__pin-count__digit'
-);
-const pinContainer = document.querySelector('.pin-container');
-// const spinner = document.querySelector('.spinner');
-const userInputBg = document.querySelector('.user-input-bg');
-const userInputBgEdit = document.querySelector('.user-input-bg__edit');
+// const guestPinContainer = document.querySelector('.guest-pin-container');
+// const userPinContainer = document.querySelector('.user-pin-container');
+// const globalPinContainer = document.querySelector('.global-pin-container');
+// const userPinCountEl = document.querySelector(
+//   '.user-profile__pin-count__digit'
+// );
+// const guestPinCountEl = document.querySelector(
+//   '.guest-profile__pin-count__digit'
+// );
+// const pinContainer = document.querySelector('.pin-container');
+// // const spinner = document.querySelector('.spinner');
+// const userInputBg = document.querySelector('.user-input-bg');
+// const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 // const userInputForm = document.querySelector('.user-input-form');
 let userLogged = globalPinContainer?.dataset.userlogged.trim();
 

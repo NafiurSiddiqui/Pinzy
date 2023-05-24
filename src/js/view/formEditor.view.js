@@ -18,4 +18,13 @@ export default class FormEditor extends Form {
   setFormEditIsOpen(value) {
     this.formEditIsopen = value;
   }
+
+  //used inside Render(guest/user/global)pin
+  static editBtnHandler(editBtn) {
+    editBtn?.addEventListener('click', e => {
+      e.stopPropagation();
+      const editBox = e.currentTarget.nextElementSibling;
+      editBox.classList.toggle('hidden');
+    });
+  }
 }

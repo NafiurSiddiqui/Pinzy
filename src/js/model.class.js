@@ -6,7 +6,7 @@ class Model {
   pins = [];
   eventTypeEl = document.getElementById('eventType');
   messageEl = document.getElementById('message');
-  mapEvent;
+  // mapEvent;
   constructor(mapEvent) {
     this.mapEvent = mapEvent;
   }
@@ -23,7 +23,7 @@ class Model {
       eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
     const eventTypeColor =
       eventTypeEl.options[eventTypeEl.selectedIndex].dataset.color;
-    const { lat, lng } = this.#mapEvent.latlng;
+    const { lat, lng } = this.mapEvent.latlng;
 
     //sanitize input
     const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');

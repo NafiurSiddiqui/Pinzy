@@ -1,12 +1,13 @@
-class Map {
+export default class Map {
   mapInitiated = false;
-  #map;
-  #mapZoomLevel = 13;
+  map;
+  mapZoomLevel = 13;
+  mapEvent;
+  spinner = document.querySelector('.spinner');
 
-  constructor(pins, showInputPopUP) {
+  constructor(pins, showForm) {
     this.pins = pins;
-    this.showInputPopUP = showInputPopUP;
-    this.spinner = document.querySelector('.spinner');
+    this.showInputPopUP = showForm;
   }
 
   //get position
@@ -19,6 +20,7 @@ class Map {
         }
       );
   }
+
   //load the map
   loadMap(position) {
     this.mapInitiated = false;
@@ -26,9 +28,9 @@ class Map {
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+    this.map = L.map('map').setView(coords, this.mapZoomLevel);
 
-    if (this.#map) {
+    if (this.map) {
       this.mapInitiated = true;
       spinner.classList.add('hidden');
       spinner.classList.remove('spin');
@@ -38,13 +40,13 @@ class Map {
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(this.#map);
+    }).addTo(this.map);
 
     // Handling clicks on map
-    this.#map.on('click', this.showInputPopUP.bind(this));
+    this.map.on('click', this.showForm.bind(this));
 
     //render marker
-    this.#pins.forEach(pin => {
+    this.pins.forEach(pin => {
       this._renderPinMarker(pin);
     });
   }
@@ -52,7 +54,7 @@ class Map {
   //renderPinMarker
   _renderPinMarker(values) {
     L.marker(values.coords)
-      .addTo(this.#map)
+      .addTo(this.map)
       .bindPopup(
         L.popup({
           maxWidth: 250,
@@ -68,7 +70,7 @@ class Map {
 
   //move to pop up
   _moveToPopup(e) {
-    if (!this.#map) return;
+    if (!this.map) return;
     const pinEl = e.target.closest('.user-pin');
 
     if (!pinEl) return;
@@ -84,5 +86,3 @@ class Map {
     });
   }
 }
-
-export default Map;
