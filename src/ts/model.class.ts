@@ -1,7 +1,7 @@
-type mapEvent {
-  lat:string,
-  lng:string,
-}
+type mapEvent = {
+  lat: string | number;
+  lng: string | number;
+};
 
 class Model {
   pins: [] = [];
@@ -10,7 +10,9 @@ class Model {
   mapEvent;
 
   constructor(mapEvent: object) {
-    this.eventTypeEl = document.getElementById('eventType') as HTMLSelectElement;
+    this.eventTypeEl = document.getElementById(
+      'eventType'
+    ) as HTMLSelectElement;
     this.messageEl = document.getElementById('message') as HTMLInputElement;
     this.mapEvent = mapEvent;
   }
