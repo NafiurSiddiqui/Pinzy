@@ -1,3 +1,8 @@
+type mapEvent {
+  lat:string,
+  lng:string,
+}
+
 class Model {
   pins: [] = [];
   eventTypeEl;
@@ -5,24 +10,24 @@ class Model {
   mapEvent;
 
   constructor(mapEvent: object) {
-    this.eventTypeEl = document.getElementById('eventType') as HTMLElement;
-    this.messageEl = document.getElementById('message');
+    this.eventTypeEl = document.getElementById('eventType') as HTMLSelectElement;
+    this.messageEl = document.getElementById('message') as HTMLInputElement;
     this.mapEvent = mapEvent;
   }
 
   //submit form
-  submitToDb(pins) {
+  submitToDb() {
     //DID not prevent default refresh, since without refresh the content editor does not work.
 
     //get the values
-    const event = eventTypeEl.value;
-    const message = messageEl.value;
+    const event = this.eventTypeEl.value;
+    const message = this.messageEl.value;
 
     const eventTypeIcon =
-      eventTypeEl.options[eventTypeEl.selectedIndex].dataset.icon;
+      this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
     const eventTypeColor =
-      eventTypeEl.options[eventTypeEl.selectedIndex].dataset.color;
-    const { lat, lng } = this.#mapEvent.latlng;
+      this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.color;
+    const { lat, lng } = this.mapEvent.latlng;
 
     //sanitize input
     const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
@@ -55,7 +60,7 @@ class Model {
     // Render pin on the list
     this._renderPin(values);
     //clear inputs
-    eventTypeEl.value = messageEl.value = '';
+    this.eventTypeEl.value = messageEl.value = '';
     //render pin count
     this._renderPinCount();
 
