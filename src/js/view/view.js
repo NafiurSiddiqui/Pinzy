@@ -1,4 +1,4 @@
-import { formElements } from '../helper';
+import { formElements, pinElements } from '../helper';
 import Map from '../map.class';
 import Form from './form.view';
 import FormEditor from './formEditor.view';

@@ -1,15 +1,39 @@
 import { helper } from '../helper';
 import PinCard from './pinCard.view';
+import View from './view';
 
-export default class Pin {
+export default class Pin extends View {
   map;
   pins;
   editBtnHandler;
   pagePin;
-  constructor(pins, map, editBtnHandler) {
+  userPinContainer;
+  guestPinContainer;
+  globalPinContainer;
+
+  /**
+   *
+   * @param {Array} pins
+   * @param {Object} map
+   * @param {Function} editBtnHandler
+   * @param {HTMLElement} userPinContainer
+   * @param {HTMLElement} globalPinContainer
+   * @param {HTMLElement} guestPinContainer
+   */
+  constructor(
+    pins,
+    map,
+    editBtnHandler,
+    userPinContainer,
+    globalPinContainer,
+    guestPinContainer
+  ) {
     this.pins = pins;
     this.map = map;
     this.editBtnHandler = editBtnHandler;
+    this.userPinContainer = userPinContainer;
+    this.globalPinContainer = globalPinContainer;
+    this.guestPinContainer = guestPinContainer;
     //detect page type
     helper.checkURL('pins.php')
       ? (this.pagePin = true)
@@ -40,7 +64,7 @@ export default class Pin {
   renderPinOnProfile(data, pinContainer) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
-    const isGuest = values.userType === 'guest';
+    const isGuest = data.userType === 'guest';
     // const userName = isGuest ? 'Anonymous' : values.userName;
     // const pinContainer = isGuest ? guestPinContainer : userPinContainer;
     const pinLimit = isGuest ? 10 : 100;
@@ -67,8 +91,8 @@ export default class Pin {
       );
     }
 
-    if (this.#pins.length === 1) {
-      this._defaultProfileMsgHandler();
+    if (this.pins.length === 1) {
+      this.defaultPinMsgHandler();
     }
   }
 
@@ -91,19 +115,26 @@ export default class Pin {
   }
 
   //default Pin Msg
+  /**
+   *
+   * @param {HTMLElement} userPinContainer
+   * @param {HTMLElement} globalPinContainer
+   * @param {HTMLElement} guestPinContainer
+   */
   defaultPinMsgHandler() {
     const profileMsgEl = document.querySelector('.default-msg');
 
-    if (this.#pins.length) {
+    if (this.pins.length) {
       profileMsgEl.classList.add('hidden');
-      userPinContainer?.classList.remove('hidden');
-      globalPinContainer?.classList.remove('hidden');
-      guestPinContainer?.classList.remove('hidden');
+      this.userPinContainer?.classList.remove('hidden');
+      this.globalPinContainer?.classList.remove('hidden');
+      this.guestPinContainer?.classList.remove('hidden');
     } else {
       profileMsgEl.classList.remove('hidden');
-      pinContainer?.classList.add('hidden');
-      globalPinContainer?.classList.add('hidden');
-      guestPinContainer?.classList.add('hidden');
+      // pinContainer?.classList.add('hidden');
+      this.globalPinContainer?.classList.add('hidden');
+      this.guestPinContainer?.classList.add('hidden');
+      this.userPinContainer?.classList.add('hidden');
     }
   }
   //pin watcher
@@ -125,7 +156,7 @@ export default class Pin {
 
     //Was having an uncaught error.
     try {
-      this.#pins = new Proxy(this.#pins, handler);
+      this.pins = new Proxy(this.pins, handler);
     } catch (error) {
       console.log(error);
     }
