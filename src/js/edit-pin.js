@@ -14,98 +14,98 @@ const userInputFormEdit = document.querySelector('.user-input-form__edit');
 
 // ---------- CLASSES
 
-class FormValidator {
-  formEditIsopen = false;
+// class FormValidator {
+//   formEditIsopen = false;
 
-  constructor(eventTypeEl, messageEl) {
-    this.eventTypeEl = eventTypeEl;
-    this.messageEl = messageEl;
-    this.btnSubmitEdit = btnSubmitEdit;
-    this.debounceValidation = this.debounceValidation.bind(this);
-  }
+//   constructor(eventTypeEl, messageEl) {
+//     this.eventTypeEl = eventTypeEl;
+//     this.messageEl = messageEl;
+//     this.btnSubmitEdit = btnSubmitEdit;
+//     this.debounceValidation = this.debounceValidation.bind(this);
+//   }
 
-  showEditForm() {
-    this.setFormEditIsOpen(true);
-    editForm.classList.remove('hidden');
-    this.btnSubmitEdit?.removeAttribute('disabled');
-  }
+//   showEditForm() {
+//     this.setFormEditIsOpen(true);
+//     editForm.classList.remove('hidden');
+//     this.btnSubmitEdit?.removeAttribute('disabled');
+//   }
 
-  hideEditForm() {
-    this.setFormEditIsOpen(false);
-    editForm.classList.add('hidden');
-  }
+//   hideEditForm() {
+//     this.setFormEditIsOpen(false);
+//     editForm.classList.add('hidden');
+//   }
 
-  //USER INPUT EDIT POPUP
-  formEditUiHandler() {
-    userInputBgEdit?.addEventListener('click', event => {
-      // Check if the clicked element is the user-input form or not
+//   //USER INPUT EDIT POPUP
+//   formEditUiHandler() {
+//     userInputBgEdit?.addEventListener('click', event => {
+//       // Check if the clicked element is the user-input form or not
 
-      if (!userInputFormEdit?.contains(event.target)) {
-        this.setFormEditIsOpen(false);
-        // Close the user-input
-        userInputBgEdit?.classList.add('hidden');
-      }
-    });
-  }
+//       if (!userInputFormEdit?.contains(event.target)) {
+//         this.setFormEditIsOpen(false);
+//         // Close the user-input
+//         userInputBgEdit?.classList.add('hidden');
+//       }
+//     });
+//   }
 
-  setFormEditIsOpen(value) {
-    this.formEditIsopen = value;
-  }
+//   setFormEditIsOpen(value) {
+//     this.formEditIsopen = value;
+//   }
 
-  validateEventType() {
-    const event = this.eventTypeEl.value;
+//   validateEventType() {
+//     const event = this.eventTypeEl.value;
 
-    if (event === 'none') {
-      this.eventTypeEl.classList.add('validation-error');
-    } else {
-      this.eventTypeEl.classList.remove('validation-error');
-    }
-  }
+//     if (event === 'none') {
+//       this.eventTypeEl.classList.add('validation-error');
+//     } else {
+//       this.eventTypeEl.classList.remove('validation-error');
+//     }
+//   }
 
-  validateMessage() {
-    const text = this.messageEl.value;
+//   validateMessage() {
+//     const text = this.messageEl.value;
 
-    if (text === '') {
-      this.messageEl.classList.add('validation-error');
-      // this.btnSubmitEdit?.setAttribute('disabled', true);
-    } else {
-      this.messageEl.classList.remove('validation-error');
-      // this.btnSubmitEdit?.removeAttribute('disabled');
-    }
-  }
+//     if (text === '') {
+//       this.messageEl.classList.add('validation-error');
+//       // this.btnSubmitEdit?.setAttribute('disabled', true);
+//     } else {
+//       this.messageEl.classList.remove('validation-error');
+//       // this.btnSubmitEdit?.removeAttribute('disabled');
+//     }
+//   }
 
-  validateInput() {
-    this.validateEventType();
-    this.validateMessage();
+//   validateInput() {
+//     this.validateEventType();
+//     this.validateMessage();
 
-    const event = this.eventTypeEl?.value;
-    const text = this.messageEl?.value;
+//     const event = this.eventTypeEl?.value;
+//     const text = this.messageEl?.value;
 
-    if ((event === 'none' && text === '') || event === 'none' || text === '') {
-      this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
-    } else {
-      this.btnSubmitEdit?.removeAttribute('disabled');
-    }
-  }
+//     if ((event === 'none' && text === '') || event === 'none' || text === '') {
+//       this.btnSubmitEdit?.setAttribute('disabled', 'disabled');
+//     } else {
+//       this.btnSubmitEdit?.removeAttribute('disabled');
+//     }
+//   }
 
-  debounceValidation() {
-    let timer;
+//   debounceValidation() {
+//     let timer;
 
-    const validateInput = this.validateInput.bind(this);
+//     const validateInput = this.validateInput.bind(this);
 
-    return function () {
-      clearTimeout(timer);
+//     return function () {
+//       clearTimeout(timer);
 
-      timer = setTimeout(() => {
-        validateInput();
-      }, 1000);
-    };
-  }
+//       timer = setTimeout(() => {
+//         validateInput();
+//       }, 1000);
+//     };
+//   }
 
-  detectUserType() {
-    return app.userType;
-  }
-}
+//   detectUserType() {
+//     return app.userType;
+//   }
+// }
 
 class GuestEdit extends FormValidator {
   #pinEdited = false;

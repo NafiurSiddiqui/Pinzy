@@ -99,5 +99,12 @@ export default class Form {
         this.formBg.classList.add('hidden');
       }
     });
+
+    document?.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        this.formBg?.classList.add('hidden');
+        // userInputBgEdit?.classList.add('hidden');
+      }
+    });
   }
 }

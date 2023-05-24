@@ -56,77 +56,6 @@ class View {
     });
   }
 
-  debounceValidation() {
-    let timer;
-    const validateInput = this.validateInput.bind(this);
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(validateInput, 1000);
-    };
-  }
-
-  validateEventType() {
-    const event = this.eventTypeEl.value;
-
-    if (event === 'none') {
-      this.eventTypeEl.classList.add('validation-error');
-    } else {
-      this.eventTypeEl.classList.remove('validation-error');
-    }
-  }
-
-  validateMessage() {
-    const text = this.messageEl.value;
-
-    if (text === '') {
-      this.messageEl.classList.add('validation-error');
-      // this.btnSubmitEdit?.setAttribute('disabled', true);
-    } else {
-      this.messageEl.classList.remove('validation-error');
-      // this.btnSubmitEdit?.removeAttribute('disabled');
-    }
-  }
-
-  validateInput() {
-    const event = eventTypeEl.value;
-    const text = messageEl.value;
-
-    if ((event === 'none' && text === '') || event === 'none' || text === '') {
-      console.log('fields can not be empty!');
-      btnSubmit.setAttribute('disabled', '');
-    }
-
-    if (event !== 'none' && text !== '') {
-      btnSubmit.removeAttribute('disabled');
-    }
-  }
-
-  showForm(mapE) {
-    this.#mapEvent = mapE;
-
-    this.formBg.classList.remove('hidden');
-    if (!this.btnSubmit.hasAttribute('disabled')) {
-      this.btnSubmit.setAttribute('disabled', '');
-    }
-  }
-
-  showEditForm() {
-    this.setFormEditIsOpen(true);
-    editForm.classList.remove('hidden');
-    this.btnSubmitEdit?.removeAttribute('disabled');
-  }
-
-  hideForm() {
-    this.formBg.addEventListener('click', event => {
-      // Check if the clicked element is the user-input form or not
-
-      if (!this.form.contains(event.target)) {
-        // Close the user-input
-        this.formBg.classList.add('hidden');
-      }
-    });
-  }
-
   renderPinMarker(values) {
     L.marker(values.coords)
       .addTo(this.#map)
@@ -285,15 +214,6 @@ class View {
       e.stopPropagation();
       const editBox = e.currentTarget.nextElementSibling;
       editBox.classList.toggle('hidden');
-    });
-  }
-
-  formUi_KeyHandler() {
-    document?.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
-        userInputBg?.classList.add('hidden');
-        userInputBgEdit?.classList.add('hidden');
-      }
     });
   }
 
