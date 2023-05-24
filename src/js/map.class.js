@@ -13,14 +13,14 @@ class Map {
   _getPosition() {
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
-        this._loadMap.bind(this),
+        this.loadMap.bind(this),
         function () {
           alert('Please allow to locate your position.');
         }
       );
   }
   //load the map
-  _loadMap(position) {
+  loadMap(position) {
     this.mapInitiated = false;
     const { latitude } = position.coords;
     const { longitude } = position.coords;

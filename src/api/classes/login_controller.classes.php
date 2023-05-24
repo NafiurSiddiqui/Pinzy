@@ -4,8 +4,7 @@
 
 class LoginController extends login
 {
-    // private $userName;
-    // private $password;
+    
     public $userName;
     public $password;
     public $nameValidationMessage;
