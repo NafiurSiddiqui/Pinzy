@@ -1,8 +1,11 @@
 class Model {
-  #pins = [];
+  pins: [] = [];
+  eventTypeEl;
+  messageEl;
+  mapEvent;
 
-  constructor(mapEvent) {
-    this.eventTypeEl = document.getElementById('eventType');
+  constructor(mapEvent: object) {
+    this.eventTypeEl = document.getElementById('eventType') as HTMLElement;
     this.messageEl = document.getElementById('message');
     this.mapEvent = mapEvent;
   }
