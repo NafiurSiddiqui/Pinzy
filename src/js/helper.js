@@ -1,4 +1,4 @@
-const FormElements = {
+const formElements = {
   form: document.querySelector('.user-input-form'),
   formBg: document.querySelector('.user-input-bg'),
   formEdit: document.querySelector('.user-input-form__edit'),
@@ -15,4 +15,12 @@ const FormElements = {
   btnEditSubmit: document.querySelector('.btn-user-input__edit'),
 };
 
-export { FormElements };
+const pinElements = {
+  globalPinContainer: document.querySelector('.global-pin-container'),
+  userPinContainer: document.querySelector('.user-pin-container'),
+  guestPinContainer: document.querySelector('.guest-pin-container'),
+  userPinCountEl: document.querySelector('.user-profile__pin-count'),
+  guestPinCountEl: document.querySelector('.guest-profile__pin-count'),
+};
+
+export { formElements };
