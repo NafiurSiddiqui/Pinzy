@@ -1,43 +1,11 @@
-import FormEditor from './view/formEditor.view';
-
-export default class Pin {
-  map;
-  pins;
-  editBtnHandler;
-
-  constructor(pins, map, editBtnHandler) {
-    this.pins = pins;
-    this.map = map;
-    this.editBtnHandler = editBtnHandler;
-  }
-
-  //renderPinOnMap
-  renderPinOnMap(values) {
-    L.marker(values.coords)
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: `${values.event}-popup`,
-        })
-      )
-      .setPopupContent(` ${values.message}`)
-      .openPopup();
-  }
-  //renderUserPin
-  renderPinOnProfile(data) {
-    // guest? keep count, less than 10? render inside guestPinContainer + pinPage
-    // user? keep count, render inside userPinContainer + pinPage
-    // const isGuest = values.userType === 'guest';
-    // const userName = isGuest ? 'Anonymous' : values.userName;
-    // const pinContainer = isGuest ? guestPinContainer : userPinContainer;
-    const pinLimit = isGuest ? 10 : 100;
-
-    if (this.pins.length < pinLimit) {
-      let html = `
+export default class PinCard {
+  /**
+   *
+   * @param {Object} data
+   * @returns {HTMLUListElement}
+   */
+  static generatePinCard(data) {
+    let html = `
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-200 overflow-hidden tablet:w-full grow-0 shrink-0" 
             data-id="${data.id}"
@@ -62,7 +30,7 @@ export default class Pin {
                   <div
                     class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
                   >
-                    ${userName}
+                    ${data.userName}
                   </div>
                 </div>
               
@@ -114,78 +82,7 @@ export default class Pin {
             </div>
           </li>
     `;
-      //inject inside the respective profile
-      pinContainer?.insertAdjacentHTML('beforeend', html);
 
-      // attach edit btn to the card
-
-      const editBtn = pinContainer?.querySelector(
-        `[data-id="${data.id}"] .pin-edit-box__container i`
-      );
-
-      this.editBtnHandler(editBtn);
-    } else {
-      alert(
-        isGuest
-          ? 'You have reached the guest pin limit. Please signup for unlimited pins.'
-          : 'You have reached the pin limit. Please upgrade your account.'
-      );
-    }
-
-    if (this.#pins.length === 1) {
-      this._defaultProfileMsgHandler();
-    }
-  }
-  //render Pin Count
-  renderPinCount() {
-    if (this.pagePin) {
-      return;
-    }
-
-    if (this.hasGuestPins) {
-      guestPinCountEl.textContent = this.#pins.length;
-    } else {
-      userPinCountEl ? (userPinCountEl.textContent = this.#pins.length) : null;
-    }
-  }
-  //default Pin Msg
-  defaultPinMsgHandler() {
-    const profileMsgEl = document.querySelector('.default-msg');
-
-    if (this.#pins.length) {
-      profileMsgEl.classList.add('hidden');
-      userPinContainer?.classList.remove('hidden');
-      globalPinContainer?.classList.remove('hidden');
-      guestPinContainer?.classList.remove('hidden');
-    } else {
-      profileMsgEl.classList.remove('hidden');
-      pinContainer?.classList.add('hidden');
-      globalPinContainer?.classList.add('hidden');
-      guestPinContainer?.classList.add('hidden');
-    }
-  }
-  //pin watcher
-  watchPinsLength() {
-    const handler = {
-      set: (obj, prop, value) => {
-        obj[prop] = value;
-        if (prop === 'length') {
-          console.log('Pins length changed:', value);
-
-          //timeout in 2 seconds
-          setTimeout(() => {
-            this.refreshContent();
-          }, 100);
-        }
-        return true;
-      },
-    };
-
-    //Was having an uncaught error.
-    try {
-      this.#pins = new Proxy(this.#pins, handler);
-    } catch (error) {
-      console.log(error);
-    }
+    return html;
   }
 }

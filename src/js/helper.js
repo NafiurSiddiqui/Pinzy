@@ -28,4 +28,21 @@ const pinElements = {
   guestPinCountEl: document.querySelector('.guest-profile__pin-count'),
 };
 
-export { formElements, pinElements };
+class Helper {
+  /**
+   *
+   * @param {string} pathName
+   * @returns {boolean}
+   */
+  checkURL(pathName) {
+    const { pathname } = window.location;
+    if (typeof pathname === 'string') {
+      return pathname.includes(pathName);
+    }
+    throw new Error('Unable to retrieve pathname from window.location.');
+  }
+}
+
+const helper = new Helper();
+
+export { formElements, pinElements, helper };
