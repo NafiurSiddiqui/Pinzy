@@ -3,7 +3,7 @@ import Form from './form.view';
 /**
  * @params {HTMLelements} - Which are only relevant to the form__edit elements.
  */
-export default class FormEditor extends Form {
+export default class FormEditorView extends Form {
   formEditIsopen = false;
 
   constructor(eventTypeEl, messageEl, btnSubmit, formBg, form) {

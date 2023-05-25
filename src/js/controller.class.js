@@ -1,4 +1,6 @@
 import Map from './map.class';
+import Form from './view/form.view';
+import View from './view/view';
 
 /**
  * @init {function} - Init the app`
@@ -6,12 +8,17 @@ import Map from './map.class';
 
 class Controller {
   map;
-
+  form;
   constructor() {
-    this.map = new Map();
+    this.view = new View();
+
+    //init
+    this.init();
   }
 
   init() {
-    this.map.getPosition();
+    this.view.renderMap();
   }
 }
+
+const controller = new Controller();

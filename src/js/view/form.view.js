@@ -81,8 +81,8 @@ export default class Form {
     }
   }
 
-  showForm(mapE) {
-    this.mapEvent = mapE;
+  showForm() {
+    // this.mapEvent = mapE;
 
     this.formBg.classList.remove('hidden');
     if (!this.btnSubmit.hasAttribute('disabled')) {
