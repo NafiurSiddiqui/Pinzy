@@ -3,11 +3,14 @@ export default class Map {
   map;
   mapZoomLevel = 13;
   mapEvent;
-
+  showform;
+  pins;
   constructor(pins, showForm, renderSpinner) {
     this.pins = pins;
-    this.showInputPopUP = showForm;
+    this.showForm = showForm;
     this.renderSpinner = renderSpinner;
+    this.loadMap = this.loadMap.bind(this);
+    this.getPosition = this.getPosition.bind(this);
   }
 
   //get position - C
@@ -42,11 +45,10 @@ export default class Map {
 
     // Handling clicks on map
     this.map.on('click', this.showForm.bind(this));
-
     //render marker
-    this.pins.forEach(pin => {
-      this._renderPinMarker(pin);
-    });
+    // this.pins.forEach(pin => {
+    //   this.renderPinMarker(pin);
+    // });
   }
 
   //move to pop up -V

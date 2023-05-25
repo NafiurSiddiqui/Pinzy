@@ -81,13 +81,13 @@ export default class Form {
     }
   }
 
-  showForm() {
+  showForm(mapE) {
     // this.mapEvent = mapE;
-
+    console.log(mapE);
     this.formBg.classList.remove('hidden');
-    if (!this.btnSubmit.hasAttribute('disabled')) {
-      this.btnSubmit.setAttribute('disabled', '');
-    }
+    // if (!this.btnSubmit.hasAttribute('disabled')) {
+    //   this.btnSubmit.setAttribute('disabled', '');
+    // }
   }
 
   hideForm() {

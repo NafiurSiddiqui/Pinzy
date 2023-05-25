@@ -1,8 +1,8 @@
-import { helper } from '../helper';
-import PinCard from './pinCard.view';
-import View from './view';
+import { helper } from '../helper.js';
+import PinCard from './pinCard.view.js';
+import View from './view.js';
 
-export default class Pin extends View {
+export default class Pin {
   map;
   pins;
   editBtnHandler;
@@ -34,6 +34,7 @@ export default class Pin extends View {
     this.userPinContainer = userPinContainer;
     this.globalPinContainer = globalPinContainer;
     this.guestPinContainer = guestPinContainer;
+
     //detect page type
     helper.checkURL('pins.php')
       ? (this.pagePin = true)
@@ -43,7 +44,7 @@ export default class Pin extends View {
   //renderPinOnMap
   renderPinOnMap(values) {
     L.marker(values.coords)
-      .addTo(this.#map)
+      .addTo(this.map)
       .bindPopup(
         L.popup({
           maxWidth: 250,

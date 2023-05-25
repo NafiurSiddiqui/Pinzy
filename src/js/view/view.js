@@ -36,16 +36,16 @@ class View {
       formEditBg,
       formEdit
     );
-
-    this.map = new Map(this.data, this.showForm, this.renderSpinner);
+    this.renderFormHandler = this.renderFormHandler.bind(this);
+    this.map = new Map(this.data, this.renderFormHandler, this.renderSpinner);
   }
 
   renderMap() {
     this.map.getPosition();
   }
 
-  renderFormHandler() {
-    this.form.showForm();
+  renderFormHandler(mapEvent) {
+    this.form.showForm(mapEvent);
   }
 
   renderEditFormHandler() {
