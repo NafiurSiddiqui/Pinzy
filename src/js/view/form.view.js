@@ -9,8 +9,6 @@ export default class Form {
     this.btnSubmit = btnSubmit;
     this.formBg = formBg;
     this.form = form;
-    this.eventValidationHandler();
-    this.messageValidationHandler();
     this.hideForm = this.hideForm.bind(this);
     this.debounceValidation = this.debounceValidation.bind(this);
     this.FormValidationHandler();
@@ -33,17 +31,6 @@ export default class Form {
       clearTimeout(timer);
       timer = setTimeout(validateForm, 1000);
     };
-  }
-
-  eventValidationHandler() {
-    this.eventTypeEl.addEventListener(
-      'input',
-      this.validateEventType.bind(this)
-    );
-  }
-
-  messageValidationHandler() {
-    this.messageEl.addEventListener('input', this.validateMessage.bind(this));
   }
 
   validateEventType() {
@@ -85,6 +72,9 @@ export default class Form {
       console.log('field are NOT empty');
       this.btnSubmit.removeAttribute('disabled');
     }
+
+    this.validateMessage();
+    this.validateEventType();
   }
 
   showForm(mapE, newMapEvhandler) {
