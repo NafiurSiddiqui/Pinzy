@@ -81,13 +81,15 @@ export default class Form {
     }
   }
 
-  showForm(mapE) {
+  showForm(mapE, newMapEvhandler) {
     // this.mapEvent = mapE;
-    console.log(mapE);
+
     this.formBg.classList.remove('hidden');
     // if (!this.btnSubmit.hasAttribute('disabled')) {
     //   this.btnSubmit.setAttribute('disabled', '');
     // }
+    //store coords
+    newMapEvhandler(mapE);
   }
 
   hideForm() {

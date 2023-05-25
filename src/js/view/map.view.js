@@ -11,6 +11,7 @@ export default class Map {
     this.renderSpinner = renderSpinner;
     this.loadMap = this.loadMap.bind(this);
     this.getPosition = this.getPosition.bind(this);
+    this.newMapEvHandler = this.newMapEvHandler.bind(this);
   }
 
   //get position - C
@@ -51,8 +52,12 @@ export default class Map {
     // });
   }
 
+  newMapEvHandler(mapEvent) {
+    this.mapEvent = mapEvent;
+  }
+
   //move to pop up -V
-  _moveToPopup(e) {
+  moveToPopup(e) {
     if (!this.map) return;
     const pinEl = e.target.closest('.user-pin');
 
