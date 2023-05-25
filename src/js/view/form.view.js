@@ -13,18 +13,11 @@ export default class Form {
     this.messageValidationHandler();
     this.FormValidationHandler();
     this.hideForm = this.hideForm.bind(this);
-    console.log(this.formBg);
   }
 
   FormValidationHandler() {
-    this.eventTypeEl.addEventListener(
-      'input',
-      this.debounceValidation.bind(this)
-    );
-    this.messageEl.addEventListener(
-      'input',
-      this.debounceValidation.bind(this)
-    );
+    this.eventTypeEl.addEventListener('input', this.debounceValidation());
+    this.messageEl.addEventListener('input', this.debounceValidation());
   }
 
   eventValidationHandler() {
@@ -39,6 +32,7 @@ export default class Form {
   }
 
   debounceValidation() {
+    console.log('deboucing');
     let timer;
     const validateForm = this.validateForm.bind(this);
     return function () {
@@ -48,8 +42,8 @@ export default class Form {
   }
 
   validateEventType() {
+    console.log('validating event type');
     const event = this.eventTypeEl.value;
-
     if (event === 'none') {
       this.eventTypeEl.classList.add('validation-error');
     } else {
@@ -58,9 +52,9 @@ export default class Form {
   }
 
   validateMessage() {
-    const text = this.messageEl.value;
+    const message = this.messageEl.value;
 
-    if (text === '') {
+    if (message === '') {
       this.messageEl.classList.add('validation-error');
       // this.btnSubmitEdit?.setAttribute('disabled', true);
     } else {
@@ -70,16 +64,22 @@ export default class Form {
   }
 
   validateForm() {
-    const event = eventTypeEl.value;
-    const text = messageEl.value;
-
-    if ((event === 'none' && text === '') || event === 'none' || text === '') {
+    console.log('validating form');
+    const event = this.eventTypeEl.value;
+    const message = this.messageEl.value;
+    console.log(event, message);
+    if (
+      (event === 'none' && message === '') ||
+      event === 'none' ||
+      message === ''
+    ) {
       console.log('fields can not be empty!');
-      btnSubmit.setAttribute('disabled', '');
+      this.btnSubmit.setAttribute('disabled', '');
     }
 
-    if (event !== 'none' && text !== '') {
-      btnSubmit.removeAttribute('disabled');
+    if (event !== 'none' && message !== '') {
+      console.log('field are NOT empty');
+      this.btnSubmit.removeAttribute('disabled');
     }
   }
 
