@@ -3,11 +3,11 @@ export default class Map {
   map;
   mapZoomLevel = 13;
   mapEvent;
-  spinner = document.querySelector('.spinner');
 
-  constructor(pins, showForm) {
+  constructor(pins, showForm, renderSpinner) {
     this.pins = pins;
     this.showInputPopUP = showForm;
+    this.renderSpinner = renderSpinner;
   }
 
   //get position - C
@@ -32,9 +32,7 @@ export default class Map {
 
     if (this.map) {
       this.mapInitiated = true;
-      spinner.classList.add('hidden');
-      spinner.classList.remove('spin');
-      spinner.classList.remove('z-20');
+      this.renderSpinner();
     }
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -59,9 +57,9 @@ export default class Map {
     if (!pinEl) return;
 
     //convert ID to number since data-id is string
-    const pin = this.#pins.find(pin => pin.id === +pinEl.dataset.id);
+    const pin = this.pins.find(pin => pin.id === +pinEl.dataset.id);
 
-    this.#map.setView(pin.coords, this.#mapZoomLevel, {
+    this.map.setView(pin.coords, this.mapZoomLevel, {
       animate: true,
       pan: {
         duration: 1,

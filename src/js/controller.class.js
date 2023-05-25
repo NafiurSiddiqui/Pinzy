@@ -1,6 +1,5 @@
-import Map from './map.class';
-import Form from './view/form.view';
-import View from './view/view';
+import View from './view/view.js';
+import view from './view/view.js';
 
 /**
  * @init {function} - Init the app`
@@ -9,8 +8,9 @@ import View from './view/view';
 class Controller {
   map;
   form;
+  view;
   constructor() {
-    this.view = new View();
+    this.view = view;
 
     //init
     this.init();

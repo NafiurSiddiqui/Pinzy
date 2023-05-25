@@ -5,7 +5,6 @@ const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
-
 btnSidebar?.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
 
@@ -97,7 +96,7 @@ document.body.addEventListener('click', e => {
     : null;
 });
 
-//FORM ERROR HANDLER
+//AUTH FORM ERROR HANDLER
 
 // Get the URL query string
 const queryString = window.location.search;
@@ -112,7 +111,7 @@ if (urlHasError) {
   isError = false;
 }
 
-//TOAST HANDLER
+//AUTH TOAST HANDLER
 
 const btnClose = document.querySelector('.fa-x');
 const notification = document.querySelector('.toast-notification');
@@ -121,7 +120,7 @@ btnClose?.addEventListener('click', () => {
   notification?.classList.add('hidden');
 });
 
-//FORM ANIMATION
+//AUTH FORM ANIMATION
 const inputs = document.querySelectorAll('.input-field');
 
 inputs.forEach(function (input) {

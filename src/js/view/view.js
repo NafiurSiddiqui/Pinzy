@@ -1,13 +1,7 @@
-import { formElements, pinElements } from '../helper';
-import Map from '../map.class';
-import Form from './form.view';
-import FormEditor from './formEditor.view';
-
-/**
- * form UI
- * Sidebar UI
- * map
- */
+import { formElements, pinElements } from '../helper.js';
+import Form from './form.view.js';
+import FormEditor from './formEditor.view.js';
+import Map from './map.view.js';
 
 const {
   eventTypeEl,
@@ -22,11 +16,17 @@ const {
   formEdit,
 } = formElements;
 
-export default class View {
+/**
+ * form UI
+ * Sidebar UI
+ * map
+ */
+class View {
   form;
   formEditor;
   map;
 
+  data;
   constructor() {
     this.form = new Form(eventTypeEl, messageEl, btnSubmit, formBg, form);
     this.formEditor = new FormEditor(
@@ -36,7 +36,8 @@ export default class View {
       formEditBg,
       formEdit
     );
-    this.map = new Map();
+
+    this.map = new Map(this.data, this.showForm, this.renderSpinner);
   }
 
   renderMap() {
@@ -54,4 +55,15 @@ export default class View {
   refreshContent() {
     window.location.reload();
   }
+
+  renderSpinner() {
+    const spinner = document.querySelector('.spinner');
+    spinner.classList.add('hidden');
+    spinner.classList.remove('spin');
+    spinner.classList.remove('z-20');
+  }
 }
+
+const view = new View();
+
+export default view;
