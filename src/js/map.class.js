@@ -10,8 +10,8 @@ export default class Map {
     this.showInputPopUP = showForm;
   }
 
-  //get position
-  _getPosition() {
+  //get position - C
+  getPosition() {
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
         this.loadMap.bind(this),
@@ -21,7 +21,7 @@ export default class Map {
       );
   }
 
-  //load the map
+  //load the map - V
   loadMap(position) {
     this.mapInitiated = false;
     const { latitude } = position.coords;
@@ -51,24 +51,7 @@ export default class Map {
     });
   }
 
-  //renderPinMarker
-  _renderPinMarker(values) {
-    L.marker(values.coords)
-      .addTo(this.map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: `${values.event}-popup`,
-        })
-      )
-      .setPopupContent(` ${values.message}`)
-      .openPopup();
-  }
-
-  //move to pop up
+  //move to pop up -V
   _moveToPopup(e) {
     if (!this.map) return;
     const pinEl = e.target.closest('.user-pin');
