@@ -25,8 +25,8 @@ class View {
   form;
   formEditor;
   map;
-
   data;
+
   constructor() {
     this.form = new Form(eventTypeEl, messageEl, btnSubmit, formBg, form);
     this.formEditor = new FormEditor(
@@ -40,6 +40,8 @@ class View {
     this.hideForm = this.hideForm.bind(this);
     this.map = new Map(this.data, this.renderForm, this.renderSpinner);
     this.newEvHandler = this.map.newMapEvHandler;
+    //hide form
+    this.hideForm();
   }
 
   renderMap() {

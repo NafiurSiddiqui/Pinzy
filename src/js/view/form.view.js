@@ -12,6 +12,8 @@ export default class Form {
     this.eventValidationHandler();
     this.messageValidationHandler();
     this.FormValidationHandler();
+    this.hideForm = this.hideForm.bind(this);
+    console.log(this.formBg);
   }
 
   FormValidationHandler() {
@@ -94,8 +96,7 @@ export default class Form {
 
   hideForm() {
     this.formBg.addEventListener('click', event => {
-      // Check if the clicked element is the user-input form or not
-
+      //prevent click on form element
       if (!this.form.contains(event.target)) {
         // Close the user-input
         this.formBg.classList.add('hidden');

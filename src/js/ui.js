@@ -5,6 +5,7 @@ const sidebar = document.querySelector('.sidebar');
 const sidebarContent = document.querySelector('.sidebar-content-wrapper');
 const sidebarFooter = document.querySelector('.user-profile-footer');
 const btnLogout = document.querySelector('.btn-user-logout');
+
 btnSidebar?.addEventListener('click', () => {
   // Toggle sidebar class with tailwind
 
