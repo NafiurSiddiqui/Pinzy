@@ -1,5 +1,5 @@
 import { formElements, pinElements } from '../helper.js';
-import Form from './form.view.js';
+import FormView from './form.view.js';
 import FormEditor from './formEditor.view.js';
 import Map from './map.view.js';
 
@@ -28,7 +28,7 @@ class View {
   data;
 
   constructor() {
-    this.form = new Form(eventTypeEl, messageEl, btnSubmit, formBg, form);
+    this.form = new FormView(eventTypeEl, messageEl, btnSubmit, formBg, form);
     this.formEditor = new FormEditor(
       eventTypeEditEl,
       messageEditEl,

@@ -1,9 +1,9 @@
-import Form from './form.view.js';
+import FormView from './form.view.js';
 
 /**
  * @params {HTMLelements} - Which are only relevant to the form__edit elements.
  */
-export default class FormEditor extends Form {
+export default class FormEditorView extends FormView {
   formEditIsopen = false;
 
   constructor(eventTypeEl, messageEl, btnSubmit, formBg, form) {

@@ -2,7 +2,7 @@
  * @params  {HTMLelements}
  */
 
-export default class Form {
+export default class FormView {
   constructor(eventTypeEl, messageEl, btnSubmit, formBg, form) {
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
