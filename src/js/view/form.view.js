@@ -11,13 +11,28 @@ export default class Form {
     this.form = form;
     this.eventValidationHandler();
     this.messageValidationHandler();
-    this.FormValidationHandler();
     this.hideForm = this.hideForm.bind(this);
+    this.debounceValidation = this.debounceValidation.bind(this);
+    this.FormValidationHandler();
   }
 
   FormValidationHandler() {
-    this.eventTypeEl.addEventListener('input', this.debounceValidation());
-    this.messageEl.addEventListener('input', this.debounceValidation());
+    //call debouncer once
+    const debouncedValidation = this.debounceValidation();
+    //pass debouncedValidation
+    this.eventTypeEl.addEventListener('input', debouncedValidation);
+    this.messageEl.addEventListener('input', debouncedValidation);
+    //without calling it like this either debounce renders mulitple times or validate form lose 'this' instance of form.
+    //debouncedValidaion.bind(this) = DOES NOT call debounce at all. can't figure out why.
+  }
+
+  debounceValidation() {
+    let timer;
+    const validateForm = this.validateForm.bind(this);
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(validateForm, 1000);
+    };
   }
 
   eventValidationHandler() {
@@ -29,16 +44,6 @@ export default class Form {
 
   messageValidationHandler() {
     this.messageEl.addEventListener('input', this.validateMessage.bind(this));
-  }
-
-  debounceValidation() {
-    console.log('deboucing');
-    let timer;
-    const validateForm = this.validateForm.bind(this);
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(validateForm, 1000);
-    };
   }
 
   validateEventType() {
@@ -64,7 +69,6 @@ export default class Form {
   }
 
   validateForm() {
-    console.log('validating form');
     const event = this.eventTypeEl.value;
     const message = this.messageEl.value;
     console.log(event, message);
