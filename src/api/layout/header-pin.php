@@ -20,7 +20,7 @@
             crossorigin=""></script>
         <link rel="stylesheet" href="../../dist/output.css" />
         <link rel="stylesheet" href="../style/leaflet.css">
-        <script type="module" src="../js/init.js"></script>
+        <script type="module" src="../js/controller.class.js"></script>
         <title>Pinzy -
             <?php
             echo !empty($pageTitle) ? $pageTitle : 'Pin aware the world.'

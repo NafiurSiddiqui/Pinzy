@@ -1,8 +1,14 @@
+import { helper } from '../helper.js';
+
 /**
  * @params  {HTMLelements}
  */
 
 export default class FormView {
+  mapEvent;
+  form;
+  formBg;
+  testData;
   constructor(eventTypeEl, messageEl, btnSubmit, formBg, form) {
     this.eventTypeEl = eventTypeEl;
     this.messageEl = messageEl;
@@ -12,6 +18,7 @@ export default class FormView {
     this.hideForm = this.hideForm.bind(this);
     this.debounceValidation = this.debounceValidation.bind(this);
     this.FormValidationHandler();
+    // this.dataHandlerOnSubmit();
   }
 
   FormValidationHandler() {
@@ -58,18 +65,18 @@ export default class FormView {
   validateForm() {
     const event = this.eventTypeEl.value;
     const message = this.messageEl.value;
-    console.log(event, message);
+    // console.log(event, message);
     if (
       (event === 'none' && message === '') ||
       event === 'none' ||
       message === ''
     ) {
-      console.log('fields can not be empty!');
+      // console.log('fields can not be empty!');
       this.btnSubmit.setAttribute('disabled', '');
     }
 
     if (event !== 'none' && message !== '') {
-      console.log('field are NOT empty');
+      // console.log('field are NOT empty');
       this.btnSubmit.removeAttribute('disabled');
     }
 
@@ -77,15 +84,15 @@ export default class FormView {
     this.validateEventType();
   }
 
-  showForm(mapE, newMapEvhandler) {
-    // this.mapEvent = mapE;
-
+  showForm(mapEvent, newMapEvhandler) {
+    //store coords here, since submission needs it.
+    this.mapEvent = mapEvent;
     this.formBg.classList.remove('hidden');
     // if (!this.btnSubmit.hasAttribute('disabled')) {
     //   this.btnSubmit.setAttribute('disabled', '');
     // }
     //store coords
-    newMapEvhandler(mapE);
+    // newMapEvhandler(mapEvent);
   }
 
   hideForm() {
@@ -102,6 +109,51 @@ export default class FormView {
         this.formBg?.classList.add('hidden');
         // userInputBgEdit?.classList.add('hidden');
       }
+    });
+  }
+
+  //submit form
+  dataHandlerOnSubmit(handler) {
+    this.form.addEventListener('submit', e => {
+      e.preventDefault();
+      //DID not prevent default refresh, since without refresh the content editor does not work.
+      //get the values
+      const event = this.eventTypeEl.value;
+      const message = this.messageEl.value;
+      const eventTypeIcon =
+        this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
+      const eventTypeColor =
+        this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.color;
+      const { lat, lng } = this.mapEvent.latlng;
+      //sanitize input
+      const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
+      //values would be different if user
+      /**
+       * id: user? from Db : generateId
+       */
+      const isGuest = helper.checkURL('guest.html') ? true : false;
+      const formUserData = userName => {
+        const userData = {
+          event,
+          id: Math.floor(Math.random() * 100) + 1,
+          icon: eventTypeIcon,
+          color: eventTypeColor,
+          message: sanitizedTextAreaValue,
+          coords: [lat, lng],
+          userType: isGuest ? 'guest' : 'user',
+          userName: isGuest ? 'Anonymous' : userName,
+        };
+        return userData;
+      };
+      //pass it to the controller
+      // this._setLocalStorage();
+      handler(formUserData);
+      //clear inputs
+      this.eventTypeEl.value = this.messageEl.value = '';
+      //render pin count
+      // this._renderPinCount();
+      //hideInput
+      // this._hideInput();
     });
   }
 }

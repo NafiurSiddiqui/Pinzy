@@ -39,6 +39,45 @@ class Helper {
     }
     throw new Error('Unable to retrieve pathname from window.location.');
   }
+
+  getDate() {
+    //get current date
+    function getOrdinalIndicator(day) {
+      var indicator = 'th';
+      if (day === 1 || day === 21 || day === 31) {
+        indicator = 'st';
+      } else if (day === 2 || day === 22) {
+        indicator = 'nd';
+      } else if (day === 3 || day === 23) {
+        indicator = 'rd';
+      }
+      return indicator;
+    }
+
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var ordinalIndicator = getOrdinalIndicator(day);
+    var formattedDate = `
+      ${day} 
+      ${ordinalIndicator} 
+      
+      ${currentDate.toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric',
+      })}`;
+    return formattedDate;
+  }
+
+  getTime() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var formattedTime = ` ${hours.toString().padStart(2, '0')}:${minutes
+      .toString()
+      .padStart(2, '0')} hrs`;
+
+    return formattedTime;
+  }
 }
 
 const helper = new Helper();

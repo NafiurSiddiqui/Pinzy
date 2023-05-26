@@ -1,3 +1,5 @@
+import { helper } from '../helper';
+
 export default class PinCard {
   /**
    *
@@ -46,7 +48,7 @@ export default class PinCard {
                   class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
                 >
                   <img src="../assets/calendar.svg" class="inline-block" />
-                  ${this.getDate()}
+                  ${helper.getDate()}
                 </span>
                 <!-- edit -->
                 <div class="pin-edit-box__container relative z-40" data-id="${
@@ -71,7 +73,7 @@ export default class PinCard {
                   class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
                 >
                   <img src="../assets/time.svg" class="inline-block" />
-                  ${this.getTime()}
+                  ${helper.getTime()}
                 </span>
               </div>
               <p

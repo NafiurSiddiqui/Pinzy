@@ -11,7 +11,7 @@ export default class Map {
     this.renderSpinner = renderSpinner;
     this.loadMap = this.loadMap.bind(this);
     this.getPosition = this.getPosition.bind(this);
-    this.newMapEvHandler = this.newMapEvHandler.bind(this);
+    // this.newMapEvHandler = this.newMapEvHandler.bind(this);
   }
 
   //get position - C
@@ -52,9 +52,10 @@ export default class Map {
     // });
   }
 
-  newMapEvHandler(mapEvent) {
-    this.mapEvent = mapEvent;
-  }
+  // newMapEvHandler(mapEvent) {
+  //   this.mapEvent = mapEvent;
+
+  // }
 
   //move to pop up -V
   moveToPopup(e) {
