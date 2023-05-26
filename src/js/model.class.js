@@ -34,8 +34,15 @@ export default class Model {
     }
   }
 
-  setLocalStorage(data) {
-    localStorage.setItem(this.userType, JSON.stringify(data));
+  /**
+   *
+   * @param {string} userType
+   * @param {Object} data
+   */
+  saveToLocalStorage(userType, data) {
+    //update dataState
+    this.data = data;
+    localStorage.setItem(userType, JSON.stringify(this.data));
   }
 
   getLocalStorage() {

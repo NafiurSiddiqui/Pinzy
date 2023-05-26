@@ -1,6 +1,6 @@
 import { formElements, pinElements } from '../helper.js';
 import FormView from './form.view.js';
-import FormEditor from './formEditor.view.js';
+import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
 
 const {
@@ -29,13 +29,13 @@ class View {
 
   constructor() {
     this.form = new FormView(eventTypeEl, messageEl, btnSubmit, formBg, form);
-    this.formEditor = new FormEditor(
-      eventTypeEditEl,
-      messageEditEl,
-      btnEditSubmit,
-      formEditBg,
-      formEdit
-    );
+    // this.formEditor = new FormEditorView(
+    //   eventTypeEditEl,
+    //   messageEditEl,
+    //   btnEditSubmit,
+    //   formEditBg,
+    //   formEdit
+    // );
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.map = new Map(this.data, this.renderForm, this.renderSpinner);

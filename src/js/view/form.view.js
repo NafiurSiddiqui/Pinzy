@@ -1,10 +1,11 @@
 import { helper } from '../helper.js';
+import view from './view.js';
 
 /**
  * @params  {HTMLelements}
  */
 
-export default class FormView {
+export default class FormView extends view {
   mapEvent;
   form;
   formBg;
@@ -115,7 +116,6 @@ export default class FormView {
   //submit form
   dataHandlerOnSubmit(handler) {
     this.form.addEventListener('submit', e => {
-      e.preventDefault();
       //DID not prevent default refresh, since without refresh the content editor does not work.
       //get the values
       const event = this.eventTypeEl.value;
@@ -146,7 +146,6 @@ export default class FormView {
         return userData;
       };
       //pass it to the controller
-      // this._setLocalStorage();
       handler(formUserData);
       //clear inputs
       this.eventTypeEl.value = this.messageEl.value = '';

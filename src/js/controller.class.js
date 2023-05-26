@@ -15,31 +15,30 @@ class Controller {
   constructor() {
     this.view = view;
     this.model = new Model();
+    // this.init = this.init.bind(this);
     //init
     this.init();
-    console.log(this.model._userName);
+    this.controlUserData = this.controlUserData.bind(this);
+    this.view.form.dataHandlerOnSubmit(this.controlUserData);
   }
 
   controlUserData(data) {
     let userData = data();
-    console.log(userData.userType);
-
-    let userName = data('Timmy');
-    console.log(userName.userName);
+    console.log(typeof userData);
     if (data().userType === 'guest') {
       //guest data
-      this.model.setLocalStorage('guest', JSON.stringify(data));
+      this.model.saveToLocalStorage('guest', userData);
     } else {
-      // const userData = data()
-      //get userName
+      //set data with dynamic username
+      let userDataWithName = data(this.model._userName);
       //store userData
+      this.model.setLocalStorage('guest', JSON.stringify(userDataWithName));
     }
-    //store data
   }
+
   init() {
+    console.log('init runs');
     this.view.renderMap();
-    // this.view.dataHandlerOnSubmit(this.controlUserData);
-    this.view.form.dataHandlerOnSubmit(this.controlUserData);
   }
 }
 
