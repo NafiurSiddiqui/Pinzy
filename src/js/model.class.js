@@ -5,7 +5,7 @@
 export default class Model {
   _userName;
   _dataState = [];
-
+  _dataStateKey = 'dataState';
   constructor() {
     this.getUserName = this.getUserName.bind(this);
     this.getUserName();
@@ -40,27 +40,40 @@ export default class Model {
    * @param {string} userType
    * @param {Object} data
    */
+  // saveToLocalStorage(userType, data) {
+  //   //update this.dataState
+  //   // this._dataState.push(data);
+  //   // console.log(this._dataState);
+  //   // localStorage.setItem(userType, JSON.stringify(this._dataState));
+  // }
+
   saveToLocalStorage(userType, data) {
-    //update this.dataState
-    // this._dataState.push(data);
-    // console.log(this._dataState);
-    // localStorage.setItem(userType, JSON.stringify(this._dataState));
+    let dataState = JSON.parse(localStorage.getItem(this._dataStateKey)) || [];
+    dataState.push(data);
+    localStorage.setItem(this._dataStateKey, JSON.stringify(dataState));
   }
 
   getLocalStorage() {
     const guestData = JSON.parse(localStorage.getItem('guest'));
     const userData = JSON.parse(localStorage.getItem('user'));
 
-    if (guestData) {
-      // this.hasGuestdata = true;
-      console.log(this._dataState);
-      this._dataState.push(guestData);
-      // this.data = guestdata.map(data => ({
-      //   ...data,
-      //   userType: 'guest',
-      //   userName: 'Anonymous',
-      // }));
+    const dataState =
+      JSON.parse(localStorage.getItem(this._dataStateKey)) || [];
+
+    if (dataState.length > 0) {
+      this._dataState = dataState;
     }
+
+    // if (guestData) {
+    //   // this.hasGuestdata = true;
+    //   console.log(this._dataState);
+    //   this._dataState.push(guestData);
+    //   // this.data = guestdata.map(data => ({
+    //   //   ...data,
+    //   //   userType: 'guest',
+    //   //   userName: 'Anonymous',
+    //   // }));
+    // }
 
     // else {
     //   this.hasGuestdata = false;
