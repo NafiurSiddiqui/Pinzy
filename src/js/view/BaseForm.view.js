@@ -104,7 +104,7 @@ export default class BaseFormView {
   //submit form
   baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
-      e.preventDefault();
+      // e.preventDefault();
       //DID not prevent default refresh, since without refresh the content editor does not work.
       //get the values
       const event = this.eventTypeEl.value;
