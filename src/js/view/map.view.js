@@ -3,6 +3,7 @@ export default class Map {
   map;
   mapZoomLevel = 13;
   mapEvent;
+  coords;
   showform;
   pins;
   constructor(pins, showForm, renderSpinner) {
@@ -31,7 +32,7 @@ export default class Map {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
-
+    this.coords = coords;
     this.map = L.map('map').setView(coords, this.mapZoomLevel);
 
     if (this.map) {
@@ -51,11 +52,6 @@ export default class Map {
     //   this.renderPinMarker(pin);
     // });
   }
-
-  // newMapEvHandler(mapEvent) {
-  //   this.mapEvent = mapEvent;
-
-  // }
 
   //move to pop up -V
   moveToPopup(e) {

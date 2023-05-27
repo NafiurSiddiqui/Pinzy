@@ -1,4 +1,4 @@
-import { helper } from '../helper';
+import { helper } from '../helper.js';
 
 export default class PinCard {
   /**

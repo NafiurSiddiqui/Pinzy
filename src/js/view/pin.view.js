@@ -1,44 +1,39 @@
-import { helper } from '../helper.js';
 import PinCard from './pinCard.view.js';
-import View from './view.js';
+import { helper, pinElements } from '../helper.js';
+
+const {
+  globalPinContainer,
+  userPinContainer,
+  guestPinContainer,
+  userPinCountEl,
+  guestPinCountEl,
+} = pinElements;
 
 export default class Pin {
+  /**
+   * @property {boolean} isGlobalPinPage
+   */
   map;
-  pins;
-  editBtnHandler;
-  pagePin;
-  userPinContainer;
-  guestPinContainer;
-  globalPinContainer;
+  isGlobalPinPage;
+  userPinContainer = userPinContainer;
+  guestPinContainer = guestPinContainer;
+  globalPinContainer = globalPinContainer;
 
   /**
    *
-   * @param {Array} pins
    * @param {Object} map
-   * @param {Function} editBtnHandler
    * @param {HTMLElement} userPinContainer
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  constructor(
-    pins,
-    map,
-    editBtnHandler,
-    userPinContainer,
-    globalPinContainer,
-    guestPinContainer
-  ) {
-    this.pins = pins;
+  constructor(map) {
     this.map = map;
-    this.editBtnHandler = editBtnHandler;
-    this.userPinContainer = userPinContainer;
-    this.globalPinContainer = globalPinContainer;
-    this.guestPinContainer = guestPinContainer;
-
+    this.editBtnHandler = this.editBtnHandler;
+    // console.log(map.map);
     //detect page type
     helper.checkURL('pins.php')
-      ? (this.pagePin = true)
-      : (this.pagePin = false);
+      ? (this.isGlobalPinPage = true)
+      : (this.isGlobalPinPage = false);
   }
 
   //renderPinOnMap
@@ -78,7 +73,6 @@ export default class Pin {
       );
 
       // attach edit btn to the card
-
       const editBtn = pinContainer?.querySelector(
         `[data-id="${data.id}"] .pin-edit-box__container i`
       );
@@ -109,7 +103,7 @@ export default class Pin {
    *
    */
   renderPinCount(pinEl) {
-    if (this.pagePin) {
+    if (this.isGlobalPinPage) {
       return;
     }
     pinEl.textContent = this.pins.length;
@@ -161,5 +155,14 @@ export default class Pin {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  //editBtn listener on card
+  editBtnHandler(editBtn) {
+    editBtn?.addEventListener('click', e => {
+      e.stopPropagation();
+      const editBox = e.currentTarget.nextElementSibling;
+      editBox.classList.toggle('hidden');
+    });
   }
 }

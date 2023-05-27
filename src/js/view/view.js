@@ -2,6 +2,7 @@ import { formElements, pinElements } from '../helper.js';
 import FormView from './form.view.js';
 import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
+import Pin from './pin.view.js';
 
 /**
  * form UI
@@ -22,6 +23,8 @@ class View {
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     this.map = new Map(this.data, this.renderForm, this.renderSpinner);
+    this.pin = new Pin(this.map.map);
+
     this.newEvHandler = this.map.newMapEvHandler;
     //hide form
     this.hideForm();
@@ -52,6 +55,11 @@ class View {
     spinner.classList.add('hidden');
     spinner.classList.remove('spin');
     spinner.classList.remove('z-20');
+  }
+
+  //PINS
+  renderPinOnMapHandler(values) {
+    this.pin.renderPinOnMap(values);
   }
 }
 

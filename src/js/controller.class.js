@@ -1,5 +1,5 @@
 import Model from './model.class.js';
-import FormView from './view/form.view.js';
+
 import view from './view/view.js';
 
 /**
@@ -20,11 +20,12 @@ class Controller {
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
     this.view.form.dataHandler(this.controlUserData);
+    this.controlPinOutput();
   }
 
   controlUserData(data) {
     let userData = data();
-    console.log(typeof userData);
+
     if (data().userType === 'guest') {
       //guest data
       this.model.saveToLocalStorage('guest', userData);
@@ -34,6 +35,11 @@ class Controller {
       //store userData
       this.model.setLocalStorage('guest', JSON.stringify(userDataWithName));
     }
+  }
+
+  controlPinOutput() {
+    //run the view.renderPinOnMap
+    this.view.renderPinOnMapHandler(this.model._dataState);
   }
 
   init() {

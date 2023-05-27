@@ -1,7 +1,10 @@
-let dataState = [];
+// let dataState = [];
+
+// export { dataState };
 
 export default class Model {
   _userName;
+  _dataState = [];
 
   constructor() {
     this.getUserName = this.getUserName.bind(this);
@@ -38,9 +41,10 @@ export default class Model {
    * @param {Object} data
    */
   saveToLocalStorage(userType, data) {
-    //update dataState
-    dataState.push(data);
-    localStorage.setItem(userType, JSON.stringify(dataState));
+    //update this.dataState
+    // this._dataState.push(data);
+    // console.log(this._dataState);
+    // localStorage.setItem(userType, JSON.stringify(this._dataState));
   }
 
   getLocalStorage() {
@@ -49,7 +53,8 @@ export default class Model {
 
     if (guestData) {
       // this.hasGuestdata = true;
-      dataState.push(guestData);
+      console.log(this._dataState);
+      this._dataState.push(guestData);
       // this.data = guestdata.map(data => ({
       //   ...data,
       //   userType: 'guest',

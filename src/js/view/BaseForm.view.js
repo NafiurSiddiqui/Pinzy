@@ -25,7 +25,7 @@ export default class BaseFormView {
     const baseValidateForm = this.baseValidateForm.bind(this);
     return function () {
       clearTimeout(timer);
-      timer = setTimeout(baseValidateForm, 1000);
+      timer = setTimeout(baseValidateForm, 300);
     };
   }
 
@@ -104,7 +104,7 @@ export default class BaseFormView {
   //submit form
   baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
-      // e.preventDefault();
+      e.preventDefault();
       //DID not prevent default refresh, since without refresh the content editor does not work.
       //get the values
       const event = this.eventTypeEl.value;
@@ -141,7 +141,7 @@ export default class BaseFormView {
       //render pin count
       // this._renderPinCount();
       //hideInput
-      // this._hideInput();
+      this.baseHideForm();
     });
   }
 }
