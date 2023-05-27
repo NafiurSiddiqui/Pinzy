@@ -28,18 +28,19 @@ class Controller {
 
     if (data().userType === 'guest') {
       //guest data
-      this.model.saveToLocalStorage('guest', userData);
+
+      this.model.saveGuestToLocalStorage(userData);
     } else {
       //set data with dynamic username
       let userDataWithName = data(this.model._userName);
       //store userData
-      this.model.setLocalStorage('guest', JSON.stringify(userDataWithName));
+      this.model.saveUserToLocalStorage(userDataWithName);
     }
   }
 
   controlPinOutput() {
     //run the view.renderPinOnMap
-    this.view.renderPinOnMapHandler(this.model._dataState);
+    // this.view.renderPinOnMapHandler(this.model._dataState);
   }
 
   init() {

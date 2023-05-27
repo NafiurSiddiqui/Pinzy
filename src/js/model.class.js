@@ -4,8 +4,11 @@
 
 export default class Model {
   _userName;
-  _dataState = [];
-  _dataStateKey = 'dataState';
+  _globalState = [];
+  _guestState = [];
+  _userState = [];
+  _globalStateKey = 'globalState';
+
   constructor() {
     this.getUserName = this.getUserName.bind(this);
     this.getUserName();
@@ -47,33 +50,51 @@ export default class Model {
   //   // localStorage.setItem(userType, JSON.stringify(this._dataState));
   // }
 
-  saveToLocalStorage(userType, data) {
-    let dataState = JSON.parse(localStorage.getItem(this._dataStateKey)) || [];
-    dataState.push(data);
-    localStorage.setItem(this._dataStateKey, JSON.stringify(dataState));
+  saveGuestToLocalStorage(data) {
+    if (data === undefined || '') throw new Error('Must set data for guest');
+
+    let guestData = JSON.parse(localStorage.getItem('guest')) || [];
+
+    guestData.push(data);
+    localStorage.setItem('guest', JSON.stringify(guestData));
   }
 
+  saveUserToLocalStorage(data) {
+    if (data === undefined || '') throw new Error('Must set data for user');
+
+    let userData = JSON.parse(localStorage.getItem('user')) || [];
+
+    userData.push(data);
+    localStorage.setItem('user', JSON.stringify(userData));
+  }
+
+  // saveToLocalStorage(userType, data) {
+  //   let dataState = JSON.parse(localStorage.getItem(this._dataStateKey)) || [];
+  //   dataState.push(data);
+  //   localStorage.setItem(this._dataStateKey, JSON.stringify(dataState));
+  // }
+
   getLocalStorage() {
-    const guestData = JSON.parse(localStorage.getItem('guest'));
+    const guestData = JSON.parse(localStorage.getItem('guest')) || [];
     const userData = JSON.parse(localStorage.getItem('user'));
 
-    const dataState =
-      JSON.parse(localStorage.getItem(this._dataStateKey)) || [];
+    // const dataState =
+    //   JSON.parse(localStorage.getItem(this._dataStateKey)) || [];
 
-    if (dataState.length > 0) {
-      this._dataState = dataState;
-    }
-
-    // if (guestData) {
-    //   // this.hasGuestdata = true;
-    //   console.log(this._dataState);
-    //   this._dataState.push(guestData);
-    //   // this.data = guestdata.map(data => ({
-    //   //   ...data,
-    //   //   userType: 'guest',
-    //   //   userName: 'Anonymous',
-    //   // }));
+    // if (dataState.length > 0) {
+    //   this._dataState = dataState;
     // }
+
+    if (guestData.length > 0) {
+      // this.hasGuestdata = true;
+      // console.log(this._dataState);
+      this._guestState = guestData;
+      // this.data = guestdata.map(data => ({
+      //   ...data,
+      //   userType: 'guest',
+      //   userName: 'Anonymous',
+      // }));
+    }
 
     // else {
     //   this.hasGuestdata = false;
