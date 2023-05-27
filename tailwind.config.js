@@ -20,7 +20,7 @@ module.exports = {
         '90vh': '90vh',
       },
       backgroundColor: {
-        primary: '#f7fee7',
+        primary: '#f7f6f1',
       },
       fontFamily: {
         caveat: ['Caveat', 'cursive'],

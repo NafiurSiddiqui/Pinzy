@@ -1,26 +1,21 @@
-export default class BaseForm {
+import { helper } from '../helper.js';
+
+export default class BaseFormView {
   mapEvent;
   form;
   formBg;
 
   constructor() {
-    this.eventTypeEl = null;
-    this.messageEl = null;
-    this.btnSubmit = null;
-    this.formBg = null;
-    this.form = null;
-    this.ideForm = this.ideForm.bind(this);
+    this.baseHideForm = this.baseHideForm.bind(this);
     this.baseDebounceValidation = this.baseDebounceValidation.bind(this);
-    this.baseFormValidationHandler();
-    // this.baseDataHandlerOnSubmit();
   }
 
-  baseFormValidationHandler() {
+  baseFormValidationHandler(eventTypeEl, messageEl) {
     //call debouncer once
     const debouncedValidation = this.baseDebounceValidation();
     //pass debouncedValidation
-    this.eventTypeEl.addEventListener('input', debouncedValidation);
-    this.messageEl.addEventListener('input', debouncedValidation);
+    eventTypeEl.addEventListener('input', debouncedValidation);
+    messageEl.addEventListener('input', debouncedValidation);
     //without calling it like this either debounce renders mulitple times or validate form lose 'this' instance of form.
     //debouncedValidaion.bind(this) = DOES NOT call debounce at all. can't figure out why.
   }
@@ -89,7 +84,7 @@ export default class BaseForm {
     // newMapEvhandler(mapEvent);
   }
 
-  ideForm() {
+  baseHideForm() {
     this.formBg.addEventListener('click', event => {
       //prevent click on form element
       if (!this.form.contains(event.target)) {
@@ -107,8 +102,9 @@ export default class BaseForm {
   }
 
   //submit form
-  baseDataHandlerOnSubmit(handler) {
+  baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
+      e.preventDefault();
       //DID not prevent default refresh, since without refresh the content editor does not work.
       //get the values
       const event = this.eventTypeEl.value;

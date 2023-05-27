@@ -3,19 +3,6 @@ import FormView from './form.view.js';
 import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
 
-const {
-  eventTypeEl,
-  messageEl,
-  btnSubmit,
-  formBg,
-  form,
-  eventTypeEditEl,
-  messageEditEl,
-  btnEditSubmit,
-  formEditBg,
-  formEdit,
-} = formElements;
-
 /**
  * form UI
  * Sidebar UI
@@ -28,13 +15,9 @@ class View {
   data;
 
   constructor() {
-    this.form = new FormView(eventTypeEl, messageEl, btnSubmit, formBg, form);
+    this.form = new FormView();
     // this.formEditor = new FormEditorView(
-    //   eventTypeEditEl,
-    //   messageEditEl,
-    //   btnEditSubmit,
-    //   formEditBg,
-    //   formEdit
+
     // );
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
@@ -49,11 +32,11 @@ class View {
   }
 
   renderForm(mapEvent) {
-    this.form.showForm(mapEvent, this.newEvHandler);
+    this.form.showFormHandler(mapEvent, this.newEvHandler);
   }
 
   hideForm() {
-    this.form.hideForm();
+    this.form.hideFormHandler();
   }
 
   renderEditFormHandler() {

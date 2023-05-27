@@ -1,23 +1,28 @@
-import { helper } from '../helper.js';
-import BaseForm from './BaseForm.view.js';
-import view from './view.js';
+import { helper, formElements } from '../helper.js';
+import BaseFormView from './BaseForm.view.js';
 
 /**
  * @params  {HTMLelements}
  */
 
-export default class FormView extends BaseForm {
-  constructor(eventTypeEl, messageEl, btnSubmit, formBg, form) {
-    super(eventTypeEl, messageEl, btnSubmit, formBg, form);
-    this.eventTypeEl = eventTypeEl;
-    this.messageEl = messageEl;
-    this.btnSubmit = btnSubmit;
-    this.formBg = formBg;
-    this.form = form;
+const { eventTypeEl, messageEl, btnSubmit, formBg, form } = formElements;
+
+export default class FormView extends BaseFormView {
+  eventTypeEl = eventTypeEl;
+  messageEl = messageEl;
+  btnSubmit = btnSubmit;
+  formBg = formBg;
+  form = form;
+
+  constructor() {
+    super();
+    this.FormValidationHandler();
   }
 
-  FormValidationHandler() {
-    this.baseFormValidationHandler();
+  FormValidationHandler(eventTypeEl, messageEl) {
+    eventTypeEl = this.eventTypeEl;
+    messageEl = this.messageEl;
+    this.baseFormValidationHandler(eventTypeEl, messageEl);
   }
 
   debounceValidationHandler() {
@@ -44,9 +49,9 @@ export default class FormView extends BaseForm {
     this.baseHideForm();
   }
 
-  // //submit form
-  formDataHandler(handler) {
-    this.baseFormDataHandler(handler);
+  //submit form
+  dataHandler(handler) {
+    this.baseDataHandler(handler);
   }
 }
 

@@ -19,7 +19,7 @@ class Controller {
     //init
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
-    this.view.form.dataHandlerOnSubmit(this.controlUserData);
+    this.view.form.dataHandler(this.controlUserData);
   }
 
   controlUserData(data) {
