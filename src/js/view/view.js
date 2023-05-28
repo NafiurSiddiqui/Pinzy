@@ -13,25 +13,36 @@ class View {
   form;
   formEditor;
   map;
-  data;
-
+  guestPins;
+  pinClass;
   constructor() {
     this.form = new FormView();
     // this.formEditor = new FormEditorView(
 
     // );
+
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
-    this.map = new Map(this.data, this.renderForm, this.renderSpinner);
-    this.pin = new Pin(this.map.map);
-
+    // this.pinClass = new Pin(this.map);
+    this.map = new Map(this.guestPins, this.renderForm, this.renderSpinner);
+    // this.renderMap = this.renderMap.bind(this);
     this.newEvHandler = this.map.newMapEvHandler;
+    this.renderPinOnMapHandler = this.renderPinOnMapHandler.bind(this);
     //hide form
     this.hideForm();
   }
 
   renderMap() {
-    this.map.getPosition();
+    // let map = this.map.getPosition();
+    this.map.getPosition(map => {
+      if (map) {
+        this.pinClass = new Pin(map); // Initialize Pin with the map instance
+        // console.log(map);
+      } else {
+        console.log('No map');
+        // Handle the case where map is not available
+      }
+    });
   }
 
   renderForm(mapEvent) {
@@ -58,8 +69,8 @@ class View {
   }
 
   //PINS
-  renderPinOnMapHandler(values) {
-    this.pin.renderPinOnMap(values);
+  renderPinOnMapHandler(guestData) {
+    // this.pinClass.renderPinOnMap(guestData);
   }
 }
 

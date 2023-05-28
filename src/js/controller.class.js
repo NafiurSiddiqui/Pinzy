@@ -15,6 +15,7 @@ class Controller {
   constructor() {
     this.view = view;
     this.model = new Model();
+
     // this.init = this.init.bind(this);
     //init
     this.init();
@@ -40,7 +41,7 @@ class Controller {
 
   controlPinOutput() {
     //run the view.renderPinOnMap
-    // this.view.renderPinOnMapHandler(this.model._dataState);
+    this.view.renderPinOnMapHandler(this.model._guestState);
   }
 
   init() {
