@@ -38,6 +38,7 @@ export default class Pin {
 
   //renderPinOnMap
   renderPinOnMap(values) {
+    // console.log(values);
     L.marker(values.coords)
       .addTo(this.map)
       .bindPopup(

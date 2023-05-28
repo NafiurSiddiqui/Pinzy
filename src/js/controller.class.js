@@ -41,12 +41,13 @@ class Controller {
 
   controlPinOutput() {
     //run the view.renderPinOnMap
-    this.view.renderPinOnMapHandler(this.model._guestState);
+    // this.view.renderPinOnMapHandler(this.model._guestState);
   }
 
   init() {
     console.log('init runs');
     this.view.renderMap();
+    this.view.updateGuestPins(this.model._guestState);
   }
 }
 

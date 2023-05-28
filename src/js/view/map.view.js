@@ -18,6 +18,7 @@ export default class Map extends Pin {
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
     // this.newMapEvHandler = this.newMapEvHandler.bind(this);
+    console.log(this.guestPins);
   }
 
   //get position - C

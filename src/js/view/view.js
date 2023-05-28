@@ -1,4 +1,5 @@
 import { formElements, pinElements } from '../helper.js';
+import Model from '../model.class.js';
 import FormView from './form.view.js';
 import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
@@ -27,7 +28,7 @@ class View {
     this.map = new Map(this.guestPins, this.renderForm, this.renderSpinner);
     // this.renderMap = this.renderMap.bind(this);
     this.newEvHandler = this.map.newMapEvHandler;
-    this.renderPinOnMapHandler = this.renderPinOnMapHandler.bind(this);
+    // this.renderPinOnMapHandler = this.renderPinOnMapHandler.bind(this);
     //hide form
     this.hideForm();
   }
@@ -37,7 +38,6 @@ class View {
     this.map.getPosition(map => {
       if (map) {
         this.pinClass = new Pin(map); // Initialize Pin with the map instance
-        // console.log(map);
       } else {
         console.log('No map');
         // Handle the case where map is not available
@@ -69,8 +69,12 @@ class View {
   }
 
   //PINS
-  renderPinOnMapHandler(guestData) {
-    // this.pinClass.renderPinOnMap(guestData);
+  // renderPinOnMapHandler(guestData) {
+  //   this.pinClass.renderPinOnMap(guestData);
+  // }
+
+  updateGuestPins(guestState) {
+    this.guestPins = guestState;
   }
 }
 
