@@ -60,24 +60,24 @@ export default class Pin {
    *
    * @param {Object} data
    */
-  renderPinOnProfile(data, pinContainer) {
+  renderPinOnProfile(pins, pinData, pinContainer) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
-    const isGuest = data.userType === 'guest';
+    const isGuest = pinData.userType === 'guest';
     // const userName = isGuest ? 'Anonymous' : values.userName;
     // const pinContainer = isGuest ? guestPinContainer : userPinContainer;
     const pinLimit = isGuest ? 10 : 100;
-
-    if (this.pins.length < pinLimit) {
+    console.log(pins.length);
+    if (pins.length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(
         'beforeend',
-        PinCard.generatePinCard(data)
+        PinCard.generatePinCard(pinData)
       );
 
       // attach edit btn to the card
       const editBtn = pinContainer?.querySelector(
-        `[data-id="${data.id}"] .pin-edit-box__container i`
+        `[data-id="${pinData.id}"] .pin-edit-box__container i`
       );
 
       this.editBtnHandler(editBtn);
@@ -89,7 +89,7 @@ export default class Pin {
       );
     }
 
-    if (this.pins.length === 1) {
+    if (pins.length === 1) {
       this.defaultPinMsgHandler();
     }
   }

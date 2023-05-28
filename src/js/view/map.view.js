@@ -77,11 +77,19 @@ export default class Map extends Pin {
 
     // Handling clicks on map
     this.map.on('click', this.showForm.bind(this));
-    //render marker
+
+    //!need to detect the userType or pageType later before renering pins
+    //render marker for guest
     this.guestPins.forEach(pin => {
-      // this.renderPinMarker(pin);
+      //render pin on map
       this.renderPinOnMap(pin);
+      //render pin on profile
+      this.renderPinOnProfile(this.guestPins, pin, this.guestPinContainer);
     });
+
+    //render marker for user
+
+    //render global marker
 
     return map;
   }
