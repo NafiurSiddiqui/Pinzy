@@ -10,18 +10,18 @@ import Pin from './pin.view.js';
  * Sidebar UI
  * map
  */
-class View {
+export default class View {
   form;
   formEditor;
   map;
   guestPins;
   pinClass;
-  constructor() {
+  constructor(guestState) {
     this.form = new FormView();
     // this.formEditor = new FormEditorView(
 
     // );
-
+    this.guestPins = guestState;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
     // this.pinClass = new Pin(this.map);
@@ -37,7 +37,7 @@ class View {
     // let map = this.map.getPosition();
     this.map.getPosition(map => {
       if (map) {
-        this.pinClass = new Pin(map); // Initialize Pin with the map instance
+        this.pinClass = new Pin(map, this.guestPins); // Initialize Pin with the map instance
       } else {
         console.log('No map');
         // Handle the case where map is not available
@@ -72,12 +72,4 @@ class View {
   // renderPinOnMapHandler(guestData) {
   //   this.pinClass.renderPinOnMap(guestData);
   // }
-
-  updateGuestPins(guestState) {
-    this.guestPins = guestState;
-  }
 }
-
-const view = new View();
-
-export default view;

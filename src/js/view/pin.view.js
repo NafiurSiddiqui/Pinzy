@@ -18,6 +18,7 @@ export default class Pin {
   userPinContainer = userPinContainer;
   guestPinContainer = guestPinContainer;
   globalPinContainer = globalPinContainer;
+  guestPins;
 
   /**
    *
@@ -26,9 +27,10 @@ export default class Pin {
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  constructor(map) {
+  constructor(map, guestPins) {
     this.map = map;
     this.editBtnHandler = this.editBtnHandler;
+    this.guestPins = guestPins;
     // console.log(map.map);
     //detect page type
     helper.checkURL('pins.php')
@@ -165,5 +167,14 @@ export default class Pin {
       const editBox = e.currentTarget.nextElementSibling;
       editBox.classList.toggle('hidden');
     });
+  }
+
+  //get guest pins
+  getGuestPins(guestState) {
+    if (guestState) {
+      this.guestPins = guestState;
+    } else {
+      console.log('No guest pins found in Pin Class');
+    }
   }
 }

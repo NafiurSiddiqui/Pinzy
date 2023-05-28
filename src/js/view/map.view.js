@@ -39,23 +39,19 @@ export default class Map extends Pin {
   //load the map - V
 
   getPosition(callback) {
-    console.log('getPosition called');
     if (navigator.geolocation) {
       const mapToThis = this.loadMap.bind(this);
       navigator.geolocation.getCurrentPosition(
         position => {
-          console.log('getCurrentPosition success');
           const map = mapToThis(position);
           callback(map); // Invoke the callback with the map instance
         },
         function () {
-          console.log('getCurrentPosition error');
           alert('Please allow locating your position.');
           callback(null); // Invoke the callback with null if there's an error
         }
       );
     } else {
-      console.log('Geolocation not supported');
       callback(null); // Invoke the callback with null if geolocation is not supported
     }
   }
@@ -82,10 +78,10 @@ export default class Map extends Pin {
     // Handling clicks on map
     this.map.on('click', this.showForm.bind(this));
     //render marker
-    // this.guestPins.forEach(pin => {
-    //   // this.renderPinMarker(pin);
-    //   this.renderPinOnMap(pin);
-    // });
+    this.guestPins.forEach(pin => {
+      // this.renderPinMarker(pin);
+      this.renderPinOnMap(pin);
+    });
 
     return map;
   }

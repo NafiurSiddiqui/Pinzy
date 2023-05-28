@@ -1,4 +1,6 @@
 import Model from './model.class.js';
+import Pin from './view/pin.view.js';
+import View from './view/view.js';
 
 import view from './view/view.js';
 
@@ -13,8 +15,8 @@ class Controller {
   model;
 
   constructor() {
-    this.view = view;
     this.model = new Model();
+    this.view = new View(this.model._guestState);
 
     // this.init = this.init.bind(this);
     //init
@@ -46,8 +48,8 @@ class Controller {
 
   init() {
     console.log('init runs');
+
     this.view.renderMap();
-    this.view.updateGuestPins(this.model._guestState);
   }
 }
 
