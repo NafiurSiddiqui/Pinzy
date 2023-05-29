@@ -1,5 +1,5 @@
 import PinCard from './pinCard.view.js';
-import { helper, pinElements } from '../helper.js';
+import { helper, pinElements, editElements } from '../helper.js';
 
 const {
   globalPinContainer,
@@ -8,6 +8,8 @@ const {
   userPinCountEl,
   guestPinCountEl,
 } = pinElements;
+
+const { editBoxes, editBox } = editElements;
 
 export default class Pin {
   /**
@@ -30,14 +32,16 @@ export default class Pin {
    */
   constructor(map, guestPins) {
     this.map = map;
-    this.editBtnHandler = this.editBtnHandler;
+    // this.editBtnHandler = this.editBtnHandler;
     this.guestPins = guestPins;
     this.pinCard = new PinCard();
-    // console.log(map.map);
+
     //detect page type
     helper.checkURL('pins.php')
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
+
+    this.editBtnHandlerGlobal();
   }
 
   //renderPinOnMap
@@ -167,6 +171,38 @@ export default class Pin {
       const editBox = e.currentTarget.nextElementSibling;
       editBox.classList.toggle('hidden');
     });
+  }
+
+  //close the edit on global click
+  editBtnHandlerGlobal() {
+    console.log('global click');
+    document.body.addEventListener('click', e => {
+      !e.target.classList.contains('.pin-edit-box_item')
+        ? this.toggleEditBox(close)
+        : null;
+    });
+  }
+
+  // toggleEditBox(closeBox = false) {
+  //   console.log('editor runs');
+  //   //to prevent from toggling and simply hide if closeBox
+  //   closeBox
+  //     ? editBoxes.forEach(box => box.classList.add('hidden'))
+  //     : editBox?.classList.toggle('hidden');
+  // }
+
+  toggleEditBox(closeBox = false) {
+    console.log('editor runs');
+    // to prevent from toggling and simply hide if closeBox
+    if (closeBox) {
+      const editBoxes = document.querySelectorAll('.pin-edit-box');
+      editBoxes.forEach(box => box.classList.add('hidden'));
+    } else {
+      const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
+      if (editBox) {
+        editBox.classList.add('hidden');
+      }
+    }
   }
 
   //get guest pins

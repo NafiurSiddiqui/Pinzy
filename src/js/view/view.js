@@ -1,7 +1,4 @@
-import { formElements, pinElements } from '../helper.js';
-import Model from '../model.class.js';
 import FormView from './form.view.js';
-import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
 import Pin from './pin.view.js';
 
@@ -38,6 +35,7 @@ export default class View {
     this.map.getPosition(map => {
       if (map) {
         this.pinClass = new Pin(map, this.guestPins); // Initialize Pin with the map instance
+        // this.editBtnGlobalHandler(this.pinClass);
       } else {
         console.log('No map');
         // Handle the case where map is not available
@@ -66,5 +64,9 @@ export default class View {
     spinner.classList.add('hidden');
     spinner.classList.remove('spin');
     spinner.classList.remove('z-20');
+  }
+
+  editBtnGlobalHandler(pinClass) {
+    pinClass?.editBtnGlobalHandler();
   }
 }

@@ -26,6 +26,11 @@ const pinElements = {
   guestPinCountEl: document.querySelector('.guest-profile__pin-count'),
 };
 
+const editElements = {
+  editBoxes: document.querySelectorAll('.pin-edit-box'),
+  editBox: document.querySelector('.pin-edit-box'),
+};
+
 class Helper {
   /**
    *
@@ -82,4 +87,4 @@ class Helper {
 
 const helper = new Helper();
 
-export { formElements, pinElements, helper };
+export { formElements, pinElements, helper, editElements };
