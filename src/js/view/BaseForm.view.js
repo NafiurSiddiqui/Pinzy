@@ -73,10 +73,12 @@ export default class BaseFormView {
     this.baseValidateEventType();
   }
 
-  baseShowForm(mapEvent) {
+  baseShowForm(mapEvent, formEditEl = null) {
     //store coords here, since submission needs it.
     this.mapEvent = mapEvent;
-    this.formBg.classList.remove('hidden');
+    formEditEl !== null || undefined
+      ? formEditEl.classList.remove('hidden')
+      : this.formBg.classList.remove('hidden');
   }
 
   baseHideForm() {

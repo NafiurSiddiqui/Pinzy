@@ -24,7 +24,7 @@ class GuestEdit extends FormEditorView {
     return selectedEventIcon;
   }
 
-  _editMessage(id) {
+  editMessage(id) {
     //get the items from localStorage
     const data = JSON.parse(localStorage.getItem(`guest`));
 
@@ -151,7 +151,7 @@ class GuestEdit extends FormEditorView {
           //without trim, spaces prevents from a match
           if (action === 'edit') {
             if (isGuest) {
-              this._editMessage(cardId);
+              this.editMessage(cardId);
             }
           }
 
