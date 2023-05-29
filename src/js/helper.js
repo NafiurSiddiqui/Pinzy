@@ -26,10 +26,11 @@ const pinElements = {
   guestPinCountEl: document.querySelector('.guest-profile__pin-count'),
 };
 
-const editElements = {
-  editBoxes: document.querySelectorAll('.pin-edit-box'),
-  editBox: document.querySelector('.pin-edit-box'),
-};
+// const editElements = {
+//   //!SHOULD BE SELECTED RIGHT WHERE IT NEEDS, OTHERWISE DOES NOT EXIST
+//   editBoxes: document.querySelectorAll('.pin-edit-box'),
+//   editBox: document.querySelector('.pin-edit-box'),
+// };
 
 class Helper {
   /**
@@ -87,4 +88,4 @@ class Helper {
 
 const helper = new Helper();
 
-export { formElements, pinElements, helper, editElements };
+export { formElements, pinElements, helper };

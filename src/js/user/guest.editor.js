@@ -4,9 +4,9 @@ class GuestEdit extends FormEditorView {
   constructor() {
     super();
     //need individual elements
-    this.eventTypeEl = eventTypeEl;
-    this.messageEl = messageEl;
-    this.btnSubmitEdit = btnSubmitEdit;
+    // this.eventTypeEl = eventTypeEl;
+    // this.messageEl = messageEl;
+    // this.btnSubmitEdit = btnSubmitEdit;
     //Bind listeners to the formEditor Els
     this.eventTypeEl?.addEventListener('input', this.debounceValidation());
     this.messageEl?.addEventListener('input', this.debounceValidation());

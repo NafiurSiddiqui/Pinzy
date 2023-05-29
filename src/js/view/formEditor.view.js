@@ -1,4 +1,4 @@
-import { formElements, editElements } from '../helper.js';
+import { formElements } from '../helper.js';
 import BaseForm from './BaseForm.view.js';
 
 const {
@@ -8,8 +8,6 @@ const {
   formEditBgEl,
   formEditEl,
 } = formElements;
-
-const { editBoxes, editBox } = editElements;
 
 /**
  * @params {HTMLelements} - Which are only relevant to the form__edit elements.
@@ -21,11 +19,13 @@ export default class FormEditorView extends BaseForm {
   btnEditSubmit = btnEditSubmit;
   formEditBgEl = formEditBgEl;
   formEditEl = formEditEl;
-  editboxes = editBoxes;
-  editBox = editBox;
   pinEdited = false;
   constructor() {
     super();
+    this.baseFormValidationHandler(this.eventTypeEditEl, this.messageEditEl);
+    this.toggleEditBox = this.toggleEditBox.bind(this);
+    // console.log('Form Editor runs');
+    this.editBtnHandlerGlobal();
   }
 
   setFormEditIsOpen(value) {
@@ -43,6 +43,7 @@ export default class FormEditorView extends BaseForm {
 
   //close the edit on global click
   editBtnHandlerGlobal() {
+    // console.log('editBtnHandler runs');
     document.body.addEventListener('click', e => {
       !e.target.classList.contains('.pin-edit-box_item')
         ? this.toggleEditBox(close)
@@ -53,14 +54,13 @@ export default class FormEditorView extends BaseForm {
   toggleEditBox(closeBox = false) {
     // to prevent from toggling and simply hide if closeBox
     if (closeBox) {
-      // const editBoxes = document.querySelectorAll('.pin-edit-box');
-
-      this.editboxes.forEach(box => box.classList.add('hidden'));
+      const editBoxes = document.querySelectorAll('.pin-edit-box');
+      editBoxes.forEach(box => box.classList.add('hidden'));
     } else {
-      // const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
+      const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
 
-      if (this.editBox) {
-        this.editBox.classList.add('hidden');
+      if (editBox) {
+        editBox.classList.add('hidden');
       }
     }
   }

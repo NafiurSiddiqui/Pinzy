@@ -1,5 +1,5 @@
 import PinCard from './pinCard.view.js';
-import { helper, pinElements, editElements } from '../helper.js';
+import { helper, pinElements } from '../helper.js';
 import FormEditorView from './formEditor.view.js';
 
 const {
@@ -32,7 +32,6 @@ export default class Pin extends FormEditorView {
   constructor(map, guestPins) {
     super();
     this.map = map;
-    // this.editBtnHandler = this.editBtnHandler;
     this.guestPins = guestPins;
     this.pinCard = new PinCard();
 
@@ -41,7 +40,7 @@ export default class Pin extends FormEditorView {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
 
-    this.editBtnHandlerGlobal();
+    // this.editBtnHandlerGlobal();
   }
 
   //renderPinOnMap
@@ -163,39 +162,6 @@ export default class Pin extends FormEditorView {
       console.log(error);
     }
   }
-
-  // //editBtn listener on card
-  // editBtnHandler(editBtn) {
-  //   editBtn?.addEventListener('click', e => {
-  //     e.stopPropagation();
-  //     const editBox = e.currentTarget.nextElementSibling;
-  //     editBox.classList.toggle('hidden');
-  //   });
-  // }
-
-  // //close the edit on global click
-  // editBtnHandlerGlobal() {
-  //   console.log('global click');
-  //   document.body.addEventListener('click', e => {
-  //     !e.target.classList.contains('.pin-edit-box_item')
-  //       ? this.toggleEditBox(close)
-  //       : null;
-  //   });
-  // }
-
-  // toggleEditBox(closeBox = false) {
-  //   console.log('editor runs');
-  //   // to prevent from toggling and simply hide if closeBox
-  //   if (closeBox) {
-  //     const editBoxes = document.querySelectorAll('.pin-edit-box');
-  //     editBoxes.forEach(box => box.classList.add('hidden'));
-  //   } else {
-  //     const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
-  //     if (editBox) {
-  //       editBox.classList.add('hidden');
-  //     }
-  //   }
-  // }
 
   //get guest pins
   getGuestPins(guestState) {
