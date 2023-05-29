@@ -10,8 +10,6 @@ const {
   guestPinCountEl,
 } = pinElements;
 
-const { editBoxes, editBox } = editElements;
-
 export default class Pin extends FormEditorView {
   /**
    * @property {boolean} isGlobalPinPage

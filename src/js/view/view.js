@@ -55,10 +55,6 @@ export default class View {
     this.formEditor.showForm();
   }
 
-  refreshContent() {
-    window.location.reload();
-  }
-
   renderSpinner() {
     const spinner = document.querySelector('.spinner');
     spinner.classList.add('hidden');

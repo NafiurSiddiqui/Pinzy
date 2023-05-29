@@ -1,8 +1,15 @@
-import { formElements } from '../helper.js';
+import { formElements, editElements } from '../helper.js';
 import BaseForm from './BaseForm.view.js';
 
-const { eventTypeEditEl, messageEditEl, btnEditSubmit, formEditBg, formEdit } =
-  formElements;
+const {
+  eventTypeEditEl,
+  messageEditEl,
+  btnEditSubmit,
+  formEditBgEl,
+  formEditEl,
+} = formElements;
+
+const { editBoxes, editBox } = editElements;
 
 /**
  * @params {HTMLelements} - Which are only relevant to the form__edit elements.
@@ -12,8 +19,10 @@ export default class FormEditorView extends BaseForm {
   eventTypeEditEl = eventTypeEditEl;
   messageEditEl = messageEditEl;
   btnEditSubmit = btnEditSubmit;
-  formEditBg = formEditBg;
-  formEdit = formEdit;
+  formEditBgEl = formEditBgEl;
+  formEditEl = formEditEl;
+  editboxes = editBoxes;
+  editBox = editBox;
   pinEdited = false;
   constructor() {
     super();
@@ -44,12 +53,14 @@ export default class FormEditorView extends BaseForm {
   toggleEditBox(closeBox = false) {
     // to prevent from toggling and simply hide if closeBox
     if (closeBox) {
-      const editBoxes = document.querySelectorAll('.pin-edit-box');
-      editBoxes.forEach(box => box.classList.add('hidden'));
+      // const editBoxes = document.querySelectorAll('.pin-edit-box');
+
+      this.editboxes.forEach(box => box.classList.add('hidden'));
     } else {
-      const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
-      if (editBox) {
-        editBox.classList.add('hidden');
+      // const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
+
+      if (this.editBox) {
+        this.editBox.classList.add('hidden');
       }
     }
   }
@@ -76,31 +87,32 @@ export default class FormEditorView extends BaseForm {
 
     //popup edit-input-form
     // this.showEditForm();
+    this.baseShowForm(null, this.formEditBgEl);
+
     //autoselect eventType and fill up the text area
-    eventTypeEl.value = item.event;
-    messageEl.value = item.message;
+    this.eventTypeEditEl.value = item.event;
+    this.messageEditEl.value = item.message;
 
     //get the newInput
-    btnSubmitEdit?.addEventListener('click', e => {
+    this.btnEditSubmit?.addEventListener('click', e => {
       e.preventDefault();
       //get the newInput
-      event = eventTypeEl.value;
-      message = messageEl.value;
+      eventVal = eventTypeEl.value;
+      messageVal = messageEl.value;
 
       //if event or message value changes
-      if (event !== item.event || message !== item.message) {
+      if (eventVal !== item.event || message !== item.message) {
         this.pinEdited = true;
       }
 
       //create a new object
       const newItem = {
         ...item,
-        event: event,
+        event: eventVal,
         icon: this.selectedEventIcon || item.icon,
-        message: message,
+        message: messageVal,
       };
       // Update the corresponding event icon element
-      // Selector for the specific <li> element
       const listItemSelector = `li[data-id="${id}"]`;
       // Get the specific <li> element
       const listItem = document.querySelector(listItemSelector);
@@ -116,40 +128,40 @@ export default class FormEditorView extends BaseForm {
 
       //update localStorage
       localStorage.setItem(
-        `user`,
+        userType,
         JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
       );
       //clear inputs
       eventTypeEl.value = messageEl.value = '';
 
       //hideInput
-      this._hideEditForm();
-
+      this.hideEditForm();
+      this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
       this.watchForPinChanges();
     });
   }
 
-  deletePin(id) {
+  deletePin(id, userType) {
     //get the item from localStorage
-    const data = JSON.parse(localStorage.getItem('user'));
+    const data = JSON.parse(localStorage.getItem(userType));
     //filter the item
     const filteredData = data.filter(item => item.id !== +id);
 
     // update localStorage
-    localStorage.setItem('user', JSON.stringify(filteredData));
+    localStorage.setItem(userType, JSON.stringify(filteredData));
     //refresh window to update the pins
-    location.reload();
+    this.baseRefreshContent();
     // app.refreshContent();
   }
 
-  deleteAllPin() {
+  deleteAllPin(userType) {
     //get the item from localStorage
-    const data = JSON.parse(localStorage.getItem('user'));
+    const data = JSON.parse(localStorage.getItem(userType));
     //delete all from local storage
-    localStorage.removeItem('user');
+    localStorage.removeItem(userType);
     //refresh window to update the pins
-    location.reload();
+    this.baseRefreshContent();
     // app.refreshContent();
   }
   //MODEL CONCERNS ENDS
@@ -159,7 +171,7 @@ export default class FormEditorView extends BaseForm {
     if (this.pinEdited) {
       //roll out timer and refresh the content
       setTimeout(() => {
-        app.refreshContent();
+        this.baseRefreshContent();
       }, 100);
 
       //set edited to false
@@ -167,15 +179,15 @@ export default class FormEditorView extends BaseForm {
     } else {
       //refresh anyway otherwise if submitted, page does not refresh
       setTimeout(() => {
-        app.refreshContent();
+        this.baseRefreshContent();
       }, 100);
     }
   }
 
-  editBoxHandler() {
-    const editBoxes = document.querySelectorAll('.pin-edit-box');
+  editBoxHandler(userType) {
+    // const editBoxes = document.querySelectorAll('.pin-edit-box');
 
-    editBoxes.forEach(editBox => {
+    this.editboxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
       //get the id
@@ -193,7 +205,7 @@ export default class FormEditorView extends BaseForm {
           const cardId = editBox.dataset.id;
           //without trim, spaces prevents from a match
           if (action === 'edit') {
-            this.editMessage(cardId);
+            this.editMessage(cardId, userType);
           }
 
           if (action === 'delete') {
@@ -204,7 +216,7 @@ export default class FormEditorView extends BaseForm {
               cancelText: 'Cancel',
             }).then(res => {
               if (res) {
-                this.deletePin(id);
+                this.deletePin(id, userType);
               } else {
                 return;
               }
@@ -219,7 +231,7 @@ export default class FormEditorView extends BaseForm {
               cancelText: 'Cancel',
             }).then(res => {
               if (res) {
-                this.deleteAllPin();
+                this.deleteAllPin(userType);
               } else {
                 return;
               }

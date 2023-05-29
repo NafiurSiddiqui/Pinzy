@@ -6,8 +6,8 @@
 const formElements = {
   form: document.querySelector('.user-input-form'),
   formBg: document.querySelector('.user-input-bg'),
-  formEdit: document.querySelector('.user-input-form__edit'),
-  formEditBg: document.querySelector('.user-input-bg__edit'),
+  formEditEl: document.querySelector('.user-input-form__edit'),
+  formEditBgEl: document.querySelector('.user-input-bg__edit'),
   eventTypeEl: document.getElementById('eventType'),
   eventTypeEditEl: document.getElementById('eventType__edit'),
 

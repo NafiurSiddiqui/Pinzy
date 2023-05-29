@@ -73,27 +73,38 @@ export default class BaseFormView {
     this.baseValidateEventType();
   }
 
-  baseShowForm(mapEvent, formEditEl = null) {
+  baseShowForm(mapEvent, formEditBgEl = null) {
     //store coords here, since submission needs it.
     this.mapEvent = mapEvent;
-    formEditEl !== null || undefined
-      ? formEditEl.classList.remove('hidden')
+    formEditBgEl !== null || undefined
+      ? formEditBgEl.classList.remove('hidden')
       : this.formBg.classList.remove('hidden');
   }
 
-  baseHideForm() {
-    this.formBg.addEventListener('click', event => {
-      //prevent click on form element
-      if (!this.form.contains(event.target)) {
-        // Close the user-input
-        this.formBg.classList.add('hidden');
-      }
-    });
+  baseHideForm(formEditBgEl = null, formEditEl = null) {
+    if (formEditBgEl !== null || undefined) {
+      formEditBgEl.addEventListener('click', event => {
+        //prevent click on form element
+        if (!formEditEl.contains(event.target)) {
+          // Close the user-input
+          formEditBgEl.classList.add('hidden');
+        }
+      });
+    } else {
+      this.formBg.addEventListener('click', event => {
+        //prevent click on form element
+        if (!this.form.contains(event.target)) {
+          // Close the user-input
+          this.formBg.classList.add('hidden');
+        }
+      });
+    }
 
     document?.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
         this.formBg?.classList.add('hidden');
         // userInputBgEdit?.classList.add('hidden');
+        formEditBgEl?.classList.add('hidden');
       }
     });
   }
@@ -140,5 +151,10 @@ export default class BaseFormView {
       //hideInput
       this.baseHideForm();
     });
+  }
+
+  //refresh Content
+  baseRefreshContent() {
+    window.location.reload();
   }
 }
