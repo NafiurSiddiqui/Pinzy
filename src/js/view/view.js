@@ -67,9 +67,4 @@ export default class View {
     spinner.classList.remove('spin');
     spinner.classList.remove('z-20');
   }
-
-  //PINS
-  // renderPinOnMapHandler(guestData) {
-  //   this.pinClass.renderPinOnMap(guestData);
-  // }
 }

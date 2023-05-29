@@ -73,15 +73,10 @@ export default class BaseFormView {
     this.baseValidateEventType();
   }
 
-  baseShowForm(mapEvent, newMapEvhandler) {
+  baseShowForm(mapEvent) {
     //store coords here, since submission needs it.
     this.mapEvent = mapEvent;
     this.formBg.classList.remove('hidden');
-    // if (!this.btnSubmit.hasAttribute('disabled')) {
-    //   this.btnSubmit.setAttribute('disabled', '');
-    // }
-    //store coords
-    // newMapEvhandler(mapEvent);
   }
 
   baseHideForm() {
@@ -104,7 +99,7 @@ export default class BaseFormView {
   //submit form
   baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
-      e.preventDefault();
+      // e.preventDefault();
       //DID not prevent default refresh, since without refresh the content editor does not work.
       //get the values
       const event = this.eventTypeEl.value;

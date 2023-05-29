@@ -18,6 +18,7 @@ export default class Pin {
   userPinContainer = userPinContainer;
   guestPinContainer = guestPinContainer;
   globalPinContainer = globalPinContainer;
+  pinCard;
   guestPins;
 
   /**
@@ -31,6 +32,7 @@ export default class Pin {
     this.map = map;
     this.editBtnHandler = this.editBtnHandler;
     this.guestPins = guestPins;
+    this.pinCard = new PinCard();
     // console.log(map.map);
     //detect page type
     helper.checkURL('pins.php')
@@ -67,12 +69,12 @@ export default class Pin {
     // const userName = isGuest ? 'Anonymous' : values.userName;
     // const pinContainer = isGuest ? guestPinContainer : userPinContainer;
     const pinLimit = isGuest ? 10 : 100;
-    console.log(pins.length);
+
     if (pins.length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(
         'beforeend',
-        PinCard.generatePinCard(pinData)
+        this.pinCard.generatePinCard(pinData)
       );
 
       // attach edit btn to the card
@@ -89,9 +91,7 @@ export default class Pin {
       );
     }
 
-    if (pins.length === 1) {
-      this.defaultPinMsgHandler();
-    }
+    this.defaultPinMsgHandler();
   }
 
   renderGlobalPins() {
@@ -122,7 +122,7 @@ export default class Pin {
   defaultPinMsgHandler() {
     const profileMsgEl = document.querySelector('.default-msg');
 
-    if (this.pins.length) {
+    if (this.guestPins.length) {
       profileMsgEl.classList.add('hidden');
       this.userPinContainer?.classList.remove('hidden');
       this.globalPinContainer?.classList.remove('hidden');

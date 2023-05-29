@@ -18,7 +18,6 @@ export default class Map extends Pin {
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
     // this.newMapEvHandler = this.newMapEvHandler.bind(this);
-    console.log(this.guestPins);
   }
 
   //get position - C
@@ -79,6 +78,7 @@ export default class Map extends Pin {
     this.map.on('click', this.showForm.bind(this));
 
     //!need to detect the userType or pageType later before renering pins
+
     //render marker for guest
     this.guestPins.forEach(pin => {
       //render pin on map

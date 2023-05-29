@@ -6,7 +6,11 @@ export default class PinCard {
    * @param {Object} data
    * @returns {HTMLUListElement}
    */
-  static generatePinCard(data) {
+
+  constructor() {
+    // console.log('pin card runs');
+  }
+  generatePinCard(data) {
     let html = `
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-200 overflow-hidden tablet:w-full grow-0 shrink-0" 

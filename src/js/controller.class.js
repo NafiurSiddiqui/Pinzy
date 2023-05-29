@@ -18,8 +18,6 @@ class Controller {
     this.model = new Model();
     this.view = new View(this.model._guestState);
 
-    // this.init = this.init.bind(this);
-    //init
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
     this.view.form.dataHandler(this.controlUserData);
