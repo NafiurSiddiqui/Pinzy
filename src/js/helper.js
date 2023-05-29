@@ -85,21 +85,43 @@ class Helper {
     return formattedTime;
   }
 
+  // checkUserStatus() {
+  //   let userLogged;
+  //   if (pinElements.globalPinContainer) {
+  //     console.log('from the global');
+  //     userLogged = pinElements.globalPinContainer?.dataset.userlogged.trim();
+  //   }
+
+  //   if (pinElements.guestPinContainer) {
+  //     console.log('From guest');
+  //     userLogged = pinElements.guestPinContainer.dataset.userlogged.trim();
+  //   }
+
+  //   if (pinElements.userPinContainer) {
+  //     console.log('from User');
+  //     userLogged = pinElements.userPinContainer.dataset.userlogged.trim();
+  //   }
+
+  //   return userLogged;
+  // }
+
   checkUserStatus() {
+    const elementKeys = [
+      'globalPinContainer',
+      'guestPinContainer',
+      'userPinContainer',
+    ];
     let userLogged;
-    if (pinElements.globalPinContainer) {
-      console.log('from the global');
-      userLogged = pinElements.globalPinContainer?.dataset.userlogged.trim();
-    }
 
-    if (pinElements.guestPinContainer) {
-      console.log('From guest');
-      userLogged = pinElements.guestPinContainer.dataset.userlogged.trim();
-    }
-
-    if (pinElements.userPinContainer) {
-      console.log('from User');
-      userLogged = pinElements.userPinContainer.dataset.userlogged.trim();
+    for (const key of elementKeys) {
+      const element = pinElements[key];
+      if (element) {
+        console.log(`From ${key}`);
+        userLogged = element.dataset.userlogged?.trim();
+        if (userLogged) {
+          break;
+        }
+      }
     }
 
     return userLogged;
