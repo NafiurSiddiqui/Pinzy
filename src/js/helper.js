@@ -86,7 +86,22 @@ class Helper {
   }
 
   checkUserStatus() {
-    let userLogged = pinElements.globalPinContainer?.dataset.userlogged.trim();
+    let userLogged;
+    if (pinElements.globalPinContainer) {
+      console.log('from the global');
+      userLogged = pinElements.globalPinContainer?.dataset.userlogged.trim();
+    }
+
+    if (pinElements.guestPinContainer) {
+      console.log('From guest');
+      userLogged = pinElements.guestPinContainer.dataset.userlogged.trim();
+    }
+
+    if (pinElements.userPinContainer) {
+      console.log('from User');
+      userLogged = pinElements.userPinContainer.dataset.userlogged.trim();
+    }
+
     return userLogged;
   }
 }

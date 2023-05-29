@@ -31,14 +31,7 @@ export default class FormEditorView extends BaseForm {
     this.editBtnHandlerGlobal();
     // this.guestEditor = new GuestEditor();
     // this.guestEditor.actionHandler();
-
-    // helper.checkURL('guest')
-    //   ? (this.userType = 'guest')
-    //   : helper.checkURL('pins') && helper.checkUserStatus() === true
-    //   ? (this.userType = 'user')
-    //   : null;
-
-    // console.log(this.userType);
+    console.log(helper.checkUserStatus());
   }
 
   setFormEditIsOpen(value) {

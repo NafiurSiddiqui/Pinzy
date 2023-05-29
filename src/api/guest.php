@@ -53,8 +53,13 @@ include './layout/header-pin.php';
     <p class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic">
         No pins created yet.
     </p>
-    <ul
-        class="guest-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll">
+    <ul class="guest-pin-container  hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll"
+        data-userLogged="
+    <?php
+      echo $userLogged ? 'true':'false';
+?>
+    
+    ">
         <!-- placeholder -->
     </ul>
 </div>
