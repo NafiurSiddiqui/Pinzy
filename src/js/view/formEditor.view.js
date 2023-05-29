@@ -184,7 +184,7 @@ export default class FormEditorView extends BaseForm {
     }
   }
 
-  editBoxHandler(userType) {
+  actionHandler(userType) {
     // const editBoxes = document.querySelectorAll('.pin-edit-box');
 
     this.editboxes.forEach(editBox => {
