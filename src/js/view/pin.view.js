@@ -1,5 +1,6 @@
 import PinCard from './pinCard.view.js';
 import { helper, pinElements, editElements } from '../helper.js';
+import FormEditorView from './formEditor.view.js';
 
 const {
   globalPinContainer,
@@ -11,7 +12,7 @@ const {
 
 const { editBoxes, editBox } = editElements;
 
-export default class Pin {
+export default class Pin extends FormEditorView {
   /**
    * @property {boolean} isGlobalPinPage
    */
@@ -31,6 +32,7 @@ export default class Pin {
    * @param {HTMLElement} guestPinContainer
    */
   constructor(map, guestPins) {
+    super();
     this.map = map;
     // this.editBtnHandler = this.editBtnHandler;
     this.guestPins = guestPins;
@@ -164,46 +166,38 @@ export default class Pin {
     }
   }
 
-  //editBtn listener on card
-  editBtnHandler(editBtn) {
-    editBtn?.addEventListener('click', e => {
-      e.stopPropagation();
-      const editBox = e.currentTarget.nextElementSibling;
-      editBox.classList.toggle('hidden');
-    });
-  }
+  // //editBtn listener on card
+  // editBtnHandler(editBtn) {
+  //   editBtn?.addEventListener('click', e => {
+  //     e.stopPropagation();
+  //     const editBox = e.currentTarget.nextElementSibling;
+  //     editBox.classList.toggle('hidden');
+  //   });
+  // }
 
-  //close the edit on global click
-  editBtnHandlerGlobal() {
-    console.log('global click');
-    document.body.addEventListener('click', e => {
-      !e.target.classList.contains('.pin-edit-box_item')
-        ? this.toggleEditBox(close)
-        : null;
-    });
-  }
+  // //close the edit on global click
+  // editBtnHandlerGlobal() {
+  //   console.log('global click');
+  //   document.body.addEventListener('click', e => {
+  //     !e.target.classList.contains('.pin-edit-box_item')
+  //       ? this.toggleEditBox(close)
+  //       : null;
+  //   });
+  // }
 
   // toggleEditBox(closeBox = false) {
   //   console.log('editor runs');
-  //   //to prevent from toggling and simply hide if closeBox
-  //   closeBox
-  //     ? editBoxes.forEach(box => box.classList.add('hidden'))
-  //     : editBox?.classList.toggle('hidden');
+  //   // to prevent from toggling and simply hide if closeBox
+  //   if (closeBox) {
+  //     const editBoxes = document.querySelectorAll('.pin-edit-box');
+  //     editBoxes.forEach(box => box.classList.add('hidden'));
+  //   } else {
+  //     const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
+  //     if (editBox) {
+  //       editBox.classList.add('hidden');
+  //     }
+  //   }
   // }
-
-  toggleEditBox(closeBox = false) {
-    console.log('editor runs');
-    // to prevent from toggling and simply hide if closeBox
-    if (closeBox) {
-      const editBoxes = document.querySelectorAll('.pin-edit-box');
-      editBoxes.forEach(box => box.classList.add('hidden'));
-    } else {
-      const editBox = document.querySelector('.pin-edit-box:not(.hidden)');
-      if (editBox) {
-        editBox.classList.add('hidden');
-      }
-    }
-  }
 
   //get guest pins
   getGuestPins(guestState) {

@@ -1,4 +1,5 @@
 import FormView from './form.view.js';
+import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
 import Pin from './pin.view.js';
 
@@ -13,11 +14,10 @@ export default class View {
   map;
   guestPins;
   pinClass;
+
   constructor(guestState) {
     this.form = new FormView();
-    // this.formEditor = new FormEditorView(
-
-    // );
+    this.formEditor = new FormEditorView();
     this.guestPins = guestState;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
