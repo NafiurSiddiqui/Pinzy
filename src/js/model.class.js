@@ -1,7 +1,3 @@
-// let dataState = [];
-
-// export { dataState };
-
 export default class Model {
   _userName;
   _globalState = [];
@@ -111,9 +107,5 @@ export default class Model {
     // this.data.forEach(data => {
     //   this._renderPin(data);
     // });
-  }
-
-  getURLpath(pathName) {
-    return window.location.pathname.includes(pathName);
   }
 }

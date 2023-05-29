@@ -19,7 +19,6 @@ import { guestEdit, userEdit } from './edit-pin.js';
 // const userInputBg = document.querySelector('.user-input-bg');
 // const userInputBgEdit = document.querySelector('.user-input-bg__edit');
 // const userInputForm = document.querySelector('.user-input-form');
-let userLogged = globalPinContainer?.dataset.userlogged.trim();
 
 class App {
   // #map;

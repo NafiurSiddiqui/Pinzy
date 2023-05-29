@@ -84,6 +84,11 @@ class Helper {
 
     return formattedTime;
   }
+
+  checkUserStatus() {
+    let userLogged = pinElements.globalPinContainer?.dataset.userlogged.trim();
+    return userLogged;
+  }
 }
 
 const helper = new Helper();

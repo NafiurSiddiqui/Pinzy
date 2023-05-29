@@ -3,7 +3,7 @@
 // You need to start the session where you need to have a session access.
 session_start();
 
-$userName = "Someting_wong";
+$userName = "Sum ting wen wong";
 $userLogged = false;
 
 if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== true)) {

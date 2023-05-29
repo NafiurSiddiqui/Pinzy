@@ -1,4 +1,5 @@
-import { formElements } from '../helper.js';
+import { formElements, helper } from '../helper.js';
+import GuestEditor from '../user/guest.editor.js';
 import BaseForm from './BaseForm.view.js';
 
 const {
@@ -19,6 +20,8 @@ export default class FormEditorView extends BaseForm {
   btnEditSubmit = btnEditSubmit;
   formEditBgEl = formEditBgEl;
   formEditEl = formEditEl;
+  userType;
+  guestEditor;
   pinEdited = false;
   constructor() {
     super();
@@ -26,6 +29,16 @@ export default class FormEditorView extends BaseForm {
     this.toggleEditBox = this.toggleEditBox.bind(this);
     // console.log('Form Editor runs');
     this.editBtnHandlerGlobal();
+    // this.guestEditor = new GuestEditor();
+    // this.guestEditor.actionHandler();
+
+    // helper.checkURL('guest')
+    //   ? (this.userType = 'guest')
+    //   : helper.checkURL('pins') && helper.checkUserStatus() === true
+    //   ? (this.userType = 'user')
+    //   : null;
+
+    // console.log(this.userType);
   }
 
   setFormEditIsOpen(value) {
@@ -185,9 +198,9 @@ export default class FormEditorView extends BaseForm {
   }
 
   actionHandler(userType) {
-    // const editBoxes = document.querySelectorAll('.pin-edit-box');
-
-    this.editboxes.forEach(editBox => {
+    const editBoxes = document.querySelectorAll('.pin-edit-box');
+    console.log('action handler runs');
+    editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
       //get the id
@@ -199,16 +212,16 @@ export default class FormEditorView extends BaseForm {
         const li = e.target.tagName === 'LI';
         const id = editBox.dataset.id;
 
-        const action = e.target.textContent.trim();
+        const actionType = e.target.textContent.trim();
 
         if (li) {
           const cardId = editBox.dataset.id;
           //without trim, spaces prevents from a match
-          if (action === 'edit') {
+          if (actionType === 'edit') {
             this.editMessage(cardId, userType);
           }
 
-          if (action === 'delete') {
+          if (actionType === 'delete') {
             createModal({
               title: 'Delete Pin',
               message: 'Are you sure you want to delete this pin?',
@@ -223,7 +236,7 @@ export default class FormEditorView extends BaseForm {
             });
           }
 
-          if (action === 'delete all') {
+          if (actionType === 'delete all') {
             createModal({
               title: 'Delete All Pins',
               message: 'Are you sure you want to delete all your pins?',

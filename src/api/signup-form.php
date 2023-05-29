@@ -70,7 +70,7 @@ include './layout/header-form.php';
     <!-- actions -->
     <div class="text-center  flex flex-col  w-full  text-zinc-500">
         <span class="text-xs">Explore as a</span>
-        <a href="../html/guest.html"
+        <a href="./guest.php"
             class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Guest</a>
     </div>
 </div>
