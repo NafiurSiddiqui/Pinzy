@@ -169,7 +169,7 @@ export default class Pin extends FormEditorView {
 
     //global management
   }
-  //pin watcher
+  //pin watcher - ! MIGHT NOT NEED THIS
   watchPinsLength() {
     const handler = {
       set: (obj, prop, value) => {
