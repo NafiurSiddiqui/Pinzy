@@ -99,10 +99,13 @@ export default class Pin extends FormEditorView {
 
   handleGlobalPinRenderer() {
     this.globalPins.forEach(pin => {
+      let isGuest = pin.userType === 'guest';
+
+      console.log(isGuest);
       //generate global pinCard
       this.globalPinContainer.insertAdjacentHTML(
         'beforeend',
-        this.pinCard.generatePinCard(pin)
+        this.pinCard.generatePinCard(pin, isGuest)
       );
 
       //attach editBtn to the card if this pin.userType = loggedUser
