@@ -1,6 +1,7 @@
 import { formElements, helper } from '../helper.js';
 import GuestEditor from '../user/guest.editor.js';
 import BaseForm from './BaseForm.view.js';
+import createModal from './modal.view.js';
 
 const {
   eventTypeEditEl,
@@ -26,7 +27,11 @@ export default class FormEditorView extends BaseForm {
   constructor() {
     super();
     this.baseValidateForm.bind(this);
-    this.baseFormValidationHandler(this.eventTypeEditEl, this.messageEditEl);
+    this.baseFormValidationHandler(
+      this.eventTypeEditEl,
+      this.messageEditEl,
+      this.btnEditSubmit
+    );
     this.toggleEditBox = this.toggleEditBox.bind(this);
 
     this.editBtnHandlerGlobal();
@@ -105,22 +110,23 @@ export default class FormEditorView extends BaseForm {
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      e.preventDefault();
+      // e.preventDefault();
       //get the newInput
-      eventVal = eventTypeEl.value;
-      messageVal = messageEl.value;
-
+      // eventVal = eventTypeEl.value;
+      // messageVal = messageEl.value;
+      const newEventType = this.eventTypeEditEl.value;
+      const newMessage = this.messageEditEl.value;
       //if event or message value changes
-      if (eventVal !== item.event || message !== item.message) {
+      if (newEventType !== item.event || newMessage !== item.message) {
         this.pinEdited = true;
       }
 
       //create a new object
       const newItem = {
         ...item,
-        event: eventVal,
+        event: newEventType,
         icon: this.selectedEventIcon || item.icon,
-        message: messageVal,
+        message: newMessage,
       };
       // Update the corresponding event icon element
       const listItemSelector = `li[data-id="${id}"]`;
@@ -136,16 +142,18 @@ export default class FormEditorView extends BaseForm {
         }
       }
 
-      //update localStorage
+      //!update localStorage - MODEL CONCERN
+
       localStorage.setItem(
         userType,
         JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
       );
+
       //clear inputs
-      eventTypeEl.value = messageEl.value = '';
+      // this.eventTypeEl.value = this.messageEl.value = '';
+      this.eventTypeEditEl.value = this.messageEditEl.value = '';
 
       //hideInput
-      this.hideEditForm();
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
       this.watchForPinChanges();
@@ -153,7 +161,7 @@ export default class FormEditorView extends BaseForm {
   }
 
   deletePin(id, userType) {
-    //get the item from localStorage
+    //!get the item from localStorage - MODELs concern
     const data = JSON.parse(localStorage.getItem(userType));
     //filter the item
     const filteredData = data.filter(item => item.id !== +id);
