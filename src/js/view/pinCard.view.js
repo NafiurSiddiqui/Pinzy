@@ -1,5 +1,3 @@
-import { helper } from '../helper.js';
-
 export default class PinCard {
   /**
    *
