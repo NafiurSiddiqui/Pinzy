@@ -101,7 +101,9 @@ export default class Pin extends FormEditorView {
     this.globalPins.forEach(pin => {
       let isGuest = pin.userType === 'guest';
 
-      console.log(isGuest);
+      //render on map
+      this.renderPinOnMap(pin);
+
       //generate global pinCard
       this.globalPinContainer.insertAdjacentHTML(
         'beforeend',
