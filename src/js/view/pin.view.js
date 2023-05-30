@@ -107,15 +107,14 @@ export default class Pin extends FormEditorView {
 
   /**
    *
-   * @param {HTMLelement} pinEl
-   *
+   * @param {string} userType
+   * @returns {void}
    */
   renderPinCount(userType) {
     if (this.isGlobalPinPage) {
       console.log('global Pin Page');
       return;
     }
-    // console.log(userType, this.guestPins, this.guestPinCountEl);
 
     if (userType === 'guest') {
       if (this.guestPinCountEl && this.guestPins) {
@@ -128,6 +127,12 @@ export default class Pin extends FormEditorView {
     }
   }
 
+  /**
+   *
+   * @param {Array} pinType
+   * @param {string} userType
+   * @param {HTMLUListElement} pinContainerType
+   */
   handlePinRenderer(pinType, userType, pinContainerType) {
     pinType.forEach(pin => {
       //render pin on map
@@ -140,7 +145,6 @@ export default class Pin extends FormEditorView {
     });
   }
 
-  //default Pin Msg
   /**
    *
    * @param {HTMLElement} userPinContainer
