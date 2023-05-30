@@ -102,12 +102,12 @@ export default class Map extends Pin {
     let pin;
     //check the user type
     if (this.isGlobalPinPage) {
-      pin = this.globalPins.find(pin => pin.id === +pinEl.dataset.id);
+      pin = this.findPinId(this.globalPins, pinEl);
     } else {
       pin =
         this.userType === 'user'
-          ? this.userPins.find(pin => pin.id === +pinEl.dataset.id)
-          : this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
+          ? this.findPinId(this.userPins, pinEl)
+          : this.findPinId(this.globalPins, pinEl);
     }
 
     this.map.setView(pin.coords, this.mapZoomLevel, {
@@ -116,5 +116,10 @@ export default class Map extends Pin {
         duration: 1,
       },
     });
+  }
+
+  //helper DRY
+  findPinId(el, pinEl) {
+    return el.find(pin => pin.id === +pinEl.dataset.id);
   }
 }
