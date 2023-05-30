@@ -70,8 +70,6 @@ export default class Pin extends FormEditorView {
    * @param {HTMLUListElement}
    */
   renderPinOnProfile(pins, pinData, pinContainer) {
-    // guest? keep count, less than 10? render inside guestPinContainer + pinPage
-    // user? keep count, render inside userPinContainer + pinPage
     const isGuest = pinData.userType === 'guest';
     const pinLimit = isGuest ? 10 : 100;
     const timeOfCreation = helper.getTime();

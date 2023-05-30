@@ -10,6 +10,7 @@ export default class Map extends Pin {
   showform;
   guestPins = [];
   userPins = [];
+  globalPins = [];
   userType;
 
   constructor(guestPins, userPins, showForm, renderSpinner) {
@@ -76,19 +77,6 @@ export default class Map extends Pin {
     } else {
       this.handlePinRenderer(this.userPins, 'user', this.userPinContainer);
     }
-
-    //render marker for guest
-    // this.guestPins.forEach(pin => {
-    //   //render pin on map
-    //   this.renderPinOnMap(pin);
-
-    //   //render pin count
-    //   this.renderPinCount('guest');
-    //   //render pin on profile
-    //   this.renderPinOnProfile(this.guestPins, pin, this.guestPinContainer);
-    // });
-
-    //render marker for user
 
     //render global marker
 

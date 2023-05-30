@@ -46,6 +46,11 @@ class Helper {
     throw new Error('Unable to retrieve pathname from window.location.');
   }
 
+  /**
+   *
+   * @returns {string}
+   */
+
   getDate() {
     //get current date
     function getOrdinalIndicator(day) {
@@ -72,7 +77,10 @@ class Helper {
     )}`;
     return formattedDate;
   }
-
+  /**
+   *
+   * @returns {string}
+   */
   getTime() {
     const currentTime = new Date();
     const hours = currentTime.getHours();
@@ -83,7 +91,10 @@ class Helper {
 
     return formattedTime;
   }
-
+  /**
+   *
+   * @returns {boolean}
+   */
   checkUserLoggedIn() {
     const elementKeys = [
       'globalPinContainer',
