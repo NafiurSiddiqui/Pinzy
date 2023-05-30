@@ -72,14 +72,12 @@ export default class Pin extends FormEditorView {
   renderPinOnProfile(pins, pinData, pinContainer) {
     const isGuest = pinData.userType === 'guest';
     const pinLimit = isGuest ? 10 : 100;
-    const timeOfCreation = helper.getTime();
-    const dateOfCreation = helper.getDate();
 
     if (pins.length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(
         'beforeend',
-        this.pinCard.generatePinCard(pinData, timeOfCreation, dateOfCreation)
+        this.pinCard.generatePinCard(pinData)
       );
 
       // attach edit btn to the card
@@ -108,13 +106,15 @@ export default class Pin extends FormEditorView {
       );
 
       //attach editBtn to the card if this pin.userType = loggedUser
-      // const editBtn = pinContainer?.querySelector(
-      //   `[data-id="${pinData.id}"] .pin-edit-box__container i`
-      // );
+      const editBtn = globalPinContainer.querySelector(
+        `[data-id="${pin.id}"] .pin-edit-box__container i`
+      );
 
-      // //call editBtn handler
-      // this.editBtnHandler(editBtn);
+      //call editBtn handler
+      this.editBtnHandler(editBtn);
     });
+
+    this.defaultPinMsgHandler();
   }
 
   /**
