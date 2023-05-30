@@ -23,21 +23,6 @@ export default class Map extends Pin {
     // this.newMapEvHandler = this.newMapEvHandler.bind(this);
   }
 
-  //get position - C
-  // getPosition() {
-  //   let map;
-  //   if (navigator.geolocation) {
-  //     const mapToThis = this.loadMap.bind(this);
-  //     navigator.geolocation.getCurrentPosition(mapToThis, function () {
-  //       alert('Please allow to locate your position.');
-  //     });
-
-  //     map = mapToThis;
-  //   }
-
-  //   return map;
-  // }
-
   //load the map - V
 
   getPosition(callback) {
