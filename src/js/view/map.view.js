@@ -8,13 +8,15 @@ export default class Map extends Pin {
   mapEvent;
   coords;
   showform;
-  guestPins;
+  guestPins = [];
+  userPins = [];
   userType;
 
-  constructor(guestPins, showForm, renderSpinner) {
+  constructor(guestPins, userPins, showForm, renderSpinner) {
     super();
 
     this.guestPins = guestPins;
+    this.userPins = userPins;
     this.showForm = showForm;
     this.renderSpinner = renderSpinner;
     this.loadMap = this.loadMap.bind(this);

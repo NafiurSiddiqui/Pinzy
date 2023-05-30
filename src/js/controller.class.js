@@ -16,8 +16,8 @@ class Controller {
 
   constructor() {
     this.model = new Model();
-    this.view = new View(this.model._guestState);
-
+    this.view = new View(this.model._guestState, this.model._userState);
+    //?WHER EXACTLY DO YOU NEED USER DATA?
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
     this.view.form.dataHandler(this.controlUserData);
