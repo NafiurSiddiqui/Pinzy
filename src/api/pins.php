@@ -31,7 +31,7 @@ include './layout/header-pin.php';
       class="font-semibold w-4/5 text-center text-base text-zinc-100 opacity-40 hover:font-semibold hover:opacity-100">
       <a href="
               <?php
-                echo $userLogged? "./user.php": "../html/guest.html";
+                echo $userLogged? "./user.php": "./guest.php";
 ?>
               
               ">Profile</a>
