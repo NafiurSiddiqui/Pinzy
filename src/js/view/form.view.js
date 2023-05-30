@@ -1,4 +1,4 @@
-import { helper, formElements } from '../helper.js';
+import { formElements } from '../helper.js';
 import BaseFormView from './BaseForm.view.js';
 
 /**
@@ -16,7 +16,6 @@ export default class FormView extends BaseFormView {
 
   constructor() {
     super();
-    // this.formValidationHandler();
     this.baseFormValidationHandler = this.baseFormValidationHandler.bind(this);
 
     this.baseFormValidationHandler(

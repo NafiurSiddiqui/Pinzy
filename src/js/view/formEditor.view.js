@@ -1,5 +1,4 @@
 import { formElements, helper } from '../helper.js';
-import GuestEditor from '../user/guest.editor.js';
 import BaseForm from './BaseForm.view.js';
 import createModal from './modal.view.js';
 
@@ -35,7 +34,7 @@ export default class FormEditorView extends BaseForm {
     this.toggleEditBox = this.toggleEditBox.bind(this);
 
     this.editBtnHandlerGlobal();
-
+    this.baseHideForm(this.formEditBgEl, this.formEditEl);
     helper.checkUserLoggedIn()
       ? (this.userType = 'user')
       : (this.userType = 'guest');
@@ -58,7 +57,6 @@ export default class FormEditorView extends BaseForm {
 
   //close the edit on global click
   editBtnHandlerGlobal() {
-    // console.log('editBtnHandler runs');
     document.body.addEventListener('click', e => {
       !e.target.classList.contains('.pin-edit-box_item')
         ? this.toggleEditBox(close)
@@ -110,10 +108,7 @@ export default class FormEditorView extends BaseForm {
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      // e.preventDefault();
-      //get the newInput
-      // eventVal = eventTypeEl.value;
-      // messageVal = messageEl.value;
+      e.preventDefault();
       const newEventType = this.eventTypeEditEl.value;
       const newMessage = this.messageEditEl.value;
       //if event or message value changes

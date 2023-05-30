@@ -47,8 +47,7 @@ export default class View {
           this.guestPins,
           this.usrePins,
           this.globalPins
-        ); // Initialize Pin with the map instance
-        // this.editBtnGlobalHandler(this.pinClass);
+        );
       } else {
         console.log('No map');
         // Handle the case where map is not available
