@@ -20,21 +20,13 @@ export default class BaseFormView {
     //pass debouncedValidation
     eventTypeEl.addEventListener('input', debouncedValidation);
     messageEl.addEventListener('input', debouncedValidation);
-    // eventTypeEl.addEventListener('input', debouncedValidation);
-    // messageEl.addEventListener('input', debouncedValidation);
-    //without calling it like this either debounce renders mulitple times or validate form lose 'this' instance of form.
-    //debouncedValidaion.bind(this) = DOES NOT call debounce at all. can't figure out why.
   }
 
   baseDebounceValidation(eventTypeEl, messageEl, btnSubmit) {
     let timer;
-    // const baseValidateForm = this.baseValidateForm(
-    //   eventTypeEl,
-    //   messageEl,
-    //   btnSubmit
-    // );
+
     const baseValidateForm = this.baseValidateForm.bind(this);
-    // const baseValidateFormBound = baseValidateForm.bind(this);
+
     return function () {
       clearTimeout(timer);
       timer = setTimeout(
@@ -59,10 +51,8 @@ export default class BaseFormView {
 
     if (message === '') {
       messageEl.classList.add('validation-error');
-      // btnSubmitEdit?.setAttribute('disabled', true);
     } else {
       messageEl.classList.remove('validation-error');
-      // btnSubmitEdit?.removeAttribute('disabled');
     }
   }
 
