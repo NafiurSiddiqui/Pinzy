@@ -26,7 +26,6 @@ class Controller {
     this.controlUserData = this.controlUserData.bind(this);
     this.view.form.dataHandler(this.controlUserData);
     this.controlPinOutput();
-    console.log(this.model._globalState);
   }
 
   controlUserData(data) {

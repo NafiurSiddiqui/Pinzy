@@ -96,7 +96,6 @@ export default class Map extends Pin {
 
     const pinEl = e.target.closest('.user-pin');
 
-    console.log(pinEl);
     if (!pinEl) return;
 
     let pin;
