@@ -51,9 +51,11 @@ export default class PinCard {
                 </span>
                 <!-- edit -->
                 <div class="pin-edit-box__container relative z-40
-                ${guest ? 'hidden' : 'inline-block'}
+               
                 " data-id="${data.id}">
-                <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 "></i>
+                <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 
+                 ${guest ? 'hidden' : 'inline-block'}
+                "></i>
                 <ul class=" pin-edit-box hidden absolute bg-zinc-300 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
                   <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
                   edit

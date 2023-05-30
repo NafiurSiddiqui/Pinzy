@@ -25,6 +25,12 @@ export default class Map extends Pin {
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
     this.userType = helper.checkUserLoggedIn() === true ? 'user' : 'guest';
+    this.moveToPopup = this.moveToPopup.bind(this);
+    this.isGlobalPinPage
+      ? this.globalPinContainer.addEventListener('click', this.moveToPopup)
+      : this.userType === 'user'
+      ? this.userPinContainer.addEventListener('click', this.moveToPopup)
+      : this.guestPinContainer.addEventListener('click', this.moveToPopup);
   }
 
   //load the map - V
@@ -87,12 +93,21 @@ export default class Map extends Pin {
   //move to pop up -V
   moveToPopup(e) {
     if (!this.map) return;
+
     const pinEl = e.target.closest('.user-pin');
 
+    console.log(pinEl);
     if (!pinEl) return;
 
+    //check the user type
+
+    const pin =
+      this.userType === 'user'
+        ? this.userPins.find(pin => pin.id === +pinEl.dataset.id)
+        : this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
+
     //convert ID to number since data-id is string
-    const pin = this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
+    // const pin = this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
 
     this.map.setView(pin.coords, this.mapZoomLevel, {
       animate: true,
