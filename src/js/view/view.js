@@ -40,7 +40,7 @@ export default class View {
   renderMap() {
     this.map.getPosition(map => {
       if (map) {
-        this.pinClass = new Pin(map, this.guestPins); // Initialize Pin with the map instance
+        this.pinClass = new Pin(map, this.guestPins, this.usrePins); // Initialize Pin with the map instance
         // this.editBtnGlobalHandler(this.pinClass);
       } else {
         console.log('No map');

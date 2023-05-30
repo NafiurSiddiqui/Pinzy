@@ -32,10 +32,11 @@ export default class Pin extends FormEditorView {
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  constructor(map, guestPins) {
+  constructor(map, guestPins, userPins) {
     super();
     this.map = map;
     this.guestPins = guestPins;
+    this.userPins = userPins;
     this.pinCard = new PinCard();
     this.handlePinRenderer = this.handlePinRenderer.bind(this);
     //detect page type
@@ -148,19 +149,25 @@ export default class Pin extends FormEditorView {
    */
   defaultPinMsgHandler() {
     const profileMsgEl = document.querySelector('.default-msg');
-
+    //Guest
     if (this.guestPins.length) {
       profileMsgEl.classList.add('hidden');
-      this.userPinContainer?.classList.remove('hidden');
-      this.globalPinContainer?.classList.remove('hidden');
       this.guestPinContainer?.classList.remove('hidden');
     } else {
       profileMsgEl.classList.remove('hidden');
-      // pinContainer?.classList.add('hidden');
-      this.globalPinContainer?.classList.add('hidden');
+
       this.guestPinContainer?.classList.add('hidden');
+    }
+    //User
+    if (this.userPins.length) {
+      profileMsgEl.classList.add('hidden');
+      this.userPinContainer?.classList.remove('hidden');
+    } else {
+      profileMsgEl.classList.remove('hidden');
       this.userPinContainer?.classList.add('hidden');
     }
+
+    //global management
   }
   //pin watcher
   watchPinsLength() {
