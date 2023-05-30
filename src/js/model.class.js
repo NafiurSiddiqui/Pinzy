@@ -9,6 +9,7 @@ export default class Model {
     this.getUserName = this.getUserName.bind(this);
     this.getUserName();
     this.getLocalStorage();
+    this.updateGlobalState();
   }
 
   getUserName() {
@@ -47,6 +48,7 @@ export default class Model {
 
     guestData.push(data);
     localStorage.setItem('guest', JSON.stringify(guestData));
+    this.updateGlobalState();
   }
 
   saveUserToLocalStorage(data) {
@@ -56,6 +58,7 @@ export default class Model {
 
     userData.push(data);
     localStorage.setItem('user', JSON.stringify(userData));
+    this.updateGlobalState();
   }
 
   getLocalStorage() {
@@ -71,7 +74,9 @@ export default class Model {
     if (userData.length > 0) {
       this._userState = userData;
     }
+  }
 
-    //update global state
+  updateGlobalState() {
+    this._globalState = [...this._guestState, ...this._userState];
   }
 }
