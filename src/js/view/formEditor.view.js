@@ -25,6 +25,7 @@ export default class FormEditorView extends BaseForm {
   pinEdited = false;
   constructor() {
     super();
+    this.baseValidateForm.bind(this);
     this.baseFormValidationHandler(this.eventTypeEditEl, this.messageEditEl);
     this.toggleEditBox = this.toggleEditBox.bind(this);
 
@@ -33,6 +34,8 @@ export default class FormEditorView extends BaseForm {
     helper.checkUserLoggedIn()
       ? (this.userType = 'user')
       : (this.userType = 'guest');
+    this.actionHandler = this.actionHandler.bind(this);
+    this.actionHandler(this.userType);
   }
 
   setFormEditIsOpen(value) {

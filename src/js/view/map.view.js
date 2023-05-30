@@ -1,3 +1,4 @@
+import { helper } from '../helper.js';
 import Pin from './pin.view.js';
 
 export default class Map extends Pin {
@@ -78,6 +79,8 @@ export default class Map extends Pin {
     this.map.on('click', this.showForm.bind(this));
 
     //!need to detect the userType or pageType later before renering pins
+
+    //check the user logger
 
     //render marker for guest
     this.guestPins.forEach(pin => {

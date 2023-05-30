@@ -16,13 +16,14 @@ export default class FormView extends BaseFormView {
 
   constructor() {
     super();
-    this.FormValidationHandler();
-  }
+    // this.formValidationHandler();
+    this.baseFormValidationHandler = this.baseFormValidationHandler.bind(this);
 
-  FormValidationHandler(eventTypeEl, messageEl) {
-    eventTypeEl = this.eventTypeEl;
-    messageEl = this.messageEl;
-    this.baseFormValidationHandler(eventTypeEl, messageEl);
+    this.baseFormValidationHandler(
+      this.eventTypeEl,
+      this.messageEl,
+      this.btnSubmit
+    );
   }
 
   debounceValidationHandler() {

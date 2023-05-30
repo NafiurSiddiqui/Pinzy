@@ -10,67 +10,80 @@ export default class BaseFormView {
     this.baseDebounceValidation = this.baseDebounceValidation.bind(this);
   }
 
-  baseFormValidationHandler(eventTypeEl, messageEl) {
+  baseFormValidationHandler(eventTypeEl, messageEl, btnSubmit) {
     //call debouncer once
-    const debouncedValidation = this.baseDebounceValidation();
+    const debouncedValidation = this.baseDebounceValidation(
+      eventTypeEl,
+      messageEl,
+      btnSubmit
+    );
     //pass debouncedValidation
     eventTypeEl.addEventListener('input', debouncedValidation);
     messageEl.addEventListener('input', debouncedValidation);
+    // eventTypeEl.addEventListener('input', debouncedValidation);
+    // messageEl.addEventListener('input', debouncedValidation);
     //without calling it like this either debounce renders mulitple times or validate form lose 'this' instance of form.
     //debouncedValidaion.bind(this) = DOES NOT call debounce at all. can't figure out why.
   }
 
-  baseDebounceValidation() {
+  baseDebounceValidation(eventTypeEl, messageEl, btnSubmit) {
     let timer;
+    // const baseValidateForm = this.baseValidateForm(
+    //   eventTypeEl,
+    //   messageEl,
+    //   btnSubmit
+    // );
     const baseValidateForm = this.baseValidateForm.bind(this);
+    // const baseValidateFormBound = baseValidateForm.bind(this);
     return function () {
       clearTimeout(timer);
-      timer = setTimeout(baseValidateForm, 300);
+      timer = setTimeout(
+        () => baseValidateForm(eventTypeEl, messageEl, btnSubmit),
+        300
+      );
     };
   }
 
-  baseValidateEventType() {
-    console.log('validating event type');
-    const event = this.eventTypeEl.value;
+  baseValidateEventType(eventTypeEl) {
+    const event = eventTypeEl.value;
     if (event === 'none') {
-      this.eventTypeEl.classList.add('validation-error');
+      eventTypeEl.classList.add('validation-error');
     } else {
-      this.eventTypeEl.classList.remove('validation-error');
+      eventTypeEl.classList.remove('validation-error');
     }
   }
 
-  baseValidateMessage() {
-    const message = this.messageEl.value;
+  baseValidateMessage(messageEl) {
+    // const message = this.messageEl.value;
+    const message = messageEl.value;
 
     if (message === '') {
-      this.messageEl.classList.add('validation-error');
-      // this.btnSubmitEdit?.setAttribute('disabled', true);
+      messageEl.classList.add('validation-error');
+      // btnSubmitEdit?.setAttribute('disabled', true);
     } else {
-      this.messageEl.classList.remove('validation-error');
-      // this.btnSubmitEdit?.removeAttribute('disabled');
+      messageEl.classList.remove('validation-error');
+      // btnSubmitEdit?.removeAttribute('disabled');
     }
   }
 
-  baseValidateForm() {
-    const event = this.eventTypeEl.value;
-    const message = this.messageEl.value;
-    // console.log(event, message);
+  baseValidateForm(eventTypeEl, messageEl, btnSubmit) {
+    const event = eventTypeEl.value;
+    const message = messageEl.value;
+
     if (
       (event === 'none' && message === '') ||
       event === 'none' ||
       message === ''
     ) {
-      // console.log('fields can not be empty!');
-      this.btnSubmit.setAttribute('disabled', '');
+      btnSubmit?.setAttribute('disabled', '');
     }
 
     if (event !== 'none' && message !== '') {
-      // console.log('field are NOT empty');
-      this.btnSubmit.removeAttribute('disabled');
+      btnSubmit.removeAttribute('disabled');
     }
 
-    this.baseValidateMessage();
-    this.baseValidateEventType();
+    this.baseValidateMessage(messageEl);
+    this.baseValidateEventType(eventTypeEl);
   }
 
   baseShowForm(mapEvent, formEditBgEl = null) {
@@ -128,7 +141,10 @@ export default class BaseFormView {
       /**
        * id: user? from Db : generateId
        */
-      const isGuest = helper.checkURL('guest.html') ? true : false;
+      // const isGuest = helper.checkURL('guest.html') ? true : false;
+
+      const userLoggedIn = helper.checkUserLoggedIn();
+
       const formUserData = userName => {
         const userData = {
           event,
@@ -137,8 +153,8 @@ export default class BaseFormView {
           color: eventTypeColor,
           message: sanitizedTextAreaValue,
           coords: [lat, lng],
-          userType: isGuest ? 'guest' : 'user',
-          userName: isGuest ? 'Anonymous' : userName,
+          userType: userLoggedIn ? 'user' : 'guest',
+          userName: userLoggedIn ? userName : 'Anonymous',
         };
         return userData;
       };

@@ -26,7 +26,7 @@ class Controller {
 
   controlUserData(data) {
     let userData = data();
-
+    console.log(userData);
     if (data().userType === 'guest') {
       //guest data
 

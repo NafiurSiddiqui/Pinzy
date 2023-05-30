@@ -24,17 +24,12 @@ export default class View {
     this.guestPins = guestState;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
-    // this.pinClass = new Pin(this.map);
     this.map = new Map(this.guestPins, this.renderForm, this.renderSpinner);
-    // this.renderMap = this.renderMap.bind(this);
     this.newEvHandler = this.map.newMapEvHandler;
-    // this.renderPinOnMapHandler = this.renderPinOnMapHandler.bind(this);
-    //hide form
     this.hideForm();
   }
 
   renderMap() {
-    // let map = this.map.getPosition();
     this.map.getPosition(map => {
       if (map) {
         this.pinClass = new Pin(map, this.guestPins); // Initialize Pin with the map instance
