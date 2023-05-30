@@ -204,7 +204,7 @@ export default class FormEditorView extends BaseForm {
 
   actionHandler(userType) {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    console.log('action handler runs');
+    // console.log('action handler runs');
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');

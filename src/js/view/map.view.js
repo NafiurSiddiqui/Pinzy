@@ -21,6 +21,7 @@ export default class Map extends Pin {
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
     // this.newMapEvHandler = this.newMapEvHandler.bind(this);
+    this.userType = helper.checkUserLoggedIn() === true ? 'user' : 'guest';
   }
 
   //load the map - V
@@ -68,13 +69,12 @@ export default class Map extends Pin {
     //!need to detect the userType or pageType later before renering pins
 
     //check the user logger
-    this.userType = helper.checkUserLoggedIn === 'true' ? 'user' : 'guest';
 
-    this.handlePinRenderer(
-      this.userType === 'guest' ? this.guestPins : this.userPins,
-      this.userType,
-      this.userType === 'guest' ? this.guestPinContainer : this.userPinContainer
-    );
+    if (this.userType === 'guest') {
+      this.handlePinRenderer(this.guestPins, 'guest', this.guestPinContainer);
+    } else {
+      this.handlePinRenderer(this.userPins, 'user', this.userPinContainer);
+    }
 
     //render marker for guest
     // this.guestPins.forEach(pin => {

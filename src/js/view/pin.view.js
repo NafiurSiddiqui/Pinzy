@@ -72,8 +72,6 @@ export default class Pin extends FormEditorView {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
     // user? keep count, render inside userPinContainer + pinPage
     const isGuest = pinData.userType === 'guest';
-    // const userName = isGuest ? 'Anonymous' : values.userName;
-    // const pinContainer = isGuest ? guestPinContainer : userPinContainer;
     const pinLimit = isGuest ? 10 : 100;
 
     if (pins.length < pinLimit) {
@@ -116,11 +114,29 @@ export default class Pin extends FormEditorView {
       console.log('global Pin Page');
       return;
     }
-    console.log(userType, this.guestPins, this.guestPinCountEl);
+    // console.log(userType, this.guestPins, this.guestPinCountEl);
 
-    userType === 'guest'
-      ? (this.guestPinCountEl.textContent = this.guestPins.length)
-      : (this.userPinCountEl.textContent = this.userPins.length);
+    if (userType === 'guest') {
+      if (this.guestPinCountEl && this.guestPins) {
+        this.guestPinCountEl.textContent = this.guestPins.length;
+      }
+    } else {
+      if (this.userPinCountEl && this.userPins) {
+        this.userPinCountEl.textContent = this.userPins.length;
+      }
+    }
+  }
+
+  handlePinRenderer(pinType, userType, pinContainerType) {
+    pinType.forEach(pin => {
+      //render pin on map
+      this.renderPinOnMap(pin);
+
+      //render pin count
+      this.renderPinCount(userType);
+      //render pin on profile
+      this.renderPinOnProfile(pinType, pin, pinContainerType);
+    });
   }
 
   //default Pin Msg
@@ -171,17 +187,17 @@ export default class Pin extends FormEditorView {
     }
   }
 
-  handlePinRenderer(pinType, userType, pinContainerType) {
-    pinType.forEach(pin => {
-      //render pin on map
-      this.renderPinOnMap(pin);
+  // handlePinRenderer(pinType, userType, pinContainerType) {
+  //   pinType.forEach(pin => {
+  //     //render pin on map
+  //     this.renderPinOnMap(pin);
 
-      //render pin count
-      this.renderPinCount(userType);
-      //render pin on profile
-      this.renderPinOnProfile(pinType, pin, pinContainerType);
-    });
-  }
+  //     //render pin count
+  //     this.renderPinCount(userType);
+  //     //render pin on profile
+  //     this.renderPinOnProfile(pinType, pin, pinContainerType);
+  //   });
+  // }
 
   //get guest pins
   getGuestPins(guestState) {
