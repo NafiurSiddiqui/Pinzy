@@ -47,7 +47,6 @@ export default class Pin extends FormEditorView {
     // this.editBtnHandlerGlobal();
   }
 
-  //renderPinOnMap
   renderPinOnMap(values) {
     // console.log(values);
     L.marker(values.coords)
@@ -64,10 +63,12 @@ export default class Pin extends FormEditorView {
       .setPopupContent(` ${values.message}`)
       .openPopup();
   }
-  //renderUserPin
+
   /**
    *
-   * @param {Object} data
+   * @param {Array} pins
+   * @param {Object} pinData
+   * @param {HTMLUListElement}
    */
   renderPinOnProfile(pins, pinData, pinContainer) {
     // guest? keep count, less than 10? render inside guestPinContainer + pinPage
