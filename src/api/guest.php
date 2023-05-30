@@ -43,7 +43,7 @@ include './layout/header-pin.php';
     </span>
     <div class="guest-profile__pin-count-wrapper border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center">
         <span class="guest-profile__pin-count font-semibold tablet:text-sm max-w-[2rem] text-slate-500">
-
+            0
         </span>
         <i class="fa-solid fa-location-dot text-slate-500"></i>
     </div>

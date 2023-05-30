@@ -85,9 +85,6 @@ export default attachEditBtnListener;
 editBox?.addEventListener('click', e => {
   //prevents from bubbling to the grandparent
   e.stopPropagation();
-
-  //close the box
-  // e.target.tagName === 'LI' ? toggleEditBox() : null;
 });
 
 //close the edit on global click
