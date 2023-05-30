@@ -141,7 +141,6 @@ export default class BaseFormView {
       /**
        * id: user? from Db : generateId
        */
-      // const isGuest = helper.checkURL('guest.html') ? true : false;
 
       const userLoggedIn = helper.checkUserLoggedIn();
 

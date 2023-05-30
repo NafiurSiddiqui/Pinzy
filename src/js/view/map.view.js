@@ -9,6 +9,8 @@ export default class Map extends Pin {
   coords;
   showform;
   guestPins;
+  userType;
+
   constructor(guestPins, showForm, renderSpinner) {
     super();
 
@@ -81,14 +83,24 @@ export default class Map extends Pin {
     //!need to detect the userType or pageType later before renering pins
 
     //check the user logger
+    this.userType = helper.checkUserLoggedIn === 'true' ? 'user' : 'guest';
+
+    this.handlePinRenderer(
+      this.userType === 'guest' ? this.guestPins : this.userPins,
+      this.userType,
+      this.userType === 'guest' ? this.guestPinContainer : this.userPinContainer
+    );
 
     //render marker for guest
-    this.guestPins.forEach(pin => {
-      //render pin on map
-      this.renderPinOnMap(pin);
-      //render pin on profile
-      this.renderPinOnProfile(this.guestPins, pin, this.guestPinContainer);
-    });
+    // this.guestPins.forEach(pin => {
+    //   //render pin on map
+    //   this.renderPinOnMap(pin);
+
+    //   //render pin count
+    //   this.renderPinCount('guest');
+    //   //render pin on profile
+    //   this.renderPinOnProfile(this.guestPins, pin, this.guestPinContainer);
+    // });
 
     //render marker for user
 
