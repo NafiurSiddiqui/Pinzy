@@ -99,10 +99,22 @@ export default class Pin extends FormEditorView {
     this.defaultPinMsgHandler();
   }
 
-  renderGlobalPins() {
-    //fetch data for user
-    //fetch data for guest
-    //map over the global pins and render cardMarkup
+  handleGlobalPinRenderer() {
+    this.globalPins.forEach(pin => {
+      //generate global pinCard
+      this.globalPinContainer.insertAdjacentHTML(
+        'beforeend',
+        this.pinCard.generatePinCard(pin)
+      );
+
+      //attach editBtn to the card if this pin.userType = loggedUser
+      // const editBtn = pinContainer?.querySelector(
+      //   `[data-id="${pinData.id}"] .pin-edit-box__container i`
+      // );
+
+      // //call editBtn handler
+      // this.editBtnHandler(editBtn);
+    });
   }
 
   /**

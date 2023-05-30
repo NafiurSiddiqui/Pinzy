@@ -78,7 +78,9 @@ export default class Map extends Pin {
     }
 
     //render global marker
-
+    if (this.isGlobalPinPage) {
+      this.handleGlobalPinRenderer();
+    }
     return map;
   }
 
