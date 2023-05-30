@@ -48,7 +48,6 @@ export default class Pin extends FormEditorView {
   }
 
   renderPinOnMap(values) {
-    // console.log(values);
     L.marker(values.coords)
       .addTo(this.map)
       .bindPopup(
@@ -75,12 +74,14 @@ export default class Pin extends FormEditorView {
     // user? keep count, render inside userPinContainer + pinPage
     const isGuest = pinData.userType === 'guest';
     const pinLimit = isGuest ? 10 : 100;
+    const timeOfCreation = helper.getTime();
+    const dateOfCreation = helper.getDate();
 
     if (pins.length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(
         'beforeend',
-        this.pinCard.generatePinCard(pinData)
+        this.pinCard.generatePinCard(pinData, timeOfCreation, dateOfCreation)
       );
 
       // attach edit btn to the card

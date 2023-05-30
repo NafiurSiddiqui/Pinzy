@@ -143,6 +143,10 @@ export default class BaseFormView {
 
       const userLoggedIn = helper.checkUserLoggedIn();
 
+      //time and date
+      const timeOfCreation = helper.getTime();
+      const dateOfCreation = helper.getDate();
+
       const formUserData = userName => {
         const userData = {
           event,
@@ -153,6 +157,8 @@ export default class BaseFormView {
           coords: [lat, lng],
           userType: userLoggedIn ? 'user' : 'guest',
           userName: userLoggedIn ? userName : 'Anonymous',
+          time: timeOfCreation,
+          date: dateOfCreation,
         };
         return userData;
       };

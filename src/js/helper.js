@@ -60,50 +60,29 @@ class Helper {
       return indicator;
     }
 
-    var currentDate = new Date();
-    var day = currentDate.getDate();
-    var ordinalIndicator = getOrdinalIndicator(day);
-    var formattedDate = `
-      ${day} 
-      ${ordinalIndicator} 
-      
-      ${currentDate.toLocaleDateString('en-US', {
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const ordinalIndicator = getOrdinalIndicator(day);
+    const formattedDate = `${day}${ordinalIndicator} ${currentDate.toLocaleDateString(
+      'en-US',
+      {
         month: 'long',
         year: 'numeric',
-      })}`;
+      }
+    )}`;
     return formattedDate;
   }
 
   getTime() {
-    var currentTime = new Date();
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var formattedTime = ` ${hours.toString().padStart(2, '0')}:${minutes
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    const formattedTime = ` ${hours.toString().padStart(2, '0')}:${minutes
       .toString()
       .padStart(2, '0')} hrs`;
 
     return formattedTime;
   }
-
-  // checkUserStatus() {
-  //   let userLogged;
-  //   if (pinElements.globalPinContainer) {
-  //     console.log('from the global');
-  //     userLogged = pinElements.globalPinContainer?.dataset.userlogged.trim();
-  //   }
-
-  //   if (pinElements.guestPinContainer) {
-  //     console.log('From guest');
-  //     userLogged = pinElements.guestPinContainer.dataset.userlogged.trim();
-  //   }
-
-  //   if (pinElements.userPinContainer) {
-  //     console.log('from User');
-  //     userLogged = pinElements.userPinContainer.dataset.userlogged.trim();
-  //   }
-
-  //   return userLogged;
-  // }
 
   checkUserLoggedIn() {
     const elementKeys = [

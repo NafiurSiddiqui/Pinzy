@@ -22,7 +22,6 @@ export default class Map extends Pin {
     this.loadMap = this.loadMap.bind(this);
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
-    // this.newMapEvHandler = this.newMapEvHandler.bind(this);
     this.userType = helper.checkUserLoggedIn() === true ? 'user' : 'guest';
   }
 

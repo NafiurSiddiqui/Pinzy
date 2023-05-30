@@ -59,15 +59,19 @@ export default class Model {
   }
 
   getLocalStorage() {
+    //get user data
     const guestData = JSON.parse(localStorage.getItem('guest')) || [];
     const userData = JSON.parse(localStorage.getItem('user')) || [];
 
+    //update state
     if (guestData.length > 0) {
       this._guestState = guestData;
     }
-
+    //update state
     if (userData.length > 0) {
       this._userState = userData;
     }
+
+    //update global state
   }
 }

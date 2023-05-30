@@ -7,9 +7,6 @@ export default class PinCard {
    * @returns {HTMLUListElement}
    */
 
-  constructor() {
-    // console.log('pin card runs');
-  }
   generatePinCard(data) {
     let html = `
      <li
@@ -52,12 +49,10 @@ export default class PinCard {
                   class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
                 >
                   <img src="../assets/calendar.svg" class="inline-block" />
-                  ${helper.getDate()}
+                  ${data.date}
                 </span>
                 <!-- edit -->
-                <div class="pin-edit-box__container relative z-40" data-id="${
-                  data.id
-                }">
+                <div class="pin-edit-box__container relative z-40" data-id="${data.id}">
                 <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 "></i>
                 <ul class=" pin-edit-box hidden absolute bg-zinc-300 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
                   <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
@@ -77,7 +72,7 @@ export default class PinCard {
                   class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
                 >
                   <img src="../assets/time.svg" class="inline-block" />
-                  ${helper.getTime()}
+                  ${data.time}
                 </span>
               </div>
               <p
