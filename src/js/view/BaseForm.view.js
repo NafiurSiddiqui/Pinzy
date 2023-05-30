@@ -125,8 +125,7 @@ export default class BaseFormView {
   //submit form
   baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
-      // e.preventDefault();
-      //DID not prevent default refresh, since without refresh the content editor does not work.
+      e.preventDefault();
       //get the values
       const event = this.eventTypeEl.value;
       const message = this.messageEl.value;
@@ -161,10 +160,11 @@ export default class BaseFormView {
       handler(formUserData);
       //clear inputs
       this.eventTypeEl.value = this.messageEl.value = '';
-      //render pin count
-      // this._renderPinCount();
       //hideInput
       this.baseHideForm();
+
+      //refresh manually
+      this.baseRefreshContent();
     });
   }
 
