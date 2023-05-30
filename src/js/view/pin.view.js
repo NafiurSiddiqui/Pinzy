@@ -24,6 +24,7 @@ export default class Pin extends FormEditorView {
   pinCard;
   guestPins = [];
   userPins = [];
+  globalPins = [];
 
   /**
    *
@@ -32,19 +33,18 @@ export default class Pin extends FormEditorView {
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  constructor(map, guestPins, userPins) {
+  constructor(map, guestPins, userPins, globalPins) {
     super();
     this.map = map;
     this.guestPins = guestPins;
     this.userPins = userPins;
+    this.globalPins = globalPins;
     this.pinCard = new PinCard();
     this.handlePinRenderer = this.handlePinRenderer.bind(this);
     //detect page type
     helper.checkURL('pins.php')
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
-
-    // this.editBtnHandlerGlobal();
   }
 
   renderPinOnMap(values) {
@@ -166,8 +166,14 @@ export default class Pin extends FormEditorView {
       profileMsgEl.classList.remove('hidden');
       this.userPinContainer?.classList.add('hidden');
     }
-
     //global management
+    if (this.globalPins.length) {
+      profileMsgEl.classList.add('hidden');
+      this.globalPinContainer?.classList.remove('hidden');
+    } else {
+      profileMsgEl.classList.remove('hidden');
+      this.globalPinContainer?.classList.add('hidden');
+    }
   }
   //pin watcher - ! MIGHT NOT NEED THIS
   watchPinsLength() {
@@ -193,18 +199,6 @@ export default class Pin extends FormEditorView {
       console.log(error);
     }
   }
-
-  // handlePinRenderer(pinType, userType, pinContainerType) {
-  //   pinType.forEach(pin => {
-  //     //render pin on map
-  //     this.renderPinOnMap(pin);
-
-  //     //render pin count
-  //     this.renderPinCount(userType);
-  //     //render pin on profile
-  //     this.renderPinOnProfile(pinType, pin, pinContainerType);
-  //   });
-  // }
 
   //get guest pins
   getGuestPins(guestState) {

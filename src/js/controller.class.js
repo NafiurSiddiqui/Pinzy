@@ -16,7 +16,11 @@ class Controller {
 
   constructor() {
     this.model = new Model();
-    this.view = new View(this.model._guestState, this.model._userState);
+    this.view = new View(
+      this.model._guestState,
+      this.model._userState,
+      this.model._globalState
+    );
     //?WHER EXACTLY DO YOU NEED USER DATA?
     this.init();
     this.controlUserData = this.controlUserData.bind(this);

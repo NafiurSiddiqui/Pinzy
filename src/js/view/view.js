@@ -16,20 +16,22 @@ export default class View {
   map;
   guestPins = [];
   userPins = [];
+  globalPins = [];
   pinClass;
 
-  constructor(guestState, userState) {
+  constructor(guestState, userState, globalPins) {
     this.form = new FormView();
     this.formEditor = new FormEditorView();
     this.guestEditor = new GuestEditor();
     this.guestPins = guestState;
     this.userPins = userState;
+    this.globalPins = globalPins;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
-    // this.map = new Map(this.guestPins, this.renderForm, this.renderSpinner);
     this.map = new Map(
       this.guestPins,
       this.userPins,
+      this.globalPins,
       this.renderForm,
       this.renderSpinner
     );
@@ -40,7 +42,12 @@ export default class View {
   renderMap() {
     this.map.getPosition(map => {
       if (map) {
-        this.pinClass = new Pin(map, this.guestPins, this.usrePins); // Initialize Pin with the map instance
+        this.pinClass = new Pin(
+          map,
+          this.guestPins,
+          this.usrePins,
+          this.globalPins
+        ); // Initialize Pin with the map instance
         // this.editBtnGlobalHandler(this.pinClass);
       } else {
         console.log('No map');

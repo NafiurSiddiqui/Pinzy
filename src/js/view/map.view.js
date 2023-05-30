@@ -13,11 +13,12 @@ export default class Map extends Pin {
   globalPins = [];
   userType;
 
-  constructor(guestPins, userPins, showForm, renderSpinner) {
+  constructor(guestPins, userPins, globalPins, showForm, renderSpinner) {
     super();
 
     this.guestPins = guestPins;
     this.userPins = userPins;
+    this.globalPins = globalPins;
     this.showForm = showForm;
     this.renderSpinner = renderSpinner;
     this.loadMap = this.loadMap.bind(this);
@@ -67,8 +68,6 @@ export default class Map extends Pin {
 
     // Handling clicks on map
     this.map.on('click', this.showForm.bind(this));
-
-    //!need to detect the userType or pageType later before renering pins
 
     //check the user logger
 
