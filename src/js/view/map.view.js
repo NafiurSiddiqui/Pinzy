@@ -99,15 +99,16 @@ export default class Map extends Pin {
     console.log(pinEl);
     if (!pinEl) return;
 
+    let pin;
     //check the user type
-
-    const pin =
-      this.userType === 'user'
-        ? this.userPins.find(pin => pin.id === +pinEl.dataset.id)
-        : this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
-
-    //convert ID to number since data-id is string
-    // const pin = this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
+    if (this.isGlobalPinPage) {
+      pin = this.globalPins.find(pin => pin.id === +pinEl.dataset.id);
+    } else {
+      pin =
+        this.userType === 'user'
+          ? this.userPins.find(pin => pin.id === +pinEl.dataset.id)
+          : this.guestPins.find(pin => pin.id === +pinEl.dataset.id);
+    }
 
     this.map.setView(pin.coords, this.mapZoomLevel, {
       animate: true,
