@@ -13,7 +13,7 @@ export default class GuestEditor {
     //methods
     // this.selectedEventIcon = this.getEventIcon();
     // this.actionHandler('guest');
-    console.log('guest editor runs');
+    // console.log('guest editor runs');
     // this.formEditUiHandler();
   }
 

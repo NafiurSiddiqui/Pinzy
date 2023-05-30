@@ -20,18 +20,19 @@ export default class FormEditorView extends BaseForm {
   btnEditSubmit = btnEditSubmit;
   formEditBgEl = formEditBgEl;
   formEditEl = formEditEl;
-  userType;
+  userType = '';
   guestEditor;
   pinEdited = false;
   constructor() {
     super();
     this.baseFormValidationHandler(this.eventTypeEditEl, this.messageEditEl);
     this.toggleEditBox = this.toggleEditBox.bind(this);
-    // console.log('Form Editor runs');
+
     this.editBtnHandlerGlobal();
-    // this.guestEditor = new GuestEditor();
-    // this.guestEditor.actionHandler();
-    console.log(helper.checkUserStatus());
+
+    helper.checkUserLoggedIn()
+      ? (this.userType = 'user')
+      : (this.userType = 'guest');
   }
 
   setFormEditIsOpen(value) {

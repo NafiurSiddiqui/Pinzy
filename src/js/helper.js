@@ -105,26 +105,26 @@ class Helper {
   //   return userLogged;
   // }
 
-  checkUserStatus() {
+  checkUserLoggedIn() {
     const elementKeys = [
       'globalPinContainer',
       'guestPinContainer',
       'userPinContainer',
     ];
-    let userLogged;
 
     for (const key of elementKeys) {
       const element = pinElements[key];
       if (element) {
-        console.log(`From ${key}`);
-        userLogged = element.dataset.userlogged?.trim();
-        if (userLogged) {
-          break;
+        // console.log(`From ${key}`);
+        let dataEl = element.dataset.userlogged?.trim();
+
+        if (element && dataEl === 'true') {
+          return true;
         }
       }
     }
 
-    return userLogged;
+    return false;
   }
 }
 

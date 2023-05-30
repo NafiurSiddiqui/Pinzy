@@ -51,7 +51,7 @@ const editBox = document.querySelector('.pin-edit-box');
 
 export const toggleEditBox = (closeBox = false) => {
   const editBoxes = document.querySelectorAll('.pin-edit-box');
-  console.log('editor runs');
+
   //to prevent from toggling and simply hide if closeBox
   closeBox
     ? editBoxes.forEach(box => box.classList.add('hidden'))
