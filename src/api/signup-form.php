@@ -45,7 +45,7 @@ include './layout/header-auth.php';
 ?>
 
 <form action="inc/signup.inc.php" method="post"
-    class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
+    class="px-8 py-8 border-2 rounded border-zinc-300  w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
     <div class="flex flex-col my-2 w-full">
         <div class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  ">
             Username</div>
@@ -109,21 +109,21 @@ echo !empty($confirmPasswordHasError) ? "<i class='fa-solid fa-triangle-exclamat
     </button>
 </form>
 <!-- optional actions -->
-<div class="flex  android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-8 laptop:mt-10">
-    <!-- create account -->
-    <div class="text-center  flex flex-col  w-full  text-zinc-500">
+<div class="flex justify-between android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-8 laptop:mt-10">
+
+    <div class="text-center flex flex-col   w-24 whitespace-nowrap  text-zinc-500">
         <span class="text-xs">Have account?</span>
         <a href="../../index.php"
             class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Login</a>
     </div>
-    <!-- or -->
-    <div class="text-center  w-full my-1 text-zinc-400 flex justify-center items-center">
+
+    <div class="text-center  my-1 text-zinc-400 flex justify-center items-center">
         <span class="inline-block border w-8 border-zinc-300"></span>
         or
         <span class="inline-block border w-8 border-zinc-300"></span>
     </div>
-    <!-- actions -->
-    <div class="text-center  flex flex-col  w-full  text-zinc-500">
+
+    <div class="text-center  flex flex-col  w-24 whitespace-nowrap   text-zinc-500">
         <span class="text-xs">Explore as a</span>
         <a href="./guest.php"
             class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Guest</a>

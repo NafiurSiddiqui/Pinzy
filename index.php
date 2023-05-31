@@ -73,25 +73,27 @@ echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><sp
   <a href="#" class="mt-8  underline underline-offset-2 text-xs text-green-600  font-semibold">Forgot password?</a>
 </form>
 <!-- optional actions -->
-<div class="flex android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-8 laptop:mt-10">
-  <!-- create account -->
-  <div class="text-center flex flex-col  w-full  text-zinc-500">
+<div class="flex justify-between android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-8 laptop:mt-10">
+
+
+  <div class="text-center flex flex-col   w-24 whitespace-nowrap  text-zinc-500">
     <span class="text-xs">Need an account?</span>
     <a href="./src/api/signup-form.php"
       class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Signup</a>
   </div>
-  <!-- or -->
-  <div class="text-center  w-full my-1 text-zinc-400 flex justify-center items-center">
+
+  <div class="text-center  my-1 text-zinc-400 flex justify-center items-center">
     <span class="inline-block border w-8 border-zinc-300"></span>
     or
     <span class="inline-block border w-8 border-zinc-300"></span>
   </div>
-  <!-- actions -->
-  <div class="text-center  flex flex-col  w-full   text-zinc-500">
+
+  <div class="text-center  flex flex-col  w-24 whitespace-nowrap   text-zinc-500">
     <span class="text-xs">Explore as a</span>
     <a href="./src/api/guest.php"
       class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Guest</a>
   </div>
+
 </div>
 </section>
 </div>
