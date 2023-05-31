@@ -28,8 +28,17 @@
         <link rel="stylesheet" href="
         <?php
             echo !empty($pathToCss) ? $pathToCss: 'setPath';
-        ?>
-        
+        ?>   
+        " />
+        <link rel="stylesheet" href="
+        <?php
+            echo !empty($pathToFaAll) ? $pathToFaAll: 'setPath';
+        ?>   
+        " />
+        <link rel="stylesheet" href="
+        <?php
+            echo !empty($pathToFaMin) ? $pathToFaMin: 'setPath';
+        ?>   
         " />
         <title>Pinzy -
             <?php
@@ -58,19 +67,19 @@
                 <?php
        
         echo !empty($userErrorMsg) ? "
-            <div  class='toast-notification rounded-md bg-red-300 py-4 px-4 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
+            <div  class='toast-notification rounded-md bg-red-200 py-4 px-4 border border-red-500 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
                       <div class='notification-wrapper  flex justify-center items-center'>
                         <span class='flex items-center grow-0  justify-center'>
-                        <i class='fa-regular fa-circle-xmark text-zinc-600'></i>
+                     
                         </span>
                         <div class='ml-2'>
-                        <span class='text-sm text-zinc-700'>Error</span>
-                        <p class='text-zinc-700 text-xs '>  $userErrorMsg</p>
+                        <span class='text-sm text-red-800'>Error</span>
+                        <p class='text-red-800 text-xs '>  $userErrorMsg</p>
                         </div>
                         <span>
                         </span>
                       </div>
-                        <i class='fa-regular fa-x text-zinc-600'></i>
+                          <i class='fa-regular fa-circle-xmark text-red-800'></i>
                         </div>
 
 ": '';

@@ -13,10 +13,12 @@ if(isset($_GET['error'])) {
 
 $pathToIcon = './src/assets/logo.svg';
 $pathToCss = './dist/output.css';
-$pathToJs = './src/js/ui.js';
+$pathToFaAll = './src/style/fontawesome/all.min.css';
+$pathToFaMin = './src/style/fontawesome/fontawesome.min.css';
+$pathToJs = './src/js/view/Auth.view.js';
 $pageTitle = 'login';
 
-include './src/api/layout/header-form.php';
+include './src/api/layout/header-auth.php';
 
 ?>
 
