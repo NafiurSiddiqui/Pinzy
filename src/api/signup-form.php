@@ -49,7 +49,8 @@ include './layout/header-auth.php';
     <div class="flex flex-col my-2 w-full">
         <div class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  ">
             Username</div>
-        <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
+        <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2 
+        
         <?php echoErrorStyle($userNameHasError, $emptyFields)   ?>
         " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
@@ -62,7 +63,7 @@ echo !empty($userNameHasError) ? "<i class='fa-solid fa-triangle-exclamation'></
         <div
             class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
             Email</div>
-        <input type="email" name="email" aria-label="Email" spellcheck="false" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400 
+        <input type="email" name="email" aria-label="Email" spellcheck="false" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400  tablet-md:p-2 
         <?php echoErrorStyle($emailHasError, $emptyFields); ?>
 
         " />
@@ -77,7 +78,7 @@ echo !empty($emailHasError) ? "<i class='fa-solid fa-triangle-exclamation'></i><
             class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem] ">
             Password
         </div>
-        <input type="password" name="password" aria-label="Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
+        <input type="password" name="password" aria-label="Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2
             <?php echoErrorStyle($passwordHasError, $emptyFields); ?>
         
         " />
@@ -92,7 +93,7 @@ echo !empty($passwordHasError) ? "<i class='fa-solid fa-triangle-exclamation'></
             class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
             Confirm
             Password</div>
-        <input type="password" name="confirm-password" aria-label="Confirm Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
+        <input type="password" name="confirm-password" aria-label="Confirm Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2
             <?php echoErrorStyle($confirmPasswordHasError, $emptyFields); ?>
         
         " />

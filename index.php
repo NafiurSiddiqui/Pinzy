@@ -29,14 +29,10 @@ include './src/api/layout/header-auth.php';
   <div class="flex flex-col  w-full ">
 
     <div
-      class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem]">
+      class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem] tablet-md:-bottom-8 ">
       Username/Email</div>
-    <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field border-2 border-zinc-300 p-1 rounded !appearance-none bg-transparent z-10  focus:!outline-none focus:ring-2 focus:ring-green-400
-      
-      <?php
-      echo !empty($nameIsEmpty) ? 'border-red-400': '';
-?> 
-      " />
+    <input type="text" spellcheck="false" name="userName" aria-label="User name"
+      class="input-field border-2 border-zinc-300 p-1 rounded !appearance-none bg-transparent z-10  focus:!outline-none focus:ring-2 focus:ring-green-400 tablet-md:p-2 <?php echo !empty($nameIsEmpty) ? 'border-red-400': '';?>" />
 
     <span class="input-error-msg text-xs text-red-300 mt-1 ml-1">
       <?php
@@ -48,16 +44,12 @@ echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><sp
   <div class="flex flex-col w-full">
 
     <div
-      class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem] ">
+      class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem] tablet-md:-bottom-8 ">
       Password
     </div>
-    <input type="password" name="password" aria-label="Password" class="input-field border-2 border-zinc-300 p-1 rounded !appearance-none bg-transparent  focus:!outline-none focus:ring-2 
-                        focus:ring-green-400 z-10
-                         <?php
-      echo !empty($passwordIsEmpty) ? 'border-red-400': '';
-?>
-                        
-                        " />
+    <input type="password" name="password" aria-label="Password"
+      class="input-field border-2 border-zinc-300 p-1 rounded !appearance-none bg-transparent  focus:!outline-none focus:ring-2 focus:ring-green-400 z-10 tablet-md:p-2 <?php
+      echo !empty($passwordIsEmpty) ? 'border-red-400': '';?>" />
     <span class="input-error-msg text-xs text-red-300 mt-1 ml-1">
       <?php
                             echo !empty($passwordIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$passwordIsEmpty</span>" : '';

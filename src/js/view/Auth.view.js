@@ -10,6 +10,7 @@ class AuthView {
     this.urlHasError = queryString.includes('error');
     this.notificationHanlder();
     this.errorHanlder();
+
     this.inputUiHanlder();
   }
 
@@ -24,6 +25,9 @@ class AuthView {
   }
 
   inputUiHanlder() {
+    const largeDevice = window.matchMedia('(min-width: 1600px)');
+    const isLargeDevice = largeDevice.matches;
+    console.log(isLargeDevice);
     inputs.forEach(input => {
       const label = input.previousElementSibling;
 
@@ -33,7 +37,15 @@ class AuthView {
       input.addEventListener('focus', function () {
         if (hasFocus && !inputHasValue) {
         }
-        label.classList.add('input-focused');
+        if (isLargeDevice) {
+          label.classList.remove('tablet-md:-bottom-8');
+          label.classList.add('input-focused-largeScreen');
+        } else {
+          label.classList.add('input-focused');
+          label.classList.remove('-bottom-[1.8rem]');
+          label.classList.remove('tablet-md:-bottom-8');
+        }
+
         hasFocus = true;
       });
 
@@ -41,22 +53,49 @@ class AuthView {
         if (inputHasValue) {
           return;
         }
-        label.classList.remove('input-focused');
+
+        if (isLargeDevice) {
+          label.classList.add('tablet-md:-bottom-8');
+          label.classList.remove('input-focused-largeScreen');
+        } else {
+          label.classList.add('-bottom-[1.8rem]');
+          label.classList.remove('input-focused');
+          label.classList.add('tablet-md:-bottom-8');
+        }
+
         hasFocus = false;
       });
 
       input.addEventListener('input', function () {
         if (input.value.trim().length > 0) {
           inputHasValue = true;
+          if (isLargeDevice) {
+            label.classList.remove('tablet-md:-bottom-8');
+            label.classList.add('input-focused-largeScreen');
+          } else {
+            label.classList.add('input-focused');
+            label.classList.remove('-bottom-[1.8rem]');
+            label.classList.remove('tablet-md:-bottom-8');
+          }
 
-          label.classList.add('input-focused');
+          // label.classList.add('input-focused');
+          // isLargeDevice
+          //   ? label.classList.add('input-focused-largeScreen')
+          //   : label.classList.add('input-focused');
         } else {
           inputHasValue = false;
 
           if (hasFocus) {
             return;
           }
-          label.classList.remove('input-focused');
+          if (isLargeDevice) {
+            label.classList.add('tablet-md:-bottom-8');
+            label.classList.remove('input-focused-largeScreen');
+          } else {
+            label.classList.add('-bottom-[1.8rem]');
+            label.classList.remove('input-focused');
+            label.classList.add('tablet-md:-bottom-8');
+          }
         }
       });
     });
