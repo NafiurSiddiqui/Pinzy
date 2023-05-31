@@ -46,6 +46,7 @@ btnSidebarMobile?.addEventListener('click', () => {
   }
 });
 
+///---------- AUTH
 const queryString = window.location.search;
 
 // Check if the query string contains the word "error"
