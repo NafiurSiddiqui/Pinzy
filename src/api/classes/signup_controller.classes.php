@@ -27,15 +27,32 @@ class SignupController extends Signup
             $this->errorHandlerController("Please fill out all of the fields.");
            
         }
-        //user validity
-        if ($this->userNameValidation() == false) {
+        //userInput check
+        if ($this->userNameIsEmpty()) {
 
-            $this->errorHandlerController('Invalid Username');
+            $this->errorHandlerController('Must have a Username');
         }
-        //email
+
+        //email input handler
+        if($this->emailIsEmpty()) {
+            $this->errorHandlerController('Must have an Email');
+        }
+
+        //email validation
         if ($this->emailValidation() == false) {
             
             $this->errorHandlerController('Invalid Email');
+        }
+       
+
+        //password input handler
+        if ($this->passwordIsEmpty()) {
+            $this->errorHandlerController('Must have a Password');
+        }
+
+        //confirm password handler
+        if ($this->confirmPasswordIsEmpty()) {
+            $this->errorHandlerController('Must Confirm Password');
         }
         //confirmPassword match
         if ($this->confirmPasswordValidation() == false) {
@@ -60,9 +77,9 @@ class SignupController extends Signup
     {
 
         if (
-            empty($this->userName) ||
-            empty($this->email) ||
-            empty($this->password) ||
+            empty($this->userName) &&
+            empty($this->email) &&
+            empty($this->password) &&
             empty($this->confirmPassword)
         ) {
             $inputsAreEmpty = true;
@@ -73,18 +90,10 @@ class SignupController extends Signup
         return $inputsAreEmpty;
     }
 
-    private function userNameValidation()
+    private function userNameIsEmpty()
     {
-        //some regExp
-        if (!preg_match("/^[a-zA-Z0-9_]*$/", $this->userName)) {
+        return  empty($this->userName)  ;
 
-            $userNameIsValid = false;
-        } else {
-           
-            $userNameIsValid = true;
-        }
-
-        return $userNameIsValid;
         
     }
 
@@ -96,12 +105,29 @@ class SignupController extends Signup
             $emailIsValid = false;
 
         } else {
+
+          
            
             $emailIsValid = true;
         }
 
         return $emailIsValid;
 
+    }
+
+    private function emailIsEmpty()
+    {
+        return empty($this->email);
+    }
+
+    private function passwordIsEmpty()
+    {
+        return empty($this->password);
+    }
+
+    private function confirmPasswordIsEmpty()
+    {
+        return empty($this->confirmPassword);
     }
 
     private function confirmPasswordValidation()

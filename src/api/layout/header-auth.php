@@ -66,7 +66,7 @@
                 </div>
                 <?php
 
-if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty)) {
+if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || !empty($errorMsg)) {
 
         
     echo  "
@@ -82,7 +82,7 @@ if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty)) {
     
 
                
-    if($userErrorMsg) {
+    if(!empty($userErrorMsg)) {
         echo $userErrorMsg;
     }
 
@@ -92,6 +92,10 @@ if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty)) {
 
     if(!empty($passwordIsEmpty)) {
         echo $passwordIsEmpty;
+    }
+
+    if(!empty($errorMsg)) {
+        echo $errorMsg;
     }
 
    
