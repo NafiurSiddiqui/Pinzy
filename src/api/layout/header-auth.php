@@ -66,9 +66,9 @@
                 </div>
                 <?php
 
-// if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || !empty($errorMsg) || !empty($signupError) || !empty($fieldsAreEmpty) ||!empty($userNameHasError) || !empty($emailHasError) || !empty($passwordHasError) || !empty($confirmPasswordHasError) || !empty($userExists)) {
 
-    if(isset($_GET['error']) || isset($_GET['signupError'])) {
+
+    if(isset($_GET['error']) || isset($_GET['signupError']) || isset($_GET['userError'])) {
 
         
         echo  "
@@ -104,7 +104,14 @@
         // $userExists = !empty($_GET['userExists'])? urldecode($_GET['userExists']):'';
         // $fieldsAreEmpty = !empty($_GET['fieldsAreEmpty'])? urldecode($_GET['fieldsAreEmpty']):'';
 
-        echo !empty($signupError)? $signupError : '';
+        if(!empty($emptyFields)) {
+            echo $emptyFields;
+        }
+
+        if(!empty($userExists)) {
+            echo $userExists;
+        }
+
 
       
 

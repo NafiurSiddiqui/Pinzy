@@ -151,16 +151,7 @@ class SignupController extends Signup
     protected function errorHandlerController()
     {
     
-        // $this->userNameErrorMsg = $this->checkUserNameIsEmpty()? 'UserName can not be empty': '';
-        // $this->userNameErrorMsg = $this->checkUserNameIsEmpty()? 'UserName can not be empty': '';
-        // $this->emailErrorMsg = $this->validateEmail() ? 'Invalid Email': ($this->checkEmailIsEmpty()? 'Email can not be left empty':'');
-        // $this->passwordErrorMsg = $this->checkPasswordIsEmpty()? 'password is required':'';
 
-        // $this->confirmPasswordErrorMsg = $this->validateConfirmPassword()? "Passwords do not match": ($this->checkConfirmPassIsEmpty()? 'Confirm password':'') ;
-
-        // $this->fieldsAreEmpty = $this->checkFieldsAreEmpty()? "Fields can not be empty":'';
-
-        // $this->userErrorMsg = $this->checkUserExists()? "User Already Exists": '';
 
         $this->userNameErrorMsg = $this->checkUserNameIsEmpty() ? 'UserName can not be empty' : '';
         $this->emailErrorMsg = $this->validateEmail() ? 'Invalid Email' : ($this->checkEmailIsEmpty() ? 'Email can not be left empty' : '');
@@ -173,26 +164,23 @@ class SignupController extends Signup
         $queryString = '';
 
         if ($this->fieldsAreEmpty) {
-            $queryString =  urlencode($this->fieldsAreEmpty);
+            // $queryString =  urlencode($this->fieldsAreEmpty);
+            $queryString ='signupError='.  urlencode($this->fieldsAreEmpty);
+
+        } elseif($this->userErrorMsg) {
+            $queryString ='userError='. urlencode($this->userErrorMsg);
+
         } else {
-            $queryString = 'someFieldsAreEmpty&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
+            $queryString = 'signupError=someFieldsAreEmpty&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
                 . '&emailHasError=' . urlencode($this->emailErrorMsg)
                 . '&passwordHasError=' . urlencode($this->passwordErrorMsg)
-                . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg)
-                . '&userExists=' . urlencode($this->userErrorMsg);
+                . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg);
+         
         }
 
-        $queryString = 'signupError=' . $queryString;
+        // $queryString = 'signupError=' . $queryString;
+        $queryString = $queryString;
      
-
-
-        // $queryString = 'signupError='
-        // . '&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
-        // . '&emailHasError=' . urlencode($this->emailErrorMsg)
-        // . '&passwordHasError=' . urlencode($this->passwordErrorMsg)
-        // . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg)
-        // . '&fieldsAreEmpty=' . urlencode($this->fieldsAreEmpty)
-        // . '&userExists='.urlencode($this->userErrorMsg);
 
         header("location:../../api/signup-form.php?$queryString");
         exit();

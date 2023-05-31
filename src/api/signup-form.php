@@ -1,7 +1,13 @@
 <?php
 
-if(isset($_GET['signupError']) && $_GET['signupError'] === 'fieldsAreEmpty') {
-    $signupError = $_GET['signupError'];
+if(isset($_GET['signupError']) && $_GET['signupError'] === 'Fields can not be empty') {
+    $emptyFields = $_GET['signupError'];
+
+}
+
+if(isset($_GET['userError']) && $_GET['userError'] === 'User Already Exists') {
+    $userExists = $_GET['userError'];
+  
 
 }
 
@@ -11,7 +17,7 @@ if(isset($_GET['signupError']) && $_GET['signupError'] === 'someFieldsAreEmpty')
     $passwordHasError = !empty($_GET['passwordHasError'])? $_GET['passwordHasError']: '';
     $confirmPasswordHasError = !empty($_GET['confirmPasswordHasError']) ?$_GET['confirmPasswordHasError']:'';
     $emptyFields = !empty($_GET['fieldsAreEmpty']);
-    $userExists = !empty($_GET['userExists']);
+    
 
 }
 
@@ -44,7 +50,7 @@ include './layout/header-auth.php';
         <div class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  ">
             Username</div>
         <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
-        <?php echoErrorStyle($userNameHasError, $signupError)   ?>
+        <?php echoErrorStyle($userNameHasError, $emptyFields)   ?>
         " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
@@ -57,7 +63,7 @@ echo !empty($userNameHasError) ? "<i class='fa-solid fa-triangle-exclamation'></
             class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
             Email</div>
         <input type="email" name="email" aria-label="Email" spellcheck="false" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400 
-        <?php echoErrorStyle($emailHasError, $signupError); ?>
+        <?php echoErrorStyle($emailHasError, $emptyFields); ?>
 
         " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
@@ -72,7 +78,7 @@ echo !empty($emailHasError) ? "<i class='fa-solid fa-triangle-exclamation'></i><
             Password
         </div>
         <input type="password" name="password" aria-label="Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
-            <?php echoErrorStyle($passwordHasError, $signupError); ?>
+            <?php echoErrorStyle($passwordHasError, $emptyFields); ?>
         
         " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
@@ -87,7 +93,7 @@ echo !empty($passwordHasError) ? "<i class='fa-solid fa-triangle-exclamation'></
             Confirm
             Password</div>
         <input type="password" name="confirm-password" aria-label="Confirm Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
-            <?php echoErrorStyle($confirmPasswordHasError, $signupError); ?>
+            <?php echoErrorStyle($confirmPasswordHasError, $emptyFields); ?>
         
         " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
