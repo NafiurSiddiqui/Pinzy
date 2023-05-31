@@ -24,14 +24,14 @@ include './src/api/layout/header-auth.php';
 
 
 <form action="./src/api/inc/login.inc.php"
-  class="px-8 py-8 border-2 rounded border-zinc-200 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
+  class="px-8 py-8 border-2 rounded border-zinc-300 w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6"
   method="POST">
   <div class="flex flex-col  w-full ">
 
     <div
       class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem]">
       Username/Email</div>
-    <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field border border-zinc-300 p-1 rounded !appearance-none bg-transparent z-10  focus:!outline-none focus:ring-2 focus:ring-green-400
+    <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field border-2 border-zinc-300 p-1 rounded !appearance-none bg-transparent z-10  focus:!outline-none focus:ring-2 focus:ring-green-400
       
       <?php
       echo !empty($nameIsEmpty) ? 'border-red-400': '';
@@ -51,7 +51,7 @@ echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><sp
       class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max bg-white transition-all duration-300 px-[0.2rem] ">
       Password
     </div>
-    <input type="password" name="password" aria-label="Password" class="input-field border border-zinc-300 p-1 rounded !appearance-none bg-transparent  focus:!outline-none focus:ring-2 
+    <input type="password" name="password" aria-label="Password" class="input-field border-2 border-zinc-300 p-1 rounded !appearance-none bg-transparent  focus:!outline-none focus:ring-2 
                         focus:ring-green-400 z-10
                          <?php
       echo !empty($passwordIsEmpty) ? 'border-red-400': '';
@@ -69,12 +69,14 @@ echo !empty($nameIsEmpty) ? "<i class='fa-solid fa-triangle-exclamation'></i><sp
     type="submit" name="submit">
     Login
   </button>
+
+  <a href="#" class="mt-8  underline underline-offset-2 text-xs text-green-600  font-semibold">Forgot password?</a>
 </form>
 <!-- optional actions -->
 <div class="flex android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-8 laptop:mt-10">
   <!-- create account -->
   <div class="text-center flex flex-col  w-full  text-zinc-500">
-    <span class="text-xs">Have account?</span>
+    <span class="text-xs">Need an account?</span>
     <a href="./src/api/signup-form.php"
       class="ml-1 font-bold  text-green-500 laptop:text-green-400 laptop:hover:text-green-500 hover:underline hover:text-green-600 transition-colors">Signup</a>
   </div>
