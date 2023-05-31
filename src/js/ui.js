@@ -46,57 +46,6 @@ btnSidebarMobile?.addEventListener('click', () => {
   }
 });
 
-// USER PIN
-// const editBox = document.querySelector('.pin-edit-box');
-
-// export const toggleEditBox = (closeBox = false) => {
-//   const editBoxes = document.querySelectorAll('.pin-edit-box');
-
-//   //to prevent from toggling and simply hide if closeBox
-//   closeBox
-//     ? editBoxes.forEach(box => box.classList.add('hidden'))
-//     : editBox?.classList.toggle('hidden');
-// };
-
-// const attachEditBtnListener = () => {
-//   const btnEditPin = document.querySelectorAll('.fa-ellipsis');
-
-//   btnEditPin?.forEach(btn => {
-//     btn.addEventListener('click', e => {
-//       //find the parent
-//       const userPin = e.target.closest('.user-pin');
-//       //find the edit box in the parent
-//       const editBox = userPin.querySelector('.pin-edit-box');
-
-//       // toggle edit box
-//       if (editBox) {
-//         editBox.classList.toggle('hidden');
-//         console.log(editBox.classList + 'second');
-//       }
-
-//       //prevents from bubbling to the parent
-//       e.stopPropagation();
-//     });
-//   });
-// };
-
-// export default attachEditBtnListener;
-
-// editBox?.addEventListener('click', e => {
-//   //prevents from bubbling to the grandparent
-//   e.stopPropagation();
-// });
-
-// //close the edit on global click
-// document.body.addEventListener('click', e => {
-//   !e.target.classList.contains('.pin-edit-box_item')
-//     ? toggleEditBox(close)
-//     : null;
-// });
-
-//AUTH FORM ERROR HANDLER
-
-// Get the URL query string
 const queryString = window.location.search;
 
 // Check if the query string contains the word "error"
