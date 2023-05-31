@@ -26,11 +26,14 @@ const pinElements = {
   guestPinCountEl: document.querySelector('.guest-profile__pin-count'),
 };
 
-// const editElements = {
-//   //!SHOULD BE SELECTED RIGHT WHERE IT NEEDS, OTHERWISE DOES NOT EXIST
-//   editBoxes: document.querySelectorAll('.pin-edit-box'),
-//   editBox: document.querySelector('.pin-edit-box'),
-// };
+const sidebarElements = {
+  sidebar: document.querySelector('.sidebar'),
+  sidebarContent: document.querySelector('.sidebar-content-wrapper'),
+  sidebarFooter: document.querySelector('.user-profile-footer'),
+  btnSidebar: document.querySelector('.btn-sidebar'),
+  btnSidebarMobile: document.querySelector('.btn-sidebar-mobile'),
+  btnLogout: document.querySelector('.btn-user-logout'),
+};
 
 class Helper {
   /**
@@ -120,4 +123,4 @@ class Helper {
 
 const helper = new Helper();
 
-export { formElements, pinElements, helper };
+export { formElements, pinElements, sidebarElements, helper };
