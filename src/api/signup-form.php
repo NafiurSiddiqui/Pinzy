@@ -1,14 +1,20 @@
 <?php
 
-if(isset($_GET['signupError'])) {
+if(isset($_GET['signupError']) && $_GET['signupError'] === 'fieldsAreEmpty') {
     $signupError = $_GET['signupError'];
+
+}
+
+if(isset($_GET['signupError']) && $_GET['signupError'] === 'someFieldsAreEmpty') {
     $userNameHasError = !empty($_GET['userNameIsEmpty']) ? $_GET['userNameIsEmpty']:'';
     $emailHasError = !empty($_GET['emailHasError']) ? $_GET['emailHasError'] :'' ;
-    $passwordHasError = !empty($_GET['passwordHasError']);
-    $confirmPasswordHasError = !empty($_GET['confirmPasswordHasError']);
+    $passwordHasError = !empty($_GET['passwordHasError'])? $_GET['passwordHasError']: '';
+    $confirmPasswordHasError = !empty($_GET['confirmPasswordHasError']) ?$_GET['confirmPasswordHasError']:'';
     $emptyFields = !empty($_GET['fieldsAreEmpty']);
     $userExists = !empty($_GET['userExists']);
+
 }
+
 
 
 function echoErrorStyle($hasError, $emptyFields)
@@ -38,18 +44,27 @@ include './layout/header-auth.php';
         <div class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300  ">
             Username</div>
         <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
-        <?php echoErrorStyle($userNameHasError, $emptyFields)   ?>
+        <?php echoErrorStyle($userNameHasError, $signupError)   ?>
         " />
+        <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
+            <?php
+echo !empty($userNameHasError) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$userNameHasError</span>" : null;
+?>
+        </span>
     </div>
     <div class="flex flex-col my-2 w-full">
         <div
             class="text-zinc-400 relative -bottom-[1.8rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
             Email</div>
         <input type="email" name="email" aria-label="Email" spellcheck="false" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400 
-        <?php echoErrorStyle($emailHasError, $emptyFields); ?>
+        <?php echoErrorStyle($emailHasError, $signupError); ?>
 
         " />
-
+        <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
+            <?php
+echo !empty($emailHasError) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$emailHasError</span>" : null;
+?>
+        </span>
     </div>
     <div class="flex flex-col my-2 w-full">
         <div
@@ -57,9 +72,14 @@ include './layout/header-auth.php';
             Password
         </div>
         <input type="password" name="password" aria-label="Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
-            <?php echoErrorStyle($passwordHasError, $emptyFields); ?>
+            <?php echoErrorStyle($passwordHasError, $signupError); ?>
         
         " />
+        <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
+            <?php
+echo !empty($passwordHasError) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$passwordHasError</span>" : null;
+?>
+        </span>
     </div>
     <div class="flex flex-col my-2 w-full">
         <div
@@ -67,9 +87,14 @@ include './layout/header-auth.php';
             Confirm
             Password</div>
         <input type="password" name="confirm-password" aria-label="Confirm Password" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400
-            <?php echoErrorStyle($confirmPasswordHasError, $emptyFields); ?>
+            <?php echoErrorStyle($confirmPasswordHasError, $signupError); ?>
         
         " />
+        <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
+            <?php
+echo !empty($confirmPasswordHasError) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$confirmPasswordHasError</span>" : null;
+?>
+        </span>
     </div>
     <button
         class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "

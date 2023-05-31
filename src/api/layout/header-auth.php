@@ -66,10 +66,12 @@
                 </div>
                 <?php
 
-if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || !empty($errorMsg) || !empty($signupError) || !empty($userNameHasError) || !empty($emailHasError) || !empty($passwordHasError) || !empty($confirmPasswordHasError) || !empty($userExists)) {
+// if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || !empty($errorMsg) || !empty($signupError) || !empty($fieldsAreEmpty) ||!empty($userNameHasError) || !empty($emailHasError) || !empty($passwordHasError) || !empty($confirmPasswordHasError) || !empty($userExists)) {
+
+    if(isset($_GET['error']) || isset($_GET['signupError'])) {
 
         
-    echo  "
+        echo  "
             <div  class='toast-notification rounded-md bg-red-200 py-4 px-4 border border-red-500 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
                       <div class='notification-wrapper  flex justify-center items-center'>
                         <span class='flex items-center grow-0  justify-center'>
@@ -79,44 +81,37 @@ if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || 
                         <span class='text-sm text-zinc-700'>Error</span>
                         <p class='text-zinc-700 text-xs '>
                         ";
-    
+        
+        // login page
+        if(!empty($nameIsEmpty)) {
+            echo $nameIsEmpty;
+        }
 
-               
-    if(!empty($signupError) && !empty($userErrorMsg)) {
-        echo $userErrorMsg;
-    }
+        if(!empty($passwordIsEmpty)) {
+            echo $passwordIsEmpty;
+        }
 
-    if(!empty($nameIsEmpty)) {
-        echo $nameIsEmpty;
-    }
+        if(!empty($errorMsg)) {
+            echo $errorMsg;
+        }
 
-    if(!empty($passwordIsEmpty)) {
-        echo $passwordIsEmpty;
-    }
+        //signup page
 
-    // if(!empty($errorMsg)) {
-    //     echo $errorMsg;
-    // }
+        // $userNameIsEmpty = !empty($_GET['userNameIsEmpty']) ? urldecode($_GET['userNameIsEmpty']) : '';
+        // $emailHasError = !empty($_GET['emailHasError'])? urldecode($_GET['emailHasError']): '';
+        // $passwordHasError = !empty($_GET['passwordHasError'])? urldecode($_GET['passwordHasError']): '';
+        // $confirmPasswordHasError = !empty($_GET['confirmPasswordHasError']) ?  urldecode($_GET['confirmPasswordHasError']): '';
+        // $userExists = !empty($_GET['userExists'])? urldecode($_GET['userExists']):'';
+        // $fieldsAreEmpty = !empty($_GET['fieldsAreEmpty'])? urldecode($_GET['fieldsAreEmpty']):'';
 
-    if(!empty($signupError) && !empty($emailHasError)) {
-        echo $emailHasError;
-    }
+        echo !empty($signupError)? $signupError : '';
 
-    if(!empty($signupError) && !empty($passwordHasError)) {
-        echo  $passwordHasError;
-    }
+      
 
-    if(!empty($signupError) && !empty($confirmPasswordHasError)) {
-        echo  $confirmPasswordHasError;
-    }
-
-    if(!empty($signupError) && !empty($userExists)) {
-        echo  $userExists;
-    }
 
 
    
-    echo "
+        echo "
                           </p>
                         </div>
                         <span>
@@ -126,5 +121,5 @@ if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || 
                         </div>
 
 ";
-}
+    }
         ?>

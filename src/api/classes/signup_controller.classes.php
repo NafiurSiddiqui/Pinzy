@@ -151,25 +151,48 @@ class SignupController extends Signup
     protected function errorHandlerController()
     {
     
-        $this->userNameErrorMsg = $this->checkUserNameIsEmpty()? 'UserName can not be empty': '';
-        $this->emailErrorMsg = $this->validateEmail() ? 'Invalid Email': ($this->checkEmailIsEmpty()? 'Email can not be left empty':'');
-        $this->passwordErrorMsg = $this->checkPasswordIsEmpty()? 'password is required':'';
+        // $this->userNameErrorMsg = $this->checkUserNameIsEmpty()? 'UserName can not be empty': '';
+        // $this->userNameErrorMsg = $this->checkUserNameIsEmpty()? 'UserName can not be empty': '';
+        // $this->emailErrorMsg = $this->validateEmail() ? 'Invalid Email': ($this->checkEmailIsEmpty()? 'Email can not be left empty':'');
+        // $this->passwordErrorMsg = $this->checkPasswordIsEmpty()? 'password is required':'';
 
-        $this->confirmPasswordErrorMsg = $this->validateConfirmPassword()? "Passwords do not match": ($this->checkConfirmPassIsEmpty()? 'Confirm password':'') ;
+        // $this->confirmPasswordErrorMsg = $this->validateConfirmPassword()? "Passwords do not match": ($this->checkConfirmPassIsEmpty()? 'Confirm password':'') ;
 
-        $this->fieldsAreEmpty = $this->checkFieldsAreEmpty()? "Fields can not be empty":'';
+        // $this->fieldsAreEmpty = $this->checkFieldsAreEmpty()? "Fields can not be empty":'';
 
-        $this->userErrorMsg = $this->checkUserExists()? "User Already Exists": '';
+        // $this->userErrorMsg = $this->checkUserExists()? "User Already Exists": '';
 
-        $queryHasError = !empty($this->userNameErrorMsg) || !empty($this->emailErrorMsg) || !empty($this->passwordErrorMsg) || !empty($this->confirmPasswordErrorMsg) ? 'signup error': '';
+        $this->userNameErrorMsg = $this->checkUserNameIsEmpty() ? 'UserName can not be empty' : '';
+        $this->emailErrorMsg = $this->validateEmail() ? 'Invalid Email' : ($this->checkEmailIsEmpty() ? 'Email can not be left empty' : '');
+        $this->passwordErrorMsg = $this->checkPasswordIsEmpty() ? 'password is required' : '';
+        $this->confirmPasswordErrorMsg = $this->validateConfirmPassword() ? "Passwords do not match" : ($this->checkConfirmPassIsEmpty() ? 'Confirm password' : '');
+        $this->fieldsAreEmpty = $this->checkFieldsAreEmpty() ? "Fields can not be empty" : '';
+        $this->userErrorMsg = $this->checkUserExists() ? "User Already Exists" : '';
 
-        $queryString = 'signupError=' . urlencode($queryHasError)
-        . '&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
-        . '&emailHasError=' . urlencode($this->emailErrorMsg)
-        . '&passwordHasError=' . urlencode($this->passwordErrorMsg)
-        . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg)
-        . '&fieldsAreEmpty=' . urlencode($this->fieldsAreEmpty)
-        . '&userExists='.urlencode($this->userErrorMsg);
+
+        $queryString = '';
+
+        if ($this->fieldsAreEmpty) {
+            $queryString =  urlencode($this->fieldsAreEmpty);
+        } else {
+            $queryString = 'someFieldsAreEmpty&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
+                . '&emailHasError=' . urlencode($this->emailErrorMsg)
+                . '&passwordHasError=' . urlencode($this->passwordErrorMsg)
+                . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg)
+                . '&userExists=' . urlencode($this->userErrorMsg);
+        }
+
+        $queryString = 'signupError=' . $queryString;
+     
+
+
+        // $queryString = 'signupError='
+        // . '&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
+        // . '&emailHasError=' . urlencode($this->emailErrorMsg)
+        // . '&passwordHasError=' . urlencode($this->passwordErrorMsg)
+        // . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg)
+        // . '&fieldsAreEmpty=' . urlencode($this->fieldsAreEmpty)
+        // . '&userExists='.urlencode($this->userErrorMsg);
 
         header("location:../../api/signup-form.php?$queryString");
         exit();
