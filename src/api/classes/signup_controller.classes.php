@@ -8,6 +8,12 @@ class SignupController extends Signup
     private $password;
     private $confirmPassword;
     private $errorMsg;
+    public $userNameHasError;
+    public $emailHasError;
+    public $passwordHasError;
+    public $confirmPasswordHasError;
+    public $emptyFields;
+
 
     //construct
     public function __construct($userName, $email, $password, $confirmPassword)
@@ -25,40 +31,48 @@ class SignupController extends Signup
         //empty input
         if ($this->emptyInput() == true) {
             $this->errorHandlerController("Please fill out all of the fields.");
+            $this->emptyFields = true;
+
            
         }
         //userInput check
         if ($this->userNameIsEmpty()) {
 
             $this->errorHandlerController('Must have a Username');
+            $this->userNameHasError = true;
         }
 
         //email input handler
         if($this->emailIsEmpty()) {
             $this->errorHandlerController('Must have an Email');
+            $this->emailHasError = true;
         }
 
         //email validation
         if ($this->emailValidation() == false) {
             
             $this->errorHandlerController('Invalid Email');
+            $this->emailHasError = true;
         }
        
 
         //password input handler
         if ($this->passwordIsEmpty()) {
             $this->errorHandlerController('Must have a Password');
+            $this->passwordHasError = true;
         }
 
         //confirm password handler
         if ($this->confirmPasswordIsEmpty()) {
             $this->errorHandlerController('Must Confirm Password');
+            $this->confirmPasswordHasError = true;
         }
         //confirmPassword match
         if ($this->confirmPasswordValidation() == false) {
 
            
             $this->errorHandlerController('Passwords do not match');
+            $this->confirmPasswordHasError = true;
         }
         //userName or password exists
         if ($this->userExists() == false) {
@@ -160,7 +174,16 @@ class SignupController extends Signup
      {
              
          $this->errorMsg = "$msg";
-         header("location:../../api/signup-form.php?error=$this->errorMsg");
+
+         //build query
+         $queryString = '?error=' . urlencode($this->errorMsg)
+       . '&userNameHasError=' . ($this->userNameHasError ? 'true' : 'false')
+       . '&emailHasError=' . ($this->emailHasError ? 'true' : 'false')
+       . '&passwordHasError=' . ($this->passwordHasError ? 'true' : 'false')
+       . '&confirmPasswordHasError=' . ($this->confirmPasswordHasError ? 'true' : 'false')
+       . '&emptyFields=' . ($this->emptyFields ? 'true' : 'false');
+
+         header("location:../../api/signup-form.php?$queryString");
          exit();
 
      }
