@@ -66,7 +66,7 @@
                 </div>
                 <?php
 
-if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || !empty($errorMsg)) {
+if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || !empty($errorMsg) || !empty($signupError) || !empty($userNameHasError) || !empty($emailHasError) || !empty($passwordHasError) || !empty($confirmPasswordHasError) || !empty($userExists)) {
 
         
     echo  "
@@ -82,7 +82,7 @@ if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || 
     
 
                
-    if(!empty($userErrorMsg)) {
+    if(!empty($signupError) && !empty($userErrorMsg)) {
         echo $userErrorMsg;
     }
 
@@ -94,9 +94,26 @@ if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty) || 
         echo $passwordIsEmpty;
     }
 
-    if(!empty($errorMsg)) {
-        echo $errorMsg;
+    // if(!empty($errorMsg)) {
+    //     echo $errorMsg;
+    // }
+
+    if(!empty($signupError) && !empty($emailHasError)) {
+        echo $emailHasError;
     }
+
+    if(!empty($signupError) && !empty($passwordHasError)) {
+        echo  $passwordHasError;
+    }
+
+    if(!empty($signupError) && !empty($confirmPasswordHasError)) {
+        echo  $confirmPasswordHasError;
+    }
+
+    if(!empty($signupError) && !empty($userExists)) {
+        echo  $userExists;
+    }
+
 
    
     echo "
