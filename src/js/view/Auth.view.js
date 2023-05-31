@@ -1,17 +1,7 @@
-const btnClose = document.querySelector('.fa-x');
+const btnClose = document.querySelector('.fa-circle-xmark');
 const notification = document.querySelector('.toast-notification');
 const inputs = document.querySelectorAll('.input-field');
 const queryString = window.location.search;
-
-// // Check if the query string contains the word "error"
-// const urlHasError = queryString.includes('error');
-// let isError = false;
-
-// if (urlHasError) {
-//   isError = true;
-// } else {
-//   isError = false;
-// }
 
 class AuthView {
   isError = false;

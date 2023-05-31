@@ -65,22 +65,45 @@
                     " alt="Pinzy Icon" class="!w-28" />
                 </div>
                 <?php
-       
-        echo !empty($userErrorMsg) ? "
+
+if(!empty($userErrorMsg) || !empty($nameIsEmpty) || !empty($passwordIsEmpty)) {
+
+        
+    echo  "
             <div  class='toast-notification rounded-md bg-red-200 py-4 px-4 border border-red-500 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
                       <div class='notification-wrapper  flex justify-center items-center'>
                         <span class='flex items-center grow-0  justify-center'>
                      
                         </span>
                         <div class='ml-2'>
-                        <span class='text-sm text-red-800'>Error</span>
-                        <p class='text-red-800 text-xs '>  $userErrorMsg</p>
+                        <span class='text-sm text-zinc-700'>Error</span>
+                        <p class='text-zinc-700 text-xs '>
+                        ";
+    
+
+               
+    if($userErrorMsg) {
+        echo $userErrorMsg;
+    }
+
+    if(!empty($nameIsEmpty)) {
+        echo $nameIsEmpty;
+    }
+
+    if(!empty($passwordIsEmpty)) {
+        echo $passwordIsEmpty;
+    }
+
+   
+    echo "
+                          </p>
                         </div>
                         <span>
                         </span>
                       </div>
-                          <i class='fa-regular fa-circle-xmark text-red-800'></i>
+                          <i class='fa-regular fa-circle-xmark text-zinc-500 cursor-pointer hover:text-zinc-600 transition-colors'></i>
                         </div>
 
-": '';
+";
+}
         ?>
