@@ -99,7 +99,6 @@ export default class View {
       // Toggle sidebar class with tailwind
 
       //adjust width, bg
-      // sidebar.classList.toggle('tablet:w-[24rem]');
       sidebar.classList.toggle('laptop:w-[30rem]');
       sidebar.classList.toggle('w-full');
       sidebar.classList.toggle('w-14');
