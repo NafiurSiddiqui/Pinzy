@@ -87,20 +87,20 @@
 
     <!-- pop up for edit -->
     <section
-        class="hidden user-input-bg__edit flex flex-col justify-center left-0 items-center h-screen bg-gradient-to-r from-zinc-700/50 to-zinc-800/60 absolute w-full z-30"
+        class="user-input-bg  flex flex-col justify-center left-0 items-center h-screen bg-gray-800/40 backdrop-blur-md absolute w-full z-30"
         role="dialog">
         <span class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer" role="button"
             aria-label="Close">
-            <i
-                class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-400 laptop:text-zinc-500 hover:text-zinc-300"></i>
+            <i class="fa-sharp fa-regular fa-circle-xmark fa-2xl text-zinc-300  hover:text-zinc-100"></i>
         </span>
 
         <form action="#"
-            class="user-input-form__edit p-4 rounded-sm pb-8 relative border border-zinc-600/50 bg-zinc-400/60 backdrop-blur-sm w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+            class="user-input-form p-4 rounded-sm pb-8 relative  bg-zinc-50 drop-shadow-md w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
             id="form-user-input__edit">
             <div class="flex flex-col my-4 w-full">
-                <label class="text-gray-600 text-xs mb-1" for="eventType__edit">Pin type</label>
-                <select name="eventType__edit" id="eventType__edit" class="p-1 cursor-pointer border border-zinc-300">
+                <label class="text-gray-500 text-xs mb-1" for="eventType__edit">Pin type</label>
+                <select name="eventType__edit" id="eventType__edit"
+                    class="p-1 cursor-pointer border border-zinc-300 text-gray-500">
                     <option value="none">---</option>
                     <option value="emergency" data-icon="🚨" data-color="-red-500">
                         Emergency 🚨
@@ -123,14 +123,15 @@
                 </select>
             </div>
             <div class="flex flex-col w-full">
-                <label class="text-gray-600 text-xs mb-1" for="message__edit">Message</label>
+                <label class="text-gray-500 text-xs mb-1" for="message__edit">Message</label>
 
-                <textarea class="rounded-sm border border-zinc-300 p-2 resize-none" name="message__edit"
-                    id="message__edit" cols="30" rows="4"></textarea>
+                <textarea
+                    class="rounded-sm border border-zinc-300 p-2 resize-none focus:outline-none focus:ring-2 focus:ring-zinc-500 "
+                    name="message__edit" id="message__edit" cols="30" rows="4"></textarea>
             </div>
             <button
-                class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-300 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-zinc-300 transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 active:text-zinc-100 disabled:ring-zinc-400 disabled:!text-zinc-500 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none laptop:hover:bg-zinc-400 laptop:hover:text-zinc-100 laptop:hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-700"
-                type="submit" name="guest-submit-edit">
+                class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded-full bg-green-400 font-semibold text-m text-zinc-100 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-green-400  hover:text-zinc-50 hover:font-bold  active:text-zinc-100 disabled:ring-zinc-200 disabled:!text-zinc-300 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none  laptop:text-zinc-400 laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors  hover:shadow-md hover:shadow-zinc-700"
+                type="submit" name="guest-submit-edit" disabled>
                 Pin
             </button>
         </form>
