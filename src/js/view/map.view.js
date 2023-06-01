@@ -21,6 +21,7 @@ export default class Map extends Pin {
     this.globalPins = globalPins;
     this.showForm = showForm;
     this.renderSpinner = renderSpinner;
+    // this.renderSpinner(true);
     this.loadMap = this.loadMap.bind(this);
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
@@ -54,7 +55,6 @@ export default class Map extends Pin {
   }
 
   loadMap(position) {
-    this.mapInitiated = false;
     const { latitude } = position.coords;
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
@@ -64,7 +64,7 @@ export default class Map extends Pin {
     this.map = map;
     if (this.map) {
       this.mapInitiated = true;
-      this.renderSpinner();
+      this.renderSpinner(false);
     }
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {

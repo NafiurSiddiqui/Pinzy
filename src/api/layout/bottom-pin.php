@@ -140,12 +140,12 @@
 
     <!-- map -->
     <div class="map-container h-screen z-10 flex justify-center items-center">
-        <div class="loader-wrapper flex justify-between items-center w-60 absolute top-80">
-            <div class="spinner spin z-20">
-                <img src="../assets/spinner.svg" alt="globe" class="w-16" />
+        <div class="loader-wrapper hidden justify-between items-center w-60 absolute top-80 z-20">
+            <div class="">
+                <img src="../assets/spinner.svg" alt="globe" class="w-16 spinner spin " />
             </div>
 
-            <span class="text-4xl text-zinc-600"> Loading...</span>
+            <span class="text-4xl text-zinc-600 "> Loading...</span>
         </div>
         <div id="map" class="h-screen z-10 w-full"></div>
     </div>

@@ -32,6 +32,7 @@ export default class View {
   pinClass;
 
   constructor(guestState, userState, globalPins) {
+    this.renderSpinner(true);
     this.form = new FormView();
     this.formEditor = new FormEditorView();
     this.guestEditor = new GuestEditor();
@@ -41,13 +42,13 @@ export default class View {
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
 
-    // this.map = new Map(
-    //   this.guestPins,
-    //   this.userPins,
-    //   this.globalPins,
-    //   this.renderForm,
-    //   this.renderSpinner
-    // );
+    this.map = new Map(
+      this.guestPins,
+      this.userPins,
+      this.globalPins,
+      this.renderForm,
+      this.renderSpinner
+    );
     this.newEvHandler = this.map.newMapEvHandler;
     this.hideForm();
     this.sidebarHanlder();
@@ -82,13 +83,26 @@ export default class View {
     this.formEditor.showForm();
   }
 
-  renderSpinner() {
+  renderSpinner(render = false) {
     const spinnerWrapper = document.querySelector('.loader-wrapper');
     const spinner = document.querySelector('.spinner');
+    if (render === true) {
+      spinnerWrapper.classList.remove('hidden');
+      spinnerWrapper.classList.add('flex');
 
+      console.log('true');
+    } else {
+      console.log('false');
+      spinnerWrapper.classList.add('hidden');
+      spinnerWrapper.classList.remove('flex');
+      spinner.classList.remove('spin');
+    }
     // spinner.classList.add('hidden');
-    spinner.classList.remove('spin');
-    spinner.classList.remove('z-20');
+    // spinner.classList.remove('spin');
+    // spinner.classList.remove('z-20');
+    // map
+    //   ? spinnerWrapper.classList.add('hidden')
+    //   : spinnerWrapper.classList.remove('hidden');
   }
 
   editBtnGlobalHandler(pinClass) {
