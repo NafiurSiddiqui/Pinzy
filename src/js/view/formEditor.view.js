@@ -51,7 +51,7 @@ export default class FormEditorView extends BaseForm {
     editBtn?.addEventListener('click', e => {
       e.stopPropagation();
       const editBox = e.currentTarget.nextElementSibling;
-      editBox.classList.toggle('hidden');
+      editBox.classList.remove('hidden');
     });
   }
 
@@ -199,7 +199,6 @@ export default class FormEditorView extends BaseForm {
 
   actionHandler(userType) {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    // console.log('action handler runs');
 
     editBoxes.forEach(editBox => {
       //get the parent on click
@@ -212,8 +211,8 @@ export default class FormEditorView extends BaseForm {
       editBox.addEventListener('click', e => {
         const li = e.target.tagName === 'LI';
         const id = editBox.dataset.id;
-
         const actionType = e.target.textContent.trim();
+
         if (li) {
           const cardId = editBox.dataset.id;
 

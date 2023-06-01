@@ -5,8 +5,8 @@ export default class PinCard {
    * @returns {HTMLUListElement}
    */
 
-  generatePinCard(data, userType = null) {
-    let editBoxClass = userType === 'guest' ? 'hidden' : 'inline-block';
+  generatePinCard(data, guest = null) {
+    console.log(guest);
     let html = `
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-zinc-50 border  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm" 
@@ -52,7 +52,7 @@ export default class PinCard {
                
                 " data-id="${data.id}">
                 <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer text-zinc-300 hover:text-zinc-400 
-                 ${editBoxClass}
+                 ${guest ? 'hidden' : 'inline-block'}
                 "></i>
                 <ul class=" pin-edit-box hidden absolute border bg-zinc-200 -top-[4rem] -right-[6rem] text-zinc-600 rounded-sm py-1">
                   <li class="pin-edit-box_item cursor-pointer hover:bg-zinc-100 p-2 text-center">
