@@ -1,4 +1,4 @@
-import { helper, sidebarElements } from '../helper.js';
+import { sidebarElements } from '../helper.js';
 import GuestEditor from '../user/guest.editor.js';
 import FormView from './form.view.js';
 import FormEditorView from './formEditor.view.js';
@@ -86,23 +86,19 @@ export default class View {
   renderSpinner(render = false) {
     const spinnerWrapper = document.querySelector('.loader-wrapper');
     const spinner = document.querySelector('.spinner');
+    const defaultMsgEl = document.querySelector('.default-msg');
+
     if (render === true) {
       spinnerWrapper.classList.remove('hidden');
       spinnerWrapper.classList.add('flex');
-
-      console.log('true');
+      defaultMsgEl.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin-pulse"></i>';
     } else {
-      console.log('false');
       spinnerWrapper.classList.add('hidden');
       spinnerWrapper.classList.remove('flex');
       spinner.classList.remove('spin');
+      defaultMsgEl.textContent = 'No pins created yet.';
     }
-    // spinner.classList.add('hidden');
-    // spinner.classList.remove('spin');
-    // spinner.classList.remove('z-20');
-    // map
-    //   ? spinnerWrapper.classList.add('hidden')
-    //   : spinnerWrapper.classList.remove('hidden');
   }
 
   editBtnGlobalHandler(pinClass) {
