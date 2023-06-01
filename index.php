@@ -1,15 +1,17 @@
 <?php
 
-if(isset($_GET["error"])) {
+if(isset($_GET["loginError"])) {
     $nameIsEmpty = isset($_GET["nameValidationMessage"]) ? $_GET["nameValidationMessage"]: '';
     $passwordIsEmpty = isset($_GET["passwordValidationMessage"]) ? $_GET["passwordValidationMessage"]:null;
+    $loginError = $_GET['loginError'];
+
 
 }
 
-if(isset($_GET['error'])) {
-    $userErrorMsg = $_GET['error'];
+// if(isset($_GET['loginError'])) {
+//     $loginError = $_GET['loginError'];
 
-}
+// }
 
 $pathToIcon = './src/assets/logo.svg';
 $pathToCss = './dist/output.css';

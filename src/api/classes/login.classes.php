@@ -1,13 +1,10 @@
 <?php
-// include '../classes/dbh.classes.php';
-//This makes sure, we can not manually get to these pages. (e.g - typing in the URL)
+
 
 class Login extends Dbh
 {
 
-
     protected $loginData;
-    //store error messages
     private $errorMsg = '';
     
 
@@ -22,7 +19,6 @@ class Login extends Dbh
             //if this fails, close the conn
             $this->errorHandler($stmt, "User Does Not Exist");
         
-            // exit();
         }
 
         $passwordHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -60,21 +56,14 @@ class Login extends Dbh
 
                 $stmt = null;
                 $this->errorHandler($stmt, "User Not Found");
-                // $this->errorMsg = 'user not found';
-                // header("location:../../../index.php?error=$this->errorMsg");
-          
-                // exit();
+                
             }
 
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // var_dump($user);
-
             session_start();
 
             $_SESSION["id"] = $user[0]['id'];
             $_SESSION["userName"] = $user[0]["user_name"];
-
-      
             $stmt = null;
             
         }
@@ -88,7 +77,7 @@ class Login extends Dbh
     {
         $stmt = null;
         $this->errorMsg = "$msg";
-        header("location:../../../index.php?error=$this->errorMsg");
+        header("location:../../../index.php?loginError=$this->errorMsg");
         exit();
         
 

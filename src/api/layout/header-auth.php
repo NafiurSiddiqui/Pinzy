@@ -70,11 +70,11 @@
 
 
 
-    if(isset($_GET['error']) || isset($_GET['signupError']) || isset($_GET['userError'])) {
+    if(isset($_GET['loginError']) || isset($_GET['signupError']) || isset($_GET['userError'])) {
 
         
         echo  "
-            <div  class='toast-notification rounded-md bg-red-200 py-4 px-4 border border-red-500 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
+            <div  class='toast-notification rounded-md bg-red-200 py-4 px-4 border-2 border-rose-200 w-full android-md/2:w-80  tablet-md:w-[21rem]  flex justify-between items-center'>
                       <div class='notification-wrapper  flex justify-center items-center'>
                         <span class='flex items-center grow-0  justify-center'>
                      
@@ -93,8 +93,8 @@
             echo $passwordIsEmpty;
         }
 
-        if(!empty($errorMsg)) {
-            echo $errorMsg;
+        if(!empty($loginError)) {
+            echo $loginError;
         }
         // signup page
         if(!empty($emptyFields)) {

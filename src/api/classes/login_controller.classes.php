@@ -14,9 +14,8 @@ class LoginController extends login
     public function __construct($userName, $password)
     {
         //sanitize input
-        // $this->userName = htmlspecialchars($userName);
-        // $this->password = htmlspecialchars($password);
-        $this->userName = $userName;
+        $this->userName = htmlspecialchars($userName);
+        // $this->userName = $userName;
         $this->password = $password;
         
 
@@ -40,7 +39,7 @@ public function loginUser()
     }
 
     if (!empty($this->nameValidationMessage) || !empty($this->passwordValidationMessage)) {
-        header("location:../../../index.php?error=&nameValidationMessage=". urlencode($this->nameValidationMessage). "&passwordValidationMessage=". urlencode($this->passwordValidationMessage));
+        header("location:../../../index.php?loginError=&nameValidationMessage=". urlencode($this->nameValidationMessage). "&passwordValidationMessage=". urlencode($this->passwordValidationMessage));
         exit();
     }
 
