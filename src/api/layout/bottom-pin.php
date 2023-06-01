@@ -1,8 +1,8 @@
 <!-- side footer actions -->
 
 <div
-    class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-0 left-0 px-4 py-5 bg-zinc-600 tablet:justify-between">
-    <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 hidden tablet:flex"
+    class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-0 left-0 px-4 py-5 bg-white tablet:justify-between">
+    <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-400 items-center transition-all hover:text-zinc-500 hover:font-bold hover:ring-zinc-400 hover:shadow-md hover:bg-transparent hover:shadow-zinc-600 tablet:flex"
         href="
     <?php
     // Not then, it must be the pin page.
@@ -12,16 +12,18 @@
     ">Logout</a>
 
     <i
-        class="btn-sidebar fa-solid fa-chevron-left tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+        class="btn-sidebar fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-400 p-3 hover:text-zinc-500 hover:font-bold hover:ring-zinc-400 cursor-pointer transition-all hover:shadow-md hover:bg-transparent hover:shadow-zinc-600"></i>
 </div>
 </aside>
 <div
-    class="user-profile-footer-mobile w-full flex justify-between fixed bottom-0 bg-zinc-600 left-0 px-4 py-4 tablet:justify-between tablet:hidden z-30">
-    <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-300 items-center transition-all hover:text-zinc-50 hover:font-bold hover:ring-zinc-200 hover:shadow-lg hover:shadow-zinc-800 tablet:flex"
+    class="user-profile-footer-mobile w-full flex justify-between fixed bottom-0 bg-white left-0 px-4 py-4 tablet:justify-between tablet:hidden z-30">
+    <a class="btn-user-logout font-bold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-400 text-zinc-500 items-center shadow-md transition-allbg-transparent shadow-zinc-600 tablet:flex"
         href="../api/inc/logout.inc.php">Logout</a>
 
     <i
-        class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i>
+        class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 p-3 text-zinc-500 font-bold ring-zinc-400 cursor-pointer transition-all shadow-md bg-transparent shadow-zinc-600"></i>
+    <!-- <i
+        class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i> -->
 </div>
 <section class="map-content w-full">
     <!-- main content -->
