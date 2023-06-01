@@ -21,12 +21,9 @@ export default class PinCard {
               <section class="pin-card_header flex items-start justify-between">
                 <div class="user-profile_container flex">
                   <span
-                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full p-2 bg-white"
+                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full py-[0.6rem] px-[0.7rem] bg-zinc-100"
                   >
-                    <img
-                      src="../assets/user-icon-mini.svg"
-                      alt="user profile"
-                    />
+                    <i class="fa-regular fa-user fa-xl text-zinc-400"></i>
                   </span>
                   <div
                     class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"

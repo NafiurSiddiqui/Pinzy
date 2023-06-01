@@ -145,7 +145,7 @@ export default class FormEditorView extends BaseForm {
       );
 
       //clear inputs
-      // this.eventTypeEl.value = this.messageEl.value = '';
+
       this.eventTypeEditEl.value = this.messageEditEl.value = '';
 
       //hideInput
@@ -200,6 +200,7 @@ export default class FormEditorView extends BaseForm {
   actionHandler(userType) {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
     // console.log('action handler runs');
+    console.log(editBoxes);
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
@@ -213,15 +214,16 @@ export default class FormEditorView extends BaseForm {
         const id = editBox.dataset.id;
 
         const actionType = e.target.textContent.trim();
-
         if (li) {
           const cardId = editBox.dataset.id;
+
           //without trim, spaces prevents from a match
-          if (actionType === 'edit') {
+          if (actionType === 'Edit') {
+            console.log('edit type');
             this.editMessage(cardId, userType);
           }
 
-          if (actionType === 'delete') {
+          if (actionType === 'Delete') {
             createModal({
               title: 'Delete Pin',
               message: 'Are you sure you want to delete this pin?',
@@ -236,7 +238,7 @@ export default class FormEditorView extends BaseForm {
             });
           }
 
-          if (actionType === 'delete all') {
+          if (actionType === 'Delete all') {
             createModal({
               title: 'Delete All Pins',
               message: 'Are you sure you want to delete all your pins?',
