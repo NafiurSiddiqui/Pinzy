@@ -200,7 +200,7 @@ export default class FormEditorView extends BaseForm {
   actionHandler(userType) {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
     // console.log('action handler runs');
-    console.log(editBoxes);
+
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
@@ -219,7 +219,6 @@ export default class FormEditorView extends BaseForm {
 
           //without trim, spaces prevents from a match
           if (actionType === 'Edit') {
-            console.log('edit type');
             this.editMessage(cardId, userType);
           }
 

@@ -30,7 +30,7 @@ export default class View {
   userPins = [];
   globalPins = [];
   pinClass;
-
+  userType;
   constructor(guestState, userState, globalPins) {
     this.renderSpinner(true);
     this.form = new FormView();
@@ -62,7 +62,8 @@ export default class View {
           map,
           this.guestPins,
           this.usrePins,
-          this.globalPins
+          this.globalPins,
+          this.map.userType
         );
       } else {
         console.log('No map');

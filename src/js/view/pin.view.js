@@ -25,6 +25,7 @@ export default class Pin extends FormEditorView {
   guestPins = [];
   userPins = [];
   globalPins = [];
+  userType;
 
   /**
    *
@@ -33,7 +34,7 @@ export default class Pin extends FormEditorView {
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  constructor(map, guestPins, userPins, globalPins) {
+  constructor(map, guestPins, userPins, globalPins, userType) {
     super();
     this.map = map;
     this.guestPins = guestPins;
@@ -45,6 +46,7 @@ export default class Pin extends FormEditorView {
     helper.checkURL('pins.php')
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
+    this.userType = userType;
   }
 
   renderPinOnMap(values) {
@@ -99,7 +101,7 @@ export default class Pin extends FormEditorView {
 
   handleGlobalPinRenderer() {
     this.globalPins.forEach(pin => {
-      let isGuest = pin.userType === 'guest';
+      // let isGuest = pin.userType === 'guest';
 
       //render on map
       this.renderPinOnMap(pin);
@@ -107,7 +109,8 @@ export default class Pin extends FormEditorView {
       //generate global pinCard
       this.globalPinContainer.insertAdjacentHTML(
         'beforeend',
-        this.pinCard.generatePinCard(pin, isGuest)
+        // this.pinCard.generatePinCard(pin, isGuest)
+        this.pinCard.generatePinCard(pin, this.userType)
       );
 
       //attach editBtn to the card if this pin.userType = loggedUser

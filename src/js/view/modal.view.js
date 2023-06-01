@@ -7,8 +7,8 @@ const createModal = options => {
     'flex',
     'items-center',
     'justify-center',
-    'bg-black',
-    'bg-opacity-25'
+    'bg-gray-800/40',
+    'backdrop-blur-md'
   );
 
   const modalContent = `
