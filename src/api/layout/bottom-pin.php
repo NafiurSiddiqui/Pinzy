@@ -87,7 +87,7 @@
 
     <!-- pop up for edit -->
     <section
-        class="user-input-bg  flex flex-col justify-center left-0 items-center h-screen bg-gray-800/40 backdrop-blur-md absolute w-full z-30"
+        class="user-input-bg__edit hidden  flex flex-col justify-center left-0 items-center h-screen bg-gray-800/40 backdrop-blur-md absolute w-full z-30"
         role="dialog">
         <span class="btn-close__user-input absolute bottom-16 tablet-md:top-16 cursor-pointer" role="button"
             aria-label="Close">
@@ -95,7 +95,7 @@
         </span>
 
         <form action="#"
-            class="user-input-form p-4 rounded-sm pb-8 relative  bg-zinc-50 drop-shadow-md w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
+            class="user-input-form__edit p-4 rounded-sm pb-8 relative  bg-zinc-50 drop-shadow-md w-4/5 mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[26rem] tablet-md:rounded tablet-md:px-6 laptop:h-96"
             id="form-user-input__edit">
             <div class="flex flex-col my-4 w-full">
                 <label class="text-gray-500 text-xs mb-1" for="eventType__edit">Pin type</label>
