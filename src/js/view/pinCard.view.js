@@ -56,15 +56,15 @@ export default class PinCard {
                 <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer text-zinc-300 hover:text-zinc-400 
                  ${guest ? 'hidden' : 'inline-block'}
                 "></i>
-                <ul class=" pin-edit-box hidden absolute bg-zinc-300 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
-                  <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
-                  edit
+                <ul class=" pin-edit-box hidden absolute border bg-zinc-200 -top-[4rem] -right-[6rem] text-zinc-600 rounded-sm py-1">
+                  <li class="pin-edit-box_item cursor-pointer hover:bg-zinc-100 p-2 text-center">
+                  Edit
                   </li>
-                  <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
-                  delete
+                  <li class="pin-edit-box_item cursor-pointer hover:bg-zinc-100 p-2 text-center">
+                  Delete
                   </li>
-                  <li class="pin-edit-box_item hover:bg-zinc-200 p-2 text-center">
-                  delete all
+                  <li class="pin-edit-box_item cursor-pointer hover:bg-zinc-100 p-2 text-center">
+                  Delete all
                   </li>
                 </ul>
 
