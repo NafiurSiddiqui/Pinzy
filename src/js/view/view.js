@@ -41,13 +41,13 @@ export default class View {
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
 
-    this.map = new Map(
-      this.guestPins,
-      this.userPins,
-      this.globalPins,
-      this.renderForm,
-      this.renderSpinner
-    );
+    // this.map = new Map(
+    //   this.guestPins,
+    //   this.userPins,
+    //   this.globalPins,
+    //   this.renderForm,
+    //   this.renderSpinner
+    // );
     this.newEvHandler = this.map.newMapEvHandler;
     this.hideForm();
     this.sidebarHanlder();
@@ -83,8 +83,10 @@ export default class View {
   }
 
   renderSpinner() {
+    const spinnerWrapper = document.querySelector('.loader-wrapper');
     const spinner = document.querySelector('.spinner');
-    spinner.classList.add('hidden');
+
+    // spinner.classList.add('hidden');
     spinner.classList.remove('spin');
     spinner.classList.remove('z-20');
   }

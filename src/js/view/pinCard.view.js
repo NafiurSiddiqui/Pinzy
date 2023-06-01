@@ -8,7 +8,7 @@ export default class PinCard {
   generatePinCard(data, guest = null) {
     let html = `
      <li
-            class="flex user-pin android-md:w-[22rem] rounded-md border my-2 border-zinc-300 w-full bg-zinc-200 overflow-hidden tablet:w-full grow-0 shrink-0" 
+            class="flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-zinc-50 border  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm" 
             data-id="${data.id}"
           >
             <!-- flag -->

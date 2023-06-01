@@ -12,13 +12,7 @@
   }
 
   .nav-active {
-    @apply text-zinc-200;
-  }
-
-  .user-pin {
-    @apply border;
-    @apply border-zinc-400;
-    @apply cursor-pointer;
+    @apply text-zinc-500;
   }
 
   .borderTest {

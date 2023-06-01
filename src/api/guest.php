@@ -19,10 +19,10 @@ include './layout/header-pin.php';
 
 
 <!-- nav -->
-<nav class="py-4 px-4 drop-shadow-md shadow-zinc-100 bg-zinc-600">
+<nav class="py-4 px-4 drop-shadow-sm shadow-zinc-100 bg-zinc-100">
     <ul class="flex justify-around">
         <li
-            class="border-r border-r-1 border-r-gray-300 w-4/5 text-center text-zinc-100 opacity-40 text-base hover:font-semibold hover:opacity-100">
+            class="border-r border-r-1 border-r-gray-200 w-4/5 text-center text-zinc-400 opacity-40 text-base hover:font-semibold hover:opacity-100">
             <a href="../api/pins.php">Pins</a>
         </li>
         <li class="font-semibold w-4/5 text-center nav-active text-base">
@@ -38,7 +38,7 @@ include './layout/header-pin.php';
         class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-white flex justify-center items-center">
         <img src="../assets/user-icon-large.svg" alt="user profile" />
     </div>
-    <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl">
+    <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-400 text-2xl">
         Anonymous
     </span>
     <div class="guest-profile__pin-count-wrapper border border-slate-300 bg-zinc-300 rounded-sm px-1 py-1 text-center">
@@ -50,11 +50,11 @@ include './layout/header-pin.php';
 </div>
 
 <!-- pins -->
-<div class="guest-pin-container-wrapper bg-zinc-700 h-76vh laptop:h-76vh/20">
+<div class="guest-pin-container-wrapper bg-zinc-100 h-76vh laptop:h-76vh/20">
     <p class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic">
         No pins created yet.
     </p>
-    <ul class="guest-pin-container  hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-700 h-65vh overflow-y-scroll"
+    <ul class="guest-pin-container  hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-50 h-65vh overflow-y-scroll"
         data-userLogged="
     <?php
       echo $userLogged ? 'true':'false';
