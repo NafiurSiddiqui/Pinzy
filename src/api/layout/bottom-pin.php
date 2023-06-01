@@ -11,8 +11,9 @@
     
     ">Logout</a>
 
+
     <i
-        class="btn-sidebar fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-400 p-3 hover:text-zinc-500 hover:font-bold hover:ring-zinc-400 cursor-pointer transition-all hover:shadow-md hover:bg-transparent hover:shadow-zinc-600"></i>
+        class="btn-sidebar fa-solid fa-chevron-left tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-400 p-3 hover:text-zinc-500 hover:font-bold hover:ring-zinc-400 cursor-pointer transition-all hover:shadow-md hover:bg-transparent hover:shadow-zinc-600"></i>
 </div>
 </aside>
 <div
@@ -22,8 +23,7 @@
 
     <i
         class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 p-3 text-zinc-500 font-bold ring-zinc-400 cursor-pointer transition-all shadow-md bg-transparent shadow-zinc-600"></i>
-    <!-- <i
-        class="btn-sidebar-mobile fa-solid fa-chevron-left fa-rotate-90 tablet:fa-flip-horizontal rounded-sm ring-4 ring-zinc-300 text-zinc-300 p-3 hover:text-zinc-100 hover:font-bold hover:ring-zinc-100 cursor-pointer transition-transform hover:shadow-lg hover:shadow-zinc-800"></i> -->
+
 </div>
 <section class="map-content w-full">
     <!-- main content -->

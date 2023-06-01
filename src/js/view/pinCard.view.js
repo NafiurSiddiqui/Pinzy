@@ -29,14 +29,14 @@ export default class PinCard {
                     />
                   </span>
                   <div
-                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-600 text-sm"
+                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"
                   >
                     ${data.userName}
                   </div>
                 </div>
               
                 <div
-                  class="pin-card-header_event-icon border border-slate-200 bg-white rounded-sm px-1 py-1 text-center flex-grow-0"
+                  class="pin-card-header_event-icon border border-zinc-200 bg-zinc-50 rounded-sm px-1 py-1 text-center flex-grow-0"
                 >
                   ${data.icon}
                 </div>
@@ -44,16 +44,16 @@ export default class PinCard {
               <div class="flex mt-4 mb-1">
                 <!-- date -->
                 <span
-                  class="pin-date text-gray-400 w-4/5 font-semibold text-[0.6rem]"
+                  class="pin-date text-zinc-400 w-4/5  text-[0.6rem]"
                 >
-                  <img src="../assets/calendar.svg" class="inline-block" />
+                  <i class="fa-regular fa-calendar"></i>
                   ${data.date}
                 </span>
                 <!-- edit -->
                 <div class="pin-edit-box__container relative z-40
                
                 " data-id="${data.id}">
-                <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer hover:bg-zinc-50 
+                <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer text-zinc-300 hover:text-zinc-400 
                  ${guest ? 'hidden' : 'inline-block'}
                 "></i>
                 <ul class=" pin-edit-box hidden absolute bg-zinc-300 -top-[4rem] -right-[6rem] text-zinc-800 rounded-sm py-1">
@@ -71,14 +71,15 @@ export default class PinCard {
                 </div>
                 <!-- time -->
                 <span
-                  class="pin-time w-4/5 text-[0.6rem] text-right text-gray-400 font-semibold"
+                  class="pin-time w-4/5 text-[0.6rem] text-right text-zinc-500 "
                 >
-                  <img src="../assets/time.svg" class="inline-block" />
+                  
+                  <i class="fa-regular fa-clock text-zinc-400"></i>
                   ${data.time}
                 </span>
               </div>
               <p
-                class="pin-card-text py-2 px-2 border border-slate-300 bg-white text-zinc-700 text-sm"
+                class="pin-card-text py-2 px-2 border border-zinc-200 bg-white text-zinc-500 text-sm"
               >
                 ${data.message}
               </p>
