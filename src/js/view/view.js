@@ -92,7 +92,7 @@ export default class View {
       spinnerWrapper.classList.remove('hidden');
       spinnerWrapper.classList.add('flex');
       defaultMsgEl.innerHTML =
-        '<i class="fa-solid fa-spinner fa-spin-pulse"></i>';
+        '<i class="fa-solid fa-spinner fa-spin-pulse fa-xl"></i>';
     } else {
       spinnerWrapper.classList.add('hidden');
       spinnerWrapper.classList.remove('flex');
@@ -121,7 +121,9 @@ export default class View {
       sidebarContent.classList.toggle('tablet:opacity-0');
       sidebarContent.classList.toggle('-translate-x-full');
       //hide logout btn
+      btnLogout.classList.toggle('flex');
       btnLogout.classList.toggle('tablet:flex');
+      btnLogout.classList.toggle('hidden');
       //sidebar footer
       sidebarFooter.classList.toggle('tablet:justify-between');
       // rotate btn

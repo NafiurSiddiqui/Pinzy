@@ -36,8 +36,8 @@
   }
   .bg-aside {
     @apply border-2;
-    @apply border-zinc-400;
-    @apply bg-zinc-600;
+    @apply border-zinc-300;
+    @apply bg-zinc-50;
     @apply backdrop-blur-sm;
   }
 
