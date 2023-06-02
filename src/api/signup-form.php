@@ -1,5 +1,6 @@
 <?php
 
+
 if (isset($_GET["error"])) {
 
     $emptyName = isset($_GET['emptyName']) ? $_GET["emptyName"] : '';
