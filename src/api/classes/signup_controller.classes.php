@@ -25,31 +25,31 @@ class SignupController extends Signup
         //empty input
         if ($this->emptyInput() == false) {
 
-            header("location:../index.php?error=emptyinput");
+            header("location:../../api/signup-form.php?error=emptyinput");
             exit();
         }
         //user validity
         if ($this->nameValidation() == false) {
 
-            header("location:../index.php?error=invalidusername");
+            header("location:../../api/signup-form.php?error=invalidusername");
             exit();
         }
         //email
         if ($this->emailValidation() == false) {
 
-            header("location:../index.php?error=invalidemail");
+            header("location:../../api/signup-form.php?error=invalidemail");
             exit();
         }
         //repass match
         if ($this->repassValidation() == false) {
 
-            header("location:../index.php?error=passworddoesnotmatch");
+            header("location:../../api/signup-form.php?error=passworddoesnotmatch");
             exit();
         }
         //userName or pass exists
         if ($this->userIsTaken() == false) {
 
-            header("location:../index.php?error=userAlreadyExistsBruh");
+            header("location:../../api/signup-form.php?error=userAlreadyExistsBruh");
             exit();
         }
 
