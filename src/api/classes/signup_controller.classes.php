@@ -1,188 +1,135 @@
 <?php
 
-
 class SignupController extends Signup
 {
-    private $userName;
-    private $email;
-    private $password;
-    private $confirmPassword;
-    // private $errorMsg;
-    // public $userNameIsEmpty;
-    public $userErrorMsg;
-    public $userNameErrorMsg;
-    public $emailErrorMsg;
-    // public $emailIsEmpty;
-    public $passwordIsEmpty;
-    public $passwordErrorMsg;
-    public $confirmPasswordIsEmpty;
-    public $confirmPasswordErrorMsg;
-    public $fieldsAreEmpty;
 
-    public function __construct($userName, $email, $password, $confirmPassword)
+    private $name;
+    private $email;
+    private $pass;
+    private $repass;
+
+    //construct
+    public function __construct($name, $email, $pass, $repass)
     {
-        $this->userName = $userName;
+        $this->name = $name;
         $this->email = $email;
-        $this->password = $password;
-        $this->confirmPassword = $confirmPassword;
+        $this->pass = $pass;
+        $this->repass = $repass;
     }
+
+    //throw error
 
     public function signupUser()
     {
-        if ($this->checkFieldsAreEmpty()) {
-            // $this->errorHandlerController("Please fill out all of the fields.");
-            $this->errorHandlerController();
-            
+
+        //empty input
+        if ($this->emptyInput() == false) {
+
+            header("location:../index.php?error=emptyinput");
+            exit();
+        }
+        //user validity
+        if ($this->nameValidation() == false) {
+
+            header("location:../index.php?error=invalidusername");
+            exit();
+        }
+        //email
+        if ($this->emailValidation() == false) {
+
+            header("location:../index.php?error=invalidemail");
+            exit();
+        }
+        //repass match
+        if ($this->repassValidation() == false) {
+
+            header("location:../index.php?error=passworddoesnotmatch");
+            exit();
+        }
+        //userName or pass exists
+        if ($this->userIsTaken() == false) {
+
+            header("location:../index.php?error=userAlreadyExistsBruh");
+            exit();
         }
 
-        if ($this->checkUserNameIsEmpty()) {
-            // $this->errorHandlerController('Must have a Username');
-            $this->errorHandlerController();
-           
+        $this->setUser($this->name, $this->email, $this->pass);
+
+    }
+
+    //validate for empty inputs
+    private function emptyInput()
+    {
+
+        if (
+            empty($this->name) ||
+            empty($this->email) ||
+            empty($this->pass) ||
+            empty($this->repass)
+        ) {
+            $validation = false;
+        } else {
+            $validation = true;
         }
 
-        if ($this->checkEmailIsEmpty()) {
-            // $this->errorHandlerController('Must have an Email');
-            $this->errorHandlerController();
-           
+        return $validation;
+    }
+
+    private function nameValidation()
+    {
+        //some regExp
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->name)) {
+
+            $nameIsValid = false;
+        } else {
+            // $this->name = filter_input($_POST["name"], FILTER_SANITIZE_SPECIAL_CHARS);
+            $nameIsValid = true;
         }
 
-        if (!$this->validateEmail()) {
-            // $this->errorHandlerController('Invalid Email');
-            $this->errorHandlerController();
-           
-        }
-
-        if ($this->checkPasswordIsEmpty()) {
-            // $this->errorHandlerController('Must have a Password');
-            $this->errorHandlerController();
-           
-        }
-
-        if ($this->checkConfirmPassIsEmpty()) {
-            // $this->errorHandlerController('Must Confirm Password');
-            $this->errorHandlerController();
-            
-        }
-
-        if (!$this->validateConfirmPassword()) {
-            // $this->errorHandlerController('Passwords do not match');
-            $this->errorHandlerController();
-         
-        }
-
-        // if (!$this->checkUserExists()) {
-        //     $this->errorHandlerController('User Already Exists');
-        // }
-        if ($this->checkUserExists()) {
-            $this->errorHandlerController();
-        }
-
-        $this->setUser($this->userName, $this->email, $this->password);
-    }
-
-    
-
-    private function checkFieldsAreEmpty()
-    {
-        return empty($this->userName) && empty($this->email) && empty($this->password) && empty($this->confirmPassword);
-
-       
+        return $nameIsValid;
 
     }
 
-
-    private function checkUserNameIsEmpty()
+    private function emailValidation()
     {
-        return empty($this->userName);
 
-        // $this->userNameIsEmpty = empty($this->userName);
-        // return $this->userNameIsEmpty;
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
 
-    }
-
-    private function validateEmail()
-    {
-   
-        return !filter_var($this->email, FILTER_VALIDATE_EMAIL);
-        
-
-    }
-
-    private function checkEmailIsEmpty()
-    {
-      
-
-        return empty($this->email);
-
-    }
-
-    private function checkPasswordIsEmpty()
-    {
-      
-        return empty($this->password);
-        
-
-    }
-
-    private function checkConfirmPassIsEmpty()
-    {
-  
-        return empty($this->confirmPassword);
-      
-
-
-
-    }
-
-    private function validateConfirmPassword()
-    {
-    
-        return ($this->password !== $this->confirmPassword);
-  
-
-    }
-
-    private function checkUserExists()
-    {
-        return $this->checkUser($this->userName, $this->email);
-    }
-
-    protected function errorHandlerController()
-    {
-    
-
-
-        $this->userNameErrorMsg = $this->checkUserNameIsEmpty() ? 'UserName can not be empty' : '';
-        $this->emailErrorMsg = $this->validateEmail() ? 'Invalid Email' : ($this->checkEmailIsEmpty() ? 'Email can not be left empty' : '');
-        $this->passwordErrorMsg = $this->checkPasswordIsEmpty() ? 'password is required' : '';
-        $this->confirmPasswordErrorMsg = $this->validateConfirmPassword() ? "Passwords do not match" : ($this->checkConfirmPassIsEmpty() ? 'Confirm password' : '');
-        $this->fieldsAreEmpty = $this->checkFieldsAreEmpty() ? "Fields can not be empty" : '';
-        $this->userErrorMsg = $this->checkUserExists() ? "User Already Exists" : '';
-
-
-        $queryString = '';
-
-        if ($this->fieldsAreEmpty) {
-            // $queryString =  urlencode($this->fieldsAreEmpty);
-            $queryString ='signupError='.  urlencode($this->fieldsAreEmpty);
-
-        } elseif($this->userErrorMsg) {
-            $queryString ='userError='. urlencode($this->userErrorMsg);
+            $emailIsValid = false;
 
         } else {
-            $queryString = 'signupError=someFieldsAreEmpty&userNameIsEmpty=' . urlencode($this->userNameErrorMsg)
-                . '&emailHasError=' . urlencode($this->emailErrorMsg)
-                . '&passwordHasError=' . urlencode($this->passwordErrorMsg)
-                . '&confirmPasswordHasError=' . urlencode($this->confirmPasswordErrorMsg);
-         
+            // $this->email = filter_input($_POST["email"], FILTER_SANITIZE_EMAIL);
+            $emailIsValid = true;
         }
 
-        // $queryString = 'signupError=' . $queryString;
-        $queryString = $queryString;
-     
+        return $emailIsValid;
 
-        header("location:../../api/signup-form.php?$queryString");
-        exit();
     }
+
+    private function repassValidation()
+    {
+
+        if ($this->pass !== $this->repass) {
+            $repassMatched = false;
+        } else {
+            $repassMatched = true;
+        }
+
+        return $repassMatched;
+
+    }
+
+    private function userIsTaken()
+    {
+
+        if (!$this->checkUser($this->name, $this->email)) {
+            $userExists = false;
+        } else {
+            $userExists = true;
+        }
+
+        return $userExists;
+
+    }
+
 }
