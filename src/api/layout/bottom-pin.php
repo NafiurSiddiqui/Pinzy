@@ -56,8 +56,8 @@
                     <option value="alert" data-icon="&#9888;" data-color="-yellow-500">
                         Alert &#9888;
                     </option>
-                    <option value="event" data-icon="&#9733;" data-color="-orange-500">
-                        Event &#9733;
+                    <option value="event" data-icon="⭐" data-color="-orange-500">
+                        Event ⭐
                     </option>
                     <option value="review" data-icon="🤔" data-color="-violet-500">
                         Review 🤔
@@ -84,7 +84,7 @@
                 Pin
             </button>
         </form>
-        ;
+
     </section>
 
     <!-- pop up for edit -->
@@ -110,8 +110,8 @@
                     <option value="alert" data-icon="&#9888;" data-color="-yellow-500">
                         Alert &#9888;
                     </option>
-                    <option value="event" data-icon="&#9733;" data-color="-orange-500">
-                        Event &#9733;
+                    <option value="event" data-icon="⭐" data-color="-orange-500">
+                        Event ⭐
                     </option>
                     <option value="review" data-icon="🤔" data-color="-violet-500">
                         Review 🤔
@@ -137,7 +137,7 @@
                 Pin
             </button>
         </form>
-        ;
+
     </section>
 
     <!-- map -->

@@ -1,11 +1,11 @@
 /* This file is needed in order for dynamic classes to work. This is where 3rd party lib sucks! */
 
 :root {
-  --color-emergency: #fca5a5;
+  --color-emergency: #f87171;
   --color-alert: #fde047;
-  --color-event: #fdba74;
+  --color-event: #fb923c;
   --color-review: #a78bfa;
-  --color-touristAttraction: #99f6e4;
+  --color-touristAttraction: #2dd4bf;
   --color-recreational: #bef264;
 
   //error
