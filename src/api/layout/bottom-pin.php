@@ -132,7 +132,7 @@
                     name="message__edit" id="message__edit" cols="30" rows="4"></textarea>
             </div>
             <button
-                class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded-full bg-green-400 font-semibold text-m text-zinc-100 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-green-400  hover:text-zinc-50 hover:font-bold  active:text-zinc-100 disabled:ring-zinc-200 disabled:!text-zinc-300 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none  laptop:text-zinc-400 laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors  hover:shadow-md hover:shadow-zinc-700"
+                class="btn-user-input__edit w-full mt-10 mb-3 h-10 rounded-full bg-green-400 font-semibold text-m text-zinc-100 android-md/2:w-52 android-md:rounded-2xl ring-4 ring-green-400  hover:text-zinc-50 hover:font-bold  active:text-zinc-100 disabled:ring-zinc-200 disabled:!text-zinc-300 disabled:!font-normal disabled:!bg-transparent disabled:hover:shadow-none  laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors  hover:shadow-md hover:shadow-zinc-700"
                 type="submit" name="guest-submit-edit" disabled>
                 Pin
             </button>

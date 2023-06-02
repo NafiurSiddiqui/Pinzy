@@ -25,31 +25,40 @@ class SignupController extends Signup
         //empty input
         if ($this->emptyInput() == false) {
 
-            header("location:../../api/signup-form.php?error=emptyinput");
+            header("location:../../api/signup-form.php?error=empty input");
             exit();
         }
         //user validity
         if ($this->nameValidation() == false) {
 
-            header("location:../../api/signup-form.php?error=invalidusername");
+            header("location:../../api/signup-form.php?error=invalid username");
             exit();
         }
         //email
         if ($this->emailValidation() == false) {
 
-            header("location:../../api/signup-form.php?error=invalidemail");
+            header("location:../../api/signup-form.php?error=invalid email");
             exit();
         }
+        //pass is empty
+        if ($this->passIsEmpty()== true) {
+
+            header("location:../../api/signup-form.php?error=password required");
+            exit();
+        }
+
+
+
         //repass match
         if ($this->repassValidation() == false) {
 
-            header("location:../../api/signup-form.php?error=passworddoesnotmatch");
+            header("location:../../api/signup-form.php?error=passwords do not match");
             exit();
         }
         //userName or pass exists
         if ($this->userIsTaken() == false) {
 
-            header("location:../../api/signup-form.php?error=userAlreadyExistsBruh");
+            header("location:../../api/signup-form.php?error=user already exists");
             exit();
         }
 
@@ -104,6 +113,17 @@ class SignupController extends Signup
 
         return $emailIsValid;
 
+    }
+
+    private function passIsEmpty()
+    {
+
+        if(empty($this->pass)) {
+            $passIsEmpty = true;
+        } else {
+            $passIsEmpty = false;
+        }
+        return $passIsEmpty;
     }
 
     private function repassValidation()

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,34 +20,34 @@
         <link rel="shortcut icon" type="image/png" href="
         <?php
             echo !empty($pathToIcon)? $pathToIcon : 'setPath';
-        ?>
+?>
         
         " />
         <script type="module" src="
         <?php
-        echo !empty($pathToJs)? $pathToJs: 'setPath';
+echo !empty($pathToJs)? $pathToJs: 'setPath';
 
-        ?>
+?>
         "></script>
         <link rel="stylesheet" href="
         <?php
-            echo !empty($pathToCss) ? $pathToCss: 'setPath';
-        ?>   
+    echo !empty($pathToCss) ? $pathToCss: 'setPath';
+?>   
         " />
         <link rel="stylesheet" href="
         <?php
-            echo !empty($pathToFaAll) ? $pathToFaAll: 'setPath';
-        ?>   
+    echo !empty($pathToFaAll) ? $pathToFaAll: 'setPath';
+?>   
         " />
         <link rel="stylesheet" href="
         <?php
-            echo !empty($pathToFaMin) ? $pathToFaMin: 'setPath';
-        ?>   
+    echo !empty($pathToFaMin) ? $pathToFaMin: 'setPath';
+?>   
         " />
         <title>Pinzy -
             <?php
-                echo !empty($pageTitle) ? $pageTitle: 'default';
-        ?>
+        echo !empty($pageTitle) ? $pageTitle: 'default';
+?>
 
         </title>
         <!-- dynamic ends -->
@@ -61,16 +65,17 @@
                 <div class="flex justify-center w-28">
                     <img src="
                      <?php
-                        echo !empty($pathToIcon)? $pathToIcon : 'setPath';
-        ?>
+                echo !empty($pathToIcon)? $pathToIcon : 'setPath';
+?>
                     
                     " alt="Pinzy Icon" class="!w-28" />
                 </div>
                 <?php
 
 
+// || isset($_GET['userError'])
 
-    if(isset($_GET['loginError']) || isset($_GET['signupError']) || isset($_GET['userError'])) {
+    if(isset($_GET['loginError']) || isset($_GET["error"])) {
 
         
         echo  "
@@ -97,13 +102,38 @@
             echo $loginError;
         }
         // signup page
-        if(!empty($emptyFields)) {
-            echo $emptyFields;
+        if(!empty($emptyInput)) {
+            echo $emptyInput;
+        } else {
+            
+            if(!empty($emptyName)) {
+                echo $emptyName;
+            }
+
+            if(!empty($invalidUserName)) {
+                echo $invalidUserName;
+            }
+
+            if(!empty($invalidEmai)) {
+                echo $invalidEmai;
+            }
+            if(!empty($emptyPass)) {
+                echo $emptyPass;
+            }
+
+            if(!empty($passMismatched)) {
+                echo $passMismatched;
+            }
+
         }
 
         if(!empty($userExists)) {
             echo $userExists;
         }
+
+
+
+
 
         echo "
                           </p>
@@ -116,4 +146,4 @@
 
 ";
     }
-        ?>
+?>

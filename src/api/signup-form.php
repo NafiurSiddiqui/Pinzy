@@ -3,11 +3,14 @@
 if (isset($_GET["error"])) {
 
     $emptyName = isset($_GET['emptyName']) ? $_GET["emptyName"] : '';
-    $invalidUserName = $_GET['error'] == 'invalidusername' ? $_GET['error'] : '';
-    $invalidEmail = $_GET['error'] == 'invalidemail'? $_GET['error'] : '';
-    $emptyPass = isset($_GET["emptyPass"]) ? $_GET['emptyPass'] : '';
-    $passMismatched = $_GET['error'] == 'passworddoesnotmatch' ? $_GET['error'] : '';
-    $emptyInput = $_GET['error'] == 'emptyinput' ? $_GET['error'] : '';
+    $invalidUserName = $_GET['error'] == 'invalid username' ? $_GET['error'] : '';
+    $invalidEmail = $_GET['error'] == 'invalid email'? $_GET['error'] : '';
+    $emptyPass = $_GET["error"] == 'password required' ? $_GET['error'] : '';
+    // $emptyPass = isset($_GET["error"]) ? $_GET['error'] : '';
+    $passMismatched = $_GET['error'] == 'passwords do not match' ? $_GET['error'] : '';
+    $emptyInput = $_GET['error'] == 'empty input' ? $_GET['error'] : '';
+    $userExists = $_GET['error']  == 'user already exists'? $_GET['error']: '';
+
 
 }
 
