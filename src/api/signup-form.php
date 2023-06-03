@@ -1,16 +1,18 @@
 <?php
+$hasError = false;
 
 if (isset($_GET["error"])) {
+    $hasError = true;
 
-    $emptyName = isset($_GET['emptyName']) ? $_GET["emptyName"] : '';
+    $emptyName = $_GET['error'] == 'name is required'? $_GET["error"] : '';
     $invalidUserName = $_GET['error'] == 'invalid username' ? $_GET['error'] : '';
+    $emptyEmail = $_GET['error'] == 'email is required'? $_GET['error']: '';
     $invalidEmail = $_GET['error'] == 'invalid email'? $_GET['error'] : '';
-    $emptyPass = $_GET["error"] == 'password required' ? $_GET['error'] : '';
-    // $emptyPass = isset($_GET["error"]) ? $_GET['error'] : '';
+    $emptyPass = $_GET["error"] == 'password is required' ? $_GET['error'] : '';
+    $emptyRepass = $_GET['error'] == 'confirm password'? $_GET['error']: '';
     $passMismatched = $_GET['error'] == 'passwords do not match' ? $_GET['error'] : '';
     $emptyInput = $_GET['error'] == 'empty input' ? $_GET['error'] : '';
     $userExists = $_GET['error']  == 'user already exists'? $_GET['error']: '';
-
 
 }
 
@@ -31,7 +33,8 @@ $pathToIcon = '../assets/logo.svg';
 $pathToCss = '../../dist/output.css';
 $pathToFaAll = '../style/fontawesome/all.min.css';
 $pathToFaMin = '../style/fontawesome/fontawesome.min.css';
-$pathToJs = '../js/ui.js';
+$pathToJs = '../js/view/Auth.view.js';
+
 $pageTitle = 'Signup';
 
 include './layout/header-auth.php';
@@ -49,9 +52,20 @@ include './layout/header-auth.php';
         " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
-                echo !empty($invalidUserName) || !empty($emptyName) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>".
-                $invalidUserName || $emptyName
-                ."</span>" : null;?>
+                if(!empty($emptyName)) {
+                    echo "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>
+                        $emptyName
+                </span>";
+                }
+
+                if(!empty($invalidUserName)) {
+                    echo "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>
+                        $invalidUserName
+                </span>";
+                }
+
+
+?>
         </span>
     </div>
     <div class="flex flex-col my-2 w-full">
@@ -60,10 +74,20 @@ include './layout/header-auth.php';
             Email</div>
         <input type="email" name="email" aria-label="Email" spellcheck="false"
             class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400  tablet-md:p-2 
-        <?php echo (!empty($invalidEmail)  || !empty($emptyInput)) ? 'ring ring-red-400': ''  ?> " />
+        <?php echo (!empty($invalidEmail) ||!empty($emptyEmail) || !empty($emptyInput)) ? 'ring ring-red-400': ''  ?> " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
-echo !empty($invalidEmail) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$invalidEmail</span>" : null;
+
+                if(!empty($emptyEmail)) {
+                    echo "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$emptyEmail</span>";
+                }
+
+
+                
+                if(!empty($invalidEmail)) {
+                    echo "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$invalidEmail</span>";
+                }
+
 ?>
         </span>
     </div>
@@ -87,10 +111,19 @@ echo !empty($invalidEmail) ? "<i class='fa-solid fa-triangle-exclamation'></i><s
             Password</div>
         <input type="password" name="confirm-password" aria-label="Confirm Password"
             class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2
-            <?php echo (!empty($passMismatched)  || !empty($emptyInput)) ? 'ring ring-red-400': ''; ?> " />
+            <?php echo (!empty($passMismatched) || !empty($emptyRepass)  || !empty($emptyInput)) ? 'ring ring-red-400': ''; ?> " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
-                echo !empty($passMismatched) ? "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$passMismatched</span>" : null;?>
+                if(!empty($emptyRepass)) {
+                    echo  "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$emptyRepass</span>";
+                }
+                
+                if(!empty($passMismatched)) {
+                    echo  "<i class='fa-solid fa-triangle-exclamation'></i><span class='ml-1'>$passMismatched</span>";
+                }
+                
+
+?>
         </span>
     </div>
     <button

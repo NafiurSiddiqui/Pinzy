@@ -73,7 +73,7 @@ echo !empty($pathToJs)? $pathToJs: 'setPath';
                 <?php
 
 
-// || isset($_GET['userError'])
+
 
     if(isset($_GET['loginError']) || isset($_GET["error"])) {
 
@@ -104,27 +104,25 @@ echo !empty($pathToJs)? $pathToJs: 'setPath';
         // signup page
         if(!empty($emptyInput)) {
             echo $emptyInput;
-        } else {
+        }
             
-            if(!empty($emptyName)) {
-                echo $emptyName;
-            }
+        if(!empty($emptyName)) {
+            echo $emptyName;
+        }
 
-            if(!empty($invalidUserName)) {
-                echo $invalidUserName;
-            }
+        if(!empty($invalidUserName)) {
+            echo $invalidUserName;
+        }
 
-            if(!empty($invalidEmai)) {
-                echo $invalidEmai;
-            }
-            if(!empty($emptyPass)) {
-                echo $emptyPass;
-            }
+        if(!empty($invalidEmai)) {
+            echo $invalidEmai;
+        }
+        if(!empty($emptyPass)) {
+            echo $emptyPass;
+        }
 
-            if(!empty($passMismatched)) {
-                echo $passMismatched;
-            }
-
+        if(!empty($passMismatched)) {
+            echo $passMismatched;
         }
 
         if(!empty($userExists)) {

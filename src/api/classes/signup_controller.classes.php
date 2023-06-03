@@ -28,13 +28,27 @@ class SignupController extends Signup
             header("location:../../api/signup-form.php?error=empty input");
             exit();
         }
+
+        //empty nam
+        if($this->nameIsEmpty() == true) {
+            header("location:../../api/signup-form.php?error=name is required");
+            exit();
+        }
+
         //user validity
         if ($this->nameValidation() == false) {
 
             header("location:../../api/signup-form.php?error=invalid username");
             exit();
         }
-        //email
+
+        if($this->emailIsEmpty() == true) {
+            header("location:../../api/signup-form.php?error=email is required");
+            exit();
+
+        }
+
+        //email validation
         if ($this->emailValidation() == false) {
 
             header("location:../../api/signup-form.php?error=invalid email");
@@ -43,10 +57,16 @@ class SignupController extends Signup
         //pass is empty
         if ($this->passIsEmpty()== true) {
 
-            header("location:../../api/signup-form.php?error=password required");
+            header("location:../../api/signup-form.php?error=password is required");
             exit();
         }
 
+        //repass empty
+        if($this->rePassIsEmtpy() == true) {
+            
+            header("location:../../api/signup-form.php?error=confirm password");
+            exit();
+        }
 
 
         //repass match
@@ -71,9 +91,9 @@ class SignupController extends Signup
     {
 
         if (
-            empty($this->name) ||
-            empty($this->email) ||
-            empty($this->pass) ||
+            empty($this->name) &&
+            empty($this->email) &&
+            empty($this->pass) &&
             empty($this->repass)
         ) {
             $validation = false;
@@ -91,12 +111,22 @@ class SignupController extends Signup
 
             $nameIsValid = false;
         } else {
-            // $this->name = filter_input($_POST["name"], FILTER_SANITIZE_SPECIAL_CHARS);
+           
             $nameIsValid = true;
         }
 
         return $nameIsValid;
 
+    }
+
+    private function nameIsEmpty()
+    {
+        if (empty($this->name)) {
+            $nameIsEmpty = true;
+        } else {
+            $nameIsEmpty = false;
+        }
+        return $nameIsEmpty;
     }
 
     private function emailValidation()
@@ -115,6 +145,18 @@ class SignupController extends Signup
 
     }
 
+    private function emailIsEmpty()
+    {
+
+        if(empty($this->email)) {
+            $emailIsEmpty = true;
+        } else {
+            $emailIsEmpty = false;
+        }
+
+        return $emailIsEmpty;
+    }
+
     private function passIsEmpty()
     {
 
@@ -124,6 +166,16 @@ class SignupController extends Signup
             $passIsEmpty = false;
         }
         return $passIsEmpty;
+    }
+
+    private function rePassIsEmtpy()
+    {
+        if(empty($this->repass)) {
+            $repassIsEmpty = true;
+        } else {
+            $repassIsEmpty = false;
+        }
+        return $repassIsEmpty;
     }
 
     private function repassValidation()

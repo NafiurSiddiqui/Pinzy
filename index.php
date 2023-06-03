@@ -8,10 +8,7 @@ if(isset($_GET["loginError"])) {
 
 }
 
-// if(isset($_GET['loginError'])) {
-//     $loginError = $_GET['loginError'];
 
-// }
 
 $pathToIcon = './src/assets/logo.svg';
 $pathToCss = './dist/output.css';
