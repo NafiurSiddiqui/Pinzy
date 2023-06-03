@@ -21,7 +21,6 @@ export default class Map extends Pin {
     this.globalPins = globalPins;
     this.showForm = showForm;
     this.renderSpinner = renderSpinner;
-    // this.renderSpinner(true);
     this.loadMap = this.loadMap.bind(this);
     this.getPosition = this.getPosition.bind(this);
     this.renderPinOnMap = this.renderPinOnMap.bind(this);
@@ -59,7 +58,6 @@ export default class Map extends Pin {
     const { longitude } = position.coords;
     const coords = [latitude, longitude];
     this.coords = coords;
-    // this.map = L.map('map').setView(coords, this.mapZoomLevel);
     const map = L.map('map').setView(coords, this.mapZoomLevel);
     this.map = map;
     if (this.map) {

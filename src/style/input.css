@@ -13,6 +13,7 @@
 
   .nav-active {
     @apply text-zinc-500;
+    @apply font-bold;
   }
 
   .borderTest {
