@@ -30,13 +30,13 @@
         </title>
     </head>
 
-    <body class="flex justify-center items-center bg-zinc-50 border-2 ">
+    <body class="flex justify-center items-center bg-zinc-50 desktop-md:border-2 desktop-md:border-zinc-300 ">
 
         <div
             class="content-wrapper flex justify-center items-center relative w-full desktop-md:w-4/5 desktop-md:py-4 desktop-md:px-8 desktop:rounded-md">
             <!-- sidebar -->
             <aside
-                class="absolute left-0 sidebar -bottom-full transition-all w-full  duration-700 z-30 inw-full tablet:top-0 tablet:relative tablet:bg-aside laptop:w-[30rem] desktop-md:rounded-l-lg">
+                class="absolute left-0 sidebar -bottom-full transition-all w-full  duration-700 z-30 inw-full border-2 border-zinc-400 tablet:top-0 tablet:relative tablet:bg-aside laptop:w-[30rem] desktop-md:rounded-l-lg">
 
                 <div class="sidebar-content-wrapper  h-screen tablet:opacity-100 bg-zinc-100 transition-all duration-500
                     ">
