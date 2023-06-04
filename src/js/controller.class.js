@@ -21,11 +21,14 @@ class Controller {
       this.model._userState,
       this.model._globalState
     );
+
     //?WHER EXACTLY DO YOU NEED USER DATA?
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
     this.view.form.dataHandler(this.controlUserData);
     this.controlPinOutput();
+
+    console.log(this.model._userName);
   }
 
   controlUserData(data) {

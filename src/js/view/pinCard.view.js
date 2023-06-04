@@ -6,7 +6,6 @@ export default class PinCard {
    */
 
   generatePinCard(data, guest = null) {
-    console.log(guest);
     let html = `
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-zinc-50 border  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm" 

@@ -4,6 +4,7 @@ Welcome to Pinzy. This is a web GIS social media. This version has minimal featu
 
 ## Features
 
+- MVC ( MODEL VIEW CONTROLLER) architecture followed with OOP.
 - Generic user authentication and registration handled by PHP.
 -
 
