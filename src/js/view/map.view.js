@@ -60,6 +60,7 @@ export default class Map extends Pin {
     this.coords = coords;
     const map = L.map('map').setView(coords, this.mapZoomLevel);
     this.map = map;
+
     if (this.map) {
       this.mapInitiated = true;
       this.renderSpinner(false);
