@@ -14,7 +14,7 @@ if(isset($_SESSION["id"]) || isset($_SESSION['signupSuccessful']) == true) {
 
 }
 
-var_dump($userLogged);
+
 
 $pageTitle = 'Pins';
 include './layout/header-pin.php';
