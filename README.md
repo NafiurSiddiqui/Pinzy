@@ -1,12 +1,13 @@
 # Pinzy
 
-Welcome to Pinzy. This is a web GIS social media. This version has minimal featues included to make it CRUD.
+Welcome to Pinzy. This is a web GIS social media.
+
+This version has minimal featues included to make it CRUD.
 
 ## Features
 
-- MVC ( MODEL VIEW CONTROLLER) architecture followed with OOP.
-- Generic user authentication and registration handled by PHP.
--
+- User authentication and registration.
+- (CRUD) Create, Read, Delete, Update pins.
 
 This is not a production ready to tackle huge user interaction but a demo webapp for the future Pinzy release to solidify my knowledge on MVC, OOP with vanilla JS, Php and MySql.
 

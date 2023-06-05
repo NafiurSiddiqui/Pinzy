@@ -82,6 +82,9 @@ class SignupController extends Signup
             exit();
         }
 
+        
+
+
         $this->setUser($this->name, $this->email, $this->pass);
 
     }

@@ -5,7 +5,7 @@ session_start();
 
 $userLogged = false;
 
-if(isset($_SESSION["id"])) {
+if(isset($_SESSION["id"]) || isset($_SESSION['signupSuccessful']) == true) {
 
     $userLogged = true;
 
@@ -13,6 +13,9 @@ if(isset($_SESSION["id"])) {
     $userLogged= false;
 
 }
+
+var_dump($userLogged);
+
 $pageTitle = 'Pins';
 include './layout/header-pin.php';
 
