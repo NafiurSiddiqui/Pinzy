@@ -27,7 +27,7 @@ class AuthView {
   inputUiHanlder() {
     const largeDevice = window.matchMedia('(min-width: 1600px)');
     const isLargeDevice = largeDevice.matches;
-    console.log(isLargeDevice);
+
     inputs.forEach(input => {
       const label = input.previousElementSibling;
 

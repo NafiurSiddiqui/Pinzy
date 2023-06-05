@@ -6,11 +6,42 @@ This version has minimal featues included to make it CRUD.
 
 ## Features
 
-- User authentication and registration.
-- (CRUD) Create, Read, Delete, Update pins.
+### User authentication and registration.
+
+![index page](./readme/index.png)
+
+You have **Login**, **signup** and **guest** options here.
+
+### Guest
+
+![index page](./readme/guest.png)
+
+Here is how the guest profile looks like -
+
+![guest profile page](./readme/guest_profile.png)
+
+- Guest feature allows you explore the pinzy as a guest.
+- Limits to 10 pins with full CRUD using local storage.
+
+## User
+
+![user profile page](./readme/user_profile.png)
+
+- Unlimited pins
+- customization of profile (Not yet implemeted)
+- preferences (Not yet implemented)
+- Data stored in server ( Not yet imeplemented but the user information)
+
+## Pins ( Feed )
+
+![pins page](./readme/pins.png)
+
+- You have all the pins of Pinzy user here. Feed.
+
+# Technical aspects
+
 - Debouncing for the form validation ( not on the auth yet)
 - Used fontAwesome locally due to CORS issue by fa scripts.
--
 
 This is not a production ready app to tackle huge user interaction but a demo webapp for the future Pinzy release and to solidify my understanding of _MVC_, _OOP_ with vanilla **JS**, **Php** and **MySql**.
 
