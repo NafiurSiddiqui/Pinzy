@@ -1,6 +1,6 @@
 # Pinzy
 
-Welcome to Pinzy. This is a web GIS social media.
+Welcome to Pinzy. This is a web GIS social media. Create pins with your message to the globe and raise awarness, build a bridge between you and your customers, easily create your event and send your message across the globe.
 
 This version has minimal featues included to make it CRUD.
 
@@ -8,14 +8,13 @@ This version has minimal featues included to make it CRUD.
 
 - User authentication and registration.
 - (CRUD) Create, Read, Delete, Update pins.
+- Debouncing for the form validation ( not on the auth yet)
+- Used fontAwesome locally due to CORS issue by fa scripts.
+-
 
-This is not a production ready to tackle huge user interaction but a demo webapp for the future Pinzy release to solidify my knowledge on MVC, OOP with vanilla JS, Php and MySql.
+This is not a production ready app to tackle huge user interaction but a demo webapp for the future Pinzy release and to solidify my understanding of _MVC_, _OOP_ with vanilla **JS**, **Php** and **MySql**.
 
-# SVGS
-
-- Used fontAwesome locally due to cors-origin-policy issue by fa scripts.
-
-# Noticeabel Drawbacks
+## Noticeable Drawbacks
 
 - This application uses Leaflet which, in worst cases like slow internet, is noticed to have extremely slow peroformance. The initial load of the map takes too long.
 - openstreet map server may be down sometimes or your request may take too long to respond.
