@@ -3,17 +3,29 @@
 
 
 
-class Signup extends Dbh
+class Signup
 {
 
     //check of recreation of data
     private $sql = 'SELECT user_name FROM pintzy_user_info WHERE user_name = ? OR user_email = ?;';
+    private $sqlInsert = 'INSERT INTO pintzy_user_info (user_name, user_email, user_password) VALUES (?, ?, ?)';
+
+    private $conn;
+
+
+    public function __construct($pdo)
+    {
+        $this->conn = $pdo;
+    }
+
 
     protected function setUser($name, $email, $pass)
     {
 
        
-        $stmt = $this->connect()->prepare('INSERT INTO pintzy_user_info (user_name, user_email, user_password) VALUES (?, ?, ?)');
+        // $stmt = $this->connect()->prepare($this->sqlInsert);
+
+        $stmt = $this->conn->prepare($this->sqlInsert);
 
         //HASH THE PASS
         $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
