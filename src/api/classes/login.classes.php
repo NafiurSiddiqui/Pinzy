@@ -1,18 +1,26 @@
 <?php
 
 
-class Login extends Dbh
+class Login
 {
-
+    private $sqlNameAndMail = 'SELECT user_password FROM pintzy_user_info WHERE user_name=? OR user_email= ?';
+    private $sqlNameMailAndpass = 'SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;';
     protected $loginData;
     private $errorMsg = '';
-    
+    private $dbh;
 
-    protected function getUser($userName, $password)
+    public function __construct(\PDO $pdo)
+    {
+       
+        $this->dbh = $pdo;
+    }
+
+    public function getUser($userName, $password)
     {
         
 
-        $stmt = $this->connect()->prepare('SELECT user_password FROM pintzy_user_info WHERE user_name=? OR user_email= ?');
+        // $stmt = $this->connect()->prepare('SELECT user_password FROM pintzy_user_info WHERE user_name=? OR user_email= ?');
+        $stmt = $this->dbh->prepare($this->sqlNameAndMail);
         
         //to check by email or username
         if (!$stmt->execute(array($userName, $userName))) {
@@ -42,7 +50,7 @@ class Login extends Dbh
         // exit();
         } elseif ($checkPass == true) {
           
-            $stmt = $this->connect()->prepare('SELECT * FROM pintzy_user_info WHERE user_name = ? OR user_email = ? AND user_password = ?;');
+            $stmt = $this->dbh->prepare($this->sqlNameMailAndpass);
 
         
             if (!$stmt->execute(array($userName, $userName, $passwordHashed[0]['user_password']))) {
@@ -73,7 +81,7 @@ class Login extends Dbh
 
     }
 
-    protected function errorHandler($stmt, $msg)
+    public function errorHandler($stmt, $msg)
     {
         $stmt = null;
         $this->errorMsg = "$msg";

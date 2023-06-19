@@ -2,22 +2,22 @@
 
 
 
-class LoginController extends login
+class LoginController
 {
     
     public $userName;
     public $password;
     public $nameValidationMessage;
     public $passwordValidationMessage;
+    private $login;
 
     //construct
-    public function __construct($userName, $password)
+    public function __construct($userName, $password, $login)
     {
         //sanitize input
         $this->userName = htmlspecialchars($userName);
-        // $this->userName = $userName;
         $this->password = $password;
-        
+        $this->login = $login;
 
     }
 
@@ -44,26 +44,18 @@ public function loginUser()
     }
 
     //get user data and run user authentication
-    $this->getUser($this->userName, $this->password);
+    $this->login->getUser($this->userName, $this->password);
 }
-
-
-    
-  
 
     protected function nameIsEmpty()
     {
-        
-        return  empty($this->userName)  ;
-
-   
+        return  empty($this->userName);
     }
 
     protected function loginPassIsEmpty()
     {
-     
         return empty($this->password) ;
-   
+
     }
 
 
