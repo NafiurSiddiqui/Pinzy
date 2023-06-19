@@ -13,34 +13,43 @@ class Signup
     private $conn;
 
 
-    public function __construct($pdo)
+    public function __construct(\PDO $pdo)
     {
         $this->conn = $pdo;
+        // var_dump($this->conn);
+
+        
+    }
+
+    public function testConn()
+    {
+        // var_dump($this->conn);
     }
 
 
     protected function setUser($name, $email, $pass)
     {
 
-       
-        // $stmt = $this->connect()->prepare($this->sqlInsert);
+        var_dump($this->conn);
 
-        $stmt = $this->conn->prepare($this->sqlInsert);
+        // $statement = $this->connect()->prepare($this->sqlInsert);
+
+        $statement = $this->conn->prepare($this->sqlInsert);
 
         //HASH THE PASS
         $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($name, $email, $hashedPass))) {
+        if (!$statement->execute(array($name, $email, $hashedPass))) {
             //if this fails, close the conn
 
-            $stmt = null;
+            $statement = null;
             header("location:../../../index.php?error=statmentfailed");
             exit(); //exit the entire script
         }
 
         //Close the conn
 
-        $stmt = null;
+        $statement = null;
 
         
         session_start();
@@ -56,21 +65,24 @@ class Signup
 
     protected function checkUser($name, $email)
     {
-        $stmt = $this->connect()->prepare($this->sql);
+
+        var_dump($this->conn);
+
+        $statement = $this->conn->prepare($this->sql);
 
         //execute is a predefined method that for PDO
         //checks for conenction
-        if (!$stmt->execute(array($name, $email))) {
+        if (!$statement->execute(array($name, $email))) {
             //if this fails, close the conn
 
-            $stmt = null;
+            $statement = null;
             header("location:../../../index.php?error=statmentfailed");
             exit(); //exit the entire script
         }
 
         $result = false;
 
-        if ($stmt->rowCount() > 0) {
+        if ($statement->rowCount() > 0) {
             $result = false;
         } else {
             $result = true;

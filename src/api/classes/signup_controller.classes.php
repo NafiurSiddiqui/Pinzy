@@ -3,24 +3,27 @@
 class SignupController extends Signup
 {
 
-    private $name;
+    private $userName;
     private $email;
-    private $pass;
-    private $repass;
+    private $password;
+    private $confirmPassword;
 
     //construct
-    public function __construct($name, $email, $pass, $repass)
+    public function __construct($userName, $email, $password, $confirmPassword)
     {
-        $this->name = $name;
+        
+
+        $this->userName = $userName;
         $this->email = $email;
-        $this->pass = $pass;
-        $this->repass = $repass;
+        $this->password = $password;
+        $this->confirmPassword = $confirmPassword;
     }
 
     //throw error
 
     public function signupUser()
     {
+       
 
         //empty input
         if ($this->emptyInput() == false) {
@@ -55,14 +58,16 @@ class SignupController extends Signup
             exit();
         }
         //pass is empty
-        if ($this->passIsEmpty()== true) {
+        if ($this->passIsEmpty()) {
 
-            header("location:../../api/signup-form.php?error=password is required");
+            // header("location:../../api/signup-form.php?error=password is required");
+            header("location:../../api/signup-form.php?error=password is required&pass=".urlencode($this->password)."&name=".urlencode($this->userName));
             exit();
         }
+        
 
         //repass empty
-        if($this->rePassIsEmtpy() == true) {
+        if($this->confirmPassIsEmpty() == true) {
             
             header("location:../../api/signup-form.php?error=confirm password");
             exit();
@@ -85,7 +90,7 @@ class SignupController extends Signup
         
 
 
-        $this->setUser($this->name, $this->email, $this->pass);
+        $this->setUser($this->userName, $this->email, $this->password);
 
     }
 
@@ -94,10 +99,10 @@ class SignupController extends Signup
     {
 
         if (
-            empty($this->name) &&
+            empty($this->userName) &&
             empty($this->email) &&
-            empty($this->pass) &&
-            empty($this->repass)
+            empty($this->password) &&
+            empty($this->confirmPassword)
         ) {
             $validation = false;
         } else {
@@ -110,7 +115,7 @@ class SignupController extends Signup
     private function nameValidation()
     {
         //some regExp
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->name)) {
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->userName)) {
 
             $nameIsValid = false;
         } else {
@@ -124,7 +129,7 @@ class SignupController extends Signup
 
     private function nameIsEmpty()
     {
-        if (empty($this->name)) {
+        if (empty($this->userName)) {
             $nameIsEmpty = true;
         } else {
             $nameIsEmpty = false;
@@ -163,7 +168,7 @@ class SignupController extends Signup
     private function passIsEmpty()
     {
 
-        if(empty($this->pass)) {
+        if(empty($this->password)) {
             $passIsEmpty = true;
         } else {
             $passIsEmpty = false;
@@ -171,20 +176,20 @@ class SignupController extends Signup
         return $passIsEmpty;
     }
 
-    private function rePassIsEmtpy()
+    private function confirmPassIsEmpty()
     {
-        if(empty($this->repass)) {
-            $repassIsEmpty = true;
+        if(empty($this->confirmPassword)) {
+            $confirmPasswordIsEmpty = true;
         } else {
-            $repassIsEmpty = false;
+            $confirmPasswordIsEmpty = false;
         }
-        return $repassIsEmpty;
+        return $confirmPasswordIsEmpty;
     }
 
     private function repassValidation()
     {
 
-        if ($this->pass !== $this->repass) {
+        if ($this->password !== $this->confirmPassword) {
             $repassMatched = false;
         } else {
             $repassMatched = true;
@@ -197,7 +202,7 @@ class SignupController extends Signup
     private function userIsTaken()
     {
 
-        if (!$this->checkUser($this->name, $this->email)) {
+        if (!$this->checkUser($this->userName, $this->email)) {
             $userExists = false;
         } else {
             $userExists = true;

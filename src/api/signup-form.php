@@ -1,6 +1,8 @@
 <?php
 $hasError = false;
 
+
+
 if (isset($_GET["error"])) {
     $hasError = true;
 
