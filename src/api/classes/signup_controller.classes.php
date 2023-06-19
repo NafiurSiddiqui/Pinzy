@@ -1,22 +1,25 @@
 <?php
 
-class SignupController extends Signup
+class SignupController
 {
 
     private $userName;
     private $email;
     private $password;
     private $confirmPassword;
+    private $signUp;
 
     //construct
-    public function __construct($userName, $email, $password, $confirmPassword)
+    public function __construct($userName, $email, $password, $confirmPassword, $signup)
     {
         
-
+        
         $this->userName = $userName;
         $this->email = $email;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
+        $this->signUp = $signup;
+
     }
 
     //throw error
@@ -90,7 +93,7 @@ class SignupController extends Signup
         
 
 
-        $this->setUser($this->userName, $this->email, $this->password);
+        $this->signUp->setUser($this->userName, $this->email, $this->password);
 
     }
 
@@ -202,7 +205,7 @@ class SignupController extends Signup
     private function userIsTaken()
     {
 
-        if (!$this->checkUser($this->userName, $this->email)) {
+        if (!$this->signUp->checkUser($this->userName, $this->email)) {
             $userExists = false;
         } else {
             $userExists = true;

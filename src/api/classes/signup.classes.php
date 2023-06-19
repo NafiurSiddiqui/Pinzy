@@ -16,18 +16,18 @@ class Signup
     public function __construct(\PDO $pdo)
     {
         $this->conn = $pdo;
-        // var_dump($this->conn);
+        var_dump($this->conn);
 
         
     }
 
     public function testConn()
     {
-        // var_dump($this->conn);
+        var_dump($this->conn);
     }
 
 
-    protected function setUser($name, $email, $pass)
+    public function setUser($name, $email, $pass)
     {
 
         var_dump($this->conn);
@@ -50,20 +50,16 @@ class Signup
         //Close the conn
 
         $statement = null;
-
-        
+     
         session_start();
 
         //on success
         $_SESSION['signupSuccessful'] = true;
         $_SESSION['userName'] = $name;
 
-    
-
-
     }
 
-    protected function checkUser($name, $email)
+    public function checkUser($name, $email)
     {
 
         var_dump($this->conn);

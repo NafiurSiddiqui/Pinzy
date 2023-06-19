@@ -11,9 +11,9 @@ try {
 } catch (PDOException $e) {
     //log error
     error_log("DB connection error -". $e->getMessage());
-
+    echo "DB not connected.";
     //redirect
-    header("location:../../src/api/error-view.php?message=".urlencode($e->getMessage()). "&errorCode=". urlencode($e->getCode()));
+    // header("location:../../api/error-view.php?message=".urlencode($e->getMessage()). "&errorCode=". urlencode($e->getCode()));
     exit();
 
 

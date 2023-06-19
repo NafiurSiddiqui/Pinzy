@@ -39,8 +39,7 @@ if (isset($_POST["submit"])) {
 
     try {
         $pdo = new \PDO($dsn, $user, $pass, $options);
-    
-
+        $signUp = new Signup($pdo);
 
     } catch (\PDOException $e) {
         // throw new \PDOException($e->getMessage(), (int)$e->getCode());
@@ -50,29 +49,28 @@ if (isset($_POST["submit"])) {
         error_log('PDO Connection Error: ' . $e->getMessage());
 
         // Redirect or display an error message to the user
-        header('location: ../../src/api/error-view.php?message=' . urlencode($e->getMessage()) . '&errorCode=' . urlencode($e->getCode()));
+        header('location: ../../api/error-view.php?message=' . urlencode($e->getMessage()) . '&errorCode=' . urlencode($e->getCode()));
         exit();
 
 
     }
 
-    var_dump($pdo);
+    // var_dump($pdo);
 
 
 
-    $signUpPdo = new Signup($pdo);
 
-    $signUpPdo->testConn();
+    // $signUpPdo->testConn();
     
-    $signup = new SignupController($userName, $email, $userPassword, $confirmPassword);
+    $signup = new SignupController($userName, $email, $userPassword, $confirmPassword, $signUp);
     
     $signup->signupUser();
     
 
     //redirect to user page
-    // header("location:../../api/user.php?signup=successful&username=$userName");
+    header("location:../../api/user.php?signup=successful&username=$userName");
     // header("location:../../api/inc/signup.inc.php");
-    header("location:../../api/signup-form.php");
+    // header("location:../../api/signup-form.php");
     // header("location:../../api/classes/signup.classes.php");
     
 
