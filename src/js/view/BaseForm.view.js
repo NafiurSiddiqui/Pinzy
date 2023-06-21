@@ -126,7 +126,7 @@ export default class BaseFormView {
       const { lat, lng } = this.mapEvent.latlng;
       //sanitize input
       const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
-      //values would be different if user
+
       /**
        * id: user? from Db : generateId
        */
