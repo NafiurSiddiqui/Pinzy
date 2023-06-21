@@ -3,15 +3,20 @@
 class SignupController
 {
 
-    private $userName;
-    private $email;
-    private $password;
-    private $confirmPassword;
-    private $signUp;
+    private string $userName;
+    private string $email;
+    private string $password;
+    private string $confirmPassword;
+    private Signup $signUp;
 
     //construct
-    public function __construct($userName, $email, $password, $confirmPassword, $signup)
-    {
+    public function __construct(
+        string $userName,
+        string $email,
+        string $password,
+        string $confirmPassword,
+        Signup $signup
+    ) {
         
         
         $this->userName = $userName;
@@ -214,5 +219,7 @@ class SignupController
         return $userExists;
 
     }
+
+   
 
 }
