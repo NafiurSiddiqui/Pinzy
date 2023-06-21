@@ -28,7 +28,7 @@ abstract class User
     public function __construct(
         int $id,
         string $username,
-        array  $pins
+        Pins  $pins
     ) {
         //* you can also try Promotional properties here as well.
         $this->id = $id;
@@ -36,5 +36,8 @@ abstract class User
         $this->pins = $pins;
         
     }
+
+    //send pin to the mysql db
+    
 
 }

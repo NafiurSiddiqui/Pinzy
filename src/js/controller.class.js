@@ -1,3 +1,4 @@
+import { helper } from './helper.js';
 import Model from './model.class.js';
 import Pin from './view/pin.view.js';
 import View from './view/view.js';
@@ -49,9 +50,8 @@ class Controller {
   }
 
   init() {
-    console.log('init runs');
-
     this.view.renderMap();
+    // console.log(checkUser);
   }
 }
 

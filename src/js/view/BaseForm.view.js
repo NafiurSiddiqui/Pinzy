@@ -131,25 +131,39 @@ export default class BaseFormView {
        * id: user? from Db : generateId
        */
 
-      const userLoggedIn = helper.checkUserLoggedIn();
+      // const userLoggedIn = helper.checkUserLoggedIn();
 
       //time and date
       const timeOfCreation = helper.getTime();
       const dateOfCreation = helper.getDate();
 
+      // const formUserData = userName => {
+      //   const userData = {
+      //     event,
+      //     id: Math.floor(Math.random() * 100) + 1,
+      //     icon: eventTypeIcon,
+      //     color: eventTypeColor,
+      //     message: sanitizedTextAreaValue,
+      //     coords: [lat, lng],
+      //     userType: userLoggedIn ? 'user' : 'guest',
+      //     userName: userLoggedIn ? userName : 'Anonymous',
+      //     time: timeOfCreation,
+      //     date: dateOfCreation,
+      //   };
+
       const formUserData = userName => {
         const userData = {
           event,
-          id: Math.floor(Math.random() * 100) + 1,
+          // id will be coming in from both the guest and userDB
           icon: eventTypeIcon,
+          //need user data to associate this pin with this user.
           color: eventTypeColor,
           message: sanitizedTextAreaValue,
           coords: [lat, lng],
-          userType: userLoggedIn ? 'user' : 'guest',
-          userName: userLoggedIn ? userName : 'Anonymous',
           time: timeOfCreation,
           date: dateOfCreation,
         };
+
         return userData;
       };
       //pass it to the controller

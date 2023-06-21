@@ -16,6 +16,8 @@ if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SE
 
 
 
+
+
 } else {
     $userLogged= false;
     header("location:../../index.php?message=access_denied");

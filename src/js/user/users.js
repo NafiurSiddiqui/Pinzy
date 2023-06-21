@@ -1,0 +1,3 @@
+// class
+
+//detect guest type

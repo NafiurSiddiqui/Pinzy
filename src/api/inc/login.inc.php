@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
     //Error handler
     $loginController->loginUser();
 
-    
+   
 
 
     //send to userPage
