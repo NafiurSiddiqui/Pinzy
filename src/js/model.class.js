@@ -1,5 +1,6 @@
 export default class Model {
   _userName;
+  _userId;
   _globalState = [];
   _guestState = [];
   _userState = [];
@@ -10,6 +11,7 @@ export default class Model {
     this.getUserName();
     this.getLocalStorage();
     this.updateGlobalState();
+    this.getUserId();
   }
 
   getUserName() {
@@ -32,6 +34,22 @@ export default class Model {
       //remove name from local Storage
       localStorage.removeItem('userName');
       this._username = 'userName';
+    }
+  }
+
+  async getUserId() {
+    try {
+      const response = await fetch('../api/reqHandler/returnUserId.php');
+
+      if (response.ok) {
+        const data = await response.json();
+        const userId = data.user_id;
+        this._userId = userId;
+      } else {
+        console.error('Error:', response.status);
+      }
+    } catch (e) {
+      console.error(e);
     }
   }
 

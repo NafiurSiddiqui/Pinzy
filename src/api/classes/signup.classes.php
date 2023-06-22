@@ -16,16 +16,12 @@ class Signup
     public function __construct(\PDO $pdo)
     {
         $this->conn = $pdo;
-        var_dump($this->conn);
+        // var_dump($this->conn);
 
         
     }
 
-    public function testConn()
-    {
-        var_dump($this->conn);
-    }
-
+ 
 
     public function setUser($name, $email, $pass)
     {
