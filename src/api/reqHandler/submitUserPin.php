@@ -15,12 +15,19 @@ $submittedPins = json_decode(file_get_contents('php://input'), true);
 //get the value dynamically
 
 $numberOfElements = count($submittedPins);
+$coords = $submittedPins['coords'];
+
+// $latitude = $coords[0];
+// $longitude = $coords[1];
+// $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
+
 
 
 //--------debug
 $logFilePath = './pin_submission.log';
 $logMessage = var_export($submittedPins, true) . PHP_EOL;
 // $logMessage = var_export($loopedPins, true) . PHP_EOL;
+// $logMessage = var_export($point, true) . PHP_EOL;
 
 // Open the log file in append mode (create if it doesn't exist)
 $logFile = fopen($logFilePath, 'a');
@@ -45,23 +52,38 @@ require '../db/db-connector.php';
 
 //breakdown values
 
-$loopedPins = [];
-
-foreach($submittedPins as $key=>$value) {
-    $loopedPins[$key] = $value;
-}
 
 // insert into database
 
-$sqlInsert = 'INSERT INTO pintzy_user_pin (user_id, pin_color, pin_icon, pin_message, pin_coords, pin_time, pin_date) VALUES (?, ?, ?, ?, ?,?,?)';
-// $sqlInsert = 'INSERT INTO pintzy_user_pin (user_id, pin_color, pin_icon, pin_message, pin_coords, pin_time, pin_date) VALUES (?, ?, ?, ?, ?,?,?)';
-$stmt = $pdo;
+$sqlInsert = 'INSERT INTO pintzy_user_pin (user_id, pin_event, pin_color, pin_icon, pin_message, pin_lat, pin_lng, pin_time, pin_date) VALUES (?,?,?,?,?,?,?,?,?)';
 
-// try {
-//     //code...
-//     // $stmt->prepare($sqlInsert);
 
-//     // $stmt->exec()
-// } catch (PDOException $e) {
-//     //throw $th;
-// }
+$conn = $pdo;
+
+try {
+
+
+    $userId = $submittedPins['userId'];
+    $event = $submittedPins['event'];
+    $color = $submittedPins['color'];
+    $icon = $submittedPins['icon'];
+    $message = $submittedPins['message'];
+    // $coords = json_encode($submittedPins['coords']);
+    $coords = $submittedPins['coords'];
+    $lat = $coords[0];
+    $lng = $coords[1];
+    // $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
+
+    $time = $submittedPins['time'];
+    $date = $submittedPins['date'];
+
+
+    //prepare and exec
+    $conn->prepare($sqlInsert)->execute([$userId, $event, $color, $icon, $message, $lat, $lng,$time, $date]);
+
+    
+
+    // $stmt->exec()
+} catch (PDOException $e) {
+    throw new Exception("Data not subimitted. Something went wrong");
+}
