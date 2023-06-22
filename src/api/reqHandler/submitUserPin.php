@@ -6,7 +6,7 @@
 //     exit();
 // }
 
-$submittedPins = json_decode($_POST['pins']);
+$submittedPins = json_decode($_POST['pin']);
 
 if(!$submittedPins) {
     throw new Error('Pin submitted is empty!');
@@ -21,6 +21,8 @@ if(!$submittedPins) {
 }
 
 require '../db/db-connector.php';
+
+//insert into database table with all of the information from form submission
 
 
 $sqlInsert = 'INSERT INTO pintzy_user_pin (user_id, pin_type, pin_message, pin_latitude, pin_longitude, pin_date,pin_time) VALUES (?, ?, ?, ?, ?,?,?)';

@@ -50,7 +50,7 @@ export default class FormView extends BaseFormView {
   }
 
   //submit form
-  dataHandler(handler) {
-    this.baseDataHandler(handler);
+  dataHandler(handler, userId) {
+    this.baseDataHandler(handler, userId);
   }
 }

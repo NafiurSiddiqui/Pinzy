@@ -79,6 +79,29 @@ export default class Model {
     this.updateGlobalState();
   }
 
+  async sendPinsToServer(data) {
+    if (!data) throw new Error('No data has been provided.');
+
+    console.error('No data is prodivded');
+
+    const url = '../api/reqHandler/submitUserPin.php';
+    const pin = `pin=${encodeURIComponent(JSON.stringify(data))}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: pin,
+      });
+
+      response.ok
+        ? console.log('data successfully submitted')
+        : console.log('data FAILED to submit');
+    } catch (e) {
+      console.error(`submission error: ${e}`);
+    }
+  }
+
   getLocalStorage() {
     //get user data
     const guestData = JSON.parse(localStorage.getItem('guest')) || [];

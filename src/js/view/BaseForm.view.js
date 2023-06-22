@@ -113,7 +113,7 @@ export default class BaseFormView {
   }
 
   //submit form
-  baseDataHandler(handler) {
+  baseDataHandler(handler, userId) {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
       //get the values
@@ -151,21 +151,18 @@ export default class BaseFormView {
       //     date: dateOfCreation,
       //   };
 
-      const formUserData = userName => {
-        const userData = {
-          event,
-          // id will be coming in from both the guest and userDB
-          icon: eventTypeIcon,
-          //need user data to associate this pin with this user.
-          color: eventTypeColor,
-          message: sanitizedTextAreaValue,
-          coords: [lat, lng],
-          time: timeOfCreation,
-          date: dateOfCreation,
-        };
-
-        return userData;
+      const formUserData = {
+        event,
+        // id will be coming in from both the guest and userDB
+        userId,
+        color: eventTypeColor,
+        icon: eventTypeIcon,
+        message: sanitizedTextAreaValue,
+        coords: [lat, lng],
+        time: timeOfCreation,
+        date: dateOfCreation,
       };
+
       //pass it to the controller
       handler(formUserData);
       //clear inputs

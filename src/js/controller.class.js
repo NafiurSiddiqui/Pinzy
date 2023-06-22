@@ -14,6 +14,7 @@ class Controller {
   form;
   view;
   model;
+  _userId;
 
   constructor() {
     this.model = new Model();
@@ -22,10 +23,11 @@ class Controller {
       this.model._userState,
       this.model._globalState
     );
+    this.userId = this.model._userId;
 
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
-    this.view.form.dataHandler(this.controlUserData);
+    this.view.form.dataHandler(this.controlUserData, this._userId);
     this.controlPinOutput();
   }
 
