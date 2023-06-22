@@ -79,24 +79,36 @@ export default class Model {
     this.updateGlobalState();
   }
 
-  async sendPinsToServer(data) {
+  async sendPinToServer(data) {
     if (!data) throw new Error('No data has been provided.');
 
-    console.error('No data is prodivded');
+    // console.error('No data is prodivded');
 
     const url = '../api/reqHandler/submitUserPin.php';
-    const pin = `pin=${encodeURIComponent(JSON.stringify(data))}`;
+    // const pin = `pin=${encodeURIComponent(JSON.stringify(data))}`;
 
     try {
-      const response = await fetch(url, {
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: pin,
+        // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: JSON.stringify(data),
+        // body: pin,
       });
 
-      response.ok
-        ? console.log('data successfully submitted')
-        : console.log('data FAILED to submit');
+      // response.ok
+      //   ? console.log('data successfully submitted')
+      //   : console.log('data FAILED to submit');
+
+      if (res.ok) {
+        const result = await res.text();
+        console.log('Data successfully submitted:');
+
+        // Redirect to the PHP endpoint
+        // window.location.href = url;
+      } else {
+        console.log('Data failed to submit');
+      }
     } catch (e) {
       console.error(`submission error: ${e}`);
     }

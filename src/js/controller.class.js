@@ -32,18 +32,21 @@ class Controller {
   }
 
   controlUserData(data) {
-    let userData = data();
+    // let userData = data();
 
-    if (data().userType === 'guest') {
-      //guest data
+    // if (data().userType === 'guest') {
+    //   //guest data
 
-      this.model.saveGuestToLocalStorage(userData);
-    } else {
-      //set data with dynamic username
-      let userDataWithName = data(this.model._userName);
-      //store userData
-      this.model.saveUserToLocalStorage(userDataWithName);
-    }
+    //   this.model.saveGuestToLocalStorage(userData);
+    // } else {
+    //set data with dynamic username
+    // let userDataWithName = data(this.model._userName);
+    //store userData
+    // this.model.saveUserToLocalStorage(userDataWithName);
+    // this.model.saveUserToLocalStorage(data);
+    console.log(data);
+    this.model.sendPinToServer(data);
+    // }
   }
 
   controlPinOutput() {
