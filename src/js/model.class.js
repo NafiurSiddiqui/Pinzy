@@ -38,16 +38,13 @@ export default class Model {
   }
 
   async getUserId() {
-    // const userId = fetch();
-
     try {
       const response = await fetch('../api/reqHandler/returnUserId.php');
 
       if (response.ok) {
         const data = await response.json();
-        // const userId = data.user_id;
-        // console.log('User ID:', userId);
-        console.log(data);
+        const userId = data.user_id;
+        this._userId = userId;
       } else {
         console.error('Error:', response.status);
       }
