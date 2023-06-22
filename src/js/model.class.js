@@ -11,7 +11,8 @@ export default class Model {
     this.getUserName();
     this.getLocalStorage();
     this.updateGlobalState();
-    this.getUserId();
+    this.getUserId = this.getUserId.bind(this);
+    // this.getUserId();
   }
 
   getUserName() {
@@ -44,7 +45,7 @@ export default class Model {
       if (response.ok) {
         const data = await response.json();
         const userId = data.user_id;
-        this._userId = userId;
+        return userId;
       } else {
         console.error('Error:', response.status);
       }
@@ -82,33 +83,20 @@ export default class Model {
   async sendPinToServer(data) {
     if (!data) throw new Error('No data has been provided.');
 
-    // console.error('No data is prodivded');
-
+    const userId = await this.getUserId();
+    const newData = { userId, ...data };
     const url = '../api/reqHandler/submitUserPin.php';
-    // const pin = `pin=${encodeURIComponent(JSON.stringify(data))}`;
 
     try {
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: JSON.stringify(data),
-        // body: pin,
+        body: JSON.stringify(newData),
       });
 
-      // response.ok
-      //   ? console.log('data successfully submitted')
-      //   : console.log('data FAILED to submit');
-
-      if (res.ok) {
-        const result = await res.text();
-        console.log('Data successfully submitted:');
-
-        // Redirect to the PHP endpoint
-        // window.location.href = url;
-      } else {
-        console.log('Data failed to submit');
-      }
+      res.ok
+        ? console.log('data successfully submitted')
+        : console.log('data FAILED to submit');
     } catch (e) {
       console.error(`submission error: ${e}`);
     }

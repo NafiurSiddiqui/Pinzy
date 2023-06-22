@@ -27,7 +27,7 @@ class Controller {
 
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
-    this.view.form.dataHandler(this.controlUserData, this._userId);
+    this.view.form.dataHandler(this.controlUserData);
     this.controlPinOutput();
   }
 
@@ -44,7 +44,7 @@ class Controller {
     //store userData
     // this.model.saveUserToLocalStorage(userDataWithName);
     // this.model.saveUserToLocalStorage(data);
-    console.log(data);
+
     this.model.sendPinToServer(data);
     // }
   }

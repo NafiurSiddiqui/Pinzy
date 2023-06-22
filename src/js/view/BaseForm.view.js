@@ -113,7 +113,7 @@ export default class BaseFormView {
   }
 
   //submit form
-  baseDataHandler(handler, userId) {
+  baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
       //get the values
@@ -153,8 +153,6 @@ export default class BaseFormView {
 
       const formUserData = {
         event,
-        // id will be coming in from both the guest and userDB
-        userId,
         color: eventTypeColor,
         icon: eventTypeIcon,
         message: sanitizedTextAreaValue,
