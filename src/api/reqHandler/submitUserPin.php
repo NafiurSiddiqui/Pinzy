@@ -50,7 +50,7 @@ if (!$submittedPins) {
 
 require '../db/db-connector.php';
 
-//breakdown values
+
 
 
 // insert into database
