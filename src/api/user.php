@@ -6,11 +6,11 @@ session_start();
 $userName = "Sum ting wen wong";
 $userLogged = false;
 
-if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== true)) {
+if(isset($_SESSION["user_id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== true)) {
 
    
-    if (isset($_SESSION["userName"])) {
-        $userName = $_SESSION["userName"];
+    if (isset($_SESSION["user_name"])) {
+        $userName = $_SESSION["user_name"];
         $userLogged = true;
     }
 
