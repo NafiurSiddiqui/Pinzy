@@ -96,7 +96,6 @@ export default class Model {
 
       const result = await response.json();
       this._userPins.push(result);
-      console.log(result);
     } catch (error) {
       console.error(error);
     }
