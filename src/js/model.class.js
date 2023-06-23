@@ -1,10 +1,13 @@
+import { helper } from './helper.js';
+
 export default class Model {
-  _userName;
-  _userId;
+  _userName = '';
+  _userId = null;
   _globalState = [];
   _guestState = [];
-  _userState = [];
+  _userPins = [];
   _globalStateKey = 'globalState';
+  userType = null;
 
   constructor() {
     this.getUserName = this.getUserName.bind(this);
@@ -12,7 +15,8 @@ export default class Model {
     this.getLocalStorage();
     this.updateGlobalState();
     this.getUserId = this.getUserId.bind(this);
-    // this.getUserId();
+    this.userType = helper.checkUserLoggedIn();
+    this.fetchUserData();
   }
 
   getUserName() {
@@ -70,14 +74,32 @@ export default class Model {
     this.updateGlobalState();
   }
 
-  saveUserToLocalStorage(data) {
-    if (data === undefined || '') throw new Error('Must set data for user');
+  // saveUserToLocalStorage(data) {
+  //   if (data === undefined || '') throw new Error('Must set data for user');
 
-    let userData = JSON.parse(localStorage.getItem('user')) || [];
+  //   let userData = JSON.parse(localStorage.getItem('user')) || [];
 
-    userData.push(data);
-    localStorage.setItem('user', JSON.stringify(userData));
-    this.updateGlobalState();
+  //   userData.push(data);
+  //   localStorage.setItem('user', JSON.stringify(userData));
+  //   this.updateGlobalState();
+  // }
+
+  async fetchUserData() {
+    //who logged in?
+    if (!this.userType) return;
+
+    const url = '../api/reqHandler/returnUserPin.php';
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) return;
+
+      const result = await response.json();
+      this._userPins.push(result);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async sendPinToServer(data) {
@@ -105,19 +127,19 @@ export default class Model {
   getLocalStorage() {
     //get user data
     const guestData = JSON.parse(localStorage.getItem('guest')) || [];
-    const userData = JSON.parse(localStorage.getItem('user')) || [];
+    // const userData = JSON.parse(localStorage.getItem('user')) || [];
 
     //update state
     if (guestData.length > 0) {
       this._guestState = guestData;
     }
     //update state
-    if (userData.length > 0) {
-      this._userState = userData;
-    }
+    // if (userData.length > 0) {
+    // this._userPins = userData;
+    // }
   }
 
   updateGlobalState() {
-    this._globalState = [...this._guestState, ...this._userState];
+    this._globalState = [...this._guestState, ...this._userPins];
   }
 }

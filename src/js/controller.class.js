@@ -20,7 +20,7 @@ class Controller {
     this.model = new Model();
     this.view = new View(
       this.model._guestState,
-      this.model._userState,
+      this.model._userPins,
       this.model._globalState
     );
     this.userId = this.model._userId;
