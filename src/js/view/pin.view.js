@@ -47,7 +47,6 @@ export default class Pin extends FormEditorView {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
-    console.log(this.userPins);
   }
 
   renderPinOnMap(pin) {
@@ -79,8 +78,8 @@ export default class Pin extends FormEditorView {
   renderPinOnProfile(pins, pinData, pinContainer) {
     const isGuest = pinData.userType === 'guest';
     const pinLimit = isGuest ? 10 : 100;
-
-    if (pins.length < pinLimit) {
+    console.log(pins[0].length);
+    if (pins[0].length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(
         'beforeend',
@@ -159,7 +158,6 @@ export default class Pin extends FormEditorView {
    * @param {HTMLUListElement} pinContainerType
    */
   handlePinRenderer(pinType, userType, pinContainerType) {
-    console.log(pinType);
     pinType[0].forEach(pin => {
       //render pin on map
       this.renderPinOnMap(pin);
@@ -181,28 +179,27 @@ export default class Pin extends FormEditorView {
     const profileMsgEl = document.querySelector('.default-msg');
     //Guest
     if (this.guestPins.length) {
-      profileMsgEl.classList.add('hidden');
+      // profileMsgEl.classList.add('hidden');
       this.guestPinContainer?.classList.remove('hidden');
     } else {
-      profileMsgEl.classList.remove('hidden');
-
+      // profileMsgEl.classList.remove('hidden');
       this.guestPinContainer?.classList.add('hidden');
     }
     //User
-
-    if (this.userPins.length) {
-      profileMsgEl.classList.add('hidden');
+    // console.log(this.userPins[0].length > 0);
+    if (this.userPins[0].length) {
+      // profileMsgEl.classList.add('hidden');
       this.userPinContainer?.classList.remove('hidden');
     } else {
-      profileMsgEl.classList.remove('hidden');
+      // profileMsgEl.classList.remove('hidden');
       this.userPinContainer?.classList.add('hidden');
     }
     //global management
     if (this.globalPins.length) {
-      profileMsgEl.classList.add('hidden');
+      // profileMsgEl.classList.add('hidden');
       this.globalPinContainer?.classList.remove('hidden');
     } else {
-      profileMsgEl.classList.remove('hidden');
+      // profileMsgEl.classList.remove('hidden');
       this.globalPinContainer?.classList.add('hidden');
     }
   }

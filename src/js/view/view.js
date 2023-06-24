@@ -100,7 +100,15 @@ export default class View {
       spinnerWrapper.classList.add('hidden');
       spinnerWrapper.classList.remove('flex');
       spinner.classList.remove('spin');
-      defaultMsgEl.textContent = 'No pins created yet.';
+
+      if (this.userPins[0].length > 0) {
+        defaultMsgEl.innerHTML = '';
+
+        defaultMsgEl.classList.add('hidden');
+      } else {
+        defaultMsgEl.innerHTML = 'No pins created';
+        defaultMsgEl.classList.remove('hidden');
+      }
     }
   }
 
