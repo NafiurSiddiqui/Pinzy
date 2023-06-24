@@ -6,11 +6,12 @@ export default class PinCard {
    */
 
   generatePinCard(data, guest = null) {
-    console.log(data);
+    if (!data) return;
+
     let html = `
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-zinc-50 border  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm" 
-            data-id="${data.id}"
+            data-id="${data[0].id}"
           >
             <!-- flag -->
             <span
@@ -29,7 +30,7 @@ export default class PinCard {
                   <div
                     class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"
                   >
-                    ${data.userName}
+                    ${data[0].userName}
                   </div>
                 </div>
               

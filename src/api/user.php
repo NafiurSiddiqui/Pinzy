@@ -53,9 +53,10 @@ include './layout/header-pin.php';
     <i class="fa-regular fa-user fa-2xl text-zinc-400"></i>
   </div>
   <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-400 text-2xl" data-userName="
-  <?echo $userLogged ? $userName : " Anonymous"; ?>
-
-    ">
+  <?php
+    echo $userLogged ? $userName : "Anonymous";
+?>
+  ">
     <?php
            
 echo $userLogged? $userName: '';
