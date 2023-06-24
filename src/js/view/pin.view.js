@@ -78,7 +78,7 @@ export default class Pin extends FormEditorView {
   renderPinOnProfile(pins, pinData, pinContainer) {
     const isGuest = pinData.userType === 'guest';
     const pinLimit = isGuest ? 10 : 100;
-    console.log(pins[0].length);
+
     if (pins[0].length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(

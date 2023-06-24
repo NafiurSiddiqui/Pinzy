@@ -97,18 +97,24 @@ export default class Map extends Pin {
 
     if (!pinEl) return;
 
+    // const coords = [this.userPins[0].pin_lat, this.userPins[0].pin_lng];
+
+    console.log(this.userPins[0]);
+
     let pin;
+    let coords = null;
+    console.log(this.findPinId(this.userPins[0], pinEl));
     //check the user type
     if (this.isGlobalPinPage) {
       pin = this.findPinId(this.globalPins, pinEl);
     } else {
       pin =
         this.userType === 'user'
-          ? this.findPinId(this.userPins, pinEl)
+          ? this.findPinId(this.userPins[0], pinEl)
           : this.findPinId(this.globalPins, pinEl);
     }
 
-    this.map.setView(pin.coords, this.mapZoomLevel, {
+    this.map.setView([pin.pin_lat, pin.pin_lng], this.mapZoomLevel, {
       animate: true,
       pan: {
         duration: 1,
@@ -117,7 +123,7 @@ export default class Map extends Pin {
   }
 
   //helper DRY
-  findPinId(el, pinEl) {
-    return el.find(pin => pin.id === +pinEl.dataset.id);
+  findPinId(pins, pinEl) {
+    return pins.find(pin => pin.id === +pinEl.dataset.id);
   }
 }
