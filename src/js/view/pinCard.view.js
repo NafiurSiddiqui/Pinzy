@@ -1,3 +1,6 @@
+const userNameEl = document.querySelector('.user-profile-header_user-name');
+let userName = userNameEl.dataset.username.trim();
+
 export default class PinCard {
   /**
    *
@@ -15,7 +18,7 @@ export default class PinCard {
           >
             <!-- flag -->
             <span
-              class="pin-card_flag inline-block w-3 flag-${data.event} "
+              class="pin-card_flag inline-block w-3 flag-${data[0].pin_event} "
             ></span>
             <div
               class="pin-card-wrapper w-full pl-3 pr-2 py-4 flex flex-col justify-center"
@@ -30,7 +33,7 @@ export default class PinCard {
                   <div
                     class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"
                   >
-                    ${data[0].userName}
+                    ${userName}
                   </div>
                 </div>
               
