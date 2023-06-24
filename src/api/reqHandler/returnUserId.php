@@ -3,9 +3,9 @@
 session_start();
 
 //userID API
-if(isset($_SESSION["id"])) {
+if(isset($_SESSION["user_id"])) {
     //get the id
-    $userId = $_SESSION["id"];
+    $userId = $_SESSION["user_id"];
     //prepare the response data
     $response = [
         'user_id'=> $userId,

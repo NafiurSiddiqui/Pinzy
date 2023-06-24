@@ -4,7 +4,8 @@ session_start();
 
 //make sure user is logged in
 
-if(!isset($_SESSION["user_id"])) {
+
+if (!isset($_SESSION["user_id"])) {
 
     //send HTTP response
     header('HTTP/1.1 401 Unauthorized');

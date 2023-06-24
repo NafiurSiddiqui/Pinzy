@@ -161,6 +161,8 @@ export default class BaseFormView {
         date: dateOfCreation,
       };
 
+      console.log(formUserData);
+
       //pass it to the controller
       handler(formUserData);
       //clear inputs

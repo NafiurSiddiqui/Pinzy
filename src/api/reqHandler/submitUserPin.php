@@ -1,20 +1,22 @@
 <?php
 
+session_start();
+
 //make sure user is authenticated
-// if (!isset($_SESSION["id"])) {
-//     header('Location: index.php'); //redirect to login page if not logged in
-//     exit();
-// }
+if (!isset($_SESSION["user_id"])) {
+    header('Location:../../../index.php?message=access_denied'); //redirect to login page if not logged in
+    exit();
+}
 
 // / Log the request to verify it reaches this endpoint
-// file_put_contents('request.log', 'Request received: ' . date('Y-m-d H:i:s') . PHP_EOL, FILE_APPEND);
+file_put_contents('request.log', 'Request received: ' . date('Y-m-d H:i:s') . PHP_EOL, FILE_APPEND);
 
 //get the submitted data
 $submittedPins = json_decode(file_get_contents('php://input'), true);
 
 //get the value dynamically
 
-$numberOfElements = count($submittedPins);
+// $numberOfElements = count($submittedPins);
 $coords = $submittedPins['coords'];
 
 // $latitude = $coords[0];
