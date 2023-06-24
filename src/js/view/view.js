@@ -22,12 +22,12 @@ let sidebarIsOpen = false;
  * map
  */
 export default class View {
-  guestEditor;
   form;
+  guestEditor;
   formEditor;
   map;
   guestPins = [];
-  userPins = [];
+  userPins = null;
   globalPins = [];
   pinClass;
   userType;
@@ -61,13 +61,15 @@ export default class View {
         this.pinClass = new Pin(
           map,
           this.guestPins,
-          this.usrePins,
+          this.userPins,
           this.globalPins,
           this.map.userType
         );
       } else {
-        console.log('No map');
         // Handle the case where map is not available
+        console.error(
+          'Map is not initiated. Prolly user did not allow to locate'
+        );
       }
     });
   }

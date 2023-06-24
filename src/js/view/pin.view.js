@@ -22,9 +22,9 @@ export default class Pin extends FormEditorView {
   guestPinCountEl = guestPinCountEl;
   userPinCountEl = userPinCountEl;
   pinCard;
-  guestPins = [];
-  userPins = [];
-  globalPins = [];
+  guestPins = null;
+  userPins = null;
+  globalPins = null;
   userType;
 
   /**
@@ -47,12 +47,12 @@ export default class Pin extends FormEditorView {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
+    console.log(this.userPins);
   }
 
   renderPinOnMap(pin) {
-    console.log(pin);
-    const lat = pin[0].pin_lat;
-    const lng = pin[0].pin_lng;
+    const lat = pin.pin_lat;
+    const lng = pin.pin_lng;
     let coords = [lat, lng];
 
     L.marker(coords)
@@ -63,10 +63,10 @@ export default class Pin extends FormEditorView {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${pin[0].pin_event}-popup`,
+          className: `${pin.pin_event}-popup`,
         })
       )
-      .setPopupContent(` ${pin[0].pin_message}`)
+      .setPopupContent(` ${pin.pin_message}`)
       .openPopup();
   }
 
@@ -159,7 +159,8 @@ export default class Pin extends FormEditorView {
    * @param {HTMLUListElement} pinContainerType
    */
   handlePinRenderer(pinType, userType, pinContainerType) {
-    pinType.forEach(pin => {
+    console.log(pinType);
+    pinType[0].forEach(pin => {
       //render pin on map
       this.renderPinOnMap(pin);
 
@@ -188,6 +189,7 @@ export default class Pin extends FormEditorView {
       this.guestPinContainer?.classList.add('hidden');
     }
     //User
+
     if (this.userPins.length) {
       profileMsgEl.classList.add('hidden');
       this.userPinContainer?.classList.remove('hidden');
