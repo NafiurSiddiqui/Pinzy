@@ -1,17 +1,22 @@
+import { helper } from './helper.js';
+
 export default class Model {
-  _userName;
-  _userId;
+  _userName = '';
+  _userId = null;
   _globalState = [];
   _guestState = [];
-  _userState = [];
+  _userPins = [];
   _globalStateKey = 'globalState';
+  userType = null;
 
   constructor() {
     this.getUserName = this.getUserName.bind(this);
     this.getUserName();
     this.getLocalStorage();
     this.updateGlobalState();
-    this.getUserId();
+    this.getUserId = this.getUserId.bind(this);
+    this.userType = helper.checkUserLoggedIn();
+    this.fetchUserData();
   }
 
   getUserName() {
@@ -44,7 +49,7 @@ export default class Model {
       if (response.ok) {
         const data = await response.json();
         const userId = data.user_id;
-        this._userId = userId;
+        return userId;
       } else {
         console.error('Error:', response.status);
       }
@@ -69,32 +74,71 @@ export default class Model {
     this.updateGlobalState();
   }
 
-  saveUserToLocalStorage(data) {
-    if (data === undefined || '') throw new Error('Must set data for user');
+  // saveUserToLocalStorage(data) {
+  //   if (data === undefined || '') throw new Error('Must set data for user');
 
-    let userData = JSON.parse(localStorage.getItem('user')) || [];
+  //   let userData = JSON.parse(localStorage.getItem('user')) || [];
 
-    userData.push(data);
-    localStorage.setItem('user', JSON.stringify(userData));
-    this.updateGlobalState();
+  //   userData.push(data);
+  //   localStorage.setItem('user', JSON.stringify(userData));
+  //   this.updateGlobalState();
+  // }
+
+  async fetchUserData() {
+    //who logged in?
+    if (!this.userType) return;
+
+    const url = '../api/reqHandler/returnUserPin.php';
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) return;
+
+      const result = await response.json();
+      this._userPins.push(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async sendPinToServer(data) {
+    if (!data) throw new Error('No data has been provided.');
+
+    const userId = await this.getUserId();
+    const newData = { userId, ...data };
+    const url = '../api/reqHandler/submitUserPin.php';
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newData),
+      });
+
+      res.ok
+        ? console.log('data successfully submitted')
+        : console.log('data FAILED to submit');
+    } catch (e) {
+      console.error(`submission error: ${e}`);
+    }
   }
 
   getLocalStorage() {
     //get user data
     const guestData = JSON.parse(localStorage.getItem('guest')) || [];
-    const userData = JSON.parse(localStorage.getItem('user')) || [];
+    // const userData = JSON.parse(localStorage.getItem('user')) || [];
 
     //update state
     if (guestData.length > 0) {
       this._guestState = guestData;
     }
     //update state
-    if (userData.length > 0) {
-      this._userState = userData;
-    }
+    // if (userData.length > 0) {
+    // this._userPins = userData;
+    // }
   }
 
   updateGlobalState() {
-    this._globalState = [...this._guestState, ...this._userState];
+    this._globalState = [...this._guestState, ...this._userPins];
   }
 }

@@ -14,14 +14,16 @@ class Controller {
   form;
   view;
   model;
+  _userId;
 
   constructor() {
     this.model = new Model();
     this.view = new View(
       this.model._guestState,
-      this.model._userState,
+      this.model._userPins,
       this.model._globalState
     );
+    this.userId = this.model._userId;
 
     this.init();
     this.controlUserData = this.controlUserData.bind(this);
@@ -30,18 +32,21 @@ class Controller {
   }
 
   controlUserData(data) {
-    let userData = data();
+    // let userData = data();
 
-    if (data().userType === 'guest') {
-      //guest data
+    // if (data().userType === 'guest') {
+    //   //guest data
 
-      this.model.saveGuestToLocalStorage(userData);
-    } else {
-      //set data with dynamic username
-      let userDataWithName = data(this.model._userName);
-      //store userData
-      this.model.saveUserToLocalStorage(userDataWithName);
-    }
+    //   this.model.saveGuestToLocalStorage(userData);
+    // } else {
+    //set data with dynamic username
+    // let userDataWithName = data(this.model._userName);
+    //store userData
+    // this.model.saveUserToLocalStorage(userDataWithName);
+    // this.model.saveUserToLocalStorage(data);
+
+    this.model.sendPinToServer(data);
+    // }
   }
 
   controlPinOutput() {

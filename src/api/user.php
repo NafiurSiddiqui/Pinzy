@@ -6,11 +6,11 @@ session_start();
 $userName = "Sum ting wen wong";
 $userLogged = false;
 
-if(isset($_SESSION["id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== true)) {
+if(isset($_SESSION["user_id"]) || (isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== true)) {
 
    
-    if (isset($_SESSION["userName"])) {
-        $userName = $_SESSION["userName"];
+    if (isset($_SESSION["user_name"])) {
+        $userName = $_SESSION["user_name"];
         $userLogged = true;
     }
 
@@ -52,7 +52,10 @@ include './layout/header-pin.php';
     class="user-profile_header-user-image border border-slate-300 w-16 h-16 rounded-full p-2 bg-zinc-100 flex justify-center items-center">
     <i class="fa-regular fa-user fa-2xl text-zinc-400"></i>
   </div>
-  <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-400 text-2xl">
+  <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-400 text-2xl" data-userName="
+  <?echo $userLogged ? $userName : " Anonymous"; ?>
+
+    ">
     <?php
            
 echo $userLogged? $userName: '';

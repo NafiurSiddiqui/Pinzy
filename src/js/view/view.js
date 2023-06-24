@@ -31,13 +31,13 @@ export default class View {
   globalPins = [];
   pinClass;
   userType;
-  constructor(guestState, userState, globalPins) {
+  constructor(guestState, userPins, globalPins) {
     this.renderSpinner(true);
     this.form = new FormView();
     this.formEditor = new FormEditorView();
     this.guestEditor = new GuestEditor();
     this.guestPins = guestState;
-    this.userPins = userState;
+    this.userPins = userPins;
     this.globalPins = globalPins;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);

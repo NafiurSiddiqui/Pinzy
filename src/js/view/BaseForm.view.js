@@ -151,21 +151,16 @@ export default class BaseFormView {
       //     date: dateOfCreation,
       //   };
 
-      const formUserData = userName => {
-        const userData = {
-          event,
-          // id will be coming in from both the guest and userDB
-          icon: eventTypeIcon,
-          //need user data to associate this pin with this user.
-          color: eventTypeColor,
-          message: sanitizedTextAreaValue,
-          coords: [lat, lng],
-          time: timeOfCreation,
-          date: dateOfCreation,
-        };
-
-        return userData;
+      const formUserData = {
+        event,
+        color: eventTypeColor,
+        icon: eventTypeIcon,
+        message: sanitizedTextAreaValue,
+        coords: [lat, lng],
+        time: timeOfCreation,
+        date: dateOfCreation,
       };
+
       //pass it to the controller
       handler(formUserData);
       //clear inputs
@@ -174,7 +169,7 @@ export default class BaseFormView {
       this.baseHideForm();
 
       //refresh manually
-      this.baseRefreshContent();
+      // this.baseRefreshContent();
     });
   }
 

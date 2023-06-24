@@ -49,8 +49,13 @@ export default class Pin extends FormEditorView {
     this.userType = userType;
   }
 
-  renderPinOnMap(values) {
-    L.marker(values.coords)
+  renderPinOnMap(pin) {
+    console.log(pin);
+    const lat = pin[0].pin_lat;
+    const lng = pin[0].pin_lng;
+    let coords = [lat, lng];
+
+    L.marker(coords)
       .addTo(this.map)
       .bindPopup(
         L.popup({
@@ -58,10 +63,10 @@ export default class Pin extends FormEditorView {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${values.event}-popup`,
+          className: `${pin[0].pin_event}-popup`,
         })
       )
-      .setPopupContent(` ${values.message}`)
+      .setPopupContent(` ${pin[0].pin_message}`)
       .openPopup();
   }
 

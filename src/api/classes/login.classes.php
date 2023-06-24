@@ -70,8 +70,8 @@ class Login
             $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
             session_start();
 
-            $_SESSION["id"] = $user[0]['id'];
-            $_SESSION["userName"] = $user[0]["user_name"];
+            $_SESSION["user_id"] = $user[0]['id'];
+            $_SESSION["user_name"] = $user[0]["user_name"];
             $stmt = null;
             
         }
