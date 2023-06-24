@@ -6,6 +6,7 @@ export default class PinCard {
    */
 
   generatePinCard(data, guest = null) {
+    console.log(data);
     let html = `
      <li
             class="flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-zinc-50 border  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm" 
@@ -35,7 +36,7 @@ export default class PinCard {
                 <div
                   class="pin-card-header_event-icon border border-zinc-200 bg-zinc-50 rounded-sm px-1 py-1 text-center flex-grow-0"
                 >
-                  ${data.icon}
+                  ${data[0].pin_icon}
                 </div>
               </section>
               <div class="flex mt-4 mb-1">
@@ -44,12 +45,12 @@ export default class PinCard {
                   class="pin-date text-zinc-400 w-4/5  text-[0.6rem]"
                 >
                   <i class="fa-regular fa-calendar"></i>
-                  ${data.date}
+                  ${data[0].pin_date}
                 </span>
                 <!-- edit -->
                 <div class="pin-edit-box__container relative z-40
                
-                " data-id="${data.id}">
+                " data-id="${data[0].id}">
                 <i class="fa-solid fa-ellipsis p-1 rounded-sm hover:cursor-pointer text-zinc-300 hover:text-zinc-400 
                  ${guest ? 'hidden' : 'inline-block'}
                 "></i>
@@ -72,13 +73,13 @@ export default class PinCard {
                 >
                   
                   <i class="fa-regular fa-clock text-zinc-400"></i>
-                  ${data.time}
+                  ${data[0].pin_time}
                 </span>
               </div>
               <p
                 class="pin-card-text py-2 px-2 border border-zinc-200 bg-white text-zinc-500 text-sm"
               >
-                ${data.message}
+                ${data[0].pin_message}
               </p>
             </div>
           </li>
