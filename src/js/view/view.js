@@ -21,6 +21,7 @@ let sidebarIsOpen = false;
  * Sidebar UI
  * map
  */
+
 export default class View {
   form;
   guestEditor;
@@ -31,17 +32,11 @@ export default class View {
   globalPins = [];
   pinClass;
   userType;
-  constructor(guestState, userPins, globalPins) {
+
+  constructor(guestState, userPins, globalPins, editDataHandler) {
+    this.userPins = userPins;
     this.renderSpinner(true);
     this.form = new FormView();
-    this.formEditor = new FormEditorView();
-    this.guestEditor = new GuestEditor();
-    this.guestPins = guestState;
-    this.userPins = userPins;
-    this.globalPins = globalPins;
-    this.renderForm = this.renderForm.bind(this);
-    this.hideForm = this.hideForm.bind(this);
-
     this.map = new Map(
       this.guestPins,
       this.userPins,
@@ -49,6 +44,13 @@ export default class View {
       this.renderForm,
       this.renderSpinner
     );
+    this.formEditor = new FormEditorView(userPins, editDataHandler);
+    this.guestEditor = new GuestEditor();
+    this.guestPins = guestState;
+    this.globalPins = globalPins;
+    this.renderForm = this.renderForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
+
     this.newEvHandler = this.map.newMapEvHandler;
     this.hideForm();
     this.sidebarHanlder();
@@ -63,7 +65,8 @@ export default class View {
           this.guestPins,
           this.userPins,
           this.globalPins,
-          this.map.userType
+          this.map.userType,
+          this.formEditor
         );
       } else {
         // Handle the case where map is not available
@@ -101,7 +104,7 @@ export default class View {
       spinnerWrapper.classList.remove('flex');
       spinner.classList.remove('spin');
 
-      if (this.userPins[0].length > 0) {
+      if (this.userPins?.length > 0) {
         defaultMsgEl.innerHTML = '';
 
         defaultMsgEl.classList.add('hidden');

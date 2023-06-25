@@ -70,12 +70,8 @@ try {
     $color = $submittedPins['color'];
     $icon = $submittedPins['icon'];
     $message = $submittedPins['message'];
-    // $coords = json_encode($submittedPins['coords']);
-    $coords = $submittedPins['coords'];
-    $lat = $coords[0];
-    $lng = $coords[1];
-    // $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
-
+    $lat = $submittedPins['lat'];
+    $lng = $submittedPins['lng'];
     $time = $submittedPins['time'];
     $date = $submittedPins['date'];
 

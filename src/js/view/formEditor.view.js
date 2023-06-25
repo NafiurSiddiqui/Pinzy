@@ -23,8 +23,13 @@ export default class FormEditorView extends BaseForm {
   userType = '';
   guestEditor;
   pinEdited = false;
-  constructor() {
+  userPins;
+  editPinHandler;
+
+  constructor(userPins, editPinHandler) {
     super();
+    this.userPins = userPins;
+    this.editBtnHandler = editPinHandler;
     this.baseValidateForm.bind(this);
     this.baseFormValidationHandler(
       this.eventTypeEditEl,
@@ -38,8 +43,9 @@ export default class FormEditorView extends BaseForm {
     helper.checkUserLoggedIn()
       ? (this.userType = 'user')
       : (this.userType = 'guest');
+    // console.log(this.userPins);
     this.actionHandler = this.actionHandler.bind(this);
-    this.actionHandler(this.userType);
+    this.actionHandler(editPinHandler);
   }
 
   setFormEditIsOpen(value) {
@@ -48,6 +54,7 @@ export default class FormEditorView extends BaseForm {
 
   //editBtn listener on card
   editBtnHandler(editBtn) {
+    console.log('editor btn handled');
     editBtn?.addEventListener('click', e => {
       e.stopPropagation();
       const editBox = e.currentTarget.nextElementSibling;
@@ -92,14 +99,76 @@ export default class FormEditorView extends BaseForm {
   }
 
   //MODEL CONCERNS
-  editMessage(id, userType) {
-    //get the items from localStorage
-    const data = JSON.parse(localStorage.getItem(userType));
+  // editMessage(id, userType) {
+  //   //get the items from localStorage
+  //   const data = JSON.parse(localStorage.getItem(userType));
 
-    const item = data.find(item => item.id === +id);
+  //   const item = data.find(item => item.id === +id);
+
+  //   //popup edit-input-form
+  //   // this.showEditForm();
+  //   this.baseShowForm(null, this.formEditBgEl);
+
+  //   //autoselect eventType and fill up the text area
+  //   this.eventTypeEditEl.value = item.event;
+  //   this.messageEditEl.value = item.message;
+
+  //   //get the newInput
+  //   this.btnEditSubmit?.addEventListener('click', e => {
+  //     e.preventDefault();
+  //     const newEventType = this.eventTypeEditEl.value;
+  //     const newMessage = this.messageEditEl.value;
+  //     //if event or message value changes
+  //     if (newEventType !== item.event || newMessage !== item.message) {
+  //       this.pinEdited = true;
+  //     }
+
+  //     //create a new object
+  //     const newItem = {
+  //       ...item,
+  //       event: newEventType,
+  //       icon: this.selectedEventIcon || item.icon,
+  //       message: newMessage,
+  //     };
+  //     // Update the corresponding event icon element
+  //     const listItemSelector = `li[data-id="${id}"]`;
+  //     // Get the specific <li> element
+  //     const listItem = document.querySelector(listItemSelector);
+  //     if (listItem) {
+  //       const eventIconEl = listItem.querySelector(
+  //         '.pin-card-header_event-icon'
+  //       );
+  //       // Find the event icon element within the <li> element
+  //       if (eventIconEl) {
+  //         eventIconEl.textContent = this.selectedEventIcon;
+  //       }
+  //     }
+
+  //     //!update localStorage - MODEL CONCERN
+
+  //     localStorage.setItem(
+  //       userType,
+  //       JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
+  //     );
+
+  //     //clear inputs
+
+  //     this.eventTypeEditEl.value = this.messageEditEl.value = '';
+
+  //     //hideInput
+  //     this.baseHideForm(this.formEditBgEl, this.formEditEl);
+  //     //refresh window to update the pins
+  //     this.watchForPinChanges();
+  //   });
+  // }
+  editMessage(id, dataHandler) {
+    //This needs to be called inside controller
+    console.log('edit msg is called');
+
+    //pass the item from model> controller
+    const item = this.userPins.find(item => item.id === +id);
 
     //popup edit-input-form
-    // this.showEditForm();
     this.baseShowForm(null, this.formEditBgEl);
 
     //autoselect eventType and fill up the text area
@@ -127,6 +196,7 @@ export default class FormEditorView extends BaseForm {
       const listItemSelector = `li[data-id="${id}"]`;
       // Get the specific <li> element
       const listItem = document.querySelector(listItemSelector);
+
       if (listItem) {
         const eventIconEl = listItem.querySelector(
           '.pin-card-header_event-icon'
@@ -139,10 +209,12 @@ export default class FormEditorView extends BaseForm {
 
       //!update localStorage - MODEL CONCERN
 
-      localStorage.setItem(
-        userType,
-        JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
-      );
+      //send new item to the backend whose id matches this id
+      dataHandler(newItem);
+      // localStorage.setItem(
+      //   userType,
+      //   JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
+      // );
 
       //clear inputs
 
@@ -197,15 +269,17 @@ export default class FormEditorView extends BaseForm {
     }
   }
 
-  actionHandler(userType) {
+  actionHandler(dataHandler) {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
+    console.log('handler called');
 
     editBoxes.forEach(editBox => {
       //get the parent on click
       const pin = editBox.closest('.user-pin');
+
       //get the id
       const pinId = pin.dataset.id;
-      //assign the parent id to this of pin
+      //assign the parent id to this instance of pin
       editBox.dataset.id = pinId;
       //listen to the editBox
       editBox.addEventListener('click', e => {
@@ -213,43 +287,47 @@ export default class FormEditorView extends BaseForm {
         const id = editBox.dataset.id;
         const actionType = e.target.textContent.trim();
 
-        if (li) {
-          const cardId = editBox.dataset.id;
+        try {
+          if (li) {
+            const cardId = editBox.dataset.id;
 
-          //without trim, spaces prevents from a match
-          if (actionType === 'Edit') {
-            this.editMessage(cardId, userType);
-          }
+            //without trim, spaces prevents from a match
+            if (actionType === 'Edit') {
+              this.editMessage(cardId, dataHandler);
+            }
 
-          if (actionType === 'Delete') {
-            createModal({
-              title: 'Delete Pin',
-              message: 'Are you sure you want to delete this pin?',
-              confirmText: 'Delete',
-              cancelText: 'Cancel',
-            }).then(res => {
-              if (res) {
-                this.deletePin(id, userType);
-              } else {
-                return;
-              }
-            });
-          }
+            if (actionType === 'Delete') {
+              createModal({
+                title: 'Delete Pin',
+                message: 'Are you sure you want to delete this pin?',
+                confirmText: 'Delete',
+                cancelText: 'Cancel',
+              }).then(res => {
+                if (res) {
+                  this.deletePin(id, userType);
+                } else {
+                  return;
+                }
+              });
+            }
 
-          if (actionType === 'Delete all') {
-            createModal({
-              title: 'Delete All Pins',
-              message: 'Are you sure you want to delete all your pins?',
-              confirmText: 'Delete',
-              cancelText: 'Cancel',
-            }).then(res => {
-              if (res) {
-                this.deleteAllPin(userType);
-              } else {
-                return;
-              }
-            });
+            if (actionType === 'Delete all') {
+              createModal({
+                title: 'Delete All Pins',
+                message: 'Are you sure you want to delete all your pins?',
+                confirmText: 'Delete',
+                cancelText: 'Cancel',
+              }).then(res => {
+                if (res) {
+                  this.deleteAllPin(userType);
+                } else {
+                  return;
+                }
+              });
+            }
           }
+        } catch (error) {
+          console.error('something went wrong with the editor ', error);
         }
       });
     });

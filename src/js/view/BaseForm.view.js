@@ -156,7 +156,8 @@ export default class BaseFormView {
         color: eventTypeColor,
         icon: eventTypeIcon,
         message: sanitizedTextAreaValue,
-        coords: [lat, lng],
+        lat,
+        lng,
         time: timeOfCreation,
         date: dateOfCreation,
       };

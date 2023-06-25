@@ -1,34 +1,18 @@
-import { helper } from './helper.js';
 import Model from './model.class.js';
-import Pin from './view/pin.view.js';
 import View from './view/view.js';
-
-import view from './view/view.js';
 
 /**
  * @init {function} - Init the app`
  */
 
 class Controller {
-  map;
-  form;
-  view;
   model;
+  view;
+  map;
   _userId;
 
   constructor() {
-    this.model = new Model();
-    this.view = new View(
-      this.model._guestState,
-      this.model._userPins,
-      this.model._globalState
-    );
-    this.userId = this.model._userId;
-
     this.init();
-    this.controlUserData = this.controlUserData.bind(this);
-    this.view.form.dataHandler(this.controlUserData);
-    this.controlPinOutput();
   }
 
   controlUserData(data) {
@@ -49,14 +33,33 @@ class Controller {
     // }
   }
 
+  controlEditData(data) {
+    console.log('Controller: ', data);
+    this.model.sendEditedPinToServer(data);
+  }
+
   controlPinOutput() {
     //run the view.renderPinOnMap
     // this.view.renderPinOnMapHandler(this.model._guestState);
   }
 
-  init() {
+  async init() {
+    this.model = new Model();
+    // Wait for the user pins data to be fetched
+    await this.model.fetchUserData();
+
+    this.view = new View(
+      this.model._guestState,
+      this.model._userPins,
+      this.model._globalState,
+      this.controlEditData
+    );
+
     this.view.renderMap();
-    // console.log(checkUser);
+    this.userId = this.model._userId;
+    this.userPins = this.model._userPins;
+    this.controlUserData = this.controlUserData.bind(this);
+    this.controlEditData = this.controlEditData.bind(this);
   }
 }
 

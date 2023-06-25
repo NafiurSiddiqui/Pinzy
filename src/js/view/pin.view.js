@@ -1,6 +1,5 @@
 import PinCard from './pinCard.view.js';
 import { helper, pinElements } from '../helper.js';
-import FormEditorView from './formEditor.view.js';
 
 const {
   globalPinContainer,
@@ -10,7 +9,7 @@ const {
   guestPinCountEl,
 } = pinElements;
 
-export default class Pin extends FormEditorView {
+export default class Pin {
   /**
    * @property {boolean} isGlobalPinPage
    */
@@ -26,6 +25,7 @@ export default class Pin extends FormEditorView {
   userPins = null;
   globalPins = null;
   userType;
+  formEditorView;
 
   /**
    *
@@ -34,19 +34,20 @@ export default class Pin extends FormEditorView {
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  constructor(map, guestPins, userPins, globalPins, userType) {
-    super();
+  constructor(map, guestPins, userPins, globalPins, userType, formEditor) {
     this.map = map;
     this.guestPins = guestPins;
     this.userPins = userPins;
     this.globalPins = globalPins;
     this.pinCard = new PinCard();
     this.handlePinRenderer = this.handlePinRenderer.bind(this);
+    this.renderPinOnProfile = this.renderPinOnProfile.bind(this);
     //detect page type
     helper.checkURL('pins.php')
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
+    console.log(formEditor);
   }
 
   renderPinOnMap(pin) {
@@ -79,7 +80,7 @@ export default class Pin extends FormEditorView {
     const isGuest = pinData.userType === 'guest';
     const pinLimit = isGuest ? 10 : 100;
 
-    if (pins[0].length < pinLimit) {
+    if (pins?.length < pinLimit) {
       //render pin card
       pinContainer?.insertAdjacentHTML(
         'beforeend',
@@ -91,7 +92,8 @@ export default class Pin extends FormEditorView {
         `[data-id="${pinData.id}"] .pin-edit-box__container i`
       );
 
-      this.editBtnHandler(editBtn);
+      // console.log(this);
+      // this.editBtnHandler(editBtn);
     } else {
       alert(
         isGuest
@@ -158,7 +160,7 @@ export default class Pin extends FormEditorView {
    * @param {HTMLUListElement} pinContainerType
    */
   handlePinRenderer(pinType, userType, pinContainerType) {
-    pinType[0].forEach(pin => {
+    pinType?.forEach(pin => {
       //render pin on map
       this.renderPinOnMap(pin);
 
@@ -186,8 +188,8 @@ export default class Pin extends FormEditorView {
       this.guestPinContainer?.classList.add('hidden');
     }
     //User
-    // console.log(this.userPins[0].length > 0);
-    if (this.userPins[0].length) {
+    // console.log(this.userPins?.length > 0);
+    if (this.userPins?.length) {
       // profileMsgEl.classList.add('hidden');
       this.userPinContainer?.classList.remove('hidden');
     } else {

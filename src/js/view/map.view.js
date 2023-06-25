@@ -97,20 +97,17 @@ export default class Map extends Pin {
 
     if (!pinEl) return;
 
-    // const coords = [this.userPins[0].pin_lat, this.userPins[0].pin_lng];
-
-    console.log(this.userPins[0]);
+    // const coords = [this.userPins.pin_lat, this.userPins.pin_lng];
 
     let pin;
-    let coords = null;
-    console.log(this.findPinId(this.userPins[0], pinEl));
+
     //check the user type
     if (this.isGlobalPinPage) {
       pin = this.findPinId(this.globalPins, pinEl);
     } else {
       pin =
         this.userType === 'user'
-          ? this.findPinId(this.userPins[0], pinEl)
+          ? this.findPinId(this.userPins, pinEl)
           : this.findPinId(this.globalPins, pinEl);
     }
 

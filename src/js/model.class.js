@@ -5,7 +5,7 @@ export default class Model {
   _userId = null;
   _globalState = [];
   _guestState = [];
-  _userPins = [];
+  _userPins = null;
   _globalStateKey = 'globalState';
   userType = null;
 
@@ -13,10 +13,13 @@ export default class Model {
     this.getUserName = this.getUserName.bind(this);
     this.getUserName();
     this.getLocalStorage();
-    this.updateGlobalState();
     this.getUserId = this.getUserId.bind(this);
     this.userType = helper.checkUserLoggedIn();
     this.fetchUserData();
+    // console.log(this._userPins);
+    if (this._userPins?.length > 0) {
+      this.updateGlobalState();
+    }
   }
 
   getUserName() {
@@ -95,12 +98,14 @@ export default class Model {
       if (!response.ok) return;
 
       const result = await response.json();
-      this._userPins.push(result);
+      // this._userPins.push(result);
+      this._userPins = result;
+      return this._userPins;
     } catch (error) {
       console.error(error);
     }
   }
-
+  //!DRY
   async sendPinToServer(data) {
     if (!data) throw new Error('No data has been provided.');
 
@@ -122,6 +127,35 @@ export default class Model {
       console.error(`submission error: ${e}`);
     }
   }
+
+  async sendEditedPinToServer(data) {
+    //guard
+    if (!data) return;
+
+    //prepare the url
+    const url = '../api/reqHandler/submitEditPin.php';
+    console.log('MODEL: ', data);
+    // try {
+    //   //get userId
+    //   const userId = await this.getUserId();
+    //   //combine data with user id
+    //   let editedData = { ...data, userId };
+
+    //   //send logic..
+    //   const res = await fetch(url, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ editedData }),
+    //   });
+    //   res.ok
+    //     ? console.log('editted data successfully submitted')
+    //     : console.log('eddited data FAILED to submit');
+    // } catch (err) {
+    //   console.error(`edit submission error: ${e}`);
+    // }
+  }
+
+  //!DRYend
 
   getLocalStorage() {
     //get user data
