@@ -15,6 +15,25 @@ class Controller {
     this.init();
   }
 
+  async init() {
+    this.model = new Model();
+    // Wait for the user pins data to be fetched
+    await this.model.fetchUserData();
+
+    this.view = new View(
+      this.model._guestState,
+      this.model._userPins,
+      this.model._globalState,
+      this.controlEditData
+    );
+
+    this.view.renderMap();
+    this.userId = this.model._userId;
+    this.userPins = this.model._userPins;
+    this.controlUserData = this.controlUserData.bind(this);
+    this.controlEditData = this.controlEditData.bind(this);
+  }
+
   controlUserData(data) {
     // let userData = data();
 
@@ -34,32 +53,13 @@ class Controller {
   }
 
   controlEditData(data) {
-    console.log('Controller: ', data);
-    this.model.sendEditedPinToServer(data);
+    // console.log('Controller: ', data);
+    // this.model.sendEditedPinToServer(data);
   }
 
   controlPinOutput() {
     //run the view.renderPinOnMap
     // this.view.renderPinOnMapHandler(this.model._guestState);
-  }
-
-  async init() {
-    this.model = new Model();
-    // Wait for the user pins data to be fetched
-    await this.model.fetchUserData();
-
-    this.view = new View(
-      this.model._guestState,
-      this.model._userPins,
-      this.model._globalState,
-      this.controlEditData
-    );
-
-    this.view.renderMap();
-    this.userId = this.model._userId;
-    this.userPins = this.model._userPins;
-    this.controlUserData = this.controlUserData.bind(this);
-    this.controlEditData = this.controlEditData.bind(this);
   }
 }
 

@@ -1,6 +1,7 @@
 import { helper } from '../helper.js';
 import Pin from './pin.view.js';
 
+// extends Pin
 export default class Map extends Pin {
   mapInitiated = false;
   map;
@@ -12,13 +13,22 @@ export default class Map extends Pin {
   userPins = [];
   globalPins = [];
   userType;
+  formEditor;
 
-  constructor(guestPins, userPins, globalPins, showForm, renderSpinner) {
+  constructor(
+    guestPins,
+    userPins,
+    globalPins,
+    showForm,
+    renderSpinner,
+    formEditor
+  ) {
     super();
 
     this.guestPins = guestPins;
     this.userPins = userPins;
     this.globalPins = globalPins;
+    this.formEditor = formEditor;
     this.showForm = showForm;
     this.renderSpinner = renderSpinner;
     this.loadMap = this.loadMap.bind(this);

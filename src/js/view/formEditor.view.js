@@ -45,7 +45,10 @@ export default class FormEditorView extends BaseForm {
       : (this.userType = 'guest');
     // console.log(this.userPins);
     this.actionHandler = this.actionHandler.bind(this);
-    this.actionHandler(editPinHandler);
+
+    this.actionHandler(this.editPinHandler);
+
+    // this.editBtnHandler();
   }
 
   setFormEditIsOpen(value) {
@@ -53,14 +56,16 @@ export default class FormEditorView extends BaseForm {
   }
 
   //editBtn listener on card
-  editBtnHandler(editBtn) {
-    console.log('editor btn handled');
-    editBtn?.addEventListener('click', e => {
-      e.stopPropagation();
-      const editBox = e.currentTarget.nextElementSibling;
-      editBox.classList.remove('hidden');
-    });
-  }
+  // editBtnHandler(editBtn) {
+  //   console.log('editor btn handled');
+  //   console.log(editBtn);
+  //   editBtn?.addEventListener('click', e => {
+  //     e.stopPropagation();
+
+  //     const editBox = e.currentTarget.nextElementSibling;
+  //     editBox.classList.remove('hidden');
+  //   });
+  // }
 
   //close the edit on global click
   editBtnHandlerGlobal() {
@@ -164,7 +169,7 @@ export default class FormEditorView extends BaseForm {
   editMessage(id, dataHandler) {
     //This needs to be called inside controller
     console.log('edit msg is called');
-
+    console.log(this.userPins);
     //pass the item from model> controller
     const item = this.userPins.find(item => item.id === +id);
 
@@ -172,8 +177,8 @@ export default class FormEditorView extends BaseForm {
     this.baseShowForm(null, this.formEditBgEl);
 
     //autoselect eventType and fill up the text area
-    this.eventTypeEditEl.value = item.event;
-    this.messageEditEl.value = item.message;
+    this.eventTypeEditEl.value = item.pin_event;
+    this.messageEditEl.value = item.pin_message;
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
@@ -210,7 +215,7 @@ export default class FormEditorView extends BaseForm {
       //!update localStorage - MODEL CONCERN
 
       //send new item to the backend whose id matches this id
-      dataHandler(newItem);
+      // dataHandler(newItem);
       // localStorage.setItem(
       //   userType,
       //   JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
@@ -271,7 +276,7 @@ export default class FormEditorView extends BaseForm {
 
   actionHandler(dataHandler) {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    console.log('handler called');
+    // console.log('handler called');
 
     editBoxes.forEach(editBox => {
       //get the parent on click
@@ -290,7 +295,7 @@ export default class FormEditorView extends BaseForm {
         try {
           if (li) {
             const cardId = editBox.dataset.id;
-
+            console.log(cardId);
             //without trim, spaces prevents from a match
             if (actionType === 'Edit') {
               this.editMessage(cardId, dataHandler);

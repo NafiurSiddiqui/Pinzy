@@ -1,5 +1,6 @@
 import PinCard from './pinCard.view.js';
 import { helper, pinElements } from '../helper.js';
+import FormEditorView from './formEditor.view.js';
 
 const {
   globalPinContainer,
@@ -9,7 +10,7 @@ const {
   guestPinCountEl,
 } = pinElements;
 
-export default class Pin {
+export default class Pin extends FormEditorView {
   /**
    * @property {boolean} isGlobalPinPage
    */
@@ -26,7 +27,6 @@ export default class Pin {
   globalPins = null;
   userType;
   formEditor;
-
   /**
    *
    * @param {Object} map
@@ -35,6 +35,7 @@ export default class Pin {
    * @param {HTMLElement} guestPinContainer
    */
   constructor(map, guestPins, userPins, globalPins, userType, formEditor) {
+    super();
     this.map = map;
     this.guestPins = guestPins;
     this.userPins = userPins;
@@ -48,7 +49,6 @@ export default class Pin {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
-    console.log(this.formEditor);
   }
 
   renderPinOnMap(pin) {
@@ -93,9 +93,13 @@ export default class Pin {
         `[data-id="${pinData.id}"] .pin-edit-box__container i`
       );
 
-      // console.log(this);
-      // this.editBtnHandler(editBtn);
-      this.formEditor.editBtnHandler(editBtn);
+      // this.formEditor.editBtnHandler(editBtn);
+      editBtn?.addEventListener('click', e => {
+        e.stopPropagation();
+
+        const editBox = e.currentTarget.nextElementSibling;
+        editBox.classList.remove('hidden');
+      });
     } else {
       alert(
         isGuest

@@ -38,13 +38,16 @@ export default class View {
     this.renderSpinner(true);
     this.form = new FormView();
     this.formEditor = new FormEditorView(userPins, editDataHandler);
+
     this.map = new Map(
       this.guestPins,
       this.userPins,
       this.globalPins,
       this.renderForm,
-      this.renderSpinner
+      this.renderSpinner,
+      this.formEditor
     );
+
     this.guestEditor = new GuestEditor();
     this.guestPins = guestState;
     this.globalPins = globalPins;
