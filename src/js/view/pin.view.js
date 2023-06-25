@@ -25,7 +25,7 @@ export default class Pin {
   userPins = null;
   globalPins = null;
   userType;
-  formEditorView;
+  formEditor;
 
   /**
    *
@@ -39,6 +39,7 @@ export default class Pin {
     this.guestPins = guestPins;
     this.userPins = userPins;
     this.globalPins = globalPins;
+    this.formEditor = formEditor;
     this.pinCard = new PinCard();
     this.handlePinRenderer = this.handlePinRenderer.bind(this);
     this.renderPinOnProfile = this.renderPinOnProfile.bind(this);
@@ -47,7 +48,7 @@ export default class Pin {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
-    console.log(formEditor);
+    console.log(this.formEditor);
   }
 
   renderPinOnMap(pin) {
@@ -94,6 +95,7 @@ export default class Pin {
 
       // console.log(this);
       // this.editBtnHandler(editBtn);
+      this.formEditor.editBtnHandler(editBtn);
     } else {
       alert(
         isGuest
