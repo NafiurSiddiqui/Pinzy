@@ -29,7 +29,7 @@ export default class FormEditorView extends BaseForm {
   constructor(userPins, editPinHandler) {
     super();
     this.userPins = userPins;
-    this.editBtnHandler = editPinHandler;
+    this.editPinHandler = editPinHandler;
     this.baseValidateForm.bind(this);
     this.baseFormValidationHandler(
       this.eventTypeEditEl,
@@ -91,10 +91,22 @@ export default class FormEditorView extends BaseForm {
   }
 
   //editor logic
+  // getEventIcon() {
+  //   console.log(this.eventTypeEditEl);
+  //   let selectedEventIcon =
+  //     this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
+  //   this.selectedEventIcon = selectedEventIcon;
+
+  //   return selectedEventIcon;
+  // }
+
   getEventIcon() {
+    // console.log(this.eventTypeEditEl);
     let selectedEventIcon =
-      this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
-    this.selectedEventIcon = selectedEventIcon;
+      this.eventTypeEditEl.options[this.eventTypeEditEl.selectedIndex].dataset
+        .icon;
+
+    // this.selectedEventIcon = selectedEventIcon;
 
     return selectedEventIcon;
   }
@@ -166,10 +178,11 @@ export default class FormEditorView extends BaseForm {
   //     this.watchForPinChanges();
   //   });
   // }
+
   editMessage(id, dataHandler) {
     //This needs to be called inside controller
     console.log('edit msg is called');
-    console.log(this.userPins);
+
     //pass the item from model> controller
     const item = this.userPins.find(item => item.id === +id);
 
@@ -189,7 +202,7 @@ export default class FormEditorView extends BaseForm {
       if (newEventType !== item.event || newMessage !== item.message) {
         this.pinEdited = true;
       }
-
+      // console.log();
       //create a new object
       const newItem = {
         ...item,
@@ -221,6 +234,8 @@ export default class FormEditorView extends BaseForm {
       //   JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
       // );
 
+      console.log(newItem);
+
       //clear inputs
 
       this.eventTypeEditEl.value = this.messageEditEl.value = '';
@@ -228,7 +243,7 @@ export default class FormEditorView extends BaseForm {
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      this.watchForPinChanges();
+      // this.watchForPinChanges();
     });
   }
 
