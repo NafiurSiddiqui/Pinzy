@@ -192,6 +192,7 @@ export default class FormEditorView extends BaseForm {
     //autoselect eventType and fill up the text area
     this.eventTypeEditEl.value = item.pin_event;
     this.messageEditEl.value = item.pin_message;
+    console.log(this.getEventIcon());
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {

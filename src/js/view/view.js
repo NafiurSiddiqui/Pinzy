@@ -38,7 +38,11 @@ export default class View {
     this.renderSpinner(true);
     this.form = new FormView();
     this.formEditor = new FormEditorView(userPins, editDataHandler);
-
+    this.guestEditor = new GuestEditor();
+    this.guestPins = guestState;
+    this.globalPins = globalPins;
+    this.renderForm = this.renderForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
     this.map = new Map(
       this.guestPins,
       this.userPins,
@@ -47,12 +51,6 @@ export default class View {
       this.renderSpinner,
       this.formEditor
     );
-
-    this.guestEditor = new GuestEditor();
-    this.guestPins = guestState;
-    this.globalPins = globalPins;
-    this.renderForm = this.renderForm.bind(this);
-    this.hideForm = this.hideForm.bind(this);
 
     this.newEvHandler = this.map.newMapEvHandler;
     this.hideForm();
@@ -81,6 +79,7 @@ export default class View {
   }
 
   renderForm(mapEvent) {
+    console.log(this);
     this.form.showFormHandler(mapEvent, this.newEvHandler);
   }
 

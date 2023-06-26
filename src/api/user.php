@@ -80,9 +80,7 @@ echo $userLogged? $userName: '';
     data-userLogged="
     <?php
       echo $userLogged ? 'true':'false';
-?>
-    
-    ">
+?>   ">
     <!-- placeholder -->
   </ul>
 
