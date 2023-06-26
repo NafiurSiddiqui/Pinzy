@@ -1,3 +1,4 @@
+import controller from '../controller.class.js';
 import { formElements } from '../helper.js';
 import BaseFormView from './BaseForm.view.js';
 
@@ -23,6 +24,9 @@ export default class FormView extends BaseFormView {
       this.messageEl,
       this.btnSubmit
     );
+
+    this.dataHandler = this.dataHandler.bind(this);
+    this.dataHandler(controller.controlUserData);
   }
 
   debounceValidationHandler() {

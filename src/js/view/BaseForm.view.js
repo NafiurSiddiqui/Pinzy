@@ -114,7 +114,7 @@ export default class BaseFormView {
   }
 
   //submit form
-  baseDataHandler(handler) {
+  baseDataHandler() {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
       //get the values
@@ -127,26 +127,8 @@ export default class BaseFormView {
       const { lat, lng } = this.mapEvent.latlng;
       //sanitize input
       const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
-
-      // const userLoggedIn = helper.checkUserLoggedIn();
-
-      //time and date
       const timeOfCreation = helper.getTime();
       const dateOfCreation = helper.getDate();
-
-      // const formUserData = userName => {
-      //   const userData = {
-      //     event,
-      //     id: Math.floor(Math.random() * 100) + 1,
-      //     icon: eventTypeIcon,
-      //     color: eventTypeColor,
-      //     message: sanitizedTextAreaValue,
-      //     coords: [lat, lng],
-      //     userType: userLoggedIn ? 'user' : 'guest',
-      //     userName: userLoggedIn ? userName : 'Anonymous',
-      //     time: timeOfCreation,
-      //     date: dateOfCreation,
-      //   };
 
       const formUserData = {
         event,
@@ -158,9 +140,9 @@ export default class BaseFormView {
         time: timeOfCreation,
         date: dateOfCreation,
       };
-      console.log(formUserData);
+
       //pass it to the controller
-      handler(formUserData);
+      controller.controlUserData(formUserData);
 
       //clear inputs
       this.eventTypeEl.value = this.messageEl.value = '';

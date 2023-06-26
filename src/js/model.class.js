@@ -107,6 +107,7 @@ export default class Model {
   }
   //!DRY
   async sendPinToServer(data) {
+    console.log(data);
     if (!data) throw new Error('No data has been provided.');
 
     const userId = await this.getUserId();
