@@ -15,34 +15,27 @@ reqRecieveLogger();
 //get the submitted data
 $submittedPins = json_decode(file_get_contents('php://input'), true);
 
-//get the value dynamically
-
-// $numberOfElements = count($submittedPins);
-$coords = $submittedPins['coords'];
-
-// $latitude = $coords[0];
-// $longitude = $coords[1];
-// $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
 
 
 
 //--------debug
-$logFilePath = './pin_submission.log';
-$logMessage = var_export($submittedPins, true) . PHP_EOL;
-// $logMessage = var_export($loopedPins, true) . PHP_EOL;
-// $logMessage = var_export($point, true) . PHP_EOL;
+// $logFilePath = './pin_submission.log';
+// $logMessage = var_export($submittedPins, true) . PHP_EOL;
+// // $logMessage = var_export($loopedPins, true) . PHP_EOL;
+// // $logMessage = var_export($point, true) . PHP_EOL;
 
-// Open the log file in append mode (create if it doesn't exist)
-$logFile = fopen($logFilePath, 'a');
+// // Open the log file in append mode (create if it doesn't exist)
+// $logFile = fopen($logFilePath, 'a');
 
-// Write the log message to the file
-fwrite($logFile, $logMessage);
+// // Write the log message to the file
+// fwrite($logFile, $logMessage);
 
-// Close the log file
-fclose($logFile);
+// // Close the log file
+// fclose($logFile);
+
+filelogger('./pin_submission.log', $submittedPins);
 
 //--------debugEnd
-
 
 if (!$submittedPins) {
     // Redirect user to the user.php
@@ -52,8 +45,6 @@ if (!$submittedPins) {
 
 
 require '../db/db-connector.php';
-
-
 
 
 // insert into database

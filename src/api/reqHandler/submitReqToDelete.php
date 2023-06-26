@@ -53,14 +53,11 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
             echo json_encode(['message' => 'Pin(s) deleted successfully']);
             exit;
 
-
         } catch (Error $e) {
             // Handle the database connection or query errors
             header('Content-Type: application/json');
             echo json_encode(['error' => 'Database error']);
             exit;
-
-
         }
 
     }

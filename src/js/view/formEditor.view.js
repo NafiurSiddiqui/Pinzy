@@ -151,7 +151,6 @@ export default class FormEditorView extends BaseForm {
       }
 
       //send new item to the backend whose id matches this id
-
       controller.controlEditData(newItem);
 
       //clear inputs
@@ -165,28 +164,11 @@ export default class FormEditorView extends BaseForm {
   }
 
   deletePin(id) {
-    // const data = JSON.parse(localStorage.getItem(userType));
-    //filter the item
-    // const filteredData = data.filter(item => item.id !== +id);
-
-    // update localStorage
-    // localStorage.setItem(userType, JSON.stringify(filteredData));
-    //refresh window to update the pins
-    // this.baseRefreshContent();
-    // app.refreshContent();
-    console.log(id);
     //capture the id from controller, send req to BE
     controller.controlDelReq('single', id);
   }
 
   deleteAllPin() {
-    // //get the item from localStorage
-    // const data = JSON.parse(localStorage.getItem(userType));
-    // //delete all from local storage
-    // localStorage.removeItem(userType);
-    // //refresh window to update the pins
-    // this.baseRefreshContent();
-    // // app.refreshContent();
     controller.controlDelReq('all');
   }
   //MODEL CONCERNS ENDS

@@ -1,3 +1,4 @@
+import controller from '../controller.class.js';
 import { helper } from '../helper.js';
 
 export default class BaseFormView {
@@ -127,10 +128,6 @@ export default class BaseFormView {
       //sanitize input
       const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
 
-      /**
-       * id: user? from Db : generateId
-       */
-
       // const userLoggedIn = helper.checkUserLoggedIn();
 
       //time and date
@@ -161,9 +158,10 @@ export default class BaseFormView {
         time: timeOfCreation,
         date: dateOfCreation,
       };
-
+      console.log(formUserData);
       //pass it to the controller
       handler(formUserData);
+
       //clear inputs
       this.eventTypeEl.value = this.messageEl.value = '';
       //hideInput

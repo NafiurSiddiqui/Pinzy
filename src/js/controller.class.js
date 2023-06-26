@@ -38,27 +38,14 @@ class Controller {
     this.userId = this.model._userId;
     this.userPins = this.model._userPins;
 
-    this.formEditor = new FormEditorView(this.model._userPins);
+    // this.formEditor = new FormEditorView(this.model._userPins);
 
-    this.formEditor.actionHandler(this.controlEditData);
+    // this.formEditor.actionHandler(this.controlEditData);
   }
 
   controlUserData(data) {
-    // let userData = data();
-
-    // if (data().userType === 'guest') {
-    //   //guest data
-
-    //   this.model.saveGuestToLocalStorage(userData);
-    // } else {
-    //set data with dynamic username
-    // let userDataWithName = data(this.model._userName);
-    //store userData
-    // this.model.saveUserToLocalStorage(userDataWithName);
-    // this.model.saveUserToLocalStorage(data);
-
+    console.log(data);
     this.model.sendPinToServer(data);
-    // }
   }
 
   controlEditData(data) {

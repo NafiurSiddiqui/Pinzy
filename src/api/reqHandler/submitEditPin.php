@@ -70,9 +70,6 @@ if (!$submittedPins) {
 
 require '../db/db-connector.php';
 
-
-
-
 // insert into database
 
 $sqlUpdate = 'UPDATE pintzy_user_pin SET pin_event = ?, pin_color = ? , pin_icon = ?, pin_message = ? WHERE user_id = ? AND id = ?';
