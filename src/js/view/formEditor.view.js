@@ -118,7 +118,7 @@ export default class FormEditorView extends BaseForm {
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      // e.preventDefault();
+      e.preventDefault();
       const newEventType = this.eventTypeEditEl.value;
       const newMessage = this.messageEditEl.value;
 
@@ -162,7 +162,7 @@ export default class FormEditorView extends BaseForm {
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      this.watchForPinChanges();
+      // this.watchForPinChanges();
     });
   }
 

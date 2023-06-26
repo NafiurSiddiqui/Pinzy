@@ -83,5 +83,9 @@ try {
 
     // $stmt->exec()
 } catch (PDOException $e) {
-    throw new Exception("Data not subimitted. Something went wrong");
+    throw new Exception("Data not subimitted. Something went wrong", $e->getMessage(), $e->getCode());
+    // Redirect user to the user.php
+    // header('Location: ../../api/error-view.php?error='.urlencode($e->getMessage()));
+   
+
 }

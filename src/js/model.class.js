@@ -151,7 +151,7 @@ export default class Model {
         ? console.log('editted data successfully submitted')
         : console.log('eddited data FAILED to submit');
     } catch (err) {
-      console.error(`edit submission error: ${e}`);
+      console.error(`edit submission error: ${err}`);
     }
   }
 

@@ -23,69 +23,87 @@ $submittedPins = json_decode(file_get_contents('php://input'), true);
 // $longitude = $coords[1];
 // $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
 
+$userId = $_SESSION["user_id"];
+
 
 
 //--------debug
-$logFilePath = './edit_pin_submission.log';
-$logMessage = var_export($submittedPins, true) . PHP_EOL;
-// $logMessage = var_export($loopedPins, true) . PHP_EOL;
-// $logMessage = var_export($point, true) . PHP_EOL;
 
-// Open the log file in append mode (create if it doesn't exist)
-$logFile = fopen($logFilePath, 'a');
+function filelogger(string $filePath, mixed $data)
+{
+    $logFilePath = $filePath;
+    $logMessage = var_export($data, true).PHP_EOL;
+    $logFile = fopen($logFilePath, 'a');
+    // Open the log file in append mode (create if it doesn't exist)
+    fwrite($logFile, $logMessage);
+    // Close the log file
+    fclose($logFile);
 
-// Write the log message to the file
-fwrite($logFile, $logMessage);
 
-// Close the log file
-fclose($logFile);
+}
+// $logFilePath = './edit_pin_submission.log';
+// $logMessage = var_export($submittedPins, true) . PHP_EOL;
+// // $logMessage = var_export($loopedPins, true) . PHP_EOL;
+// // $logMessage = var_export($point, true) . PHP_EOL;
+
+// // Open the log file in append mode (create if it doesn't exist)
+// $logFile = fopen($logFilePath, 'a');
+
+// // Write the log message to the file
+// fwrite($logFile, $logMessage);
+
+// // Close the log file
+// fclose($logFile);
+
+filelogger('./edit_pin_submission.log', $submittedPins);
 
 //--------debugEnd
 
 
-// if (!$submittedPins) {
-//     // Redirect user to the user.php
-//     header('Location: ../../api/user.php?pins=No pins were submitted');
-//     exit();
-// }
+if (!$submittedPins) {
+    // Redirect user to the user.php
+    header('Location: ../../api/user.php?pins=No pins were submitted');
+    exit();
+}
 
 
-// require '../db/db-connector.php';
+require '../db/db-connector.php';
 
 
 
 
-// // insert into database
+// insert into database
 
-// $sqlInsert = 'INSERT INTO pintzy_user_pin (user_id, pin_event, pin_color, pin_icon, pin_message, pin_lat, pin_lng, pin_time, pin_date) VALUES (?,?,?,?,?,?,?,?,?)';
-
-
-// $conn = $pdo;
-
-// try {
+$sqlUpdate = 'UPDATE pintzy_user_pin SET pin_event = ?, pin_color = ? , pin_icon = ?, pin_message = ? WHERE user_id = ? AND id = ?';
 
 
-//     $userId = $submittedPins['userId'];
-//     $event = $submittedPins['event'];
-//     $color = $submittedPins['color'];
-//     $icon = $submittedPins['icon'];
-//     $message = $submittedPins['message'];
-//     // $coords = json_encode($submittedPins['coords']);
-//     $coords = $submittedPins['coords'];
-//     $lat = $coords[0];
-//     $lng = $coords[1];
-//     // $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
+$conn = $pdo;
 
-//     $time = $submittedPins['time'];
-//     $date = $submittedPins['date'];
+try {
 
 
-//     //prepare and exec
-//     $conn->prepare($sqlInsert)->execute([$userId, $event, $color, $icon, $message, $lat, $lng,$time, $date]);
+    $pinId = $submittedPins['editedData']['id'];
+    $event = $submittedPins['editedData']['pin_event'];
+    $color = $submittedPins['editedData']['pin_color'];
+    $icon = $submittedPins['editedData']['pin_icon'];
+    $message = $submittedPins['editedData']['pin_message'];
+
+    filelogger('./data-check.log', [
+        'Pin Id' => $pinId,
+        "Event" => $event,
+        "Color" => $color,
+        "Icon" => $icon,
+        "Message"=> $message
+    ]);
+    
+    //prepare and exec
+    $conn->prepare($sqlUpdate)->execute([$event, $color, $icon, $message, $userId, $pinId]);
 
     
 
-//     // $stmt->exec()
-// } catch (PDOException $e) {
-//     throw new Exception("Data not subimitted. Something went wrong");
-// }
+    // $stmt->exec()
+} catch (PDOException $e) {
+    throw new Exception("Data not subimitted. Something went wrong!". $e->getMessage(), $e->getCode());
+
+
+}
