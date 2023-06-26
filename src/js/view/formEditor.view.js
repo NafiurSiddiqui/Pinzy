@@ -118,7 +118,7 @@ export default class FormEditorView extends BaseForm {
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      e.preventDefault();
+      // e.preventDefault();
       const newEventType = this.eventTypeEditEl.value;
       const newMessage = this.messageEditEl.value;
 
@@ -126,14 +126,14 @@ export default class FormEditorView extends BaseForm {
       if (newEventType !== item.pin_event || newMessage !== item.pin_message) {
         this.pinEdited = true;
       }
-      console.log(newMessage.trim());
+
       //create a new object
       let newItem = {
         ...item,
         pin_event: newEventType,
         pin_color: this.getEventColor() || item.pin_color,
         pin_icon: this.getEventIcon() || item.pin_icon,
-        pin_message: newMessage,
+        pin_message: newMessage.trim(),
       };
       // Update the corresponding event icon element
       const listItemSelector = `li[data-id="${id}"]`;
@@ -162,7 +162,7 @@ export default class FormEditorView extends BaseForm {
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      // this.watchForPinChanges();
+      this.watchForPinChanges();
     });
   }
 
