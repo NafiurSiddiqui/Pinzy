@@ -79,7 +79,6 @@ export default class View {
   }
 
   renderForm(mapEvent) {
-    console.log(this);
     this.form.showFormHandler(mapEvent, this.newEvHandler);
   }
 

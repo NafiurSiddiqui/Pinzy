@@ -93,13 +93,13 @@ export default class Pin extends FormEditorView {
         `[data-id="${pinData.id}"] .pin-edit-box__container i`
       );
 
-      // this.formEditor.editBtnHandler(editBtn);
-      editBtn?.addEventListener('click', e => {
-        e.stopPropagation();
+      this.formEditor.editBtnHandler(editBtn);
+      // editBtn?.addEventListener('click', e => {
+      //   e.stopPropagation();
 
-        const editBox = e.currentTarget.nextElementSibling;
-        editBox.classList.remove('hidden');
-      });
+      //   const editBox = e.currentTarget.nextElementSibling;
+      //   editBox.classList.remove('hidden');
+      // });
     } else {
       alert(
         isGuest

@@ -53,7 +53,7 @@ class Controller {
   }
 
   controlEditData(data) {
-    // console.log('Controller: ', data);
+    console.log('Controller: ', data);
     // this.model.sendEditedPinToServer(data);
   }
 

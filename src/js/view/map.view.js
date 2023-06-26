@@ -30,7 +30,6 @@ export default class Map extends Pin {
     this.globalPins = globalPins;
     this.formEditor = formEditor;
     this.showForm = showForm;
-
     this.renderSpinner = renderSpinner;
     this.loadMap = this.loadMap.bind(this);
     this.getPosition = this.getPosition.bind(this);
