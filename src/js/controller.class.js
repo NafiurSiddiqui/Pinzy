@@ -1,4 +1,5 @@
 import Model from './model.class.js';
+import FormEditorView from './view/formEditor.view.js';
 import View from './view/view.js';
 
 /**
@@ -20,6 +21,8 @@ class Controller {
     // Wait for the user pins data to be fetched
     await this.model.fetchUserData();
 
+    this.controlUserData = this.controlUserData.bind(this);
+    this.controlEditData = this.controlEditData.bind(this);
     this.view = new View(
       this.model._guestState,
       this.model._userPins,
@@ -27,11 +30,16 @@ class Controller {
       this.controlEditData
     );
 
+    // this.view.form.dataHandler(this.controlUserData, this._userId);
+    // this.view.formEditor.actionHandler(this.controlEditData);
+
     this.view.renderMap();
     this.userId = this.model._userId;
     this.userPins = this.model._userPins;
-    this.controlUserData = this.controlUserData.bind(this);
-    this.controlEditData = this.controlEditData.bind(this);
+
+    this.formEditor = new FormEditorView(this.model._userPins);
+
+    this.formEditor.actionHandler(this.controlEditData);
   }
 
   controlUserData(data) {
@@ -54,6 +62,7 @@ class Controller {
 
   controlEditData(data) {
     console.log('Controller: ', data);
+    // this.view.formEditor.actionHandler(this.controlEditData);
     // this.model.sendEditedPinToServer(data);
   }
 

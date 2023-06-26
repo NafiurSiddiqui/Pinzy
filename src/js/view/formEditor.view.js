@@ -1,3 +1,4 @@
+import controller from '../controller.class.js';
 import { formElements, helper } from '../helper.js';
 import BaseForm from './BaseForm.view.js';
 import createModal from './modal.view.js';
@@ -24,13 +25,10 @@ export default class FormEditorView extends BaseForm {
   guestEditor;
   pinEdited = false;
   userPins;
-  editPinHandler;
 
-  constructor(userPins, editPinHandler) {
+  constructor(userPins) {
     super();
     this.userPins = userPins;
-    this.editPinHandler = editPinHandler;
-
     this.baseValidateForm.bind(this);
     this.baseFormValidationHandler(
       this.eventTypeEditEl,
@@ -44,9 +42,8 @@ export default class FormEditorView extends BaseForm {
     helper.checkUserLoggedIn()
       ? (this.userType = 'user')
       : (this.userType = 'guest');
-
     this.actionHandler = this.actionHandler.bind(this);
-    this.actionHandler(this.editPinHandler);
+    this.actionHandler();
   }
 
   setFormEditIsOpen(value) {
@@ -108,74 +105,7 @@ export default class FormEditorView extends BaseForm {
     this.baseShowForm(mapEvent, newMapEvhandler);
   }
 
-  //MODEL CONCERNS
-  // editMessage(id, userType) {
-  //   //get the items from localStorage
-  //   const data = JSON.parse(localStorage.getItem(userType));
-
-  //   const item = data.find(item => item.id === +id);
-
-  //   //popup edit-input-form
-  //   // this.showEditForm();
-  //   this.baseShowForm(null, this.formEditBgEl);
-
-  //   //autoselect eventType and fill up the text area
-  //   this.eventTypeEditEl.value = item.event;
-  //   this.messageEditEl.value = item.message;
-
-  //   //get the newInput
-  //   this.btnEditSubmit?.addEventListener('click', e => {
-  //     e.preventDefault();
-  //     const newEventType = this.eventTypeEditEl.value;
-  //     const newMessage = this.messageEditEl.value;
-  //     //if event or message value changes
-  //     if (newEventType !== item.event || newMessage !== item.message) {
-  //       this.pinEdited = true;
-  //     }
-
-  //     //create a new object
-  //     const newItem = {
-  //       ...item,
-  //       event: newEventType,
-  //       icon: this.selectedEventIcon || item.icon,
-  //       message: newMessage,
-  //     };
-  //     // Update the corresponding event icon element
-  //     const listItemSelector = `li[data-id="${id}"]`;
-  //     // Get the specific <li> element
-  //     const listItem = document.querySelector(listItemSelector);
-  //     if (listItem) {
-  //       const eventIconEl = listItem.querySelector(
-  //         '.pin-card-header_event-icon'
-  //       );
-  //       // Find the event icon element within the <li> element
-  //       if (eventIconEl) {
-  //         eventIconEl.textContent = this.selectedEventIcon;
-  //       }
-  //     }
-
-  //     //!update localStorage - MODEL CONCERN
-
-  //     localStorage.setItem(
-  //       userType,
-  //       JSON.stringify(data.map(item => (item.id === +id ? newItem : item)))
-  //     );
-
-  //     //clear inputs
-
-  //     this.eventTypeEditEl.value = this.messageEditEl.value = '';
-
-  //     //hideInput
-  //     this.baseHideForm(this.formEditBgEl, this.formEditEl);
-  //     //refresh window to update the pins
-  //     this.watchForPinChanges();
-  //   });
-  // }
-
-  editMessage(id, dataHandler) {
-    //This needs to be called inside controller
-    console.log('edit msg is called');
-
+  editMessage(id) {
     //pass the item from model> controller
     const item = this.userPins.find(item => item.id === +id);
 
@@ -188,7 +118,7 @@ export default class FormEditorView extends BaseForm {
 
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      // e.preventDefault();
+      e.preventDefault();
       const newEventType = this.eventTypeEditEl.value;
       const newMessage = this.messageEditEl.value;
 
@@ -224,8 +154,7 @@ export default class FormEditorView extends BaseForm {
 
       //send new item to the backend whose id matches this id
 
-      console.log(newItem);
-      dataHandler(newItem);
+      controller.controlEditData(newItem);
       //clear inputs
 
       this.eventTypeEditEl.value = this.messageEditEl.value = '';
@@ -279,9 +208,9 @@ export default class FormEditorView extends BaseForm {
     }
   }
 
-  actionHandler(dataHandler) {
+  actionHandler() {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    // console.log('handler called');
+    console.log('handler called');
 
     editBoxes.forEach(editBox => {
       //get the parent on click
@@ -300,10 +229,10 @@ export default class FormEditorView extends BaseForm {
         try {
           if (li) {
             const cardId = editBox.dataset.id;
-            console.log(cardId);
+
             //without trim, spaces prevents from a match
             if (actionType === 'Edit') {
-              this.editMessage(cardId, dataHandler);
+              this.editMessage(cardId);
             }
 
             if (actionType === 'Delete') {
