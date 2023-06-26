@@ -62,8 +62,8 @@ class Controller {
 
   controlEditData(data) {
     console.log('Controller: ', data);
-    // this.view.formEditor.actionHandler(this.controlEditData);
-    // this.model.sendEditedPinToServer(data);
+
+    this.model.sendEditedPinToServer(data);
   }
 
   controlPinOutput() {

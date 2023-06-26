@@ -134,25 +134,25 @@ export default class Model {
 
     //prepare the url
     const url = '../api/reqHandler/submitEditPin.php';
-    console.log('MODEL: ', data);
-    // try {
-    //   //get userId
-    //   const userId = await this.getUserId();
-    //   //combine data with user id
-    //   let editedData = { ...data, userId };
 
-    //   //send logic..
-    //   const res = await fetch(url, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ editedData }),
-    //   });
-    //   res.ok
-    //     ? console.log('editted data successfully submitted')
-    //     : console.log('eddited data FAILED to submit');
-    // } catch (err) {
-    //   console.error(`edit submission error: ${e}`);
-    // }
+    try {
+      //get userId
+      const userId = await this.getUserId();
+      //combine data with user id
+      let editedData = { ...data, userId };
+
+      //send logic..
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ editedData }),
+      });
+      res.ok
+        ? console.log('editted data successfully submitted')
+        : console.log('eddited data FAILED to submit');
+    } catch (err) {
+      console.error(`edit submission error: ${e}`);
+    }
   }
 
   //!DRYend

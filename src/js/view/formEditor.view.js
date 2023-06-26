@@ -123,17 +123,17 @@ export default class FormEditorView extends BaseForm {
       const newMessage = this.messageEditEl.value;
 
       //if event or message value changes
-      if (newEventType !== item.event || newMessage !== item.message) {
+      if (newEventType !== item.pin_event || newMessage !== item.pin_message) {
         this.pinEdited = true;
       }
-
+      console.log(newMessage.trim());
       //create a new object
-      const newItem = {
+      let newItem = {
+        ...item,
         pin_event: newEventType,
         pin_color: this.getEventColor() || item.pin_color,
         pin_icon: this.getEventIcon() || item.pin_icon,
         pin_message: newMessage,
-        ...item,
       };
       // Update the corresponding event icon element
       const listItemSelector = `li[data-id="${id}"]`;
@@ -153,7 +153,7 @@ export default class FormEditorView extends BaseForm {
       //!update localStorage - MODEL CONCERN
 
       //send new item to the backend whose id matches this id
-
+      // console.log(newItem);
       controller.controlEditData(newItem);
       //clear inputs
 
@@ -162,7 +162,7 @@ export default class FormEditorView extends BaseForm {
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      this.watchForPinChanges();
+      // this.watchForPinChanges();
     });
   }
 
@@ -210,7 +210,6 @@ export default class FormEditorView extends BaseForm {
 
   actionHandler() {
     const editBoxes = document.querySelectorAll('.pin-edit-box');
-    console.log('handler called');
 
     editBoxes.forEach(editBox => {
       //get the parent on click

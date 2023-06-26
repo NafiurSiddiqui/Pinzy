@@ -17,7 +17,7 @@ $submittedPins = json_decode(file_get_contents('php://input'), true);
 //get the value dynamically
 
 // $numberOfElements = count($submittedPins);
-$coords = $submittedPins['coords'];
+// $coords = $submittedPins['coords'];
 
 // $latitude = $coords[0];
 // $longitude = $coords[1];
