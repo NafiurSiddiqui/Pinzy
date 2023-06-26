@@ -155,6 +155,43 @@ export default class Model {
     }
   }
 
+  async delRequest(id, msgType) {
+    const url = '../api/reqHandler/submitReqToDelete.php';
+
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    if (response.ok) {
+      console.log(`${msgType} deletion successful`);
+    } else {
+      console.log(`${msgType} deletion FAILED`);
+    }
+    return response;
+  }
+
+  async reqToDelPin(reqType, id) {
+    // if (!reqType) return;
+    console.log(reqType, id);
+    try {
+      if (reqType === 'single') {
+        // const res = await request(id,'SINGLE');
+        const data = await this.delRequest(id, 'SINGLE');
+        console.log(data);
+      } else if (reqType === 'all') {
+        const data = await this.delRequest('all', 'ALL');
+
+        console.log(data);
+      }
+    } catch (error) {
+      console.error('Failed to del pin ', error);
+    }
+  }
+
   //!DRYend
 
   getLocalStorage() {

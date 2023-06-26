@@ -28,19 +28,20 @@ $userId = $_SESSION["user_id"];
 
 
 //--------debug
+include '../config/config.php';
 
-function filelogger(string $filePath, mixed $data)
-{
-    $logFilePath = $filePath;
-    $logMessage = var_export($data, true).PHP_EOL;
-    $logFile = fopen($logFilePath, 'a');
-    // Open the log file in append mode (create if it doesn't exist)
-    fwrite($logFile, $logMessage);
-    // Close the log file
-    fclose($logFile);
+// function filelogger(string $filePath, mixed $data)
+// {
+//     $logFilePath = $filePath;
+//     $logMessage = var_export($data, true).PHP_EOL;
+//     $logFile = fopen($logFilePath, 'a');
+//     // Open the log file in append mode (create if it doesn't exist)
+//     fwrite($logFile, $logMessage);
+//     // Close the log file
+//     fclose($logFile);
 
 
-}
+// }
 // $logFilePath = './edit_pin_submission.log';
 // $logMessage = var_export($submittedPins, true) . PHP_EOL;
 // // $logMessage = var_export($loopedPins, true) . PHP_EOL;

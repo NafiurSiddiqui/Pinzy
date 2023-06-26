@@ -23,6 +23,7 @@ class Controller {
 
     this.controlUserData = this.controlUserData.bind(this);
     this.controlEditData = this.controlEditData.bind(this);
+    this.controlDelReq = this.controlDelReq.bind(this);
     this.view = new View(
       this.model._guestState,
       this.model._userPins,
@@ -61,14 +62,14 @@ class Controller {
   }
 
   controlEditData(data) {
-    console.log('Controller: ', data);
-
     this.model.sendEditedPinToServer(data);
   }
 
-  controlPinOutput() {
-    //run the view.renderPinOnMap
-    // this.view.renderPinOnMapHandler(this.model._guestState);
+  controlDelReq(reqType, id) {
+    console.log(id);
+    reqType === 'single'
+      ? this.model.reqToDelPin('single', id)
+      : this.model.reqToDelPin('all');
   }
 }
 

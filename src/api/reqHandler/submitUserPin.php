@@ -8,8 +8,9 @@ if (!isset($_SESSION["user_id"])) {
     exit();
 }
 
-// / Log the request to verify it reaches this endpoint
-file_put_contents('request.log', 'Request received: ' . date('Y-m-d H:i:s') . PHP_EOL, FILE_APPEND);
+include '../config/config.php';
+
+reqRecieveLogger();
 
 //get the submitted data
 $submittedPins = json_decode(file_get_contents('php://input'), true);

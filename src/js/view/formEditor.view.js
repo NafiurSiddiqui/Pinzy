@@ -150,43 +150,44 @@ export default class FormEditorView extends BaseForm {
         }
       }
 
-      //!update localStorage - MODEL CONCERN
-
       //send new item to the backend whose id matches this id
-      // console.log(newItem);
-      controller.controlEditData(newItem);
-      //clear inputs
 
+      controller.controlEditData(newItem);
+
+      //clear inputs
       this.eventTypeEditEl.value = this.messageEditEl.value = '';
 
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      // this.watchForPinChanges();
+      this.watchForPinChanges();
     });
   }
 
-  deletePin(id, userType) {
-    //!get the item from localStorage - MODELs concern
-    const data = JSON.parse(localStorage.getItem(userType));
+  deletePin(id) {
+    // const data = JSON.parse(localStorage.getItem(userType));
     //filter the item
-    const filteredData = data.filter(item => item.id !== +id);
+    // const filteredData = data.filter(item => item.id !== +id);
 
     // update localStorage
-    localStorage.setItem(userType, JSON.stringify(filteredData));
+    // localStorage.setItem(userType, JSON.stringify(filteredData));
     //refresh window to update the pins
-    this.baseRefreshContent();
+    // this.baseRefreshContent();
     // app.refreshContent();
+    console.log(id);
+    //capture the id from controller, send req to BE
+    controller.controlDelReq('single', id);
   }
 
-  deleteAllPin(userType) {
-    //get the item from localStorage
-    const data = JSON.parse(localStorage.getItem(userType));
-    //delete all from local storage
-    localStorage.removeItem(userType);
-    //refresh window to update the pins
-    this.baseRefreshContent();
-    // app.refreshContent();
+  deleteAllPin() {
+    // //get the item from localStorage
+    // const data = JSON.parse(localStorage.getItem(userType));
+    // //delete all from local storage
+    // localStorage.removeItem(userType);
+    // //refresh window to update the pins
+    // this.baseRefreshContent();
+    // // app.refreshContent();
+    controller.controlDelReq('all');
   }
   //MODEL CONCERNS ENDS
 
@@ -242,7 +243,7 @@ export default class FormEditorView extends BaseForm {
                 cancelText: 'Cancel',
               }).then(res => {
                 if (res) {
-                  this.deletePin(id, userType);
+                  this.deletePin(id);
                 } else {
                   return;
                 }
@@ -257,7 +258,7 @@ export default class FormEditorView extends BaseForm {
                 cancelText: 'Cancel',
               }).then(res => {
                 if (res) {
-                  this.deleteAllPin(userType);
+                  this.deleteAllPin();
                 } else {
                   return;
                 }
