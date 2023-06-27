@@ -187,27 +187,20 @@ export default class Pin extends FormEditorView {
   pinContainerHandler() {
     //Guest
     if (this.guestPins?.length) {
-      // profileMsgEl.classList.add('hidden');
       this.guestPinContainer?.classList.remove('hidden');
     } else {
-      // profileMsgEl.classList.remove('hidden');
       this.guestPinContainer?.classList.add('hidden');
     }
     //User
-    // console.log(this.userPins?.length > 0);
     if (this.userPins?.length) {
-      // profileMsgEl.classList.add('hidden');
       this.userPinContainer?.classList.remove('hidden');
     } else {
-      // profileMsgEl.classList.remove('hidden');
       this.userPinContainer?.classList.add('hidden');
     }
     //global management
     if (this.globalPins?.length) {
-      // profileMsgEl.classList.add('hidden');
       this.globalPinContainer?.classList.remove('hidden');
     } else {
-      // profileMsgEl.classList.remove('hidden');
       this.globalPinContainer?.classList.add('hidden');
     }
   }
