@@ -8,11 +8,12 @@ if (!isset($_SESSION["user_id"])) {
     exit();
 }
 
+//DEBUG
 include '../config/config.php';
 
-// reqRecieveLogger();
+reqRecieveLogger();
 
-file_put_contents('request.log', 'Request received: ' . date('Y-m-d H:i:s') . PHP_EOL, FILE_APPEND);
+//DEBUGend
 
 //get the submitted data
 $submittedPins = json_decode(file_get_contents('php://input'), true);
@@ -21,19 +22,8 @@ $submittedPins = json_decode(file_get_contents('php://input'), true);
 
 
 //--------debug
-$logFilePath = './pin_submission.log';
-$logMessage = var_export($submittedPins, true) . PHP_EOL;
 
-// Open the log file in append mode (create if it doesn't exist)
-$logFile = fopen($logFilePath, 'a');
-
-// Write the log message to the file
-fwrite($logFile, $logMessage);
-
-// Close the log file
-fclose($logFile);
-
-// filelogger('./pin_submission.log', $submittedPins);
+filelogger('./pin_submission.log', $submittedPins);
 
 //--------debugEnd
 

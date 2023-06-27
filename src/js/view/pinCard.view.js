@@ -1,5 +1,5 @@
 const userNameEl = document.querySelector('.user-profile-header_user-name');
-let userName = userNameEl.dataset.username.trim();
+let userName = userNameEl?.dataset?.username?.trim();
 
 export default class PinCard {
   /**
