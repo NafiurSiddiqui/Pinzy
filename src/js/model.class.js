@@ -1,6 +1,4 @@
-import { v4 as uuid } from 'uuid';
 import { helper } from './helper.js';
-v;
 
 export default class Model {
   _userName = '';
@@ -83,25 +81,55 @@ export default class Model {
     this.updateGlobalState();
   }
 
+  async request(url, method, data, msgType) {
+    let options = {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      let response;
+
+      if (method === 'GET' || undefined || '') {
+        response = await fetch(url);
+      } else {
+        response = await fetch(url, options);
+      }
+
+      if (response.ok) {
+        console.log(`${msgType} successful `);
+      } else {
+        console.log(`${msgType} failed`);
+      }
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async fetchUserData() {
     //who logged in?
     if (!this.userType) return;
 
     const url = '../api/reqHandler/returnUserPin.php';
     try {
-      const response = await fetch(url);
+      // const response = await fetch(url);
+      let response = await this.request(url, 'GET', null, 'fetch');
 
       if (!response.ok) return;
 
       const result = await response.json();
-      // this._userPins.push(result);
+
       this._userPins = result;
       return this._userPins;
     } catch (error) {
       console.error(error);
     }
   }
-  //!DRY
+
   async sendPinToServer(data) {
     console.log(data);
     if (!data) throw new Error('No data has been provided.');
@@ -110,19 +138,7 @@ export default class Model {
     const newData = { userId, ...data };
     const url = '../api/reqHandler/submitUserPin.php';
 
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newData),
-      });
-
-      res.ok
-        ? console.log('data successfully submitted')
-        : console.log('data FAILED to submit');
-    } catch (e) {
-      console.error(`submission error: ${e}`);
-    }
+    await this.request(url, 'POST', newData, 'Sending pin');
   }
 
   async sendEditedPinToServer(data) {
@@ -132,72 +148,33 @@ export default class Model {
     //prepare the url
     const url = '../api/reqHandler/submitEditPin.php';
 
-    try {
-      //get userId
-      const userId = await this.getUserId();
-      //combine data with user id
-      let editedData = { ...data, userId };
+    //get userId
+    const userId = await this.getUserId();
+    //combine data with user id
+    let editedData = { ...data, userId };
 
-      //send logic..
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ editedData }),
-      });
-      res.ok
-        ? console.log('editted data successfully submitted')
-        : console.log('eddited data FAILED to submit');
-    } catch (err) {
-      console.error(`edit submission error: ${err}`);
-    }
-  }
-
-  async delRequest(id, msgType) {
-    const url = '../api/reqHandler/submitReqToDelete.php';
-
-    const response = await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id }),
-    });
-
-    if (response.ok) {
-      console.log(`${msgType} deletion successful`);
-    } else {
-      console.log(`${msgType} deletion FAILED`);
-    }
-    return response;
+    await this.request(url, 'POST', { editedData }, 'Edited data');
   }
 
   async reqToDelPin(reqType, id) {
     // if (!reqType) return;
-    console.log(reqType, id);
-    try {
-      if (reqType === 'single') {
-        // const res = await request(id,'SINGLE');
-        const data = await this.delRequest(id, 'SINGLE');
-        console.log(data);
-      } else if (reqType === 'all') {
-        const data = await this.delRequest('all', 'ALL');
+    // console.log(reqType, id);
+    const url = '../api/reqHandler/submitReqToDelete.php';
 
-        console.log(data);
-      }
-    } catch (error) {
-      console.error('Failed to del pin ', error);
+    if (reqType === 'single') {
+      await this.request(url, 'DELETE', { id }, 'DELETE');
+    } else if (reqType === 'all') {
+      await this.request(url, 'DELETE', { id: 'all' }, 'DELETE ALL');
     }
   }
 
-  //!DRYend
-
-  genGuestuid() {
+  async genGuestuid() {
     //check localStorage and return if has any guestuid
     const guestuid = JSON.parse(localStorage.getItem(this.GUEST_USER_ID_NAME));
 
     console.log(guestuid);
     //gen uid
-    uuid;
+
     //assign it to the guestuid class prop
     //set it to the storage
   }
