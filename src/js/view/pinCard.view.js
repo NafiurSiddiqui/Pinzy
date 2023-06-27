@@ -33,7 +33,7 @@ export default class PinCard {
                   <div
                     class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"
                   >
-                    ${userName}
+                    ${userName ? userName : 'Anonymous'}
                   </div>
                 </div>
               

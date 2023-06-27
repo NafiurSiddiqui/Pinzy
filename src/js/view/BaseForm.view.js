@@ -133,6 +133,9 @@ export default class BaseFormView {
       const timeOfCreation = helper.getTime();
       const dateOfCreation = helper.getDate();
 
+      //check for userType
+      const userLoggedIn = helper.checkUserLoggedIn();
+      // Math.floor(Math.random() * 100) + 1,
       const formUserData = {
         pin_event,
         pin_color: eventTypeColor,
@@ -143,16 +146,10 @@ export default class BaseFormView {
         pin_time: timeOfCreation,
         pin_date: dateOfCreation,
       };
-      // const formUserData = {
-      //   event,
-      //   color: eventTypeColor,
-      //   icon: eventTypeIcon,
-      //   message: sanitizedTextAreaValue,
-      //   lat,
-      //   lng,
-      //   time: timeOfCreation,
-      //   date: dateOfCreation,
-      // };
+
+      if (!userLoggedIn) {
+        formUserData.id = Math.floor(Math.random() * 100) + 1;
+      }
 
       //pass it to the controller
       controller.controlUserData(formUserData);
