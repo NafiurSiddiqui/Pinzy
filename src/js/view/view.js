@@ -27,19 +27,21 @@ export default class View {
   guestEditor;
   formEditor;
   map;
-  guestPins = [];
+  // guestPins = [];
   userPins = null;
+  guestPins = null;
   globalPins = [];
   pinClass;
   userType;
 
-  constructor(guestState, userPins, globalPins, editDataHandler) {
+  constructor(guestPins, userPins, globalPins) {
     this.userPins = userPins;
+    this.guestPins = guestPins;
     this.renderSpinner(true);
     this.form = new FormView();
-    this.formEditor = new FormEditorView(userPins, editDataHandler);
+    this.formEditor = new FormEditorView(userPins, guestPins);
     this.guestEditor = new GuestEditor();
-    this.guestPins = guestState;
+    // this.guestPins = guestState;
     this.globalPins = globalPins;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);

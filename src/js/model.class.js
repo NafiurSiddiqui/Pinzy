@@ -4,7 +4,7 @@ export default class Model {
   _userName = '';
   _userId = null;
   _globalState = [];
-  _guestState = [];
+  _guestPins = null;
   _userPins = null;
   _globalStateKey = 'globalState';
   userType = null;
@@ -83,7 +83,11 @@ export default class Model {
 
     guestData.push(data);
     localStorage.setItem('guest', JSON.stringify(guestData));
-    this.updateGlobalState();
+    // this.updateGlobalState();
+  }
+
+  saveGuestEditToLocalStorage(data) {
+    console.log(data);
   }
 
   async request(url, method, data, msgType) {
@@ -176,16 +180,11 @@ export default class Model {
   getLocalStorage() {
     //get user data
     const guestData = JSON.parse(localStorage.getItem('guest')) || [];
-    // const userData = JSON.parse(localStorage.getItem('user')) || [];
 
     //update state
     if (guestData.length > 0) {
-      this._guestState = guestData;
+      this._guestPins = guestData;
     }
-    //update state
-    // if (userData.length > 0) {
-    // this._userPins = userData;
-    // }
   }
 
   isLocalStorageAvailable() {
@@ -203,7 +202,7 @@ export default class Model {
   }
 
   updateGlobalState() {
-    // this._globalState = [...this._guestState, ...this._userPins];
-    console.log(this._userPins);
+    // this._globalState = [...this._guestPins, ...this._userPins];
+    // console.log(this._userPins);
   }
 }

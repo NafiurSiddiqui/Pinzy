@@ -25,10 +25,12 @@ export default class FormEditorView extends BaseForm {
   guestEditor;
   pinEdited = false;
   userPins;
+  guestPins;
 
-  constructor(userPins) {
+  constructor(userPins, guestPins) {
     super();
     this.userPins = userPins;
+    this.guestPins = guestPins;
     this.baseValidateForm.bind(this);
     this.baseFormValidationHandler(
       this.eventTypeEditEl,
@@ -107,7 +109,13 @@ export default class FormEditorView extends BaseForm {
 
   editMessage(id) {
     //pass the item from model> controller
-    const item = this.userPins.find(item => item.id === +id);
+    // const item = this.userPins?.find(item => item.id === +id);
+
+    let item;
+
+    this.userType === 'user'
+      ? this.userPins?.find(item => item.id === +id)
+      : this.guestPins?.find(item => item.id === +id);
 
     //popup edit-input-form
     this.baseShowForm(null, this.formEditBgEl);

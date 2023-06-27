@@ -25,10 +25,9 @@ class Controller {
     this.controlEditData = this.controlEditData.bind(this);
     this.controlDelReq = this.controlDelReq.bind(this);
     this.view = new View(
-      this.model._guestState,
+      this.model._guestPins,
       this.model._userPins,
-      this.model._globalState,
-      this.controlEditData
+      this.model._globalState
     );
 
     this.view.renderMap();
@@ -47,7 +46,11 @@ class Controller {
   }
 
   controlEditData(data) {
-    this.model.sendEditedPinToServer(data);
+    if (this.controlLstorageAlert() === true) return;
+    console.log(data);
+    this.model.userType
+      ? this.model.sendEditedPinToServer(data)
+      : this.model.saveGuestEditToLocalStorage(data);
   }
 
   controlDelReq(reqType, id) {

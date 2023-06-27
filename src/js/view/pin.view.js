@@ -49,6 +49,7 @@ export default class Pin extends FormEditorView {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
+    // console.log(this.guestPins);
   }
 
   renderPinOnMap(pin) {
@@ -108,7 +109,7 @@ export default class Pin extends FormEditorView {
       );
     }
 
-    this.defaultPinMsgHandler();
+    this.pinContainerHandler();
   }
 
   handleGlobalPinRenderer() {
@@ -134,7 +135,7 @@ export default class Pin extends FormEditorView {
       this.editBtnHandler(editBtn);
     });
 
-    this.defaultPinMsgHandler();
+    this.pinContainerHandler();
   }
 
   /**
@@ -183,9 +184,7 @@ export default class Pin extends FormEditorView {
    * @param {HTMLElement} globalPinContainer
    * @param {HTMLElement} guestPinContainer
    */
-  defaultPinMsgHandler() {
-    const profileMsgEl = document.querySelector('.default-msg');
-    console.log(this.guestPins);
+  pinContainerHandler() {
     //Guest
     if (this.guestPins?.length) {
       // profileMsgEl.classList.add('hidden');
@@ -238,9 +237,9 @@ export default class Pin extends FormEditorView {
   }
 
   //get guest pins
-  getGuestPins(guestState) {
-    if (guestState) {
-      this.guestPins = guestState;
+  getGuestPins(guestPins) {
+    if (guestPins) {
+      this.guestPins = guestPins;
     } else {
       console.log('No guest pins found in Pin Class');
     }
