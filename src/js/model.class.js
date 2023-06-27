@@ -9,6 +9,7 @@ export default class Model {
   _globalStateKey = 'globalState';
   userType = null;
   GUEST_USER_ID_NAME = 'guestuid';
+  guestuid;
 
   constructor() {
     this.getUserName = this.getUserName.bind(this);
@@ -21,6 +22,8 @@ export default class Model {
     if (this._userPins?.length > 0) {
       this.updateGlobalState();
     }
+    this.genGuestuid = this.genGuestuid.bind(this);
+
     if (!this.userType) {
       this.genGuestuid();
     }
@@ -171,12 +174,19 @@ export default class Model {
   async genGuestuid() {
     //check localStorage and return if has any guestuid
     const guestuid = JSON.parse(localStorage.getItem(this.GUEST_USER_ID_NAME));
-
     console.log(guestuid);
+    const url = '../api/reqHandler/genuid.php';
+
     //gen uid
+    const res = await this.request(url, 'GET', null, 'GET UID');
+    const data = await res.json();
+    const uuid = data.uuid;
+    // console.log(uuid);
 
     //assign it to the guestuid class prop
+    this._guestUid = uuid;
     //set it to the storage
+    localStorage.setItem(this.GUEST_USER_ID_NAME, JSON.stringify({ uuid }));
   }
 
   getLocalStorage() {
