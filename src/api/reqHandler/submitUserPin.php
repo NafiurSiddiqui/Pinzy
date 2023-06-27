@@ -47,15 +47,24 @@ $conn = $pdo;
 try {
 
 
+    // $userId = $submittedPins['userId'];
+    // $event = $submittedPins['event'];
+    // $color = $submittedPins['color'];
+    // $icon = $submittedPins['icon'];
+    // $message = $submittedPins['message'];
+    // $lat = $submittedPins['lat'];
+    // $lng = $submittedPins['lng'];
+    // $time = $submittedPins['time'];
+    // $date = $submittedPins['date'];
     $userId = $submittedPins['userId'];
-    $event = $submittedPins['event'];
-    $color = $submittedPins['color'];
-    $icon = $submittedPins['icon'];
-    $message = $submittedPins['message'];
-    $lat = $submittedPins['lat'];
-    $lng = $submittedPins['lng'];
-    $time = $submittedPins['time'];
-    $date = $submittedPins['date'];
+    $event = $submittedPins['pin_event'];
+    $color = $submittedPins['pin_color'];
+    $icon = $submittedPins['pin_icon'];
+    $message = $submittedPins['pin_message'];
+    $lat = $submittedPins['pin_lat'];
+    $lng = $submittedPins['pin_lng'];
+    $time = $submittedPins['pin_time'];
+    $date = $submittedPins['pin_date'];
 
 
     //prepare and exec

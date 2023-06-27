@@ -118,28 +118,41 @@ export default class BaseFormView {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
       //get the values
-      const event = this.eventTypeEl.value;
-      const message = this.messageEl.value;
+      // const event = this.eventTypeEl.value;
+      // const message = this.messageEl.value;
+      const pin_event = this.eventTypeEl.value;
+      const pin_message = this.messageEl.value;
       const eventTypeIcon =
         this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.icon;
       const eventTypeColor =
         this.eventTypeEl.options[this.eventTypeEl.selectedIndex].dataset.color;
       const { lat, lng } = this.mapEvent.latlng;
       //sanitize input
-      const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
+      const sanitizedTextAreaValue = pin_message.trim().replace(/<[^>]*>/g, '');
+      // const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
       const timeOfCreation = helper.getTime();
       const dateOfCreation = helper.getDate();
 
       const formUserData = {
-        event,
-        color: eventTypeColor,
-        icon: eventTypeIcon,
-        message: sanitizedTextAreaValue,
-        lat,
-        lng,
-        time: timeOfCreation,
-        date: dateOfCreation,
+        pin_event,
+        pin_color: eventTypeColor,
+        pin_icon: eventTypeIcon,
+        pin_message: sanitizedTextAreaValue,
+        pin_lat: lat,
+        pin_lng: lng,
+        pin_time: timeOfCreation,
+        pin_date: dateOfCreation,
       };
+      // const formUserData = {
+      //   event,
+      //   color: eventTypeColor,
+      //   icon: eventTypeIcon,
+      //   message: sanitizedTextAreaValue,
+      //   lat,
+      //   lng,
+      //   time: timeOfCreation,
+      //   date: dateOfCreation,
+      // };
 
       //pass it to the controller
       controller.controlUserData(formUserData);

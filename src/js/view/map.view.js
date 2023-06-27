@@ -85,7 +85,7 @@ export default class Map extends Pin {
     this.map.on('click', this.showForm.bind(this));
 
     //check the user logger
-
+    console.log(this.guestPins);
     if (this.userType === 'guest') {
       this.handlePinRenderer(this.guestPins, 'guest', this.guestPinContainer);
     } else {

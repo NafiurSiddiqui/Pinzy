@@ -51,7 +51,7 @@ export default class View {
       this.renderSpinner,
       this.formEditor
     );
-
+    console.log(this.guestPins);
     this.newEvHandler = this.map.newMapEvHandler;
     this.hideForm();
     this.sidebarHanlder();

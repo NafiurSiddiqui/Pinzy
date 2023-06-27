@@ -8,19 +8,25 @@ export default class Model {
   _userPins = null;
   _globalStateKey = 'globalState';
   userType = null;
-  GUEST_USER_ID_NAME = 'guestuid';
-  guestuid;
+  GUEST_LSTORAGE_MESSAGE =
+    'Please allow to save cookies in your browser for the guest feature to work 🤦';
+
+  localStorageIsNotAvailable = null;
 
   constructor() {
-    this.getUserName = this.getUserName.bind(this);
-    this.getUserName();
-    this.getLocalStorage();
-    this.getUserId = this.getUserId.bind(this);
-    this.userType = helper.checkUserLoggedIn();
-    this.fetchUserData();
-    // console.log(this._userPins);
-    if (this._userPins?.length > 0) {
-      this.updateGlobalState();
+    this.isLocalStorageAvailable();
+
+    if (this.localStorageIsNotAvailable === false) {
+      this.getUserName = this.getUserName.bind(this);
+      this.getUserName();
+      this.getLocalStorage();
+      this.getUserId = this.getUserId.bind(this);
+      this.userType = helper.checkUserLoggedIn();
+      this.fetchUserData();
+      // console.log(this._userPins);
+      if (this._userPins?.length > 0) {
+        this.updateGlobalState();
+      }
     }
   }
 
@@ -71,6 +77,7 @@ export default class Model {
 
   saveGuestToLocalStorage(data) {
     if (data === undefined || '') throw new Error('Must set data for guest');
+    //see if localstorage is allowed
 
     let guestData = JSON.parse(localStorage.getItem('guest')) || [];
 
@@ -181,7 +188,22 @@ export default class Model {
     // }
   }
 
+  isLocalStorageAvailable() {
+    let test = 'test';
+    try {
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      this.localStorageIsNotAvailable = false;
+      return true;
+    } catch (e) {
+      alert(this.GUEST_LSTORAGE_MESSAGE);
+      this.localStorageIsNotAvailable = true;
+      return false;
+    }
+  }
+
   updateGlobalState() {
-    this._globalState = [...this._guestState, ...this._userPins];
+    // this._globalState = [...this._guestState, ...this._userPins];
+    console.log(this._userPins);
   }
 }

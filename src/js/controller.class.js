@@ -34,11 +34,16 @@ class Controller {
     this.view.renderMap();
     this.userId = this.model._userId;
     this.userPins = this.model._userPins;
+    this.controlLstorageAlert = this.controlLstorageAlert.bind(this);
   }
 
   controlUserData(data) {
+    //storage guard for guest
+    if (this.controlLstorageAlert() === true) return;
     console.log(data);
-    this.model.sendPinToServer(data);
+    this.model.userType
+      ? this.model.sendPinToServer(data)
+      : this.model.saveGuestToLocalStorage(data);
   }
 
   controlEditData(data) {
@@ -50,6 +55,16 @@ class Controller {
     reqType === 'single'
       ? this.model.reqToDelPin('single', id)
       : this.model.reqToDelPin('all');
+  }
+
+  controlLstorageAlert() {
+    if (
+      this.model.localStorageIsNotAvailable === null ||
+      this.model.localStorageIsNotAvailable === true
+    ) {
+      alert(this.model.GUEST_LSTORAGE_MESSAGE);
+      return true;
+    }
   }
 }
 

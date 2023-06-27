@@ -52,6 +52,7 @@ export default class Pin extends FormEditorView {
   }
 
   renderPinOnMap(pin) {
+    console.log(pin);
     const lat = pin.pin_lat;
     const lng = pin.pin_lng;
     let coords = [lat, lng];
