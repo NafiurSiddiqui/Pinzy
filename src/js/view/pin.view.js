@@ -52,7 +52,6 @@ export default class Pin extends FormEditorView {
   }
 
   renderPinOnMap(pin) {
-    console.log(pin);
     const lat = pin.pin_lat;
     const lng = pin.pin_lng;
     let coords = [lat, lng];
@@ -186,8 +185,9 @@ export default class Pin extends FormEditorView {
    */
   defaultPinMsgHandler() {
     const profileMsgEl = document.querySelector('.default-msg');
+    console.log(this.guestPins);
     //Guest
-    if (this.guestPins.length) {
+    if (this.guestPins?.length) {
       // profileMsgEl.classList.add('hidden');
       this.guestPinContainer?.classList.remove('hidden');
     } else {
@@ -204,7 +204,7 @@ export default class Pin extends FormEditorView {
       this.userPinContainer?.classList.add('hidden');
     }
     //global management
-    if (this.globalPins.length) {
+    if (this.globalPins?.length) {
       // profileMsgEl.classList.add('hidden');
       this.globalPinContainer?.classList.remove('hidden');
     } else {

@@ -51,7 +51,7 @@ export default class View {
       this.renderSpinner,
       this.formEditor
     );
-    console.log(this.guestPins);
+
     this.newEvHandler = this.map.newMapEvHandler;
     this.hideForm();
     this.sidebarHanlder();
@@ -105,9 +105,8 @@ export default class View {
       spinnerWrapper.classList.remove('flex');
       spinner.classList.remove('spin');
 
-      if (this.userPins?.length > 0) {
+      if (this.userPins?.length > 0 || this.guestPins?.length > 0) {
         defaultMsgEl.innerHTML = '';
-
         defaultMsgEl.classList.add('hidden');
       } else {
         defaultMsgEl.innerHTML = 'No pins created';
