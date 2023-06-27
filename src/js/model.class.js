@@ -86,8 +86,13 @@ export default class Model {
     // this.updateGlobalState();
   }
 
-  saveGuestEditToLocalStorage(data) {
-    console.log(data);
+  updateGuestEditToLocalStorage(newPin, id, prevPin) {
+    localStorage.setItem(
+      'guest',
+      JSON.stringify(
+        this._guestPins.map(item => (item.id === +id ? newPin : prevPin))
+      )
+    );
   }
 
   async request(url, method, data, msgType) {
@@ -150,7 +155,7 @@ export default class Model {
     await this.request(url, 'POST', newData, 'Sending pin');
   }
 
-  async sendEditedPinToServer(data) {
+  async updateEditedPinToServer(data) {
     //guard
     if (!data) return;
 

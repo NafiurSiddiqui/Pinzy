@@ -111,22 +111,24 @@ export default class FormEditorView extends BaseForm {
     //pass the item from model> controller
     // const item = this.userPins?.find(item => item.id === +id);
 
-    let item;
+    // let item;
 
-    this.userType === 'user'
-      ? this.userPins?.find(item => item.id === +id)
-      : this.guestPins?.find(item => item.id === +id);
+    let item =
+      this.userType === 'user'
+        ? this.userPins?.find(item => item.id === +id)
+        : this.guestPins?.find(item => item.id === +id);
 
     //popup edit-input-form
     this.baseShowForm(null, this.formEditBgEl);
+    // console.log(item);
+    // console.log(this.guestPins);
 
     //autoselect eventType and fill up the text area
     this.eventTypeEditEl.value = item.pin_event;
     this.messageEditEl.value = item.pin_message;
-
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      e.preventDefault();
+      // e.preventDefault();
       const newEventType = this.eventTypeEditEl.value;
       const newMessage = this.messageEditEl.value;
 
@@ -159,7 +161,7 @@ export default class FormEditorView extends BaseForm {
       }
 
       //send new item to the backend whose id matches this id
-      controller.controlEditData(newItem);
+      controller.controlEditData(newItem, id, item);
 
       //clear inputs
       this.eventTypeEditEl.value = this.messageEditEl.value = '';
@@ -167,7 +169,7 @@ export default class FormEditorView extends BaseForm {
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      this.watchForPinChanges();
+      // this.watchForPinChanges();
     });
   }
 

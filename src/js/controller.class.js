@@ -45,12 +45,12 @@ class Controller {
       : this.model.saveGuestToLocalStorage(data);
   }
 
-  controlEditData(data) {
+  controlEditData(data, id, item) {
     if (this.controlLstorageAlert() === true) return;
     console.log(data);
     this.model.userType
-      ? this.model.sendEditedPinToServer(data)
-      : this.model.saveGuestEditToLocalStorage(data);
+      ? this.model.updateEditedPinToServer(data)
+      : this.model.updateGuestEditToLocalStorage(data, id, item);
   }
 
   controlDelReq(reqType, id) {

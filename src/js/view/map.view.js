@@ -108,7 +108,7 @@ export default class Map extends Pin {
     if (!pinEl) return;
 
     // const coords = [this.userPins.pin_lat, this.userPins.pin_lng];
-    console.log(this.guestPins);
+
     let pin;
 
     //check the user type
@@ -120,7 +120,7 @@ export default class Map extends Pin {
           ? this.findPinId(this.userPins, pinEl)
           : this.findPinId(this.guestPins, pinEl);
     }
-    console.log(pin);
+
     this.map.setView([pin.pin_lat, pin.pin_lng], this.mapZoomLevel, {
       animate: true,
       pan: {
@@ -131,7 +131,6 @@ export default class Map extends Pin {
 
   //helper DRY
   findPinId(pins, pinEl) {
-    console.log(pins, pinEl);
     return pins.find(pin => pin.id === +pinEl.dataset.id);
   }
 }
