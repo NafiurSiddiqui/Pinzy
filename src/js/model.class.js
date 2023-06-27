@@ -23,8 +23,10 @@ export default class Model {
       this.updateGlobalState();
     }
     this.genGuestuid = this.genGuestuid.bind(this);
+    //check localStorage and return if has any guestuid
+    const guestuid = JSON.parse(localStorage.getItem(this.GUEST_USER_ID_NAME));
 
-    if (!this.userType) {
+    if (!this.userType && guestuid === null) {
       this.genGuestuid();
     }
   }
@@ -172,9 +174,6 @@ export default class Model {
   }
 
   async genGuestuid() {
-    //check localStorage and return if has any guestuid
-    const guestuid = JSON.parse(localStorage.getItem(this.GUEST_USER_ID_NAME));
-    console.log(guestuid);
     const url = '../api/reqHandler/genuid.php';
 
     //gen uid
