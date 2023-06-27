@@ -1,4 +1,6 @@
+import { v4 as uuid } from 'uuid';
 import { helper } from './helper.js';
+v;
 
 export default class Model {
   _userName = '';
@@ -8,6 +10,7 @@ export default class Model {
   _userPins = null;
   _globalStateKey = 'globalState';
   userType = null;
+  GUEST_USER_ID_NAME = 'guestuid';
 
   constructor() {
     this.getUserName = this.getUserName.bind(this);
@@ -19,6 +22,9 @@ export default class Model {
     // console.log(this._userPins);
     if (this._userPins?.length > 0) {
       this.updateGlobalState();
+    }
+    if (!this.userType) {
+      this.genGuestuid();
     }
   }
 
@@ -76,16 +82,6 @@ export default class Model {
     localStorage.setItem('guest', JSON.stringify(guestData));
     this.updateGlobalState();
   }
-
-  // saveUserToLocalStorage(data) {
-  //   if (data === undefined || '') throw new Error('Must set data for user');
-
-  //   let userData = JSON.parse(localStorage.getItem('user')) || [];
-
-  //   userData.push(data);
-  //   localStorage.setItem('user', JSON.stringify(userData));
-  //   this.updateGlobalState();
-  // }
 
   async fetchUserData() {
     //who logged in?
@@ -194,6 +190,17 @@ export default class Model {
   }
 
   //!DRYend
+
+  genGuestuid() {
+    //check localStorage and return if has any guestuid
+    const guestuid = JSON.parse(localStorage.getItem(this.GUEST_USER_ID_NAME));
+
+    console.log(guestuid);
+    //gen uid
+    uuid;
+    //assign it to the guestuid class prop
+    //set it to the storage
+  }
 
   getLocalStorage() {
     //get user data

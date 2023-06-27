@@ -31,16 +31,9 @@ class Controller {
       this.controlEditData
     );
 
-    // this.view.form.dataHandler(this.controlUserData, this._userId);
-    // this.view.formEditor.actionHandler(this.controlEditData);
-
     this.view.renderMap();
     this.userId = this.model._userId;
     this.userPins = this.model._userPins;
-
-    // this.formEditor = new FormEditorView(this.model._userPins);
-
-    // this.formEditor.actionHandler(this.controlEditData);
   }
 
   controlUserData(data) {
