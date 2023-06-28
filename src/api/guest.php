@@ -19,11 +19,11 @@ include './layout/header-pin.php';
 
 
 <!-- nav -->
-<!-- <nav class="py-4 px-4 drop-shadow-sm shadow-zinc-100 bg-white"> -->
+
 <nav class="py-4 px-4 drop-shadow-sm shadow-zinc-100 bg-zinc-500">
     <ul class="flex justify-around">
         <li
-            class="border-r border-r-1 border-r-gray-200 w-4/5 text-center text-zinc-400 font-semibold  text-base hover:text-zinc-100 ">
+            class="border-r border-r-1 border-r-zinc-400 w-4/5 text-center text-zinc-400 font-semibold  text-base hover:text-zinc-100 ">
             <a href="../api/pins.php">Pins</a>
         </li>
         <li class="font-semibold w-4/5 text-center nav-active text-base">
