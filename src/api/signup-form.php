@@ -128,9 +128,9 @@ include './layout/header-auth.php';
 ?>
         </span>
     </div>
-    <button
-        class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-zinc-400  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
-        type="submit" name="submit">
+    <button class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 
+        laptop:h-full laptop:py-2 laptop:px-4 
+        transition-colors active:text-zinc-100 " type="submit" name="submit">
         Signup
     </button>
 </form>
