@@ -95,6 +95,15 @@ export default class Model {
     );
   }
 
+  delGuestPin(reqType, id) {
+    reqType === 'single'
+      ? localStorage.setItem(
+          'guest',
+          JSON.stringify(this._guestPins.filter(pin => pin.id !== +id))
+        )
+      : localStorage.removeItem('guest');
+  }
+
   async request(url, method, data, msgType) {
     let options = {
       method: method,

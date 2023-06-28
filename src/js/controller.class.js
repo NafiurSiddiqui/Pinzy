@@ -1,4 +1,5 @@
 import Model from './model.class.js';
+import BaseFormView from './view/BaseForm.view.js';
 import FormEditorView from './view/formEditor.view.js';
 import View from './view/view.js';
 
@@ -54,10 +55,17 @@ class Controller {
   }
 
   controlDelReq(reqType, id) {
-    console.log(id);
-    reqType === 'single'
-      ? this.model.reqToDelPin('single', id)
-      : this.model.reqToDelPin('all');
+    if (this.controlLstorageAlert() === true) return;
+
+    if (reqType === 'single') {
+      this.model.userType
+        ? this.model.reqToDelPin('single', id)
+        : this.model.delGuestPin('single', id);
+    } else {
+      this.model.userType
+        ? this.model.reqToDelPin('all')
+        : this.model.delGuestPin('all');
+    }
   }
 
   controlLstorageAlert() {

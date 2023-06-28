@@ -116,7 +116,7 @@ export default class BaseFormView {
   //submit form
   baseDataHandler() {
     this.form.addEventListener('submit', e => {
-      // e.preventDefault();
+      e.preventDefault();
       //get the values
       // const event = this.eventTypeEl.value;
       // const message = this.messageEl.value;

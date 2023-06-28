@@ -169,7 +169,6 @@ export default class FormEditorView extends BaseForm {
   }
 
   deletePin(id) {
-    //capture the id from controller, send req to BE
     controller.controlDelReq('single', id);
   }
 
@@ -231,6 +230,9 @@ export default class FormEditorView extends BaseForm {
               }).then(res => {
                 if (res) {
                   this.deletePin(id);
+                  if (this.userType === 'guest') {
+                    this.baseRefreshContent();
+                  }
                 } else {
                   return;
                 }
@@ -246,6 +248,9 @@ export default class FormEditorView extends BaseForm {
               }).then(res => {
                 if (res) {
                   this.deleteAllPin();
+                  if (this.userType === 'guest') {
+                    this.baseRefreshContent();
+                  }
                 } else {
                   return;
                 }
