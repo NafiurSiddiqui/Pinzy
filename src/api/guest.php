@@ -23,7 +23,7 @@ include './layout/header-pin.php';
 <nav class="py-4 px-4 drop-shadow-sm shadow-zinc-100 bg-zinc-500">
     <ul class="flex justify-around">
         <li
-            class="border-r border-r-1 border-r-zinc-400 w-4/5 text-center text-zinc-400 font-semibold  text-base hover:text-zinc-100 ">
+            class="border-r border-r-1 border-r-zinc-400 w-4/5 text-center text-zinc-400 font-semibold  text-base  hover:text-zinc-100 ">
             <a href="../api/pins.php">Pins</a>
         </li>
         <li class="font-semibold w-4/5 text-center nav-active text-base">
@@ -38,7 +38,7 @@ include './layout/header-pin.php';
     <div
         class="user-profile_header-user-image border border-zinc-400 w-16 h-16 rounded-full p-2 bg-zinc-500 flex justify-center items-center">
 
-        <i class="fa-regular fa-user fa-2xl text-zinc-300"></i>
+        <i class="fa-regular fa-user fa-2xl text-zinc-400"></i>
     </div>
     <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-200 text-2xl">
         Anonymous
