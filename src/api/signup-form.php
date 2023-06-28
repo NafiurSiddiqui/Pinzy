@@ -44,11 +44,11 @@ include './layout/header-auth.php';
 ?>
 
 <form action="inc/signup.inc.php" method="post"
-    class="px-8 py-8 border-2 rounded border-zinc-300  w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
+    class="px-8 py-8 border-2 rounded border-zinc-400/80  w-full mt-4 flex justify-center flex-col items-center android-md/2:w-80 tablet-md:w-[21rem] tablet-md:px-6">
     <div class="flex flex-col my-2 w-full">
         <div class="text-zinc-400 relative -bottom-[2rem] left-[0.4rem] max-w-max transition-all duration-300  ">
             Username</div>
-        <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2 
+        <input type="text" spellcheck="false" name="userName" aria-label="User name" class="input-field z-10 bg-transparent border-2 border-zinc-400 p-2 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  
         
         <?php echo (!empty($invalidUserName) || !empty($emptyName) || !empty($emptyInput)) ? 'ring ring-red-400': ''  ?>
         " />
@@ -75,7 +75,7 @@ include './layout/header-auth.php';
             class="text-zinc-400 relative -bottom-[2rem] left-[0.4rem] max-w-max transition-all duration-300 px-[0.2rem]">
             Email</div>
         <input type="email" name="email" aria-label="Email" spellcheck="false"
-            class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400  tablet-md:p-2 
+            class="input-field z-10 bg-transparent border-2 border-zinc-400 p-2 rounded !appearance-none  focus:!outline-none focus:ring-2 focus:ring-green-400  
         <?php echo (!empty($invalidEmail) ||!empty($emptyEmail) || !empty($emptyInput)) ? 'ring ring-red-400': ''  ?> " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
@@ -99,7 +99,7 @@ include './layout/header-auth.php';
             Password
         </div>
         <input type="password" name="password" aria-label="Password"
-            class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2
+            class="input-field z-10 bg-transparent border-2 border-zinc-400 p-2 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400 
             <?php echo (!empty($emptyPass)  || !empty($emptyInput)) ? 'ring ring-red-400': ''; ?> " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
@@ -112,7 +112,7 @@ include './layout/header-auth.php';
             Confirm
             Password</div>
         <input type="password" name="confirm-password" aria-label="Confirm Password"
-            class="input-field z-10 bg-transparent border border-zinc-300 p-1 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400  tablet-md:p-2
+            class="input-field z-10 bg-transparent border-2 border-zinc-400 p-2 rounded !appearance-none  focus:!outline-none focus:ring-2  focus:ring-green-400 
             <?php echo (!empty($passMismatched) || !empty($emptyRepass)  || !empty($emptyInput)) ? 'ring ring-red-400': ''; ?> " />
         <span class="input-error-msg text-xs text-red-500 mt-1 ml-1">
             <?php
@@ -129,7 +129,7 @@ include './layout/header-auth.php';
         </span>
     </div>
     <button
-        class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-zinc-300  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
+        class="btn-user-input-login relative -bottom-4 w-full mt-10 mb-3 h-10 rounded font-semibold text-m text-zinc-50  android-md/2:w-52 android-md:rounded-2xl  border-4 border-green-400  bg-green-400 laptop:bg-transparent laptop:text-zinc-400 laptop:border-zinc-400  laptop:hover:bg-green-400 laptop:hover:text-zinc-100 laptop:hover:border-green-400 transition-colors active:text-zinc-100 "
         type="submit" name="submit">
         Signup
     </button>
@@ -137,20 +137,20 @@ include './layout/header-auth.php';
 <!-- optional actions -->
 <div class="flex justify-between android-md/2:w-80 tablet-md:w-[21rem]  w-full mt-8 laptop:mt-10">
 
-    <div class="text-center flex flex-col   w-24 whitespace-nowrap  text-zinc-500">
-        <span class="text-xs">Have account?</span>
+    <div class="text-center flex flex-col   w-24 whitespace-nowrap  ">
+        <span class="text-xs text-zinc-600">Have account?</span>
         <a href="../../index.php"
             class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Login</a>
     </div>
 
-    <div class="text-center  my-1 text-zinc-400 flex justify-center items-center">
-        <span class="inline-block border w-8 border-zinc-300"></span>
+    <div class="text-center  my-1 text-zinc-500 flex justify-center items-center">
+        <span class="inline-block border w-8 border-zinc-400 mr-1"></span>
         or
-        <span class="inline-block border w-8 border-zinc-300"></span>
+        <span class="inline-block border w-8 border-zinc-400 ml-1"></span>
     </div>
 
     <div class="text-center  flex flex-col  w-24 whitespace-nowrap   text-zinc-500">
-        <span class="text-xs">Explore as a</span>
+        <span class="text-xs text-zinc-600">Explore as a</span>
         <a href="./guest.php"
             class="ml-1 font-bold  text-green-500 hover:underline hover:text-green-600 transition-colors">Guest</a>
     </div>
