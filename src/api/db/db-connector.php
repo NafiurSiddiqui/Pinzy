@@ -19,7 +19,7 @@ try {
     
 
 } catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    // throw new \PDOException($e->getMessage(), (int)$e->getCode());
 
     // Log the error message to a file or error tracking system
     error_log('PDO Connection Error: ' . $e->getMessage());
