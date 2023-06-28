@@ -1,7 +1,7 @@
 <!-- side footer actions -->
 
 <div
-    class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-0 left-0 px-4 py-5 bg-white tablet:justify-between">
+    class="user-profile-footer hidden w-full tablet:flex justify-center absolute bottom-0 left-0 px-4 py-5 bg-zinc-500 tablet:justify-between z-20">
     <a class="btn-user-logout font-semibold px-4 text-lg flex justify-center rounded-sm ring-4 ring-zinc-300 text-zinc-400 items-center transition-all hover:text-zinc-500 hover:font-bold hover:ring-zinc-400 hover:shadow-md hover:bg-transparent hover:shadow-zinc-600 tablet:flex"
         href="
     <?php

@@ -13,10 +13,7 @@ $pathToCss = '../../dist/output.css';
 $pathToFaAll = '../style/fontawesome/all.min.css';
 include './layout/header-auth.php';
 
-
-
 ?>
-
 
 
 <div class="error-container border border-red-200 py-8 px-4 mt-24 rounded-md bg-rose-100 shadow-md tablet-md:max-h-56 ">
