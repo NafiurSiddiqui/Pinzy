@@ -86,11 +86,11 @@ export default class Model {
     // this.updateGlobalState();
   }
 
-  updateGuestEditToLocalStorage(newPin, id, prevPin) {
+  updateGuestEditToLocalStorage(newPin, id) {
     localStorage.setItem(
       'guest',
       JSON.stringify(
-        this._guestPins.map(item => (item.id === +id ? newPin : prevPin))
+        this._guestPins.map(item => (item.id === +id ? newPin : item))
       )
     );
   }
