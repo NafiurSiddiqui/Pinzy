@@ -17,17 +17,11 @@ export default class Model {
     this.isLocalStorageAvailable();
 
     if (this.localStorageIsNotAvailable === false) {
-      if (helper.checkURL('pins.php')) {
-        console.log('data fetches');
-        this.getGlobalPins();
-      }
       this.getUserName = this.getUserName.bind(this);
       this.getUserName();
       this.getLocalStorage();
       this.getUserId = this.getUserId.bind(this);
       this.userType = helper.checkUserLoggedIn();
-      this.fetchUserData();
-      // console.log(this._userPins);
       if (this._userPins?.length > 0) {
         this.updateGlobalState();
       }
