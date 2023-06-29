@@ -41,7 +41,6 @@ export default class View {
     this.form = new FormView();
     this.formEditor = new FormEditorView(userPins, guestPins);
     this.guestEditor = new GuestEditor();
-
     this.globalPins = globalPins;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
@@ -58,11 +57,6 @@ export default class View {
     this.hideForm();
     this.sidebarHanlder();
     this.sidebarHanlderMobile();
-
-    // helper.checkURL('user.php')?
-    // this.activePage = 'user page':
-    // helper.checkURL('guest.php')?
-    // this.activePage = 'guest page'
   }
 
   renderMap() {
@@ -105,7 +99,7 @@ export default class View {
     const isUserPage = helper.checkURL('user.php');
     const isGuestPage = helper.checkURL('guest.php');
     const DEFAULT_PIN_MSG = "Let's pin aware your people";
-    console.log(isGuestPage);
+
     if (render === true) {
       spinnerWrapper.classList.remove('hidden');
       spinnerWrapper.classList.add('flex');

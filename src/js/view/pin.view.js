@@ -146,7 +146,6 @@ export default class Pin extends FormEditorView {
    */
   renderPinCount(userType) {
     if (this.isGlobalPinPage) {
-      console.log('global Pin Page');
       return;
     }
 

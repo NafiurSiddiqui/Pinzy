@@ -19,9 +19,8 @@ class Controller {
 
   async init() {
     this.model = new Model();
-    // Wait for the user pins data to be fetched
-    await this.model.fetchUserData();
-
+    // Wait for the model promises data to be resolved first
+    await Promise.all([this.model.fetchUserData(), this.model.getGlobalPins()]);
     this.controlUserData = this.controlUserData.bind(this);
     this.controlEditData = this.controlEditData.bind(this);
     this.controlDelReq = this.controlDelReq.bind(this);
