@@ -6,9 +6,11 @@ session_start();
 if(isset($_SESSION["user_id"])) {
     //get the id
     $userId = $_SESSION["user_id"];
+    $userName = $_SESSION["user_name"];
     //prepare the response data
     $response = [
         'user_id'=> $userId,
+        "user_name"=>  $userName,
         'message'=> 'user id successfully retrieved'
     ];
     //send it

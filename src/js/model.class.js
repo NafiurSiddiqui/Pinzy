@@ -20,13 +20,11 @@ export default class Model {
       this.getUserName = this.getUserName.bind(this);
       this.getUserName();
       this.getLocalStorage();
-      this.getUserId = this.getUserId.bind(this);
+      this.getUserInfo = this.getUserInfo.bind(this);
       this.userType = helper.checkUserLoggedIn();
       if (this._userPins?.length > 0) {
         this.updateGlobalState();
       }
-
-      console.log(this._globalPins);
     }
   }
 
@@ -53,14 +51,16 @@ export default class Model {
     }
   }
 
-  async getUserId() {
+  async getUserInfo() {
     try {
       const response = await fetch('../api/reqHandler/returnUserId.php');
 
       if (response.ok) {
         const data = await response.json();
         const userId = data.user_id;
-        return userId;
+        const userName = data.user_name;
+        console.log(data);
+        return { userId, userName };
       } else {
         console.error('Error:', response.status);
       }
@@ -161,8 +161,8 @@ export default class Model {
     console.log(data);
     if (!data) throw new Error('No data has been provided.');
 
-    const userId = await this.getUserId();
-    const newData = { userId, ...data };
+    const { userId, userName } = await this.getUserInfo();
+    const newData = { userId, userName, ...data };
     const url = '../api/reqHandler/submitUserPin.php';
 
     await this.request(url, 'POST', newData, 'Sending pin');
@@ -176,9 +176,9 @@ export default class Model {
     const url = '../api/reqHandler/submitEditPin.php';
 
     //get userId
-    const userId = await this.getUserId();
+    const { userId, userName } = await this.getUserInfo();
     //combine data with user id
-    let editedData = { ...data, userId };
+    let editedData = { ...data, userId, userName };
 
     await this.request(url, 'POST', { editedData }, 'Edited data');
   }

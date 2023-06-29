@@ -39,7 +39,7 @@ require '../db/db-connector.php';
 
 // insert into database
 
-$sqlInsert = 'INSERT INTO pintzy_user_pin (user_id, pin_event, pin_color, pin_icon, pin_message, pin_lat, pin_lng, pin_time, pin_date) VALUES (?,?,?,?,?,?,?,?,?)';
+$sqlInsert = 'INSERT INTO pintzy_user_pin (user_id,user_name, pin_event, pin_color, pin_icon, pin_message, pin_lat, pin_lng, pin_time, pin_date) VALUES (?,?,?,?,?,?,?,?,?,?)';
 
 
 $conn = $pdo;
@@ -48,6 +48,7 @@ try {
 
 
     $userId = $submittedPins['userId'];
+    $userName = $submittedPins['userName'];
     $event = $submittedPins['pin_event'];
     $color = $submittedPins['pin_color'];
     $icon = $submittedPins['pin_icon'];
@@ -59,7 +60,7 @@ try {
 
 
     //prepare and exec
-    $conn->prepare($sqlInsert)->execute([$userId, $event, $color, $icon, $message, $lat, $lng,$time, $date]);
+    $conn->prepare($sqlInsert)->execute([$userId,$userName, $event, $color, $icon, $message, $lat, $lng,$time, $date]);
 
     
 
