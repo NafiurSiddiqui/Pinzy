@@ -1,5 +1,5 @@
-const userNameEl = document.querySelector('.user-profile-header_user-name');
-let userName = userNameEl?.dataset?.username?.trim();
+// const userNameEl = document.querySelector('.user-profile-header_user-name');
+// let userName = userNameEl?.dataset?.username?.trim();
 
 export default class PinCard {
   /**
@@ -10,6 +10,10 @@ export default class PinCard {
 
   generatePinCard(data, guest = null) {
     if (!data) return;
+
+    let userName =
+      data?.user_name?.charAt(0).toUpperCase() + data?.user_name?.slice(1);
+    console.log(userName);
 
     let html = `
      <li
@@ -33,7 +37,7 @@ export default class PinCard {
                   <div
                     class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"
                   >
-                    ${userName ? userName : 'Anonymous'}
+                    ${data.user_name ? userName : 'Anonymous'}
                   </div>
                 </div>
               
