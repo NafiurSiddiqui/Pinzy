@@ -7,7 +7,7 @@ reqRecieveLogger();
 
 
 //get the data
-$sqlGetAllPins = "SELECT * FROM pintzy_user_pin LIMIT 20";
+$sqlGetAllPins = "SELECT * FROM pintzy_user_pin LIMIT 40";
 
 require '../db/db-connector.php';
 

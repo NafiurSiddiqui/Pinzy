@@ -3,7 +3,7 @@ import { helper } from './helper.js';
 export default class Model {
   _userName = '';
   _userId = null;
-  _globalState = [];
+  _globalPins = [];
   _guestPins = null;
   _userPins = null;
   _globalStateKey = 'globalState';
@@ -26,6 +26,9 @@ export default class Model {
       // console.log(this._userPins);
       if (this._userPins?.length > 0) {
         this.updateGlobalState();
+      }
+      if (helper.checkURL('pins.php')) {
+        this.getGlobalPins();
       }
     }
   }
@@ -146,7 +149,11 @@ export default class Model {
 
       const result = await response.json();
 
+      if (result.length === 0) {
+        console.log('No data');
+      }
       this._userPins = result;
+
       return this._userPins;
     } catch (error) {
       console.error(error);
@@ -216,7 +223,10 @@ export default class Model {
   }
 
   async getGlobalPins() {
-    const url = '';
+    const url = '../api/reqHandler/returnGlobalPin.php';
+    const res = await this.request(url);
+    const data = await res.json();
+    // console.log(data);
   }
 
   // updateGlobalState() {

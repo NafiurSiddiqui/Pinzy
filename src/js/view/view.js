@@ -1,4 +1,4 @@
-import { sidebarElements } from '../helper.js';
+import { helper, sidebarElements } from '../helper.js';
 import GuestEditor from '../user/guest.editor.js';
 import FormView from './form.view.js';
 import FormEditorView from './formEditor.view.js';
@@ -27,12 +27,12 @@ export default class View {
   guestEditor;
   formEditor;
   map;
-  // guestPins = [];
   userPins = null;
   guestPins = null;
   globalPins = [];
   pinClass;
   userType;
+  activePage = '';
 
   constructor(guestPins, userPins, globalPins) {
     this.userPins = userPins;
@@ -41,7 +41,7 @@ export default class View {
     this.form = new FormView();
     this.formEditor = new FormEditorView(userPins, guestPins);
     this.guestEditor = new GuestEditor();
-    // this.guestPins = guestState;
+
     this.globalPins = globalPins;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
@@ -58,6 +58,11 @@ export default class View {
     this.hideForm();
     this.sidebarHanlder();
     this.sidebarHanlderMobile();
+
+    // helper.checkURL('user.php')?
+    // this.activePage = 'user page':
+    // helper.checkURL('guest.php')?
+    // this.activePage = 'guest page'
   }
 
   renderMap() {
@@ -96,7 +101,11 @@ export default class View {
     const spinnerWrapper = document.querySelector('.loader-wrapper');
     const spinner = document.querySelector('.spinner');
     const defaultMsgEl = document.querySelector('.default-msg');
-
+    const isGlobalPinPage = helper.checkURL('pins.php');
+    const isUserPage = helper.checkURL('user.php');
+    const isGuestPage = helper.checkURL('guest.php');
+    const DEFAULT_PIN_MSG = "Let's pin aware your people";
+    console.log(isGuestPage);
     if (render === true) {
       spinnerWrapper.classList.remove('hidden');
       spinnerWrapper.classList.add('flex');
@@ -107,11 +116,15 @@ export default class View {
       spinnerWrapper.classList.remove('flex');
       spinner.classList.remove('spin');
 
-      if (this.userPins?.length > 0 || this.guestPins?.length > 0) {
+      if (
+        (isGlobalPinPage && this.globalPins?.length > 0) ||
+        (isUserPage && this.userPins?.length > 0) ||
+        (isGuestPage && this.guestPins?.length > 0)
+      ) {
         defaultMsgEl.innerHTML = '';
         defaultMsgEl.classList.add('hidden');
       } else {
-        defaultMsgEl.innerHTML = 'No pins created';
+        defaultMsgEl.innerHTML = DEFAULT_PIN_MSG;
         defaultMsgEl.classList.remove('hidden');
       }
     }

@@ -5,7 +5,7 @@ session_start();
 
 $userLogged = false;
 
-if(isset($_SESSION["id"]) || isset($_SESSION['signupSuccessful']) == true) {
+if(isset($_SESSION["user_id"]) || isset($_SESSION['signupSuccessful']) == true) {
 
     $userLogged = true;
 
@@ -41,7 +41,7 @@ include './layout/header-pin.php';
 
 <!-- pins -->
 <div class="pin-container-wrapper__global bg-zinc-400 h-90vh">
-  <p class="default-msg text-center text-zinc-400 font-semibold text-lg top-8 relative italic">
+  <p class="default-msg text-center text-zinc-100 font-semibold text-lg top-8 relative italic">
     No pins created yet.
   </p>
   <ul class="global-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-600 h-76vh overflow-y-scroll"

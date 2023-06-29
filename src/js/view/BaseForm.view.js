@@ -118,8 +118,7 @@ export default class BaseFormView {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
       //get the values
-      // const event = this.eventTypeEl.value;
-      // const message = this.messageEl.value;
+
       const pin_event = this.eventTypeEl.value;
       const pin_message = this.messageEl.value;
       const eventTypeIcon =
@@ -150,7 +149,7 @@ export default class BaseFormView {
       if (!userLoggedIn) {
         formUserData.id = Math.floor(Math.random() * 100) + 1;
       }
-
+      console.log(formUserData);
       //pass it to the controller
       controller.controlUserData(formUserData);
 
@@ -160,7 +159,7 @@ export default class BaseFormView {
       this.baseHideForm();
 
       //refresh manually
-      this.baseRefreshContent();
+      // this.baseRefreshContent();
     });
   }
 

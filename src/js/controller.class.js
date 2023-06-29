@@ -28,7 +28,7 @@ class Controller {
     this.view = new View(
       this.model._guestPins,
       this.model._userPins,
-      this.model._globalState
+      this.model._globalPins
     );
 
     this.view.renderMap();
@@ -40,7 +40,7 @@ class Controller {
   controlUserData(data) {
     //storage guard for guest
     if (this.controlLstorageAlert() === true) return;
-
+    console.log(data);
     this.model.userType
       ? this.model.sendPinToServer(data)
       : this.model.saveGuestToLocalStorage(data);
