@@ -223,13 +223,7 @@ export default class Model {
     const url = '../api/reqHandler/returnGlobalPin.php';
     const res = await this.request(url);
     const data = await res.json();
-    // console.log(data);
 
-    this._globalPins = data;
+    this._globalPins = [...data, ...this._guestPins];
   }
-
-  // updateGlobalState() {
-  //   // this._globalState = [...this._guestPins, ...this._userPins];
-  //   // console.log(this._userPins);
-  // }
 }

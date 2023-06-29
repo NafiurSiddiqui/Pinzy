@@ -112,9 +112,9 @@ export default class Pin extends FormEditorView {
   }
 
   handleGlobalPinRenderer() {
-    const globalPins = [...this.globalPins, ...this.guestPins];
+    // const globalPins = [...this.globalPins, ...this.guestPins];
 
-    globalPins.forEach(pin => {
+    this.globalPins.forEach(pin => {
       //render on map
       this.renderPinOnMap(pin);
       //generate global pinCard
