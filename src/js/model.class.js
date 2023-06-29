@@ -215,8 +215,12 @@ export default class Model {
     }
   }
 
-  updateGlobalState() {
-    // this._globalState = [...this._guestPins, ...this._userPins];
-    // console.log(this._userPins);
+  async getGlobalPins() {
+    const url = '';
   }
+
+  // updateGlobalState() {
+  //   // this._globalState = [...this._guestPins, ...this._userPins];
+  //   // console.log(this._userPins);
+  // }
 }
