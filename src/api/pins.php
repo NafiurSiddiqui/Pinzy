@@ -44,7 +44,8 @@ include './layout/header-pin.php';
   <p class="default-msg text-center text-zinc-100 font-semibold text-lg top-8 relative italic">
     No pins created yet.
   </p>
-  <ul class="global-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-600 h-76vh overflow-y-scroll"
+  <ul
+    class="global-pin-container hidden px-4 pt-8 pb-4 flex items-center flex-col bg-zinc-600 h-[84vh] overflow-y-scroll"
     data-userLogged="
     <?php
       echo $userLogged ? 'true':'false';
