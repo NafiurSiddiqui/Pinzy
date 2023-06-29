@@ -1,5 +1,4 @@
 import { helper, sidebarElements } from '../helper.js';
-import GuestEditor from '../user/guest.editor.js';
 import FormView from './form.view.js';
 import FormEditorView from './formEditor.view.js';
 import Map from './map.view.js';
@@ -40,7 +39,7 @@ export default class View {
     this.renderSpinner(true);
     this.form = new FormView();
     this.formEditor = new FormEditorView(userPins, guestPins);
-    this.guestEditor = new GuestEditor();
+
     this.globalPins = globalPins;
     this.renderForm = this.renderForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
