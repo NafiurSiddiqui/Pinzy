@@ -49,7 +49,6 @@ export default class Pin extends FormEditorView {
       ? (this.isGlobalPinPage = true)
       : (this.isGlobalPinPage = false);
     this.userType = userType;
-    console.log(this.globalPins);
   }
 
   renderPinOnMap(pin) {
@@ -113,17 +112,14 @@ export default class Pin extends FormEditorView {
   }
 
   handleGlobalPinRenderer() {
-    // console.log(globalPinContainer);
+    const globalPins = [...this.globalPins, ...this.guestPins];
 
-    this.globalPins.forEach(pin => {
-      // let isGuest = pin.userType === 'guest';
-
+    globalPins.forEach(pin => {
       //render on map
       this.renderPinOnMap(pin);
       //generate global pinCard
       this.globalPinContainer.insertAdjacentHTML(
         'beforeend',
-        // this.pinCard.generatePinCard(pin, isGuest)
         this.pinCard.generatePinCard(pin, this.userType)
       );
 
