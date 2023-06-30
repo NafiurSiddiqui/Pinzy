@@ -1,8 +1,8 @@
 <?php
 
-include '../config/config.php';
+// include '../config/config.php';
 
-reqRecieveLogger();
+// reqRecieveLogger();
 
 
 
@@ -29,6 +29,9 @@ try {
 
 } catch (\Exception $th) {
     //throw $th;
-    throw new Exception("Error fetching data". $th->getMessage(), $e->getCode());
+    throw new Exception("Error fetching data". $th->getMessage(), $th->getCode());
+    // header('location: ../../api/error-view.php?message=' . urlencode($th->getMessage()) . '&errorCode=' . urlencode($th->getCode()));
+    // exit();
+
 
 }

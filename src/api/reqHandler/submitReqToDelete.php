@@ -9,9 +9,9 @@ if(!isset($_SESSION["user_id"])) {
 }
 
 //----debug
-include '../config/config.php';
+// include '../config/config.php';
 
-reqRecieveLogger();
+// reqRecieveLogger();
 
 
 if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
@@ -51,23 +51,23 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
             // Send a response indicating the deletion was successful
             header('Content-Type: application/json');
             echo json_encode(['message' => 'Pin(s) deleted successfully']);
-            exit;
+            exit();
 
         } catch (Error $e) {
             // Handle the database connection or query errors
             header('Content-Type: application/json');
             echo json_encode(['error' => 'Database error']);
-            exit;
+            exit();
         }
 
     }
 
 } else {
-    filelogger('./delete-req-check.log', 'NOT A REQ METHOD');
+    // filelogger('./delete-req-check.log', 'NOT A REQ METHOD');
     // If the request does not match the DELETE method or the 'id' parameter is missing
     http_response_code(400); // Bad Request
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Invalid request']);
-    exit;
+    exit();
 
 }

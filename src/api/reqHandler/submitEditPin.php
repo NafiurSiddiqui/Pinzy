@@ -8,32 +8,23 @@ if (!isset($_SESSION["user_id"])) {
     exit();
 }
 
-// / Log the request to verify it reaches this endpoint
-file_put_contents('request.log', 'Request received: ' . date('Y-m-d H:i:s') . PHP_EOL, FILE_APPEND);
+
 
 //get the submitted data
 $submittedPins = json_decode(file_get_contents('php://input'), true);
 
-//get the value dynamically
-
-// $numberOfElements = count($submittedPins);
-// $coords = $submittedPins['coords'];
-
-// $latitude = $coords[0];
-// $longitude = $coords[1];
-// $point = sprintf('POINT(%f, %f)', $latitude, $longitude);
 
 $userId = $_SESSION["user_id"];
 
 
 
 //--------debug
-include '../config/config.php';
+// include '../config/config.php';
 
 
 
-filelogger('./edit_pin_submission.log', $submittedPins);
-
+// filelogger('./edit_pin_submission.log', $submittedPins);
+//
 //--------debugEnd
 
 

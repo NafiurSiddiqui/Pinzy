@@ -137,7 +137,6 @@ export default class Map extends Pin {
 
   //helper DRY
   findPinId(pins, pinEl) {
-    console.log(pins, pinEl);
     return pins.find(pin => pin.id === +pinEl.dataset.id);
   }
 }

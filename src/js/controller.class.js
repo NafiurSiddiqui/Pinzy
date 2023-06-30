@@ -39,7 +39,7 @@ class Controller {
   controlUserData(data) {
     //storage guard for guest
     if (this.controlLstorageAlert() === true) return;
-    console.log(data);
+
     this.model.userType
       ? this.model.sendPinToServer(data)
       : this.model.saveGuestToLocalStorage(data);

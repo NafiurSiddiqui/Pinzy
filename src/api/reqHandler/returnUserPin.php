@@ -33,7 +33,6 @@ $sqlFetch = 'SELECT * FROM pintzy_user_pin WHERE user_id = ?';
 
 try {
     //bind value and fetch data
-
     $stmt = $conn->prepare($sqlFetch);
     $stmt->execute([$userId]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -48,7 +47,7 @@ try {
 
 } catch (Error $e) {
     //log error
-    error_log($e->getMessage(), 3, 'error.log');
+    // error_log($e->getMessage(), 3, 'error.log');
 
     throw new Exception("Error fetching data", 1);
 

@@ -117,8 +117,8 @@ export default class BaseFormView {
   baseDataHandler() {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
-      //get the values
 
+      //get the values
       const pin_event = this.eventTypeEl.value;
       const pin_message = this.messageEl.value;
       const eventTypeIcon =
@@ -128,13 +128,12 @@ export default class BaseFormView {
       const { lat, lng } = this.mapEvent.latlng;
       //sanitize input
       const sanitizedTextAreaValue = pin_message.trim().replace(/<[^>]*>/g, '');
-      // const sanitizedTextAreaValue = message.trim().replace(/<[^>]*>/g, '');
       const timeOfCreation = helper.getTime();
       const dateOfCreation = helper.getDate();
 
       //check for userType
       const userLoggedIn = helper.checkUserLoggedIn();
-      // Math.floor(Math.random() * 100) + 1,
+
       const formUserData = {
         pin_event,
         pin_color: eventTypeColor,
@@ -149,7 +148,7 @@ export default class BaseFormView {
       if (!userLoggedIn) {
         formUserData.id = Math.floor(Math.random() * 100) + 1;
       }
-      console.log(formUserData);
+
       //pass it to the controller
       controller.controlUserData(formUserData);
 
@@ -159,7 +158,7 @@ export default class BaseFormView {
       this.baseHideForm();
 
       //refresh manually
-      // this.baseRefreshContent();
+      this.baseRefreshContent();
     });
   }
 

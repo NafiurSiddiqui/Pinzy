@@ -13,7 +13,6 @@ export default class PinCard {
 
     let userName =
       data?.user_name?.charAt(0).toUpperCase() + data?.user_name?.slice(1);
-    console.log(userName);
 
     let html = `
      <li

@@ -59,7 +59,7 @@ export default class Model {
         const data = await response.json();
         const userId = data.user_id;
         const userName = data.user_name;
-        console.log(data);
+
         return { userId, userName };
       } else {
         console.error('Error:', response.status);
@@ -158,7 +158,6 @@ export default class Model {
   }
 
   async sendPinToServer(data) {
-    console.log(data);
     if (!data) throw new Error('No data has been provided.');
 
     const { userId, userName } = await this.getUserInfo();
@@ -184,8 +183,6 @@ export default class Model {
   }
 
   async reqToDelPin(reqType, id) {
-    // if (!reqType) return;
-    // console.log(reqType, id);
     const url = '../api/reqHandler/submitReqToDelete.php';
 
     if (reqType === 'single') {

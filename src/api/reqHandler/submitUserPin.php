@@ -9,9 +9,9 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 //DEBUG
-include '../config/config.php';
+// include '../config/config.php';
 
-reqRecieveLogger();
+// reqRecieveLogger();
 
 //DEBUGend
 
@@ -23,7 +23,7 @@ $submittedPins = json_decode(file_get_contents('php://input'), true);
 
 //--------debug
 
-filelogger('./pin_submission.log', $submittedPins);
+// filelogger('./pin_submission.log', $submittedPins);
 
 //--------debugEnd
 
@@ -46,7 +46,6 @@ $conn = $pdo;
 
 try {
 
-
     $userId = $submittedPins['userId'];
     $userName = $submittedPins['userName'];
     $event = $submittedPins['pin_event'];
@@ -66,7 +65,7 @@ try {
 
     // $stmt->exec()
 } catch (PDOException $e) {
-    throw new Exception("Data not subimitted. Something went wrong", $e->getMessage(), $e->getCode());
+    // throw new Exception("Data not subimitted. Something went wrong", $e->getMessage(), $e->getCode());
     // Redirect user to the user.php
     // header('Location: ../../api/error-view.php?error='.urlencode($e->getMessage()));
    

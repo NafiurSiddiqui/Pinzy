@@ -207,8 +207,6 @@ export default class Pin extends FormEditorView {
       set: (obj, prop, value) => {
         obj[prop] = value;
         if (prop === 'length') {
-          console.log('Pins length changed:', value);
-
           //timeout in 2 seconds
           setTimeout(() => {
             this.refreshContent();
@@ -222,7 +220,7 @@ export default class Pin extends FormEditorView {
     try {
       this.pins = new Proxy(this.pins, handler);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -231,7 +229,7 @@ export default class Pin extends FormEditorView {
     if (guestPins) {
       this.guestPins = guestPins;
     } else {
-      console.log('No guest pins found in Pin Class');
+      console.error('No guest pins found in Pin Class');
     }
   }
 }
