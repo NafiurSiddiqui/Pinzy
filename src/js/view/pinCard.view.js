@@ -16,7 +16,7 @@ export default class PinCard {
 
     let html = `
      <li
-            class="flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-zinc-50 border  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm" 
+            class="group flex user-pin android-md:w-[22rem] rounded-md  my-2  w-full bg-transparent border border-zinc-500  overflow-hidden tablet:w-full grow-0 shrink-0 drop-shadow-sm laptop:cursor-pointer laptop:hover:bg-zinc-500" 
             data-id="${data.id}"
           >
             <!-- flag -->
@@ -29,19 +29,19 @@ export default class PinCard {
               <section class="pin-card_header flex items-start justify-between">
                 <div class="user-profile_container flex">
                   <span
-                    class="pin-card_header-user-image border border-slate-300 inline-block rounded-full py-[0.6rem] px-[0.7rem] bg-zinc-100"
+                    class="pin-card_header-user-image border border-zinc-300 inline-block rounded-full py-[0.6rem] px-[0.7rem] bg-zinc-600 laptop:group-hover:bg-zinc-500"
                   >
                     <i class="fa-regular fa-user fa-xl text-zinc-400"></i>
                   </span>
                   <div
-                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-500 text-sm"
+                    class="pin-card-header_user-name ml-2 font-semibold text-zinc-200 text-sm laptop:group-hover:text-zinc-100"
                   >
                     ${data.user_name ? userName : 'Anonymous'}
                   </div>
                 </div>
               
                 <div
-                  class="pin-card-header_event-icon border border-zinc-200 bg-zinc-50 rounded-sm px-1 py-1 text-center flex-grow-0"
+                  class="pin-card-header_event-icon border border-zinc-500 bg-transparent rounded-sm px-1 py-1 text-center flex-grow-0"
                 >
                   ${data.pin_icon}
                 </div>
@@ -49,7 +49,7 @@ export default class PinCard {
               <div class="flex mt-4 mb-1">
                 <!-- date -->
                 <span
-                  class="pin-date text-zinc-400 w-4/5  text-[0.6rem]"
+                  class="pin-date text-zinc-300 w-4/5  text-[0.6rem]"
                 >
                   <i class="fa-regular fa-calendar"></i>
                   ${data.pin_date}
@@ -76,15 +76,15 @@ export default class PinCard {
                 </div>
                 <!-- time -->
                 <span
-                  class="pin-time w-4/5 text-[0.6rem] text-right text-zinc-500 "
+                  class="pin-time w-4/5 text-[0.6rem] text-right text-zinc-300 "
                 >
                   
-                  <i class="fa-regular fa-clock text-zinc-400"></i>
+                  <i class="fa-regular fa-clock text-zinc-300"></i>
                   ${data.pin_time}
                 </span>
               </div>
               <p
-                class="pin-card-text py-2 px-2 border border-zinc-200 bg-white text-zinc-500 text-sm"
+                class="pin-card-text py-2 px-2 border border-zinc-200 bg-white text-zinc-800 text-sm"
               >
                 ${data.pin_message}
               </p>
