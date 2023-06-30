@@ -17,8 +17,6 @@ export default class Model {
     this.isLocalStorageAvailable();
 
     if (this.localStorageIsNotAvailable === false) {
-      // this.getUserName = this.getUserName.bind(this);
-      // this.getUserName();
       this.getLocalStorage();
       this.getUserInfo = this.getUserInfo.bind(this);
       this.userType = helper.checkUserLoggedIn();
