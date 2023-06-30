@@ -22,34 +22,8 @@ export default class Model {
       this.getLocalStorage();
       this.getUserInfo = this.getUserInfo.bind(this);
       this.userType = helper.checkUserLoggedIn();
-      if (this._userPins?.length > 0) {
-        this.updateGlobalState();
-      }
     }
   }
-
-  // getUserName() {
-  //   //get username from URL
-  //   const queryString = window.location.search;
-  //   let urlParams = new URLSearchParams(queryString);
-  //   let userName = urlParams.get('username');
-  //   let getUserNameFromStorage = localStorage.getItem('userName');
-
-  //   if (userName) {
-  //     //capitalize the first character
-  //     userName = userName.charAt(0).toUpperCase() + userName.slice(1);
-  //     //set to the localStorage
-  //     localStorage.setItem('userName', userName);
-  //     this._userName = userName;
-  //   } else if (getUserNameFromStorage) {
-  //     //get from localStorage
-  //     this._userName = getUserNameFromStorage;
-  //   } else {
-  //     //remove name from local Storage
-  //     localStorage.removeItem('userName');
-  //     this._username = 'userName';
-  //   }
-  // }
 
   async getUserInfo() {
     try {
@@ -221,6 +195,14 @@ export default class Model {
     const res = await this.request(url);
     const data = await res.json();
 
-    this._globalPins = [...data, ...this._guestPins];
+    if (!res.ok) return;
+
+    if (!this._guestPins) {
+      this._globalPins = [...data];
+    } else if (!data.length) {
+      this._globalPins = [...this._guestPins];
+    } else {
+      return;
+    }
   }
 }
