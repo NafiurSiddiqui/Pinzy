@@ -10,7 +10,8 @@ if(isset($_SESSION["user_id"]) || (isset($_SESSION['signupSuccessful']) && isset
 
    
     if (isset($_SESSION["user_name"])) {
-        $userName = $_SESSION["user_name"];
+        $userName = $_SESSION["user_name"]? $_SESSION["user_name"]: '';
+        $userNameCapitalized = ucfirst($userName);
         $userLogged = true;
     }
 
@@ -52,14 +53,10 @@ hover:text-zinc-100  text-base hover:font-semibold  ">
     class="user-profile_header-user-image border border-zinc-400 w-16 h-16 rounded-full p-2 bg-zinc-500 flex justify-center items-center">
     <i class="fa-regular fa-user fa-2xl text-zinc-400"></i>
   </div>
-  <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-200 text-2xl" data-userName="
-  <?php
-    echo $userLogged ? $userName : "Anonymous";
-?>
-  ">
+  <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-200 text-2xl">
     <?php
            
-echo $userLogged? $userName: '';
+echo $userLogged? $userNameCapitalized: 'Anonymous';
 ?>
   </span>
 
