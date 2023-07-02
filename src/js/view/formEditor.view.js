@@ -109,8 +109,7 @@ export default class FormEditorView extends BaseForm {
   }
 
   editMessage(id) {
-    //pass the item from model> controller
-
+    //get the item that mateches with this id
     let item =
       this.userType === 'user'
         ? this.userPins?.find(item => item.id === +id)
@@ -124,14 +123,9 @@ export default class FormEditorView extends BaseForm {
     this.messageEditEl.value = item.pin_message;
     //get the newInput
     this.btnEditSubmit?.addEventListener('click', e => {
-      // e.preventDefault();
+      e.preventDefault();
       const newEventType = this.eventTypeEditEl.value;
       const newMessage = this.messageEditEl.value;
-
-      //if event or message value changes
-      if (newEventType !== item.pin_event || newMessage !== item.pin_message) {
-        this.pinEdited = true;
-      }
 
       //create a new object
       let newItem = {
@@ -166,6 +160,7 @@ export default class FormEditorView extends BaseForm {
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
       // this.watchForPinChanges();
+      this.baseRefreshContent();
     });
   }
 
@@ -175,25 +170,6 @@ export default class FormEditorView extends BaseForm {
 
   deleteAllPin() {
     controller.controlDelReq('all');
-  }
-  //MODEL CONCERNS ENDS
-
-  watchForPinChanges() {
-    //see if pinEdited
-    if (this.pinEdited) {
-      //roll out timer and refresh the content
-      setTimeout(() => {
-        this.baseRefreshContent();
-      }, 100);
-
-      //set edited to false
-      this.pinEdited = false;
-    } else {
-      //refresh anyway otherwise if submitted, page does not refresh
-      setTimeout(() => {
-        this.baseRefreshContent();
-      }, 100);
-    }
   }
 
   actionHandler() {
