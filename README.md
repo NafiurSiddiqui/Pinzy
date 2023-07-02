@@ -42,7 +42,10 @@ Here is how the guest profile looks like -
 
 - Debouncing for the form validation ( not on the auth yet)
 - Used fontAwesome locally due to CORS issue by fa scripts.
-- *NOTE* i am not sending the user pins to the backend due to lack of time to work on this project but I am going to store user pins to the backend soon.
+- custom RestAPI for fetching data
+- signed users are stored in the mysql db with unlimited pin privilege.
+- Guest users are stored in localstoarge **Plz delete all pin** before logging out and free your localstorage. I will implement algorithm with expiry date set along the data later on.
+- Tailwind css is used for tackling css for flexibility and fast development.
 
 This is not a production ready app to tackle huge user interaction but a demo webapp for the future Pinzy release and to solidify my understanding of _MVC_, _OOP_ with vanilla **JS**, **Php** and **MySql**.
 
