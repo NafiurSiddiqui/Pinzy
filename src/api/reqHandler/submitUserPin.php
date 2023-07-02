@@ -2,16 +2,19 @@
 
 session_start();
 
+// DEBUG
+include '../config/config.php';
+
+reqRecieveLogger();
+
+
 //make sure user is authenticated
 if (!isset($_SESSION["user_id"])) {
     header('Location:../../../index.php?message=access_denied'); //redirect to login page if not logged in
     exit();
 }
 
-//DEBUG
-// include '../config/config.php';
 
-// reqRecieveLogger();
 
 //DEBUGend
 
@@ -23,7 +26,7 @@ $submittedPins = json_decode(file_get_contents('php://input'), true);
 
 //--------debug
 
-// filelogger('./pin_submission.log', $submittedPins);
+filelogger('./pin_submission.log', $submittedPins);
 
 //--------debugEnd
 

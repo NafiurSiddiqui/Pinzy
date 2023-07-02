@@ -20,7 +20,6 @@ export default class Model {
       this.getLocalStorage();
       this.getUserInfo = this.getUserInfo.bind(this);
       this.userType = helper.checkUserLoggedIn();
-      // this.fetchUserData();
     }
   }
 

@@ -21,7 +21,7 @@ class Controller {
     this.model = new Model();
     // Wait for the model promises data to be resolved first
     await Promise.all([this.model.fetchUserData(), this.model.getGlobalPins()]);
-    this.controlUserData = this.controlUserData.bind(this);
+    this.controlUserData = await this.controlUserData.bind(this);
     this.controlEditData = this.controlEditData.bind(this);
     this.controlDelReq = this.controlDelReq.bind(this);
     this.view = new View(
@@ -34,14 +34,15 @@ class Controller {
     this.userId = this.model._userId;
     this.userPins = this.model._userPins;
     this.controlLstorageAlert = this.controlLstorageAlert.bind(this);
+    console.log('init runs');
   }
 
-  controlUserData(data) {
+  async controlUserData(data) {
     //storage guard for guest
     if (this.controlLstorageAlert() === true) return;
 
     this.model.userType
-      ? this.model.sendPinToServer(data)
+      ? await this.model.sendPinToServer(data)
       : this.model.saveGuestToLocalStorage(data);
   }
 
