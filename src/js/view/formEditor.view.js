@@ -158,8 +158,8 @@ export default class FormEditorView extends BaseForm {
 
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
+
       //refresh window to update the pins
-      // this.watchForPinChanges();
       this.baseRefreshContent();
     });
   }
@@ -207,9 +207,10 @@ export default class FormEditorView extends BaseForm {
               }).then(res => {
                 if (res) {
                   this.deletePin(id);
-                  if (this.userType === 'guest') {
-                    this.baseRefreshContent();
-                  }
+                  this.baseRefreshContent();
+                  // if (this.userType === 'guest') {
+                  //   this.baseRefreshContent();
+                  // }
                 } else {
                   return;
                 }
@@ -225,9 +226,10 @@ export default class FormEditorView extends BaseForm {
               }).then(res => {
                 if (res) {
                   this.deleteAllPin();
-                  if (this.userType === 'guest') {
-                    this.baseRefreshContent();
-                  }
+                  this.baseRefreshContent();
+                  // if (this.userType === 'guest') {
+                  //   this.baseRefreshContent();
+                  // }
                 } else {
                   return;
                 }

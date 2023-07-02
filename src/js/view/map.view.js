@@ -37,10 +37,10 @@ export default class Map extends Pin {
     this.userType = helper.checkUserLoggedIn() === true ? 'user' : 'guest';
     this.moveToPopup = this.moveToPopup.bind(this);
     this.isGlobalPinPage
-      ? this.globalPinContainer.addEventListener('click', this.moveToPopup)
+      ? this.globalPinContainer?.addEventListener('click', this.moveToPopup)
       : this.userType === 'user'
-      ? this.userPinContainer.addEventListener('click', this.moveToPopup)
-      : this.guestPinContainer.addEventListener('click', this.moveToPopup);
+      ? this.userPinContainer?.addEventListener('click', this.moveToPopup)
+      : this.guestPinContainer?.addEventListener('click', this.moveToPopup);
   }
 
   //load the map - V

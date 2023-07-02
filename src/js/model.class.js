@@ -113,8 +113,17 @@ export default class Model {
     try {
       // const response = await fetch(url);
       let response = await this.request(url, 'GET', null, 'fetch');
+      // console.log(response);
+      // let resMsg = await response.;
+      // console.log(resMsg);
+      if (!response.ok) {
+        let result = await response.json();
 
-      if (!response.ok) return;
+        console.warn(
+          `Failed to get user pin: ${result.message || response.text()}`
+        );
+        return false;
+      }
 
       const result = await response.json();
 
@@ -127,12 +136,14 @@ export default class Model {
       return this._userPins;
     } catch (error) {
       console.error(error);
+      // window.location.href = '../api/error-view.php';
+      // alert('Something went wrong.😵‍💫 Look in the console for further info');
     }
   }
 
   async sendPinToServer(data) {
-    if (!data) throw new Error('No data has been provided.');
-    console.log(data);
+    if (!data) console.warning('No data has been provided.');
+
     const { userId, userName } = await this.getUserInfo();
     const newData = { userId, userName, ...data };
     const url = '../api/reqHandler/submitUserPin.php';

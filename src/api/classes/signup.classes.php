@@ -1,24 +1,19 @@
 <?php
 
 
-
-
 class Signup
 {
 
+    private $conn;
     //check of recreation of data
     private $sql = 'SELECT user_name FROM pintzy_user_info WHERE user_name = ? OR user_email = ?;';
     private $sqlInsert = 'INSERT INTO pintzy_user_info (user_name, user_email, user_password) VALUES (?, ?, ?)';
-
-    private $conn;
 
 
     public function __construct(\PDO $pdo)
     {
         $this->conn = $pdo;
-        // var_dump($this->conn);
-
-        
+      
     }
 
  
@@ -26,7 +21,7 @@ class Signup
     public function setUser($name, $email, $pass)
     {
 
-        var_dump($this->conn);
+        
 
         // $statement = $this->connect()->prepare($this->sqlInsert);
 
@@ -42,16 +37,20 @@ class Signup
             header("location:../../../index.php?error=statmentfailed");
             exit(); //exit the entire script
         }
-
+        
+        //get the user id
+        $userId = $this->conn->lastInsertId();
+        
+      
         //Close the conn
-
         $statement = null;
      
         session_start();
 
         //on success
         $_SESSION['signupSuccessful'] = true;
-        $_SESSION['userName'] = $name;
+        $_SESSION['user_name'] = $name;
+        $_SESSION['user_id'] = $userId;
 
     }
 

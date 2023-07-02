@@ -15,15 +15,13 @@ if(isset($_SESSION["user_id"]) || (isset($_SESSION['signupSuccessful']) && isset
         $userLogged = true;
     }
 
-
-
-
-
 } else {
     $userLogged= false;
     header("location:../../index.php?message=access_denied");
     exit();
 }
+
+
 
 $pageTitle = 'Profile';
 

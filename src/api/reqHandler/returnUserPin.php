@@ -2,10 +2,20 @@
 //start the session
 session_start();
 
+include '../config/config.php';
+
+// reqRecieveLogger();
+
+
+// //get the userId
+// $userId = $_SESSION["user_id"];
+// filelogger('./genid.log', $userId);
+
+
+
 //make sure user is logged in
 
-
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["user_id"]) || (!isset($_SESSION['signupSuccessful']) && isset($_SESSION['signupSuccessful'])== false)) {
 
     //send HTTP response
     header('HTTP/1.1 401 Unauthorized');
@@ -19,7 +29,7 @@ if (!isset($_SESSION["user_id"])) {
 
 //get the userId
 $userId = $_SESSION["user_id"];
-
+filelogger('./genid.log', $userId);
 //get the pdo
 
 require '../db/db-connector.php';
@@ -38,12 +48,24 @@ try {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     //convert to json
-    $response = json_encode($result);
+    // $response = json_encode($result);
+    // filelogger('./returnPin.log', $result);
+    // //set header
+    // header('Content-Type:application/json');
+    // //echo the data
+    // echo $response;
 
-    //set header
-    header('Content-Type:application/json');
-    //echo the data
-    echo $response;
+    if(empty($result)) {
+        http_response_code(404);
+        $result = [
+            "message" => "No pins found for this user.",
+            "status" => false
+        ];
+
+        echo json_encode($result);
+    } else {
+        echo json_encode($result);
+    }
 
 } catch (Error $e) {
     //log error
