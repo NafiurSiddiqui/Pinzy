@@ -20,6 +20,7 @@ export default class Model {
       this.getLocalStorage();
       this.getUserInfo = this.getUserInfo.bind(this);
       this.userType = helper.checkUserLoggedIn();
+      // this.fetchUserData();
     }
   }
 
@@ -111,18 +112,16 @@ export default class Model {
 
     const url = '../api/reqHandler/returnUserPin.php';
     try {
-      // const response = await fetch(url);
       let response = await this.request(url, 'GET', null, 'fetch');
-      // console.log(response);
-      // let resMsg = await response.;
-      // console.log(resMsg);
+      console.log(response);
+
       if (!response.ok) {
         let result = await response.json();
 
         console.warn(
           `Failed to get user pin: ${result.message || response.text()}`
         );
-        return false;
+        return;
       }
 
       const result = await response.json();
@@ -136,15 +135,15 @@ export default class Model {
       return this._userPins;
     } catch (error) {
       console.error(error);
-      // window.location.href = '../api/error-view.php';
+
       // alert('Something went wrong.😵‍💫 Look in the console for further info');
     }
   }
 
   async sendPinToServer(data) {
     if (!data) console.warning('No data has been provided.');
-
     const { userId, userName } = await this.getUserInfo();
+
     const newData = { userId, userName, ...data };
     const url = '../api/reqHandler/submitUserPin.php';
 
@@ -154,7 +153,7 @@ export default class Model {
   async updateEditedPinToServer(data) {
     //guard
     if (!data) return;
-    console.log(data);
+
     //prepare the url
     const url = '../api/reqHandler/submitEditPin.php';
 
