@@ -1,5 +1,10 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 session_start();
 
 //make sure user is authenticated
@@ -22,7 +27,7 @@ $userId = $_SESSION["user_id"];
 // include '../config/config.php';
 
 
-
+// reqRecieveLogger();
 // filelogger('./edit_pin_submission.log', $submittedPins);
 //
 //--------debugEnd
@@ -53,13 +58,13 @@ try {
     $icon = $submittedPins['editedData']['pin_icon'];
     $message = $submittedPins['editedData']['pin_message'];
 
-    filelogger('./data-check.log', [
-        'Pin Id' => $pinId,
-        "Event" => $event,
-        "Color" => $color,
-        "Icon" => $icon,
-        "Message"=> $message
-    ]);
+    // filelogger('./data-check.log', [
+    //     'Pin Id' => $pinId,
+    //     "Event" => $event,
+    //     "Color" => $color,
+    //     "Icon" => $icon,
+    //     "Message"=> $message
+    // ]);
     
     //prepare and exec
     $conn->prepare($sqlUpdate)->execute([$event, $color, $icon, $message, $userId, $pinId]);

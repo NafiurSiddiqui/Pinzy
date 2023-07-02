@@ -120,6 +120,7 @@ export default class Model {
 
       if (result.length === 0) {
         console.log('No data');
+        return;
       }
       this._userPins = result;
 
@@ -131,7 +132,7 @@ export default class Model {
 
   async sendPinToServer(data) {
     if (!data) throw new Error('No data has been provided.');
-
+    console.log(data);
     const { userId, userName } = await this.getUserInfo();
     const newData = { userId, userName, ...data };
     const url = '../api/reqHandler/submitUserPin.php';
@@ -142,7 +143,7 @@ export default class Model {
   async updateEditedPinToServer(data) {
     //guard
     if (!data) return;
-
+    console.log(data);
     //prepare the url
     const url = '../api/reqHandler/submitEditPin.php';
 
@@ -156,7 +157,7 @@ export default class Model {
 
   async reqToDelPin(reqType, id) {
     const url = '../api/reqHandler/submitReqToDelete.php';
-
+    console.log(reqType, id);
     if (reqType === 'single') {
       await this.request(url, 'DELETE', { id }, 'DELETE');
     } else if (reqType === 'all') {

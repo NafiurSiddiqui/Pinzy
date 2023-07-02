@@ -158,7 +158,7 @@ export default class BaseFormView {
       this.baseHideForm();
 
       //refresh manually
-      this.baseRefreshContent();
+      // this.baseRefreshContent();
     });
   }
 

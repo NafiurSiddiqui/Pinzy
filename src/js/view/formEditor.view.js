@@ -88,8 +88,9 @@ export default class FormEditorView extends BaseForm {
   //editor logic
 
   getEventIcon() {
+    console.log(this.eventTypeEditEl);
     let selectedEventIcon =
-      this.eventTypeEditEl.options[this.eventTypeEditEl.selectedIndex].dataset
+      this.eventTypeEditEl?.options[this.eventTypeEditEl.selectedIndex].dataset
         .icon;
 
     return selectedEventIcon;
@@ -164,7 +165,7 @@ export default class FormEditorView extends BaseForm {
       //hideInput
       this.baseHideForm(this.formEditBgEl, this.formEditEl);
       //refresh window to update the pins
-      this.watchForPinChanges();
+      // this.watchForPinChanges();
     });
   }
 

@@ -8,19 +8,12 @@ if(!isset($_SESSION["user_id"])) {
     exit();
 }
 
-//----debug
-// include '../config/config.php';
-
-// reqRecieveLogger();
 
 
 if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
     // Get the request body as JSON
     $requestData = json_decode(file_get_contents('php://input'), true);
-
-    //debugger (to check value) !REMOVE in production
-    filelogger('./delete-req-check.log', $requestData);
 
     //check if id isset
     if(isset($requestData['id'])) {

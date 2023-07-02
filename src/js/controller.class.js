@@ -55,7 +55,7 @@ class Controller {
 
   controlDelReq(reqType, id) {
     if (this.controlLstorageAlert() === true) return;
-
+    console.log(reqType, id);
     if (reqType === 'single') {
       this.model.userType
         ? this.model.reqToDelPin('single', id)
