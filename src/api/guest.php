@@ -40,14 +40,14 @@ include './layout/header-pin.php';
 
         <i class="fa-regular fa-user fa-2xl text-zinc-400"></i>
     </div>
-    <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-200 text-2xl">
+    <span class="user-profile-header_user-name ml-2 inline-block font-semibold text-zinc-100 text-2xl">
         Anonymous
     </span>
-    <div class="guest-profile__pin-count-wrapper border border-zinc-400 bg-zinc-300 rounded-sm px-1 py-1 text-center">
-        <span class="guest-profile__pin-count font-semibold tablet:text-sm max-w-[2rem] text-zinc-600">
+    <div class="guest-profile__pin-count-wrapper border border-zinc-400  rounded-sm px-2 py-1 text-center">
+        <span class="guest-profile__pin-count font-semibold tablet:text-sm max-w-[2rem] text-zinc-200">
             0
         </span>
-        <i class="fa-solid fa-location-dot text-zinc-500"></i>
+        <i class="fa-solid fa-location-dot text-zinc-300"></i>
     </div>
 </div>
 
@@ -56,7 +56,7 @@ include './layout/header-pin.php';
     <p class="default-msg text-center text-zinc-200 font-semibold text-lg top-8 relative italic">
 
     </p>
-    <ul class="guest-pin-container  hidden px-4 pt-8 pb-16 flex items-center flex-col bg-zinc-600 h-80vh overflow-y-scroll"
+    <ul class="guest-pin-container  hidden px-4 pt-8 pb-16 flex items-center flex-col bg-zinc-600 h-68vh overflow-y-scroll"
         data-userLogged="
     <?php
       echo $userLogged ? 'true':'false';

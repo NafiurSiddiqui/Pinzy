@@ -53,18 +53,18 @@ hover:text-zinc-100  text-base hover:font-semibold  ">
     class="user-profile_header-user-image border border-zinc-400 w-16 h-16 rounded-full p-2 bg-zinc-500 flex justify-center items-center">
     <i class="fa-regular fa-user fa-2xl text-zinc-400"></i>
   </div>
-  <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-200 text-2xl">
+  <span class="user-profile-header_user-name ml-2  inline-block font-semibold text-zinc-100 text-2xl">
     <?php
            
 echo $userLogged? $userNameCapitalized: 'Anonymous';
 ?>
   </span>
 
-  <div class="user-profile__pin-count-wrapper border border-zinc-400 bg-zinc-300  rounded-sm px-1 py-1 text-center">
-    <span class="user-profile__pin-count font-semibold tablet:text-sm max-w-[2rem] text-zinc-600">
+  <div class="user-profile__pin-count-wrapper border border-zinc-400  rounded-sm px-2 py-1 text-center">
+    <span class="user-profile__pin-count font-semibold tablet:text-sm max-w-[2rem] text-zinc-200">
       0
     </span>
-    <i class="fa-solid fa-location-dot text-zinc-500"></i>
+    <i class="fa-solid fa-location-dot text-zinc-200"></i>
   </div>
 </div>
 
