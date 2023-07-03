@@ -1,4 +1,3 @@
-import controller from '../controller.class.js';
 import { helper } from '../helper.js';
 
 export default class BaseFormView {
@@ -47,7 +46,6 @@ export default class BaseFormView {
   }
 
   baseValidateMessage(messageEl) {
-    // const message = this.messageEl.value;
     const message = messageEl.value;
 
     if (message === '') {
@@ -114,7 +112,7 @@ export default class BaseFormView {
   }
 
   //submit form
-  baseDataHandler() {
+  baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
       // e.preventDefault();
 
@@ -150,7 +148,7 @@ export default class BaseFormView {
       }
 
       //pass it to the controller
-      controller.controlUserData(formUserData);
+      handler(formUserData);
 
       //clear inputs
       this.eventTypeEl.value = this.messageEl.value = '';

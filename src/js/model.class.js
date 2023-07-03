@@ -152,15 +152,12 @@ export default class Model {
   async updateEditedPinToServer(data) {
     //guard
     if (!data) return;
-
     //prepare the url
     const url = '../api/reqHandler/submitEditPin.php';
-
     //get userId
     const { userId, userName } = await this.getUserInfo();
     //combine data with user id
     let editedData = { ...data, userId, userName };
-
     await this.request(url, 'POST', { editedData }, 'Edited data');
   }
 
@@ -203,12 +200,12 @@ export default class Model {
     const res = await this.request(url);
     const data = await res.json();
 
-    if (!res.ok) return;
-
     if (!this._guestPins) {
       this._globalPins = [...data];
-    } else if (!data.length) {
+    } else if (!data) {
       this._globalPins = [...this._guestPins];
+    } else if (data && this._guestPins) {
+      this._globalPins = [...this._guestPins, ...data];
     } else {
       return;
     }

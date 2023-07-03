@@ -94,12 +94,6 @@ export default class Pin extends FormEditorView {
       );
 
       this.formEditor.editBtnHandler(editBtn);
-      // editBtn?.addEventListener('click', e => {
-      //   e.stopPropagation();
-
-      //   const editBox = e.currentTarget.nextElementSibling;
-      //   editBox.classList.remove('hidden');
-      // });
     } else {
       alert(
         isGuest
@@ -113,6 +107,7 @@ export default class Pin extends FormEditorView {
 
   handleGlobalPinRenderer() {
     // const globalPins = [...this.globalPins, ...this.guestPins];
+    if (!this.globalPins.length) return;
 
     this.globalPins?.forEach(pin => {
       //render on map
