@@ -18,12 +18,10 @@ if (!isset($_SESSION["user_id"])) {
 //get the submitted data
 $submittedPins = json_decode(file_get_contents('php://input'), true);
 
-
 $userId = $_SESSION["user_id"];
 
-
-
 //--------debug
+//! Putting these debugger in production mess up with sql
 // include '../config/config.php';
 
 
@@ -58,14 +56,7 @@ try {
     $icon = $submittedPins['editedData']['pin_icon'];
     $message = $submittedPins['editedData']['pin_message'];
 
-    // filelogger('./data-check.log', [
-    //     'Pin Id' => $pinId,
-    //     "Event" => $event,
-    //     "Color" => $color,
-    //     "Icon" => $icon,
-    //     "Message"=> $message
-    // ]);
-    
+
     //prepare and exec
     $conn->prepare($sqlUpdate)->execute([$event, $color, $icon, $message, $userId, $pinId]);
 

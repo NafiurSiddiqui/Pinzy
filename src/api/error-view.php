@@ -20,14 +20,15 @@ include './layout/header-auth.php';
     <h1 class="text-2xl mb-8 text-center">Something went wrong! 🤦</h1>
 
     <div class="text-zinc-700 px-2 ">
-        <?php echo !empty($message);?>
+        <?php echo !empty($message)? $message: '';?>
     </div>
 
     <div class="font-semibold text-2xl text-zinc-800 mt-4 text-center">
-        Error code: <?php echo !empty($code);?> 🤔
+        Error code:
+        <?php echo !empty($code)? $code: '';?> 🤔
     </div>
 </div>
-
+</div>
 </body>
 
 </html>

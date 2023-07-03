@@ -45,14 +45,6 @@ class Controller {
       ? await this.model.sendPinToServer(data)
       : this.model.saveGuestToLocalStorage(data);
   }
-  // async controlUserData(data) {
-  //   //storage guard for guest
-  //   if (this.controlLstorageAlert() === true) return;
-
-  //   this.model.userType
-  //     ? await this.model.sendPinToServer(data)
-  //     : this.model.saveGuestToLocalStorage(data);
-  // }
 
   controlEditData(pin, id) {
     if (this.controlLstorageAlert() === true) return;
