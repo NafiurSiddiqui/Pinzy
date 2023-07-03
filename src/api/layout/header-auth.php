@@ -55,7 +55,7 @@ echo !empty($pathToJs)? $pathToJs: 'setPath';
 
     <body class="flex justify-center items-center flex-col pb-16">
         <div
-            class="content-wrapper flex flex-col justify-center items-center laptop:pb-16  relative w-full desktop-md:w-[78rem] desktop-md:px-24 desktop-md:py-8 desktop desktop:px-8">
+            class="content-wrapper flex flex-col justify-center items-center laptop:pb-16  relative w-full desktop-md:w-[78rem] desktop-md:px-24 desktop-md:py-8 desktop desktop:px-8 ">
             <header class="w-full p-2 relative">
                 <div><span
                         class="font-semibold font-caveat text-zinc-500 text-2xl desktop:ml-6 ml-4 desktop-md:text-4xl ">Pinzy</span>
