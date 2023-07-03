@@ -8,24 +8,24 @@ This version has minimal featues included to make it CRUD.
 
 ### User authentication and registration.
 
-![index page](./readme/index.png)
+![index page](./readme_assets/index.png)
 
 You have **Login**, **signup** and **guest** options here.
 
 ### Guest
 
-![index page](./readme/guest.png)
+![index page](./readme_assets/guest.png)
 
 Here is how the guest profile looks like -
 
-![guest profile page](./readme/guest_profile.png)
+![guest profile page](./readme_assets/guest_profile.png)
 
 - Guest feature allows you explore the pinzy as a guest.
 - Limits to 10 pins with full CRUD using local storage.
 
 ## User
 
-![user profile page](./readme/user_profile.png)
+![user profile page](./readme_assets/user_profile.png)
 
 - Unlimited pins
 - customization of profile (Not yet implemeted)
@@ -34,7 +34,7 @@ Here is how the guest profile looks like -
 
 ## Pins ( Feed )
 
-![pins page](./readme/pins.png)
+![pins page](./readme_assets/pins.png)
 
 - You have all the pins of Pinzy user here. Feed.
 
