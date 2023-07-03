@@ -31,7 +31,7 @@ export default class Model {
         const data = await response.json();
         const userId = data.user_id;
         const userName = data.user_name;
-
+        console.log(data);
         return { userId, userName };
       } else {
         console.error('Error:', response.status);
@@ -142,7 +142,7 @@ export default class Model {
   async sendPinToServer(data) {
     if (!data) console.warning('No data has been provided.');
     const { userId, userName } = await this.getUserInfo();
-
+    console.log(userId, userName);
     const newData = { userId, userName, ...data };
     const url = '../api/reqHandler/submitUserPin.php';
 

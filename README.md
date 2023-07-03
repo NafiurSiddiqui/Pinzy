@@ -51,7 +51,7 @@ Here is how the guest profile looks like -
 - custom Auth logic, used PDO and param binding for SQL-injection prevention
 - custom RestAPI for fetching data
 - signed users are stored in the mysql db with unlimited pin privilege.
--
+- custom _htaccess_ to force the use of _SSL_ certificates otherwise, some browsers won't let it locate your position.
 
 This is not a production ready app to tackle huge user interaction but a demo webapp for the future ( next verion ) Pinzy release and to solidify my understanding of _MVC_, _OOP_ with vanilla **JS**, **Php** and **MySql**.
 
@@ -69,3 +69,7 @@ This is not a production ready app to tackle huge user interaction but a demo we
 - Upon signup or login sometimes pin is not submitted to backend.
 
 Latter two bugs are soemthing I will be working on to fix. If you notice the possible issue please notify me or make a pull request. I would be grateful to you. 🙏
+
+## Notes on live-demo
+
+**Please note** that this project is hosted on a free webhosting provider, likeinfinity free, which has restricted database, meaning usage of _PUT_ and _DELETE_ method is not applicable. Hence, the live-demo is limited to user signup and creation of the pin only.
