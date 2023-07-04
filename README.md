@@ -48,7 +48,7 @@ Here is how the guest profile looks like -
 
 ## Backend 🧑‍💻
 
-- custom Auth logic, used PDO and param binding for SQL-injection prevention
+- custom Auth logic, used PDO and param binding for SQL-injection prevention and input clean up.
 - custom RestAPI for fetching data
 - signed users are stored in the mysql db with unlimited pin privilege.
 - custom _htaccess_ to force the use of _SSL_ certificates otherwise, some browsers won't let it locate your position.
@@ -63,13 +63,14 @@ This is not a production ready app to tackle huge user interaction but a demo we
 
 ## Noticeable BUGS and third-party issue 🐛
 
-- This application uses Leaflet which, in worst cases like slow internet, is noticed to have extremely slow peroformance. The initial load of the map takes too long.
-- openstreet map server may be down sometimes or your request may take too long to respond.
-- Using it one browser sometimes won't load the map for some reason idk yet.Especially sometimes having trouble loading the map and pins on Microsoft Edge even though cache are diabled.
-- Upon signup or login sometimes pin is not submitted to backend.
+- This application uses Leaflet and openstreet map which, in worst cases like slow internet, is noticed to have extremely slow peroformance. The initial load of the map takes too long.
+- Using it one browser sometimes won't load the map for some reason idk yet.Especially sometimes having trouble loading the map and pins on Microsoft Edge even though cache are diabled. 🤔
+- Upon signup or login sometimes pin is not submitted to backend.Needs once or twice refreshing before you can submit the pin. 🐛
 
 Latter two bugs are soemthing I will be working on to fix. If you notice the possible issue please notify me or make a pull request. I would be grateful to you. 🙏
 
-## Notes on live-demo
+## Live-demo
+
+[Demo 🔗](https://www.pinzy-demo.rf.gd/)
 
 **Please note** that this project is hosted on a free webhosting provider, likeinfinity free, which has restricted database, meaning usage of _PUT_ and _DELETE_ method is not applicable. Hence, the live-demo is limited to user signup and creation of the pin only.
