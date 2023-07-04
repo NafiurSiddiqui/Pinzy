@@ -14,6 +14,8 @@ if(isset($_SESSION["user_id"])) {
         'message'=> 'user id successfully retrieved'
     ];
     //send it
+    //set header for CORS
+    header("Access-Control-Allow-Origin:*");
     header('Content-Type: application/json');
     echo json_encode($response);
 

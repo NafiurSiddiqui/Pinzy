@@ -123,7 +123,7 @@ class SignupController
     private function nameValidation()
     {
         //some regExp
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $this->userName)) {
+        if (!preg_match("/^[a-zA-Z0-9 ]*$/", $this->userName)) {
 
             $nameIsValid = false;
         } else {
