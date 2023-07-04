@@ -2,6 +2,8 @@
 
 Welcome to Pinzy. This is a web GIS social media. Create pins with your message to the globe and raise awarness, build a bridge between you and your customers, easily create your event and send your message across the globe.
 
+⚠️ Not the life time's achievement but honest work.
+
 ## Features
 
 ### User authentication and registration.
@@ -67,10 +69,10 @@ This is not a production ready app to tackle huge user interaction but a demo we
 - Using it one browser sometimes won't load the map for some reason idk yet.Especially sometimes having trouble loading the map and pins on Microsoft Edge even though cache are diabled. 🤔
 - Upon signup or login sometimes pin is not submitted to backend.Needs once or twice refreshing before you can submit the pin. 🐛
 
-Latter two bugs are soemthing I will be working on to fix. If you notice the possible issue please notify me or make a pull request. I would be grateful to you. 🙏
+Latter two bugs are soemthing I will be working on to fix.If you notice the possible issue please notify me or make a pull request. I would be grateful to you. 🙏
 
 ## Live-demo
 
 [Demo 🔗](https://www.pinzy-demo.rf.gd/)
 
-**Please note** that this project is hosted on a free webhosting provider, likeinfinity free, which has restricted database, meaning usage of _PUT_ and _DELETE_ method is not applicable. Hence, the live-demo is limited to user signup and creation of the pin only.
+**Please note** that this project is hosted on a free webhosting provider, like infinity free, which has restricted database, meaning usage of _PUT_ and _DELETE_ method is not applicable. Hence, the live-demo is limited to user signup and creation of the pin only.
