@@ -8,15 +8,12 @@ session_start();
 if (isset($_POST["submit"])) {
 
     //get the data
-
-    $userName = $_POST["userName"];
-    $email = $_POST["email"];
+    $userName = filter_input(INPUT_POST, 'userName', FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $userPassword = $_POST["password"];
     $confirmPassword = $_POST["confirm-password"];
 
     //instantiate signup controller
-
-    // include '../classes/dbh.classes.php';
     include '../db/db-connector.php';
     include '../classes/signup.classes.php';
     include '../classes/signup_controller.classes.php';
