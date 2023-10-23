@@ -4,6 +4,8 @@ Welcome to Pinzy. This is a web GIS social media. Create pins with your message 
 
 ⚠️ Not the life time's achievement but honest work.
 
+# 📝 NOTES to self: put up an instruction on how to start this project.
+
 ## Features
 
 ### User authentication and registration.

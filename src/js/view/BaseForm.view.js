@@ -114,7 +114,7 @@ export default class BaseFormView {
   //submit form
   baseDataHandler(handler) {
     this.form.addEventListener('submit', e => {
-      e.preventDefault();
+      // e.preventDefault();
 
       //get the values
       const pin_event = this.eventTypeEl.value;
@@ -156,7 +156,7 @@ export default class BaseFormView {
       this.baseHideForm();
 
       //refresh manually
-      // this.baseRefreshContent();
+      this.baseRefreshContent();
     });
   }
 
