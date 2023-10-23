@@ -8,8 +8,6 @@ if(isset($_GET["loginError"])) {
 
 }
 
-
-
 $pathToIcon = './src/assets/logo.svg';
 $pathToCss = './dist/output.css';
 $pathToFaAll = './src/style/fontawesome/all.min.css';

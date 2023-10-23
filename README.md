@@ -4,7 +4,13 @@ Welcome to Pinzy. This is a web GIS social media. Create pins with your message 
 
 ⚠️ Not the life time's achievement but honest work.
 
-# 📝 NOTES to self: put up an instruction on how to start this project.
+# Starting the project
+
+- clone or download the repo
+- Spin up the XAMPP
+- install `live-server` chrome extension. Put the actual path of the proejct folder inside the `actual server` field and click apply, toggle the `live-reload` on.
+- Have `php-server` extesnion on vscode.
+- Now spin up the `go live` and `serve php` from the `index.php` file. close both of them. visit `localhost/<path to your projects>`. for instance, mine `localhost/projects/pintzy` which lives inside the `htdocs` on windows.
 
 ## Features
 
