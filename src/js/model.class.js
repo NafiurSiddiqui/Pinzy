@@ -95,7 +95,7 @@ export default class Model {
       }
 
       if (response.ok) {
-        console.log(`${msgType} successful `);
+        console.log(`${msgType || 'response'} successful `);
       } else {
         console.log(`${msgType} failed`);
       }
@@ -112,7 +112,7 @@ export default class Model {
     const url = '../api/reqHandler/returnUserPin.php';
     try {
       let response = await this.request(url, 'GET', null, 'fetch');
-      console.log(response);
+      // console.log(response);
 
       if (!response.ok) {
         let result = await response.json();
