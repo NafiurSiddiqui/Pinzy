@@ -1,6 +1,6 @@
 # Pinzy
 
-Welcome to Pinzy. This is a web GIS social media. Create pins with your message to the globe and raise awarness, build a bridge between you and your customers, easily create your event and send your message across the globe.
+Welcome to Pinzy. This is a web GIS social media app. Create pins with your message to the globe and raise awarness, build a bridge between you and your customers, easily create your event and send your message across the globe.
 
 ⚠️ Not the life time's achievement but honest work.
 
